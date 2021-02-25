@@ -1,0 +1,11 @@
+<app-nav-title [title]="'Benchmarks'"> Data from public matches</app-nav-title>
+
+<div *ngIf="isLoading">Loading</div>
+<div *ngIf="!isLoading">
+  <div class="line-chart-box">
+    <app-line-chart [data]="item" *ngFor="let item of herosBenchmarksChartData"></app-line-chart>
+  </div>
+  <app-table-benchmarks [data]="herosBenchmarksTableData"></app-table-benchmarks>
+</div>
+
+

@@ -1,0 +1,68 @@
+<div *ngIf="isLoading">Loading</div>
+<div *ngIf="!isLoading">
+  <div *ngIf="dataSource.data.length === 0; else hasData">No data</div>
+  <ng-template #hasData>
+    <mat-paginator  #paginator pageSize="20" hidePageSize showFirstLastButtons *ngIf="!isOverviewPage"></mat-paginator>
+    <table mat-table [dataSource]="dataSource"  matSort>
+
+      <!-- match_id Column -->
+      <ng-container matColumnDef="match_id" *ngIf="displayedColumns.includes('match_id')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let element">
+          <a class="account_link" [routerLink]="['/matches', element.match_id]">{{element.match_id}} ></a>
+          <span class="date-time">
+            <span class="date-time-value" [matTooltip]="element.start_time * 1000 | date: 'mediumDate'" matTooltipPosition="above">{{element.start_time * 1000 | dateTillToday }}</span> /
+            <span class="league-name">{{element.league_name}}</span>
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- duration Column -->
+      <ng-container matColumnDef="duration" *ngIf="displayedColumns.includes('duration')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header matTooltip="The length of the match" matTooltipPosition="above"> DURATION </th>
+        <td mat-cell *matCellDef="let element">
+          <div>
+            {{element.duration | durationFormat}}
+            <p>{{element.radiant ? 'Radiant' : 'Dire'}}</p>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- result column -->
+      <ng-container matColumnDef="radiant_win" *ngIf="displayedColumns.includes('radiant_win')">
+        <th mat-header-cell *matHeaderCellDef [disabled]="true"> RESULT </th>
+        <td mat-cell *matCellDef="let element">
+          <div>
+            <span
+              [class]="(element.radiant && element.radiant_win) || (!element.radiant && !element.radiant_win) ? 'win-match' : 'lose-match'"
+            >
+              {{(element.radiant && element.radiant_win) || (!element.radiant && !element.radiant_win) ? 'Won Match' : 'Lose match'}}
+            </span>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- opposing team column -->
+      <ng-container matColumnDef="opposing_team_name" *ngIf="displayedColumns.includes('opposing_team_name')">
+        <th mat-header-cell *matHeaderCellDef [disabled]="true"> OPPOSING TEAM </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="ver-align">
+            <img width="35"
+              class="hero-img"
+              [src]="element.opposing_team_logo ? element.opposing_team_logo : 'assets/images/Dota2Logo.svg'"
+              [alt]="element.name"
+            />
+            <div class="account-date">
+              <a class="account_link" (click)="goPage(element.opposing_team_id)">{{element.opposing_team_name}} ></a>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <mat-paginator [pageIndex]="paginator?.pageIndex" [length]="paginator?.length"  [pageSize]="paginator?.pageSize" (page)="syncPrimaryPaginator($event)" hidePageSize showFirstLastButtons *ngIf="!isOverviewPage"></mat-paginator>
+  </ng-template>
+</div>

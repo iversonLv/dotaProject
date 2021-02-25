@@ -1,0 +1,7 @@
+<div class="bar-box" *ngIf="data.length === 2">
+  <div [style]="'width:' + data[1] / data[0] * 100 + '%; border-bottom: 3px solid rgb('+ (255 - 255 * data[1] / data[0]) +', ' + 255 * data[1] / data[0] + ', 0)'"></div>
+</div>
+
+<div class="bar-box" *ngIf="data.length === 3">
+  <div *ngFor="let item of data let i = index" [style]="'width:' + item / calDataTotal(data) * 100 + '%; border-bottom: 3px solid ' + kdaColor[i]"></div>
+</div>

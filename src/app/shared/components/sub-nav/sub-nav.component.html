@@ -1,0 +1,9 @@
+<div class="nav-wrapper">
+  <nav>
+    <a
+    *ngFor="let item of links"
+    [class]="currentPage === item ? 'active' : ''"
+    (click)="goPage(item)"
+    >{{item}}</a>
+  </nav>
+</div>

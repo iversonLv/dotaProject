@@ -1,0 +1,33 @@
+<app-nav-title [title]="'In All Matches'"></app-nav-title>
+<div class="players-total" *ngIf="playersTotals$ | async as playersTotalsData">
+  <p *ngIf="playersTotalsData['isLoading']; else playersTotalsDataTotalsAll">Loading</p>
+  <ng-template #playersTotalsDataTotalsAll>
+    <div class="players-totals-box">
+      <div *ngFor="let item of playersTotalsData.totals | slice: 0:3" class="players-totals-box-item">
+        <h3>{{item.field | nameDestruct: '_'}}</h3>
+        <p>{{item.sum | number}}</p>
+      </div>
+
+      <div *ngFor="let item of playersTotalsData.totals | slice: 7:8" class="players-totals-box-item">
+        <h3>{{item.field | nameDestruct: '_'}}</h3>
+        <p>{{item.sum | number}}</p>
+      </div>
+      <div *ngFor="let item of playersTotalsData.totals | slice: 8:14" class="players-totals-box-item">
+        <h3>{{item.field | nameDestruct: '_'}}</h3>
+        <p>{{item.sum | number}}</p>
+      </div>
+    </div>
+  </ng-template>
+</div>
+<app-nav-title [title]="'In Parsed Matches'"></app-nav-title>
+<div class="players-total" *ngIf="playersTotals$ | async as playersTotalsData">
+  <p *ngIf="playersTotalsData['isLoading']; else playersTotalsDataTotalsParsed">Loading</p>
+  <ng-template #playersTotalsDataTotalsParsed>
+    <div class="players-totals-box">
+      <div *ngFor="let item of playersTotalsData.totals | slice: 14:24" class="players-totals-box-item">
+        <h3>{{item.field | nameDestruct: '_'}}</h3>
+        <p>{{item.sum | number}}</p>
+      </div>
+    </div>
+  </ng-template>
+</div>

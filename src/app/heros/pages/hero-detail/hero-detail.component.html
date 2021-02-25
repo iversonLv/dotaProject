@@ -1,0 +1,8 @@
+<!-- teams hero section -->
+<app-heroes-hero></app-heroes-hero>
+<!-- teams page navigation -->
+<app-sub-nav [links]="['rankings', 'benchmarks', 'recent', 'matchups', 'durations', 'players']" [parentPage]="'heroesDetail'"></app-sub-nav>
+
+<div class="wrapper">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,14 @@
+p {
+  color: rgb(114, 114, 114);
+  font-size: 12px;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+
+  app-dropdown {
+    margin: 0 49px;
+  }
+}

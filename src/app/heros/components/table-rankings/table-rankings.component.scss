@@ -1,0 +1,112 @@
+@import '../../../../styles.scss';
+// override the table style
+.mat-paginator {
+  border: 1px solid rgba($color: $white, $alpha: 0.03);
+  background: none;
+}
+.mat-table {
+  border: 1px solid rgba($color: $white, $alpha: 0.03);
+  background: none;
+  width: 100%;
+
+  th {
+    background: rgba($color: $white, $alpha: 0.03);
+  }
+
+  th.mat-header-cell:first-of-type,
+  td.mat-cell:first-of-type,
+  td.mat-footer-cell:first-of-type {
+    padding-left: 10px;
+  }
+  
+  th.mat-header-cell:last-of-type,
+  td.mat-cell:last-of-type,
+  td.mat-footer-cell:last-of-type {
+    padding-right: 10px;
+  }
+
+  td {
+    color: $gray;
+    font-size: 13px;
+  }
+}
+
+.ver-align {
+  display: flex;
+  align-items: center;
+
+  .account_link {
+    margin-left: 5px;
+  }
+}
+
+.date-time {
+  color: $gray;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-block;
+  padding-left: 5px;
+}
+
+.account-date {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
+  .players-confirmed {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    color: $yellow;
+    left: -38px;
+    top: 11px;  
+    background: $black;
+    border-radius: 100%;
+    cursor: pointer;
+  }
+}
+
+
+.kda-bar-box {
+  position: relative;
+}
+.kda-bar {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 280%;
+  cursor: pointer;
+}
+
+
+// rank tier
+.rank-tier {
+  top: 8px;
+  margin-left: 10px;
+  position: relative;
+  width: 40px;
+  text-align: center;
+  filter: $dropShadow;
+
+  img {
+    width: 100%;
+
+    &.rank-start {
+      position: absolute;
+    }
+  }
+  
+  .leaderboard-rank {
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    width: 65px;
+    left: 50%;
+    margin-left: -32px;
+    font-size: 16px;
+    top: 100px;
+    color: $golden;
+    text-shadow: black 0px 0px 10px;
+  }
+}

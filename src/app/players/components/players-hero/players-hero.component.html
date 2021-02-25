@@ -1,0 +1,67 @@
+<div *ngIf="playersGeneral$ | async as playerData" class="player-hero">
+  <div *ngIf="playerData['isLoading']; else playerDataPlayer">Loading</div>
+  <ng-template #playerDataPlayer>
+    <img class="player-avatar" [src]="playerData.player?.profile.avatarfull"/>
+    <div class="player-info">
+      <h1>
+        {{playerData.player?.profile.name !== null ?  playerData.player?.profile.name : playerData.player?.profile.personaname}}
+        <img class="players-country" *ngIf="playerData.player?.profile.loccountrycode" src="https://community.cloudflare.steamstatic.com/public/images/countryflags/{{playerData.player?.profile.loccountrycode.toLowerCase()}}.gif" [matTooltip]="playerData.player?.profile.loccountrycode" matTooltipPosition="above"/>
+        <mat-icon class="players-confirmed" *ngIf="playerData.player?.profile.name" matTooltip="Confirmed by {{playerData.player?.profile.name}}" matTooltipPosition="above" >face</mat-icon>
+        <a [href]="playerData.player?.profile.profileurl" matTooltip="Steam profile" matTooltipPosition="above" target="_blank" class="player-steam-profile-icon">
+          <img src="https://store.cloudflare.steamstatic.com/public/images/v6/icon_platform_linux.png"/>
+        </a>
+        <mat-icon class="players-contributor" *ngIf="playerData.player?.profile.is_contributor" matTooltip="Contributor" matTooltipPosition="above" >toys</mat-icon>
+      </h1>
+      <!-- player-subinfo -->
+      <div class="player-win-lose-count" *ngIf="playersWinLoseCount$ | async as playersWinLoseCountData">
+        <span *ngIf="playersWinLoseCountData['isLoading']; else playersWinLoseCountDataPlayer">Loading</span>
+        <ng-template #playersWinLoseCountDataPlayer>
+        <div class="player-count player-win-count">
+          <label>WINS</label>
+          <span>{{playersWinLoseCountData.winlose?.win}}</span>
+        </div>
+        <!-- player-win-count -->
+        <div class="player-count player-lose-count">
+          <label>LOSES</label>
+          <span>{{playersWinLoseCountData.winlose?.lose}}</span>
+        </div>
+        <!-- player-lose-count -->
+        <div class="player-count player-win-rate">
+          <label>WINRATE</label>
+          <span>{{(playersWinLoseCountData.winlose?.win !== 0 || playersWinLoseCountData.winlose?.lose !== 0) ? (playersWinLoseCountData.winlose?.win / (playersWinLoseCountData.winlose?.win + playersWinLoseCountData.winlose?.lose) | percent :'2.0-2') : 'N/A'}}</span>
+        </div>
+        <!-- player-win-rate -->
+        <div class="player-count player-my-record-with" *ngIf="playerData.player?.profile?.account_id !== loginedAccountId">
+          <label><a (click)="goPage(playerData.player?.profile?.account_id)" class="my-record-with-link">MY RECORD WITH</a></label>
+          <span *ngIf="playersMyRecordWithWinLoseCount$ | async as playersMyRecordWithWinLoseCountData">
+            <span class="player-win-count-text">{{playersMyRecordWithWinLoseCountData.winlose?.win}}</span>
+            -
+            <span class="player-lose-count-text">{{playersMyRecordWithWinLoseCountData.winlose?.lose}}</span>
+          </span>
+        </div>
+      </ng-template>
+      </div>
+      <!-- player-win-lose-count -->
+      <button mat-button class="players-refresh" (click)="refreshAccount()">
+        <mat-icon>refresh</mat-icon>
+        Refresh
+      </button>
+    </div>
+  <!-- person-info -->
+  <div class="players-plus">
+    <img *ngIf="playerData.player?.profile.plus" src="https://www.opendota.com/assets/images/dota2/dota_plus_icon.png" matTooltip="Dota Plus subscriber" matTooltipPosition="above"/>
+  </div>
+  <div class="rank-tier" [matTooltip]="playerData.player?.rank_tier | rankTier" matTooltipPosition="above">
+    <!-- if players in leaderboard rank -->
+    <span class="leaderboard-rank" *ngIf="playerData.player?.leaderboard_rank">{{playerData.player?.leaderboard_rank}}</span>
+    <!-- if players in leaderboard rank then no start -->
+    <img class="rank-start" *ngIf="playerData.player?.rank_tier !== null && playerData.player?.rank_tier.toString()[1] !== '0'" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_star_{{playerData.player?.rank_tier.toString()[1]}}.png' />
+    <!-- 
+      rank icon if immortal, the icon base on the leaderboar rank
+      
+     -->
+    <img class="rank-icon" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_{{playerData.player?.rank_tier !== null ? playerData.player?.rank_tier.toString()[0] : "0"}}{{playerData.player?.leaderboard_rank >= 1  &&  playerData.player?.leaderboard_rank <= 10 ? "c" : (playerData.player?.leaderboard_rank <=100 && playerData.player?.leaderboard_rank > 10 ? "b" : "")}}.png' />
+  </div>
+  <!-- rank tier -->
+</ng-template>
+</div>

@@ -1,0 +1,65 @@
+<div class="hero-tooltip" *ngIf="hero" [class]="'hero-' + hero.primary_attr" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
+  <div class="hero-main">
+
+    <div class="hero-main-left">
+      <span class="hero-primary-attr">
+        <app-hero-attr-str class="hero-attr" *ngIf="hero.primary_attr === 'str'"></app-hero-attr-str>
+        <app-hero-attr-agi class="hero-attr" *ngIf="hero.primary_attr === 'agi'"></app-hero-attr-agi>
+        <app-hero-attr-int class="hero-attr" *ngIf="hero.primary_attr === 'int'"></app-hero-attr-int>
+      </span>
+      <img class="hero-img" [src]="'https://steamcdn-a.akamaihd.net' + hero.img" />
+      <div class="hero-hpmp">
+        <span class="hero-hp"><label>HP</label>{{hero.base_health + hero.base_str * 20}}</span>
+        /
+        <span  class="hero-mp"><label>MP</label>{{hero.base_mana + hero.base_int * 12}}</span>
+      </div>
+    </div>
+    <!-- hero-main-left -->
+    <div class="hero-main-right">
+      <h3>{{hero.localized_name}}</h3>
+      <span class="hero-type">{{hero.attack_type}} - </span>
+      <span class="hero-roles" *ngFor="let role of hero.roles">{{role}}, </span>
+  
+      <div class="hero-attr-info">
+        <span class="hero-attr-row">
+          <app-hero-attr-str class="hero-attr" [class]="hero.primary_attr === 'str' ? 'is-hero-primary-attr' : ''"></app-hero-attr-str>
+          {{hero.base_str}} + {{hero.str_gain}}
+        </span>
+        <span class="hero-attr-row">
+          <app-hero-attr-agi class="hero-attr" [class]="hero.primary_attr === 'agi' ? 'is-hero-primary-attr' : ''"></app-hero-attr-agi>
+          {{hero.base_agi}} + {{hero.agi_gain}}
+        </span>
+        <span class="hero-attr-row">
+          <app-hero-attr-int class="hero-attr" [class]="hero.primary_attr === 'int' ? 'is-hero-primary-attr' : ''"></app-hero-attr-int>
+          {{hero.base_int}} + {{hero.int_gain}}
+        </span>
+      </div>
+      <!-- hero-base -->
+    </div>
+    <!-- hero-main-right -->
+  </div>
+  <!-- hero-main -->
+  <div class="hero-base-info">
+    <p class="row">
+      <label>Move speed:</label>
+      <span class="separator"></span>
+      <span>{{hero.move_speed}}</span>
+    </p>
+    <p class="row">
+      <label>Base attack:</label>
+      <span class="separator"></span>
+      <span>{{hero.base_attack_min + hero.base_agi}} - {{hero.base_attack_max  + hero.base_agi}}</span>
+    </p>
+    <p class="row">
+      <label>Base armor:</label>
+      <span class="separator"></span>
+      <span>{{hero.base_armor + 0.167 * hero.base_agi | number :'1.2-2'}}</span>
+    </p>
+    <p class="row">
+      <label>Attack range:</label>
+      <span class="separator"></span>
+      <span>{{hero.attack_range}}</span>
+    </p>
+  </div>
+</div>
+<!-- hero-tooltip -->

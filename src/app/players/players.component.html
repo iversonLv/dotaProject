@@ -1,0 +1,12 @@
+<!-- players hero section -->
+<app-players-hero></app-players-hero>
+<!-- players page navigation -->
+<app-sub-nav
+  [links]="['overview', 'matches', 'heroes', 'peers', 'pros', 'records', 'totals', 'counts', 'histograms', 'trends', 'wardmap', 'wordcloud', 'mmr', 'rankings', 'actvity']"
+  [parentPage]="'playersDetail'"
+></app-sub-nav>
+
+<div class="wrapper">
+  <app-filter-bar></app-filter-bar>
+  <router-outlet></router-outlet>
+</div>

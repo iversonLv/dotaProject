@@ -1,0 +1,184 @@
+<!-- matches only show after queryParams select -->
+<div *ngIf="isLoading">Loading</div>
+<div *ngIf="!isLoading">
+  <div *ngIf="dataSource.data.length === 0; else hasData">No data</div>
+  <ng-template #hasData>
+    <mat-paginator  #paginator pageSize="20" hidePageSize showFirstLastButtons *ngIf="!isRecentMatches"></mat-paginator>
+    <table mat-table [dataSource]="dataSource"  matSort>
+
+      <!-- hero_id Column -->
+      <ng-container matColumnDef="hero_id" *ngIf="displayedColumns.includes('hero_id')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The hero played" matTooltipPosition="above"> HERO </th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngIf="element.hero_id && heroesLocal" class="ver-align">
+            <img width="52" height="29"
+              class="hero-img"
+              src="https://steamcdn-a.akamaihd.net/{{heroesLocal[element.hero_id]['img']}}"
+              (mouseover)="showHeroModalFn($event, element.hero_id)" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
+            />
+            <div class="account-date">
+              <a class="account_link" [routerLink]="['/matches', element.match_id]" *ngIf="heroesLocal && element.hero_id">{{heroesLocal[element.hero_id]['localized_name']}}></a>
+              <span class="date-time">
+                <span class="date-time-value" [matTooltip]="element.start_time * 1000 | date: 'mediumDate'" matTooltipPosition="above">{{element.start_time * 1000 | dateTillToday }}</span>
+                <span class="land_role" *ngIf="isRecentMatches">
+                  <img  class="land-role-img" width="14" height="14" *ngIf="element?.lane_role && laneRoleLocal"  matTooltipPosition="above" [matTooltip]="laneRoleLocal[element.lane_role]['name'] | nameDestruct: '_' : 2" [src]="'https://www.opendota.com/assets/images/dota2/lane_' + element?.lane_role + '.svg'"/>
+                </span>
+              </span>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- result column -->
+      <ng-container matColumnDef="lobby_type" *ngIf="displayedColumns.includes('lobby_type')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Whether the player won or lost" matTooltipPosition="above"> RESULT </th>
+        <td mat-cell *matCellDef="let element">
+          <div>
+            <a [routerLink]="['/matches', element.match_id]">
+              <span [class]="(element.player_slot > 4 && !element.radiant_win) || (element.player_slot <= 4 && element.radiant_win) ? 'win-match' : 'lose-match'">{{(element.player_slot > 4 && !element.radiant_win) || (element.player_slot <= 4 && element.radiant_win) ? 'Win Match >' : 'Lose Match >'}}</span>
+            </a>
+            <br/>
+            <span class="type-name" *ngIf="element?.lobby_type && lobbyTypeLocal">{{lobbyTypeLocal[element?.lobby_type]?.name | nameDestruct: '_' : 2}}</span>
+            <span class="type-name" *ngIf="element?.heroes">{{calAgaistOrWith(element?.player_slot, element?.heroes)}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- game_mode column -->
+      <ng-container matColumnDef="game_mode" *ngIf="displayedColumns.includes('game_mode')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The game mode of the match" matTooltipPosition="above"> GAME MODE </th>
+        <td mat-cell *matCellDef="let element">
+          <div>
+            <span *ngIf="element.game_mode && gameModeLocal" class="type-name">{{gameModeLocal[element.game_mode].name | nameDestruct: '_' : 2}}</span>
+            <div class="party-skill">
+              <span class="party-size" *ngIf="element.party_size > 1"  [matTooltip]="'Party Size ' + element.party_size" matTooltipPosition="above">
+                <mat-icon class="party-size-icon">people</mat-icon>
+                <span class="party-size-text">x{{element.party_size}}</span>
+              </span>
+              <mat-icon class="party-size-icon" *ngIf="element.party_size === 1"  [matTooltip]="'Party Size ' + element.party_size" matTooltipPosition="above">person</mat-icon>
+              <span *ngIf="element.skill !== null && skillLocal" class="skill-text">{{skillLocal[element.skill].name | nameDestruct: '_' : 1}}</span>
+              <span *ngIf="element.skill === null && skillLocal" class="skill-text-unknow">Unknow Skill</span>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- duration column -->
+      <ng-container matColumnDef="duration" *ngIf="displayedColumns.includes('duration')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The length of the match" matTooltipPosition="above"> DURATION </th>
+        <td mat-cell *matCellDef="let element">
+          <div>
+            {{element.duration | durationFormat}}
+            <p>{{element.player_slot > 4 ? 'Dire' : 'Radiant'}}</p>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- KDA column -->
+      <ng-container matColumnDef="kills" *ngIf="displayedColumns.includes('kills')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <span matTooltip="Number of kills by hero" matTooltipPosition="above">K</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="kda-bar-box">
+            {{element.kills}}
+            <app-bar-chart
+              class="kda-bar"
+              [data]='[element.kills, element.deaths, element.assists]'
+              [matTooltip]="'KLA: ' + ((element.kills + element.assists) / (element.deaths + 1) | number :'1.0-2')" matTooltipPosition="above"
+            >
+            </app-bar-chart>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="deaths" *ngIf="displayedColumns.includes('deaths')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <span matTooltip="Number of deaths by hero" matTooltipPosition="above">D</span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{element.deaths}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="assists" *ngIf="displayedColumns.includes('assists')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <span matTooltip="Number of assists by hero" matTooltipPosition="above">A</span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{element.assists}}</td>
+      </ng-container>
+
+      <!-- Items column -->
+      <!-- overview page, matches won't has items -->
+      <ng-container matColumnDef="items" *ngIf="displayedColumns.includes('items')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <span matTooltip="Items built" matTooltipPosition="above">ITEMS</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="item-list">
+              
+              <img width="40px"
+              [class]="'item-color item-color-' + itemsLocal[itemIdsLocal[element?.item_0]]?.qual"
+              class="item"
+                *ngIf="element.item_0 !== 0 && itemIdsLocal && itemsLocal && itemsLocal[itemIdsLocal[element?.item_0]]?.img"
+                src="https://www.opendota.com/assets/images/Dota2Logo.svg"  
+                [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[itemIdsLocal[element.item_0]]['img']"
+                (mouseover)="showItemModalFn($event, element.item_0)" (mouseout)="showItemModal=false; currentMouseOverItem = null"
+              />
+            <!-- item -->
+              <img width="40px"
+              [class]="'item-color item-color-' + itemsLocal[itemIdsLocal[element?.item_1]]?.qual"
+              class="item"
+                *ngIf="element.item_1 !== 0 && itemIdsLocal && itemsLocal && itemsLocal[itemIdsLocal[element?.item_1]]?.img"
+                src="https://www.opendota.com/assets/images/Dota2Logo.svg"  
+                [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[itemIdsLocal[element.item_1]]['img']"
+                (mouseover)="showItemModalFn($event, element.item_1)" (mouseout)="showItemModal=false; currentMouseOverItem = null"
+              />
+            <!-- item -->
+            <img width="40px"
+            [class]="'item-color item-color-' + itemsLocal[itemIdsLocal[element?.item_2]]?.qual"
+            class="item"
+              *ngIf="element.item_2 !== 0 && itemIdsLocal && itemsLocal && itemsLocal[itemIdsLocal[element?.item_2]]?.img"
+              src="https://www.opendota.com/assets/images/Dota2Logo.svg"  
+              [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[itemIdsLocal[element.item_2]]['img']"
+              (mouseover)="showItemModalFn($event, element.item_2)" (mouseout)="showItemModal=false; currentMouseOverItem = null"
+            />
+            <!-- item -->
+              <img width="40px"
+              [class]="'item-color item-color-' + itemsLocal[itemIdsLocal[element?.item_3]]?.qual"
+              class="item"
+              *ngIf="element.item_3 !== 0 && itemIdsLocal && itemsLocal && itemsLocal[itemIdsLocal[element?.item_3]]?.img"
+              src="https://www.opendota.com/assets/images/Dota2Logo.svg"  
+              [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[itemIdsLocal[element.item_3]]['img']"
+                (mouseover)="showItemModalFn($event, element.item_3)" (mouseout)="showItemModal=false; currentMouseOverItem = null"
+              />
+            <!-- item -->
+              <img width="40px"
+              [class]="'item-color item-color-' + itemsLocal[itemIdsLocal[element?.item_4]]?.qual"
+              class="item"
+              *ngIf="element.item_4 !== 0 && itemIdsLocal && itemsLocal && itemsLocal[itemIdsLocal[element?.item_4]]?.img"
+              src="https://www.opendota.com/assets/images/Dota2Logo.svg"  
+              [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[itemIdsLocal[element.item_4]]['img']"
+                (mouseover)="showItemModalFn($event, element.item_4)" (mouseout)="showItemModal=false; currentMouseOverItem = null"
+              />
+            <!-- item -->
+              <img width="40px"
+              [class]="'item-color item-color-' + itemsLocal[itemIdsLocal[element?.item_5]]?.qual"
+                class="item"
+                *ngIf="element.item_5 !== 0 && itemIdsLocal && itemsLocal && itemsLocal[itemIdsLocal[element?.item_5]]?.img"
+                src="https://www.opendota.com/assets/images/Dota2Logo.svg"  
+                [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[itemIdsLocal[element.item_5]]['img']"
+                (mouseover)="showItemModalFn($event, element.item_5)" (mouseout)="showItemModal=false; currentMouseOverItem = null"
+              />
+            <!-- item -->
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageIndex]="paginator?.pageIndex" [length]="paginator?.length"  [pageSize]="paginator?.pageSize" (page)="syncPrimaryPaginator($event)" hidePageSize showFirstLastButtons *ngIf="!isRecentMatches"></mat-paginator>
+  </ng-template>
+</div>
+
+<app-hero-modal *ngIf="showHeroModal" [hero]='currentMouseOverHero' [pageXY] = 'pageXY' class="hero-modal"></app-hero-modal>
+<app-item-modal *ngIf="showItemModal" [item]='currentMouseOverItem' [pageXY] = 'pageXY' class="item-modal"></app-item-modal>

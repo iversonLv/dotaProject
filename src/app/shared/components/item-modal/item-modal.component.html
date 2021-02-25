@@ -1,0 +1,44 @@
+<div class="item-tooltip" *ngIf="item" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
+  <div class="item-main">
+    <img height="50px" src="https://www.opendota.com/assets/images/Dota2Logo.svg" [src]="'https://steamcdn-a.akamaihd.net' + item.img" />
+    <div class="item-main-right">
+      <h3>{{item.dname}}</h3>
+      <span class="item-cost">
+        <img width="20px" src="https://steamcdn-a.akamaihd.net/apps/dota2/images/tooltips/gold.png" alt="$" />
+        {{item.cost}}
+      </span>
+    </div>
+  </div>
+  <!-- item-main -->
+  <div class="item-attrib" *ngIf="item.attrib">
+    <p *ngFor="let attribItem of item.attrib" class="attrib-row">
+      <span>{{attribItem.header}}</span> {{attribItem.value}} <span>{{attribItem.footer}}</span>
+    </p>
+  </div>
+  <!-- item-attrib -->
+  <div class="item-hint" *ngIf="item.hint">
+    <p *ngFor="let hint of item.hint" class="hint-row">
+      {{hint}}
+    </p>
+  </div>
+  <!-- item-hint -->
+  <div class="item-lore" *ngIf="item.lore">
+    {{item.lore}}
+  </div>
+  <!-- item-lore -->
+  <div class="item-component" *ngIf="item.components" class="item-components">
+    <h6>Components:</h6>
+    <div class="components-row">
+      <span *ngFor="let component of item.components" class="components-block">
+        <img width="40px" src="https://www.opendota.com/assets/images/Dota2Logo.svg" [src]="'https://steamcdn-a.akamaihd.net' + itemsLocal[component]['img']" *ngIf="itemsLocal && component && itemsLocal[component]?.img" />
+        <span *ngIf="itemsLocal" class="item-cost">{{itemsLocal[component]['cost']}}</span>
+      </span>
+      <span class="components-block">
+        <img width="40px" src="https://www.opendota.com/assets/images/Dota2Logo.svg" [src]="'https://steamcdn-a.akamaihd.net' + itemsLocal['recipe_' + item.dname.replace(' ', '_').toLowerCase()]?.img" *ngIf="itemsLocal && itemsLocal['recipe_' + item.dname.replace(' ', '_').toLowerCase()]?.img" />
+        <span *ngIf="itemsLocal && itemsLocal['recipe_' + item.dname.replace(' ', '_').toLowerCase()]?.cost" class="item-cost">{{itemsLocal['recipe_' + item.dname.replace(' ', '_').toLowerCase()]['cost']}}</span>
+      </span>
+    </div>
+  </div>
+  <!-- item-components -->
+</div>
+<!-- item-tooltip -->

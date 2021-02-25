@@ -1,0 +1,85 @@
+<div *ngIf="isLoading">Loading</div>
+<div *ngIf="!isLoading">
+  <div *ngIf="dataSource.data.length === 0; else hasData">No data</div>
+  <ng-template #hasData>
+    <mat-paginator  #paginator pageSize="20" hidePageSize showFirstLastButtons *ngIf="!isOverviewPage"></mat-paginator>
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- hero_id Column -->
+      <ng-container matColumnDef="hero_id" *ngIf="displayedColumns.includes('hero_id')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The hero played" matTooltipPosition="above"> HERO </th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngIf="element.hero_id && heroesLocal" class="ver-align">
+            <img class="hero-img" width="52" height="29" src="https://steamcdn-a.akamaihd.net/{{heroesLocal[element.hero_id]['img']}}"
+            (mouseover)="showHeroModalFn($event, element.hero_id)" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
+            />
+            <div class="account-date">
+              <a class="account_link" [routerLink]="['/heroes', element.hero_id]">{{heroesLocal[element.hero_id]['localized_name']}} ></a>
+              <span class="date-time" [matTooltip]="element.last_played * 1000 | date: 'mediumDate'" matTooltipPosition="above">{{element.last_played * 1000 | dateTillToday }}</span>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- games Column -->
+      <ng-container matColumnDef="games" *ngIf="displayedColumns.includes('games')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Number of games played as this hero" matTooltipPosition="above"> MP </th>
+        <td mat-cell *matCellDef="let element">
+          <a class="account_link" [routerLink]="['../matches']" [queryParams]="{hero_id: element.hero_id}">{{element.games}} &gt; </a>
+          <app-bar-chart [data]='[playersHeroesWithGameLargest?.games, element.games]'></app-bar-chart>
+          </td>
+      </ng-container>
+
+      <!-- win_with Column -->
+      <ng-container matColumnDef="win_pecentage_hero" *ngIf="displayedColumns.includes('win_pecentage_hero')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Win percentage as this hero" matTooltipPosition="above"> WIN % </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="text-on-chart">{{element.games !== 0 ? (element.win_pecentage_hero * 100 | number :'1.0-1') : '0'}}</span>
+          <app-bar-chart [data]='[1, element.win_pecentage_hero]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- with_games: Number of games with this player/hero on the team -->
+      <ng-container matColumnDef="with_games" *ngIf="displayedColumns.includes('with_games')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Number of games with this player/hero on the team" matTooltipPosition="above"> WITH </th>
+        <td mat-cell *matCellDef="let element">
+          <a class="account_link" [routerLink]="['../matches']" [queryParams]="{with_hero_id: element.hero_id}">{{element.with_games}} &gt; </a>
+          <app-bar-chart [data]='[playersHeroesWithGameLargest?.with_games, element.with_games]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- win_pecentage_with: Win percentage with this player/hero on the team-->
+      <ng-container matColumnDef="win_pecentage_with" *ngIf="displayedColumns.includes('win_pecentage_with')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Win percentage with this player/hero on the team" matTooltipPosition="above"> WIN WITH % </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="text-on-chart">{{element.with_games !== 0 ? (element.win_pecentage_with * 100 | number :'1.0-1') : '0'}}</span>
+          <app-bar-chart [data]='[1, element.win_pecentage_with]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- against_games: Number of games with this player/hero on the opposing team -->
+      <ng-container matColumnDef="against_games" *ngIf="displayedColumns.includes('against_games')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Number of games with this player/hero on the opposing team" matTooltipPosition="above"> AGAINST </th>
+        <td mat-cell *matCellDef="let element">
+          <a class="account_link" [routerLink]="['../matches']" [queryParams]="{against_hero_id: element.hero_id}">{{element.against_games}} &gt; </a>
+          <app-bar-chart [data]='[playersHeroesWithGameLargest?.against_games, element.against_games]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- win_pecentage_against: Win percentage against this player/hero-->
+      <ng-container matColumnDef="win_pecentage_against" *ngIf="displayedColumns.includes('win_pecentage_against')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Win percentage against this player/hero" matTooltipPosition="above"> WIN AGAINST % </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="text-on-chart">{{element.against_games !== 0 ? (element.win_pecentage_against * 100 | number :'1.0-1') : '0'}}</span>
+          <app-bar-chart [data]='[1, element.win_pecentage_against]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageIndex]="paginator?.pageIndex" [length]="paginator?.length"  [pageSize]="paginator?.pageSize" (page)="syncPrimaryPaginator($event)" hidePageSize showFirstLastButtons  *ngIf="!isOverviewPage"></mat-paginator>
+  </ng-template>
+</div>
+
+<app-hero-modal *ngIf="showHeroModal" [hero]='currentMouseOverHero' [pageXY] = 'pageXY' class="hero-modal"></app-hero-modal>

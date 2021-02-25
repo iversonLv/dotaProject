@@ -1,0 +1,5 @@
+<a *ngIf="link" (click)="goPage(link)">{{title}}</a>
+<h2 *ngIf="!link">{{title}}</h2>
+<!-- if no link we only show the title -->
+<ng-content></ng-content>
+<!-- content will be sub title text gray style -->

@@ -1,0 +1,104 @@
+<table mat-table [dataSource]="dataSource" matSort>
+
+  <!-- hero_id Column -->
+  <ng-container matColumnDef="hero_id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The hero played" matTooltipPosition="above"> HERO </th>
+    <td mat-cell *matCellDef="let element">
+      <div *ngIf="element.hero_id && heroesLocal" class="ver-align">
+        <img width="52" height="29"
+          class="hero-img"
+          src="https://steamcdn-a.akamaihd.net/{{heroesLocal[element.hero_id]['img']}}"
+        />
+        <div class="account-date">
+          <a class="account_link" [routerLink]="['/matches', element.match_id]" *ngIf="heroesLocal && element.hero_id">{{heroesLocal[element.hero_id]['localized_name']}}></a>
+          <span class="date-time">
+            <span class="date-time-value" [matTooltip]="element.start_time * 1000 | date: 'mediumDate'" matTooltipPosition="above">{{element.start_time * 1000 | dateTillToday }}</span>
+            <span class="land_role" *ngIf="isRecentMatches">
+              <img  class="land-role-img" width="14" height="14" *ngIf="element?.lane_role && laneRoleLocal"  matTooltipPosition="above" [matTooltip]="laneRoleLocal[element.lane_role]['name'] | nameDestruct: '_' : 2" [src]="'https://www.opendota.com/assets/images/dota2/lane_' + element?.lane_role + '.svg'"/>
+            </span>
+          </span>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <!-- result column -->
+  <ng-container matColumnDef="lobby_type">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Whether the player won or lost" matTooltipPosition="above"> RESULT </th>
+    <td mat-cell *matCellDef="let element">
+      <div>
+        <a [routerLink]="['/matches', element.match_id]">
+          <span [class]="(element.player_slot > 4 && !element.radiant_win) || (element.player_slot <= 4 && element.radiant_win) ? 'win-match' : 'lose-match'">{{(element.player_slot > 4 && !element.radiant_win) || (element.player_slot <= 4 && element.radiant_win) ? 'Win Match >' : 'Lose Match >'}}</span>
+        </a>
+        <br/>
+        <span class="type-name" *ngIf="element?.lobby_type && lobbyTypeLocal">{{lobbyTypeLocal[element?.lobby_type]?.name | nameDestruct: '_' : 2}}</span>
+        <span class="type-name" *ngIf="element?.heroes">{{calAgaistOrWith(element?.player_slot, element?.heroes)}}</span>
+      </div>
+    </td>
+  </ng-container>
+
+  <!-- game_mode column -->
+  <ng-container matColumnDef="game_mode">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The game mode of the match" matTooltipPosition="above"> GAME MODE </th>
+    <td mat-cell *matCellDef="let element">
+      <div>
+        <span *ngIf="element.game_mode && gameModeLocal" class="type-name">{{gameModeLocal[element.game_mode].name | nameDestruct: '_' : 2}}</span>
+        <div class="party-skill">
+          <span class="party-size" *ngIf="element.party_size > 1"  [matTooltip]="'Party Size ' + element.party_size" matTooltipPosition="above">
+            <mat-icon class="party-size-icon">people</mat-icon>
+            <span class="party-size-text">x{{element.party_size}}</span>
+          </span>
+          <mat-icon class="party-size-icon" *ngIf="element.party_size === 1"  [matTooltip]="'Party Size ' + element.party_size" matTooltipPosition="above">person</mat-icon>
+          <span *ngIf="element.skill !== null && skillLocal" class="skill-text">{{skillLocal[element.skill].name | nameDestruct: '_' : 1}}</span>
+          <span *ngIf="element.skill === null && skillLocal" class="skill-text-unknow">Unknow Skill</span>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <!-- duration column -->
+  <ng-container matColumnDef="duration">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The length of the match" matTooltipPosition="above"> DURATION </th>
+    <td mat-cell *matCellDef="let element">
+      <div>
+        {{element.duration | durationFormat}}
+        <p>{{element.player_slot > 4 ? 'Dire' : 'Radiant'}}</p>
+      </div>
+    </td>
+  </ng-container>
+
+  <!-- KDA column -->
+  <ng-container matColumnDef="kills">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      <span matTooltip="Number of kills by hero" matTooltipPosition="above">K</span>
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="kda-bar-box">
+        {{element.kills}}
+        <app-bar-chart
+          class="kda-bar"
+          [data]='[element.kills, element.deaths, element.assists]'
+          [matTooltip]="'KLA: ' + ((element.kills + element.assists) / (element.deaths + 1) | number :'1.0-2')" matTooltipPosition="above"
+        >
+        </app-bar-chart>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="deaths">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      <span matTooltip="Number of deaths by hero" matTooltipPosition="above">D</span>
+    </th>
+    <td mat-cell *matCellDef="let element">{{element.deaths}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="assists">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      <span matTooltip="Number of assists by hero" matTooltipPosition="above">A</span>
+    </th>
+    <td mat-cell *matCellDef="let element">{{element.assists}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -1,0 +1,8 @@
+<app-nav-title [title]="'Durations'"> Data from professional matches</app-nav-title>
+
+<div *ngIf="herosDurations$ | async as herosDurationsData">
+  <div *ngIf="herosDurationsData['isLoading']; else herosDurationsDataList">Loading</div>
+  <ng-template #herosDurationsDataList>
+    <app-bar-column-chart [data]="herosDurationsData['markup_duration_player']"></app-bar-column-chart>
+  </ng-template>
+</div>

@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  BASE_API_URL: 'https://api.opendota.com/api',
+  BASE_LOCAL_DATA_URL: '/assets/data',
+  // BASE_GIT_RAW_DATA_URL: 'https://raw.githubusercontent.com/odota/dotaconstants/master/build'
+  BASE_GIT_RAW_DATA_URL: '/assets/data' || 'https://raw.githubusercontent.com/odota/dotaconstants/master/build'
 };
 
 /*

@@ -1,0 +1,84 @@
+<table mat-table [dataSource]="dataSource">
+  <!-- percentile column -->
+  <ng-container matColumnDef="percentile">
+    <th mat-header-cell *matHeaderCellDef> PERCENTILE </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.percentile}}
+    </td>
+  </ng-container>
+
+  <!-- GPM column -->
+  <ng-container matColumnDef="GPM">
+    <th mat-header-cell *matHeaderCellDef matTooltip="Gold farmed per minute" matTooltipPosition="above"> GPM </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.GPM}}
+    </td>
+  </ng-container>
+
+  <!-- XPM column -->
+  <ng-container matColumnDef="XPM">
+    <th mat-header-cell *matHeaderCellDef matTooltip="Experience gained per minute" matTooltipPosition="above"> XPM </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.XPM}}
+    </td>
+  </ng-container>
+
+  <!-- KPM column -->
+  <ng-container matColumnDef="KPM">
+    <th mat-header-cell *matHeaderCellDef matTooltip="Killsills per minute" matTooltipPosition="above"> KPM </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.KPM}}
+    </td>
+  </ng-container>
+
+  <!-- LHM column -->
+  <ng-container matColumnDef="LHM">
+    <th mat-header-cell *matHeaderCellDef matTooltip="Last hits per minute" matTooltipPosition="above"> LHM </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.LHM}}
+    </td>
+  </ng-container>
+
+  <!-- HDM column -->
+  <ng-container matColumnDef="HDM">
+    <th mat-header-cell *matHeaderCellDef matTooltip="Hero damage per minute" matTooltipPosition="above"> HDM </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.HDM}}
+    </td>
+  </ng-container>
+
+  <!-- HHM column -->
+  <ng-container matColumnDef="HHM">
+    <th mat-header-cell *matHeaderCellDef matTooltip="Hero healing per minute" matTooltipPosition="above"> HHM </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.HHM}}
+    </td>
+  </ng-container>
+
+  <!-- TD column -->
+  <ng-container matColumnDef="TD">
+    <th mat-header-cell *matHeaderCellDef matTooltip="Amount of damage dealt to towers" matTooltipPosition="above"> TD </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.TD}}
+    </td>
+  </ng-container>
+
+  <!-- SPM column -->
+  <ng-container matColumnDef="SPM">
+    <th mat-header-cell *matHeaderCellDef matTooltip="Seconds of hero stuns per minute" matTooltipPosition="above"> SPM </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.SPM}}
+    </td>
+  </ng-container>
+
+  <!-- LH column -->
+  <ng-container matColumnDef="LH">
+    <th mat-header-cell *matHeaderCellDef matTooltip="Last hits at 10 minutes" matTooltipPosition="above"> LH@10 </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.LH}}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

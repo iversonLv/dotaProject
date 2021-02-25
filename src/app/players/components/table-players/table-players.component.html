@@ -1,0 +1,105 @@
+<div *ngIf="isLoading">Loading</div>
+<div *ngIf="!isLoading">
+  <div *ngIf="dataSource.data.length === 0; else hasData">No data</div>
+  <ng-template #hasData>
+    <mat-paginator  #paginator pageSize="20" hidePageSize showFirstLastButtons *ngIf="!isOverviewPage"></mat-paginator>
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- player name Column -->
+      <ng-container matColumnDef="name" *ngIf="displayedColumns.includes('name')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="ver-align">
+            <img [src]="element.avatar"/>
+            <div class="account-date">
+              <a class="account_link" (click)="goAccountOverviewPage(element.account_id)">{{element.name}} ></a>
+              <span class="date-time" [matTooltip]="element.last_played * 1000 | date: 'mediumDate'" matTooltipPosition="above">{{element.last_played * 1000 | dateTillToday }}</span>
+            </div>
+            <mat-icon class="players-confirmed" *ngIf="element.is_pro" matTooltip="Confirmed by {{element.name}}" matTooltipPosition="above" >face</mat-icon>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- if player is not pros -->
+      <ng-container matColumnDef="personaname" *ngIf="displayedColumns.includes('personaname')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="ver-align">
+            <img [src]="element.avatar"/>
+            <div class="account-date">
+              <a class="account_link" (click)="goAccountOverviewPage(element.account_id)">{{element.personaname}} ></a>
+              <span class="date-time" [matTooltip]="element.last_played * 1000 | date: 'mediumDate'" matTooltipPosition="above">{{element.last_played * 1000 | dateTillToday }}</span>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- games Column -->
+      <ng-container matColumnDef="games" *ngIf="displayedColumns.includes('games')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Number of games played as this hero" matTooltipPosition="above"> MP </th>
+        <td mat-cell *matCellDef="let element">
+          <a class="account_link" [routerLink]="['../matches']" [queryParams]="{included_account_id: element.account_id}">{{element.games}} &gt; </a>
+          <app-bar-chart [data]='[playersWithGameLargest?.games, element.games]'></app-bar-chart>
+          </td>
+      </ng-container>
+
+      <!-- with_games: Number of games with this player/hero on the team -->
+      <ng-container matColumnDef="with_games" *ngIf="displayedColumns.includes('with_games')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Number of games with this player/hero on the team" matTooltipPosition="above"> WITH </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.with_games}}
+          <app-bar-chart [data]='[playersWithGameLargest?.with_games, element.with_games]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- win_pecentage_with: Win percentage with this player/hero on the team-->
+      <ng-container matColumnDef="win_pecentage_with" *ngIf="displayedColumns.includes('win_pecentage_with')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Win percentage with this player/hero on the team" matTooltipPosition="above"> WIN WITH % </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="text-on-chart">{{element.with_games !== 0 ? (element.win_pecentage_with * 100 | number :'1.0-1') : '0'}}</span>
+          <app-bar-chart [data]='[1, element.win_pecentage_with]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- against_games: Number of games with this player/hero on the opposing team -->
+      <ng-container matColumnDef="against_games" *ngIf="displayedColumns.includes('against_games')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Number of games with this player/hero on the opposing team" matTooltipPosition="above"> AGAINST </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.against_games}}
+          <app-bar-chart [data]='[playersWithGameLargest?.against_games, element.against_games]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- win_pecentage_against: Win percentage against this player/hero-->
+      <ng-container matColumnDef="win_pecentage_against" *ngIf="displayedColumns.includes('win_pecentage_against')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Win percentage against this player/hero" matTooltipPosition="above"> WIN AGAINST % </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="text-on-chart">{{element.against_games !== 0 ? (element.win_pecentage_against * 100 | number :'1.0-1') : '0'}}</span>
+          <app-bar-chart [data]='[1, element.win_pecentage_against]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- GPM WITH column -->
+      <ng-container matColumnDef="with_gpm_avarage" *ngIf="displayedColumns.includes('with_gpm_avarage')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header >GPM WITH</th>
+        <td mat-cell *matCellDef="let element">
+          <span class="text-on-chart">{{element.with_games !== 0 ? (element.with_gpm_avarage | number :'1.0-0') : 'NaN'}}</span>
+          <app-bar-chart [data]='[playersWithGameLargest?.with_gpm_avarage, element.with_gpm_avarage]'></app-bar-chart>
+        </td>
+      </ng-container>
+      
+      <!-- XPM WITH column -->
+      <ng-container matColumnDef="with_xpm_avarage" *ngIf="displayedColumns.includes('with_xpm_avarage')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header >XPM WITH</th>
+        <td mat-cell *matCellDef="let element">
+          <span class="text-on-chart">{{element.with_games !== 0 ? (element.with_xpm_avarage | number :'1.0-0') : 'NaN'}}</span>
+          <app-bar-chart [data]='[playersWithGameLargest?.with_xpm_avarage, element.with_xpm_avarage]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageIndex]="paginator?.pageIndex" [length]="paginator?.length"  [pageSize]="paginator?.pageSize" (page)="syncPrimaryPaginator($event)" hidePageSize showFirstLastButtons *ngIf="!isOverviewPage"></mat-paginator>
+  </ng-template>
+</div>

@@ -1,0 +1,79 @@
+@import '../../../../styles.scss';
+
+
+@mixin item-level($number) {
+  &:nth-child(even) {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      border-radius: 100%;
+      width: 35px;
+      height: 35px;
+      text-align: center;
+      line-height: 35px;
+      display: block;
+      content: $number;
+      z-index: 2;
+      top: 0;
+      background: $black;
+      left: 92%;
+      font-weight: bold;
+      color: $yellow;
+      box-shadow: rgba($yellow, 40%) 0px 0px 15px 2px;
+    }
+  }
+}
+
+.item-tooltip {
+  width: 422px;
+  height: 224px;
+  border: 2px solid $deep;
+  padding: 10px;
+  position: absolute;
+  z-index: 10;
+  background-color: $darken;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 12px;
+
+  .talent-bg-img {
+    background: url(../../../../assets/images/talent_tree.svg) no-repeat 50% 50%;
+    position: absolute;
+    width: 227px;
+    height: 95%;
+    left: 50%;
+    margin-left: -113px;
+    opacity: .2;
+  }
+}
+
+.talent-row {
+  text-align: center;
+  position: relative;
+  width: 50%;
+  background: rgb(0 0 0 / 40%);
+  height: 35px;
+  line-height: 35px;
+
+  &.item4 {
+    @include item-level('25');
+  }
+
+  &.item3 {
+    @include item-level('20');
+  }
+
+  &.item2 {
+    @include item-level('15');
+  }
+
+  &.item1 {
+    @include item-level('10');
+  }
+
+  
+  
+}
+

@@ -1,0 +1,81 @@
+@import '../../../../styles.scss';
+// override the table style
+.mat-paginator {
+  border: 1px solid rgba($color: $white, $alpha: 0.03);
+  background: none;
+}
+.mat-table {
+  border: 1px solid rgba($color: $white, $alpha: 0.03);
+  background: none;
+  width: 100%;
+
+  th {
+    background: rgba($color: $white, $alpha: 0.03);
+  }
+
+  th.mat-header-cell:first-of-type,
+  td.mat-cell:first-of-type,
+  td.mat-footer-cell:first-of-type {
+    padding-left: 10px;
+  }
+  
+  th.mat-header-cell:last-of-type,
+  td.mat-cell:last-of-type,
+  td.mat-footer-cell:last-of-type {
+    padding-right: 10px;
+  }
+
+  td {
+    color: $gray;
+    font-size: 13px;
+  }
+}
+
+.ver-align {
+  display: flex;
+  align-items: center;
+
+  .account_link {
+    margin-left: 5px;
+  }
+}
+
+
+.date-time {
+  color: $gray;
+  font-size: 12px;
+  cursor: pointer;
+  padding-left: 0;
+  display: flex;
+  
+  .date-time-value {
+    display: inline-block;
+    padding-right: 3px;
+  }
+}
+
+.account-date {
+  display: flex;
+  flex-direction: column;
+}
+
+.lose-match {
+  color: $red;
+  max-width: 40px;
+  display: inline-block;
+}
+
+.win-match {
+  color: $green;
+  max-width: 40px;
+  display: inline-block;
+}
+
+.league-name {
+  padding-left: 3px;
+  width: 309px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+}

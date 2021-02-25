@@ -1,0 +1,45 @@
+<div *ngIf="isLoading">Loading</div>
+<div *ngIf="!isLoading">
+  <div *ngIf="dataSource.data.length === 0; else hasData">No data</div>
+  <ng-template #hasData>
+    <mat-paginator  #paginator pageSize="20" hidePageSize showFirstLastButtons *ngIf="!isCurrentTeamMember"></mat-paginator>
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- account_id  Column -->
+      <ng-container matColumnDef="account_id" *ngIf="displayedColumns.includes('account_id')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > NAME </th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngIf="element.account_id" class="ver-align">
+            <img class="hero-img" width="35" height="35" [src]="'https://www.opendota.com/assets/images/dota2/players/' + element.account_id + '.png'"
+            />
+            <div class="account-date">
+              <a class="account_link" [routerLink]="['/players', element.account_id]">{{element.name}} ></a>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- games Column -->
+      <ng-container matColumnDef="games_played" *ngIf="displayedColumns.includes('games_played')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > GAMES </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.games_played}}
+          <app-bar-chart [data]='[playersHeroesWithGameLargest?.games_played, element.games_played]'></app-bar-chart>
+          </td>
+      </ng-container>
+
+      <!-- win_with Column -->
+      <ng-container matColumnDef="win_pecentage_hero" *ngIf="displayedColumns.includes('win_pecentage_hero')">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> WINRATE </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="text-on-chart">{{element.games !== 0 ? (element.win_pecentage_hero * 100 | number :'1.0-1') : '0'}}</span>
+          <app-bar-chart [data]='[1, element.win_pecentage_hero]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageIndex]="paginator?.pageIndex" [length]="paginator?.length"  [pageSize]="paginator?.pageSize" (page)="syncPrimaryPaginator($event)" hidePageSize showFirstLastButtons *ngIf="!isCurrentTeamMember"></mat-paginator>
+  </ng-template>
+</div>
