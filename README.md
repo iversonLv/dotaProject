@@ -26,6 +26,9 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
+## API DOC
+https://docs.opendota.com/
+
 ## Deploy
 This project I deployed on github page, as follow some info for it:  
 
@@ -84,6 +87,8 @@ environment.pro.ts
     - [x] GET Heroes local (2021.1)
     - [x] GET Heroes Abilities (2021.2)
     - [x] GET Ablitities Talents List (2021.2)
+    [] Records service
+    - [x] GET Records list data (2021.2.26)
 [] Setup/Finish pages  
   - [] Heros page  
     - [] Heros list page
@@ -126,11 +131,15 @@ environment.pro.ts
       - [x] Team detail matches page (overview page limit 20 rows without pagination)(2021.2.7)
       - [x] Team detail heroes page (2021.2.8)
       - [99%] Team detail players page (some player does not have avatar) (2021.2.8)
+  - [x] Records page (2021.2.26)
+    - [x] sub pages very similar: duration, kills, deaths, assists, gold per min, xp per min, last hits, denies, hero damage, tower damage, hero healing (2021.2.26)
 [] Improve
   - [] Update ngfor with trackby?
   - [x] Update sub navigation as share component (2021.2.6)
   - [x] update nav title to support teams detail and player detail (2021.2.6)
-
+[] Deploy
+  - [x] Setup the repo on github page(2021.2.26)
+  - [x] Deploy to github page (2021.2.26)
 
 # Useful info
 https://dota2.gamepedia.com/Armor
