@@ -1,0 +1,18 @@
+{
+  "0": {
+    "name": "skill_unknown_skill",
+    "id": 0
+  },
+  "1": {
+    "name": "skill_normal_skill",
+    "id": 1
+  },
+  "2": {
+    "name": "skill_high_skill",
+    "id": 2
+  },
+  "3": {
+    "name": "skill_very_high_skill",
+    "id": 3
+  }
+}
