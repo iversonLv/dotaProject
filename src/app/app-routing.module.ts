@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'matches', loadChildren: () => import('./matches/matches.module').then(m => m.MatchesModule) },
   { path: 'teams', loadChildren: () => import('./teams/teams.module').then(m => m.TeamsModule) },
   { path: 'medals', loadChildren: () => import('./medals/medals.module').then(m => m.MedalsModule) },
+  { path: 'records', loadChildren: () => import('./records/records.module').then(m => m.RecordsModule) },
 ];
 
 @NgModule({

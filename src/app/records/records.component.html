@@ -1,0 +1,11 @@
+<!-- players page navigation -->
+<app-sub-nav
+  [links]="['duration', 'kills', 'deaths', 'assists', 'gold per min', 'xp per min', 'last hits', 'denies', 'hero damage', 'tower damage', 'hero healing']"
+  [tooltips]="['The length of the match', 'Number of kills by hero', 'Number of deaths by hero', 'Number of assists by hero', 'Gold farmed per minute', 'Experience gained per minute', 'Number of last hits by hero', 'Number of denied creeps' , 'Amount of damage dealt to hereos' , 'Amount of damage dealt to towers', 'Amount of health restored to heroes']"
+  [parentPage]="'records'"
+></app-sub-nav>
+
+<div class="wrapper">
+  <app-nav-title [title]="'Records'"> In ranked matches. Records reset monthly.</app-nav-title>
+  <router-outlet></router-outlet>
+</div>

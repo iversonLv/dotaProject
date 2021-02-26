@@ -25,6 +25,9 @@ import { HerosEffects } from './heros/store/heros.effects';
 import * as fromTeamsReducers from './teams/store/teams.reducers';
 import { TeamsEffects } from './teams/store/teams.effects';
 
+import * as fromRecordsReducers from './records/store/records.reducers';
+import { RecordsEffects } from './records/store/records.effects';
+
 import * as fromMatchesReducers from './matches/store/matches.reducers';
 import { MatchesEffects } from './matches/store/matches.effects';
 
@@ -78,8 +81,11 @@ const devToolsOption = { name: 'Dota2 Project API', maxAge: 25, logOnly: environ
       playersTotals: fromPlayersReducers.playersTotals,
       playersRankings: fromPlayersReducers.playersRankings,
       playersPros: fromPlayersReducers.playersPros,
+
+      // records
+      recordsList: fromRecordsReducers.recordsList,
     }),
-    EffectsModule.forRoot([PlayersEffects, HerosEffects, TeamsEffects]),
+    EffectsModule.forRoot([PlayersEffects, HerosEffects, TeamsEffects, RecordsEffects]),
     StoreDevtoolsModule.instrument(devToolsOption), // this need below StoreModule
   ],
   providers: [],

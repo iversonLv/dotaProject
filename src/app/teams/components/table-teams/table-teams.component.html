@@ -7,7 +7,7 @@
       <ng-container matColumnDef="rank" *ngIf="displayedColumns.includes('rank')">
         <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="true"> RANK </th>
         <td mat-cell *matCellDef="let element let i = index;">
-          {{i + 1}}th
+          {{i + 1 | ordinalNum}}
         </td>
       </ng-container>
       

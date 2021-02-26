@@ -8,6 +8,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 })
 export class SubNavComponent implements OnInit {
   @Input() parentPage; // this is flag to determin how we split and slice currentUrl
+  @Input() tooltips: string[] = []; // this is for records page
   @Input() links: string[];  // this is for the nav ngfor item ['overview', 'matches', ....], the text will be the route and display text
   queryParams;  // this is for player detail page which will have queryParams
   currentPage; // this is for active style for current page nav, currentPage === page
@@ -29,6 +30,11 @@ export class SubNavComponent implements OnInit {
       this.currentPage = currentUrl.split('/')[2];
       if (currentUrl.split('/')[2] === undefined) {
         this.currentPage = 'pro';
+      }
+    } else if (this.parentPage === 'records') {
+      this.currentPage = currentUrl.split('/')[2].split('_').splice(0).join(' ');
+      if (currentUrl.split('/')[2] === undefined) {
+        this.currentPage = 'duration';
       }
     }
     this.activatedRoute.queryParamMap.subscribe(data => this.queryParams = data);
@@ -58,13 +64,17 @@ export class SubNavComponent implements OnInit {
             currentRoute = event.url.split('/')[2].split('?')[0];
             this.currentPage = currentRoute;
           }
+        } else if (this.parentPage === 'records') {
+          if (event.url.split('/')[2] === undefined ) {
+            this.currentPage = 'duration';
+          }
         }
       }
     });
   }
 
   goPage(page): any {
-    this.currentPage = page;
+    this.currentPage = page; // some router has space, replace space with '-'
     const currentUrl = this.router.url;
     let currentUrlParent;
     // if it's team detail, the rule is '/teams/{team_id}/[overview, matches, heroes, players]'
@@ -73,8 +83,10 @@ export class SubNavComponent implements OnInit {
       currentUrlParent = currentUrl.split('/').slice(0, 3).join('/');
     } else if (this.parentPage === 'heroesList') {
       currentUrlParent = currentUrl.split('/').slice(0, 2).join('/');
+    } else if (this.parentPage === 'records') {
+      currentUrlParent = currentUrl.split('/').slice(0, 2).join('/');
     }
-    const newPage = `${currentUrlParent}/${page}`;
+    const newPage = `${currentUrlParent}/${page.replace(/\s/g, '_')}`;
     this.router.navigate([newPage], {
       relativeTo: this.activatedRoute,
       queryParams: this.queryParams.params,

@@ -1,7 +1,9 @@
 <div class="nav-wrapper">
   <nav>
     <a
-    *ngFor="let item of links"
+    [matTooltip]="tooltips[i]"
+    matTooltipPosition="below"
+    *ngFor="let item of links; let i = index"
     [class]="currentPage === item ? 'active' : ''"
     (click)="goPage(item)"
     >{{item}}</a>

@@ -37,6 +37,8 @@ import { GreaterNumPipe } from './utils/greater-num.pipe';
 import { DateTillTodayPipe } from './utils/date-till-today.pipe';
 import { StringToArrayPipe } from './utils/string-to-array.pipe';
 import { ExcludeTextPipe } from './utils/exclude-text.pipe';
+import { OrdinalNumPipe } from './utils/ordinal-num.pipe';
+import { FieldTooltipPipe } from './utils/field-tooltip.pipe';
 
 
 
@@ -73,6 +75,8 @@ import { ExcludeTextPipe } from './utils/exclude-text.pipe';
     DateTillTodayPipe,
     StringToArrayPipe,
     ExcludeTextPipe,
+    OrdinalNumPipe,
+    FieldTooltipPipe,
   ],
   imports: [
     CommonModule,
@@ -115,6 +119,8 @@ import { ExcludeTextPipe } from './utils/exclude-text.pipe';
     DateTillTodayPipe,
     StringToArrayPipe,
     ExcludeTextPipe,
+    OrdinalNumPipe,
+    FieldTooltipPipe
   ]
 })
 export class SharedModule { }
