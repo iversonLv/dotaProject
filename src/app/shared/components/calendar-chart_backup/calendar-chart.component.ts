@@ -59,7 +59,7 @@ export class CalendarChartComponent implements OnInit {
           show: false,
           min: 0,
           max: 1,
-          valueIndex: [4],
+          // valueIndex: [4],
           inRange: {
               color: ['red', 'green']
           }
