@@ -8,8 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "cp -rf node_modules/ && ng build",
-    "host:heroku:test": "ng build -e heroku && node heroku-server"
+    "postinstall": "ng build --prod",
+    "host:heroku:test": "node heroku-server"
   },
   "private": true,
   "dependencies": {
