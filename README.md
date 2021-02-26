@@ -32,7 +32,7 @@ environment.pro.ts
 | :------------- | :----------: | :----------: |
 |  BASE_API_URL | https://api.opendota.com/api  | Main Api could open swagger to view |
 | BASE_LOCAL_DATA_URL   | /assets/data | This is some static json data, current most json data is grab from git raw(same with below), for dev phase, use this. |
-| BASE_GIT_RAW_DATA_URL   | https://raw.githubusercontent.com/odota/dotaconstants/master/build | this git raw json is continue updating, so prod phase, use this. |
+| BASE_GIT_RAW_DATA_URL   | [raw_data](https://raw.githubusercontent.com/odota/dotaconstants/master/build) | this git raw json is continue updating, so prod phase, use this. |
 
 [x] Setup general service  
   - [x] GET  
@@ -129,18 +129,18 @@ environment.pro.ts
 https://dota2.gamepedia.com/Armor
 
 # Formular
-KDA fomular: (kills + assists) / (deaths + 1)
-(血量跟力量有关)HP: base_health + base_str * 20
-(魔法跟智力有关)MP: base_mana + base_int * 12
-Base attack: base_attack_min + base_agi  base_attack_max + base_agi
-(护甲跟敏捷有关)Base armor: base_armor + 0.167 * base_agi
+KDA fomular: (kills + assists) / (deaths + 1)  
+(血量跟力量有关)HP: base_health + base_str * 20  
+(魔法跟智力有关)MP: base_mana + base_int * 12  
+Base attack: base_attack_min + base_agi  base_attack_max + base_agi  
+(护甲跟敏捷有关)Base armor: base_armor + 0.167 * base_agi  
 
 # Idea
-analize player fond of using item, and hate?
-analize player fond of using which primary attr heroes? agi, str, int?
-analize player fond of using which type heroes? 远程？刺客？坦克？爆发？
-analize player fond of using which role heroes? soft support? hard support? mid? safe? off land?
-analize player heroes keep winning?
+analize player fond of using item, and hate?  
+analize player fond of using which primary attr heroes? agi, str, int?  
+analize player fond of using which type heroes? 远程？刺客？坦克？爆发？  
+analize player fond of using which role heroes? soft support? hard support? mid? safe? off land?  
+analize player heroes keep winning?  
 
 # QA
 How could we know a hero is roaming or not, current can't be
