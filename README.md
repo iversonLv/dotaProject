@@ -26,6 +26,13 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
+## Deploy
+This project I deployed on github page, as follow some info for it:  
+
+https://angular.cn/guide/deployment  
+
+https://docs.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site  
+
 environment.ts
 environment.pro.ts
 | Key       | Value     | Description     |
