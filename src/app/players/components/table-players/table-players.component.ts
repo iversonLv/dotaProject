@@ -38,7 +38,7 @@ export class TablePlayersComponent implements OnInit {
   sort;
   paginator;
 
-  isLoading = false;
+  isLoading = true;
   queryParams;
 
   playersPros: IPro[];
@@ -67,30 +67,43 @@ export class TablePlayersComponent implements OnInit {
     if (this.router.url.split('/')[3].split('?')[0] === 'pros') {
       this.store.dispatch(new playersActions.LoadPlayersPros(accountId, this.queryParams));
       this.store.select('playersPros').subscribe(data => {
-        const dataPros = [...data.pros];
-        this.getLargestData(dataPros);
-        const dataNew = [];
-        for (const i in dataPros) {
-          if (dataPros.hasOwnProperty(i)) {
-            const  {account_id, name, is_pro, avatar, last_played, games, with_games, with_win, against_games, against_win } = dataPros[i];
-            dataNew.push(
-              {
-                account_id,
-                name,
-                is_pro,
-                avatar,
-                last_played,
-                games,
-                with_games,
-                win_pecentage_with: with_win / with_games,
-                against_games,
-                win_pecentage_against: against_win / against_games,
-              }
-            );
-          }
-        }
         this.isLoading = data.isLoading;
-        return this.dataSource.data = dataNew;
+        if (!data.isLoading) {
+            const dataPros = [...data.pros];
+            this.getLargestData(dataPros);
+            const dataNew = [];
+            for (const i in dataPros) {
+              if (dataPros.hasOwnProperty(i)) {
+                const  {
+                  account_id,
+                  name, is_pro,
+                  avatar,
+                  last_played,
+                  games,
+                  with_games,
+                  with_win,
+                  against_games,
+                  against_win
+                } = dataPros[i];
+                dataNew.push(
+                  {
+                    account_id,
+                    name,
+                    is_pro,
+                    avatar,
+                    last_played,
+                    games,
+                    with_games,
+                    win_pecentage_with: with_win / with_games,
+                    against_games,
+                    win_pecentage_against: against_win / against_games,
+                  }
+                );
+              }
+            }
+            this.isLoading = data.isLoading;
+            return this.dataSource.data = dataNew;
+          }
       });
     } else if (this.router.url.split('/')[3].split('?')[0] === 'peers' || this.isOverviewPage) {
       this.store.dispatch(new playersActions.LoadPlayersPeers(accountId, this.queryParams));

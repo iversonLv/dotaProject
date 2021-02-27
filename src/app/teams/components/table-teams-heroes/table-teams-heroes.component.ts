@@ -38,7 +38,7 @@ export class TableTeamsHeroesComponent implements OnInit {
   sort;
   paginator;
 
-  isLoading = false;
+  isLoading = true;
 
   currentMouseOverHero: IheroLocal = null;
   pageXY = [];
@@ -68,29 +68,32 @@ export class TableTeamsHeroesComponent implements OnInit {
     // load heroes played
     this.store.dispatch(new teamsActions.LoadTeamsHeroes(teamId));
     this.store.select('teamsHeroes').subscribe(data => {
-      const dataHeroesPlayed = [...data.heroes];
-      // this.playersHeroesWithGameLargest = data.heroesPlayed[0];
-      this.getLargestData(dataHeroesPlayed);
-      const dataNew = [];
-      for (const i in dataHeroesPlayed) {
-        if (dataHeroesPlayed.hasOwnProperty(i)) {
-          const {hero_id, games_played, localized_name, wins  } = dataHeroesPlayed[i];
-          // restructure peers data to match the design, in order to sort correctly
-          dataNew.push(
-            {
-              hero_id,
-              games_played,
-              win_pecentage_hero: wins / games_played,
-              localized_name
-            }
-            );
-          }
-        }
       this.isLoading = data.isLoading;
-      if (this.isOverviewPage) {
-        return this.dataSource.data = dataNew.splice(0, 10);
-      } else {
-        return this.dataSource.data = dataNew;
+      if (!data.isLoading) {
+        const dataHeroesPlayed = [...data.heroes];
+        // this.playersHeroesWithGameLargest = data.heroesPlayed[0];
+        this.getLargestData(dataHeroesPlayed);
+        const dataNew = [];
+        for (const i in dataHeroesPlayed) {
+          if (dataHeroesPlayed.hasOwnProperty(i)) {
+            const {hero_id, games_played, localized_name, wins  } = dataHeroesPlayed[i];
+            // restructure peers data to match the design, in order to sort correctly
+            dataNew.push(
+              {
+                hero_id,
+                games_played,
+                win_pecentage_hero: wins / games_played,
+                localized_name
+              }
+              );
+            }
+          }
+        this.isLoading = data.isLoading;
+        if (this.isOverviewPage) {
+          return this.dataSource.data = dataNew.splice(0, 10);
+        } else {
+          return this.dataSource.data = dataNew;
+        }
       }
     }, err => {
       console.log(err);
