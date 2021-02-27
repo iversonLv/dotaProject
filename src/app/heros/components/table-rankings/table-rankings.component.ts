@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import _ from 'lodash';
+
 // material
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -14,6 +16,7 @@ import { IRankingData, IRankings } from '../../model/ranking';
 // service
 import { HerosService } from '../../services/heros.service';
 
+
 @Component({
   selector: 'app-table-rankings',
   templateUrl: './table-rankings.component.html',
@@ -25,7 +28,7 @@ export class TableRankingsComponent implements OnInit {
   displayedColumns: string[] = ['rank', 'name', 'score'];
   dataSource = new MatTableDataSource();
 
-  isLoading = true;
+  isLoading = false;
 
   // cal top one ranking for base to calculate percentage the bar
   playersHeroesWithGameLargest: any = {
@@ -44,16 +47,17 @@ export class TableRankingsComponent implements OnInit {
     // load heros rankings
     this.store.dispatch(new herosActions.LoadHerosRankings({ params: { hero_id: heroId } }));
     this.store.select('herosRankings').subscribe(data => {
-      setTimeout(() => {
+      if (!data.isLoading) {
         const dataHeroesRankings = [...data.ranking.rankings];
         this.getLargestData(dataHeroesRankings);
         this.isLoading = data.isLoading;
         return this.dataSource.data = dataHeroesRankings;
-      }, 0);
+      }
     }, err => {
       console.log(err);
     });
   }
+
 
   getLargestData(data: IRankings[]): any {
     let { score } = this.playersHeroesWithGameLargest;

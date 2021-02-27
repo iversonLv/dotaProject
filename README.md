@@ -51,6 +51,7 @@ environment.pro.ts
   - [] DELETE  
   - [x] errorHandle  
 [x] Setup Service/Store/Action/Reducers/Effects
+  - [] constants TODO: now all constants are locally, we should update use api call
   - [] Player service
     - [x] GET Player data  
     - [x] GET Player win lose  
@@ -97,8 +98,8 @@ environment.pro.ts
       - [] Heros list turbo page
     - [98%] Hero detail page
       - [99%] Heros detail top hero part (2021.2.8)(2021.2.14) TODO: attack speed is different, magic resistence current is static 25%, router navigate change, top hear part does not change
-      - [99%] Heros detail rankings page (2021.2.15)(2021.2.18)(first load don't show data, now use setTimeout)
-      - [100%] Heros detail benchmarks page(2021.2.18): Charts (2021.2.20) Talbe(first load don't show data, now use setTimeout)
+      - [99%] Heros detail rankings page (2021.2.15)(2021.2.18)(2021.2.27 fixed table setTimeout())
+      - [100%] Heros detail benchmarks page(2021.2.18): Charts (2021.2.20)(2021.2.27 fixed table setTimeout())
       - [99%] Heros detail recent page: (2021.2.15)TODO: the account_id should bind with playerGeneralData to show account_id related name
       - [100%] Heros detail matchups page: (2021.2.16)(2021.2.18)
 

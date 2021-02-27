@@ -74,7 +74,7 @@ export class BenchmarksComponent implements OnInit {
     // load heros rankings
     this.store.dispatch(new herosActions.LoadHerosBenchmarks({ params: { hero_id: heroId } }));
     this.store.select('herosBenchmarks').subscribe(data => {
-      setTimeout(() => {
+      if (!data.isLoading) {
         const herosBenchmarksData = { ...data.benchmark.result };
         const keys = Object.keys(herosBenchmarksData);
         const newData = []; // data for chart
@@ -101,11 +101,7 @@ export class BenchmarksComponent implements OnInit {
         this.isLoading = data.isLoading;
         this.herosBenchmarksChartData = newData;
         this.herosBenchmarksTableData = newTableData;
-      }, 0);
-      // return herosBenchmarksDataFinal = newData;
-      // setTimeout(() => {
-      //   this.herosBenchmarksResultParse = Object.keys(data.benchmark.result);
-      // }, 0);
+      }
     }, err => {
       console.log(err);
     });
