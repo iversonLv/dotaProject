@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class MedalsComponent implements OnInit {
   medals = [];
   tierMapping = ['Herald', 'Guardian', 'Crusader', 'Archon', 'Legend', 'Ancient', 'Divine' , 'Immortal'];
-  isLoading = false;
+  isLoading = true;
   constructor() { }
 
   ngOnInit(): void {
@@ -16,7 +16,6 @@ export class MedalsComponent implements OnInit {
   }
 
   generalMedalsData(): any {
-    this.isLoading = true;
     const unknowMedal = {
       leaderboard_rank: null,
       rank_tier: null,
@@ -55,7 +54,7 @@ export class MedalsComponent implements OnInit {
 
     this.medals.push(...immortalMedal);
     this.isLoading = false;
-    console.log(this.medals);
+    // console.log(this.medals);
     return this.medals;
   }
 

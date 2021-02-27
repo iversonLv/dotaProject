@@ -74,6 +74,7 @@ export class BenchmarksComponent implements OnInit {
     // load heros rankings
     this.store.dispatch(new herosActions.LoadHerosBenchmarks({ params: { hero_id: heroId } }));
     this.store.select('herosBenchmarks').subscribe(data => {
+      this.isLoading = data.isLoading;
       if (!data.isLoading) {
         const herosBenchmarksData = { ...data.benchmark.result };
         const keys = Object.keys(herosBenchmarksData);

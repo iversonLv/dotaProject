@@ -32,7 +32,7 @@ export class TableTeamsMatchesComponent implements OnInit {
   }
   paginator;
   sort;
-  isLoading = false;
+  isLoading = true;
   dataSource = new MatTableDataSource();
 
 
@@ -51,14 +51,16 @@ export class TableTeamsMatchesComponent implements OnInit {
     // dispatch teams matches
     this.store.dispatch(new teamsActions.LoadTeamsMatches(teamId));
     this.store.select('teamsMatches').subscribe(data => {
-      const dataMatches = [...data.matches];
       this.isLoading = data.isLoading;
-      if (this.isOverviewPage) {
-        return this.dataSource.data = dataMatches.splice(0, 20);
-      } else {
-        return this.dataSource.data = dataMatches;
+      if (!data.isLoading) {
+        const dataMatches = [...data.matches];
+        this.isLoading = data.isLoading;
+        if (this.isOverviewPage) {
+          return this.dataSource.data = dataMatches.splice(0, 20);
+        } else {
+          return this.dataSource.data = dataMatches;
+        }
       }
-
     }, err => {
       console.log(err);
     });

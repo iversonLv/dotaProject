@@ -28,7 +28,7 @@ export class TableRankingsComponent implements OnInit {
   displayedColumns: string[] = ['rank', 'name', 'score'];
   dataSource = new MatTableDataSource();
 
-  isLoading = false;
+  isLoading = true;
 
   // cal top one ranking for base to calculate percentage the bar
   playersHeroesWithGameLargest: any = {
@@ -47,6 +47,7 @@ export class TableRankingsComponent implements OnInit {
     // load heros rankings
     this.store.dispatch(new herosActions.LoadHerosRankings({ params: { hero_id: heroId } }));
     this.store.select('herosRankings').subscribe(data => {
+      this.isLoading = data.isLoading;
       if (!data.isLoading) {
         const dataHeroesRankings = [...data.ranking.rankings];
         this.getLargestData(dataHeroesRankings);

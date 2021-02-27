@@ -28,7 +28,7 @@ export class TableRecordsComponent implements OnInit {
   displayedColumns: string[] = ['rank', 'score', 'match_id', 'hero_id'];
   dataSource = new MatTableDataSource();
 
-  isLoading = false;
+  isLoading = true;
   field;
 
   playersHeroesPlayed: IHeroesPlayed[];
@@ -57,9 +57,12 @@ export class TableRecordsComponent implements OnInit {
     // load records data
     this.store.dispatch(new recordsActions.LoadRecords(this.field));
     this.store.select('recordsList').subscribe(data => {
-      const recordsData = [...data.records];
       this.isLoading = data.isLoading;
-      return this.dataSource.data = recordsData;
+      if (!data.isLoading) {
+        const recordsData = [...data.records];
+        this.isLoading = data.isLoading;
+        return this.dataSource.data = recordsData;
+      }
     }, err => {
       console.log(err);
     });

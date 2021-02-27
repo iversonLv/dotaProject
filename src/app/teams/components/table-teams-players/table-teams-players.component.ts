@@ -30,7 +30,7 @@ export class TableTeamsPlayersComponent implements OnInit {
   sort;
   paginator;
 
-  isLoading = false;
+  isLoading = true;
 
   // cal top one ranking for base to calculate percentage the bar
   playersHeroesWithGameLargest: any = {
@@ -50,30 +50,33 @@ export class TableTeamsPlayersComponent implements OnInit {
     // load heroes played
     this.store.dispatch(new teamsActions.LoadTeamsPlayers(accountId));
     this.store.select('teamsPlayers').subscribe(data => {
-      const dataPlayers = [...data.players];
-      // this.playersHeroesWithGameLargest = data.heroesPlayed[0];
-      this.getLargestData(dataPlayers);
-      const dataNew = [];
-      for (const i in dataPlayers) {
-        if (dataPlayers.hasOwnProperty(i)) {
-          const {account_id, games_played, is_current_team_member, wins, name  } = dataPlayers[i];
-          // restructure peers data to match the design, in order to sort correctly
-          dataNew.push(
-            {
-              account_id,
-              name,
-              games_played,
-              win_pecentage_hero: wins / games_played,
-              is_current_team_member
-            }
-            );
-          }
-        }
       this.isLoading = data.isLoading;
-      if (this.isCurrentTeamMember) {
-        return this.dataSource.data = dataNew.filter(player => player.is_current_team_member);
-      } else {
-        return this.dataSource.data = dataNew.filter(player => !player.is_current_team_member);
+      if (!data.isLoading) {
+        const dataPlayers = [...data.players];
+        // this.playersHeroesWithGameLargest = data.heroesPlayed[0];
+        this.getLargestData(dataPlayers);
+        const dataNew = [];
+        for (const i in dataPlayers) {
+          if (dataPlayers.hasOwnProperty(i)) {
+            const {account_id, games_played, is_current_team_member, wins, name  } = dataPlayers[i];
+            // restructure peers data to match the design, in order to sort correctly
+            dataNew.push(
+              {
+                account_id,
+                name,
+                games_played,
+                win_pecentage_hero: wins / games_played,
+                is_current_team_member
+              }
+              );
+            }
+          }
+        this.isLoading = data.isLoading;
+        if (this.isCurrentTeamMember) {
+          return this.dataSource.data = dataNew.filter(player => player.is_current_team_member);
+        } else {
+          return this.dataSource.data = dataNew.filter(player => !player.is_current_team_member);
+        }
       }
     }, err => {
       console.log(err);
