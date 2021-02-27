@@ -44,7 +44,7 @@ export class TableMatchupsPlayersComponent implements OnInit {
   pageXY = [];
 
   dataSource = new MatTableDataSource();
-  isLoading = false;
+  isLoading = true;
 
   showHeroModal = false;
 
@@ -70,39 +70,45 @@ export class TableMatchupsPlayersComponent implements OnInit {
     if (currentPage === 'matchups')  {
       this.store.dispatch(new herosActions.LoadHerosMatchups(heroId));
       this.store.select('herosMatchups').subscribe(data => {
-        const dataHerosMatchups = [...data.markup_duration_player];
-        this.getLargestData(dataHerosMatchups);
-        const dataNew = [];
-        for (const i in dataHerosMatchups) {
-          if (dataHerosMatchups.hasOwnProperty(i)) {
-            const { wins, games_played } = dataHerosMatchups[i];
-            dataNew.push({
-              ...dataHerosMatchups[i],
-              win_pecentage: wins / games_played,
-            });
-          }
-        }
         this.isLoading = data.isLoading;
-        return this.dataSource.data = dataNew.splice(0, 100);
+        if (!data.isLoading) {
+            const dataHerosMatchups = [...data.markup_duration_player];
+            this.getLargestData(dataHerosMatchups);
+            const dataNew = [];
+            for (const i in dataHerosMatchups) {
+              if (dataHerosMatchups.hasOwnProperty(i)) {
+                const { wins, games_played } = dataHerosMatchups[i];
+                dataNew.push({
+                  ...dataHerosMatchups[i],
+                  win_pecentage: wins / games_played,
+                });
+              }
+            }
+            this.isLoading = data.isLoading;
+            return this.dataSource.data = dataNew.splice(0, 100);
+          }
       });
     } else if (currentPage === 'players') {
       this.isHeroPlayersPage = true;
       this.store.dispatch(new herosActions.LoadHerosPlayers(heroId));
       this.store.select('herosPlayers').subscribe(data => {
-        const dataHerosPlayers = [...data.markup_duration_player];
-        this.getLargestData(dataHerosPlayers);
-        const dataNew = [];
-        for (const i in dataHerosPlayers) {
-          if (dataHerosPlayers.hasOwnProperty(i)) {
-            const { wins, games_played } = dataHerosPlayers[i];
-            dataNew.push({
-              ...dataHerosPlayers[i],
-              win_pecentage: wins / games_played,
-            });
-          }
-        }
         this.isLoading = data.isLoading;
-        return this.dataSource.data = dataNew;
+        if (!data.isLoading) {
+            const dataHerosPlayers = [...data.markup_duration_player];
+            this.getLargestData(dataHerosPlayers);
+            const dataNew = [];
+            for (const i in dataHerosPlayers) {
+              if (dataHerosPlayers.hasOwnProperty(i)) {
+                const { wins, games_played } = dataHerosPlayers[i];
+                dataNew.push({
+                  ...dataHerosPlayers[i],
+                  win_pecentage: wins / games_played,
+                });
+              }
+            }
+            this.isLoading = data.isLoading;
+            return this.dataSource.data = dataNew;
+          }
       });
     }
 

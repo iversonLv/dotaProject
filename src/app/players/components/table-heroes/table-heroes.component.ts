@@ -41,7 +41,7 @@ export class TableHeroesComponent implements OnInit {
   sort;
   paginator;
 
-  isLoading = false;
+  isLoading = true;
   queryParams;
 
   playersHeroesPlayed: IHeroesPlayed[];
@@ -77,33 +77,36 @@ export class TableHeroesComponent implements OnInit {
     // load heroes played
     this.store.dispatch(new playersActions.LoadPlayersHeroesPlayed(accountId, this.queryParams));
     this.store.select('playersHeroesPlayed').subscribe(data => {
-      const dataHeroesPlayed = [...data.heroesPlayed];
-      // this.playersHeroesWithGameLargest = data.heroesPlayed[0];
-      this.getLargestData(dataHeroesPlayed);
-      const dataNew = [];
-      for (const i in dataHeroesPlayed) {
-        if (dataHeroesPlayed.hasOwnProperty(i)) {
-          const {hero_id, last_played, games, win, with_games, with_win, against_games, against_win  } = dataHeroesPlayed[i];
-          // restructure peers data to match the design, in order to sort correctly
-          dataNew.push(
-            {
-              hero_id,
-              last_played,
-              win_pecentage_hero: win / games,
-              games,
-              with_games,
-              win_pecentage_with: with_win / with_games,
-              against_games,
-              win_pecentage_against: against_win / against_games,
-            }
-            );
-          }
-        }
       this.isLoading = data.isLoading;
-      if (this.isOverviewPage) {
-        return this.dataSource.data = dataNew.splice(0, 10);
-      } else {
-        return this.dataSource.data = dataNew;
+      if (!data.isLoading) {
+        const dataHeroesPlayed = [...data.heroesPlayed];
+        // this.playersHeroesWithGameLargest = data.heroesPlayed[0];
+        this.getLargestData(dataHeroesPlayed);
+        const dataNew = [];
+        for (const i in dataHeroesPlayed) {
+          if (dataHeroesPlayed.hasOwnProperty(i)) {
+            const {hero_id, last_played, games, win, with_games, with_win, against_games, against_win  } = dataHeroesPlayed[i];
+            // restructure peers data to match the design, in order to sort correctly
+            dataNew.push(
+              {
+                hero_id,
+                last_played,
+                win_pecentage_hero: win / games,
+                games,
+                with_games,
+                win_pecentage_with: with_win / with_games,
+                against_games,
+                win_pecentage_against: against_win / against_games,
+              }
+              );
+            }
+          }
+        this.isLoading = data.isLoading;
+        if (this.isOverviewPage) {
+          return this.dataSource.data = dataNew.splice(0, 10);
+        } else {
+          return this.dataSource.data = dataNew;
+        }
       }
     });
 

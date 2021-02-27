@@ -42,7 +42,7 @@ export class RankingsComponent implements OnInit, AfterViewInit {
   playersRankingsLargest: any;
 
   // before loading data
-  isLoading = false;
+  isLoading = true;
 
   // User for hero modal to mapping
   heroesLocal: IheroLocal;
@@ -83,14 +83,23 @@ export class RankingsComponent implements OnInit, AfterViewInit {
     this.store.dispatch(new playerActions.LoadPlayersRankings(accountId));
     this.store.select('playersRankings').subscribe(data => {
       this.isLoading = data.isLoading;
-      this.playersRankingsLargest = data.rankings[0];
-      return this.dataSourceRankings.data = data.rankings;
+      if (!data.isLoading) {
+        this.isLoading = data.isLoading;
+        this.playersRankingsLargest = data.rankings[0];
+        return this.dataSourceRankings.data = data.rankings;
+      }
+    }, err => {
+      console.log(err);
     });
 
   }
 
   getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => this.heroesLocal = data);
+    this.herosService.getHeroesLocal().subscribe(data => {
+      return this.heroesLocal = data;
+    }, err => {
+      console.log(err);
+    });
   }
 
   showHeroModalFn(e, id): any {

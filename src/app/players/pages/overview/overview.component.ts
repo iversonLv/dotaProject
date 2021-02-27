@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 // ngrx
 import { Store } from '@ngrx/store';
@@ -43,7 +43,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
   playersRecentMatches: IRecentMatch[];
 
   playersCountsDestructData: any = {};
-  isLoading = false;
+  isLoading = true;
   dataSourceRecentMatchesIsLoading = false;
   dataSourcePeersIsLoading = false;
   dataSourceHeroesPlayedIsLoading = false;
@@ -124,32 +124,37 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
     this.store.dispatch(new playersActions.LoadPlayersCounts(accountId, this.queryParams));
     this.store.select('playersCounts').subscribe(data => {
       this.isLoading = data.isLoading;
-      const dataIn = {...data.counts};
-      const countDataKeyArr = Object.keys(dataIn);
-      for (const value of countDataKeyArr) {
-        this.playersCountsDestructData[value] = [];
-        for (const key in dataIn[value]){
-          if (dataIn[value].hasOwnProperty(key)){
-            this.playersCountsDestructData[value].push({id: key, ...dataIn[value][key]});
-            // is_radiant and patch are not sort via games number
-            if (value !== 'is_radiant' && value !== 'patch') {
-              // tslint:disable-next-line:max-line-length
-              this.playersCountsDestructData[value] = this.playersCountsDestructData[value].sort((a, b) => b.games - a.games);
-            }
-            // patch only show latest patch
-            if (value === 'patch') {
-              // tslint:disable-next-line:max-line-length
-              this.playersCountsDestructData[value] = this.playersCountsDestructData[value].sort((a, b) => b.id - a.id);
-            }
-            this.playersCountsDestructData[value] = this.playersCountsDestructData[value].splice(0, 2);
-            // game_mode and lane_role won't count unknow data as chart
-            if (value === 'game_mode' || value === 'lane_role' || value === 'region') {
-              // tslint:disable-next-line:max-line-length
-              this.playersCountsDestructData[value] = this.playersCountsDestructData[value].filter(item => item.id !== '0');
+      if (!data.isLoading) {
+        this.isLoading = data.isLoading;
+        const dataIn = {...data.counts};
+        const countDataKeyArr = Object.keys(dataIn);
+        for (const value of countDataKeyArr) {
+          this.playersCountsDestructData[value] = [];
+          for (const key in dataIn[value]){
+            if (dataIn[value].hasOwnProperty(key)){
+              this.playersCountsDestructData[value].push({id: key, ...dataIn[value][key]});
+              // is_radiant and patch are not sort via games number
+              if (value !== 'is_radiant' && value !== 'patch') {
+                // tslint:disable-next-line:max-line-length
+                this.playersCountsDestructData[value] = this.playersCountsDestructData[value].sort((a, b) => b.games - a.games);
+              }
+              // patch only show latest patch
+              if (value === 'patch') {
+                // tslint:disable-next-line:max-line-length
+                this.playersCountsDestructData[value] = this.playersCountsDestructData[value].sort((a, b) => b.id - a.id);
+              }
+              this.playersCountsDestructData[value] = this.playersCountsDestructData[value].splice(0, 2);
+              // game_mode and lane_role won't count unknow data as chart
+              if (value === 'game_mode' || value === 'lane_role' || value === 'region') {
+                // tslint:disable-next-line:max-line-length
+                this.playersCountsDestructData[value] = this.playersCountsDestructData[value].filter(item => item.id !== '0');
+              }
             }
           }
         }
       }
+    }, err => {
+      console.log(err);
     });
     // // load player peers
     // this.store.dispatch(new playersActions.LoadPlayersPeers(accountId, this.queryParams));
@@ -201,7 +206,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
     //   return this.dataSourceHeroesPlayed.data = dataNew.splice(0, 10);
     // });
 
-    this.checkQueryParams(accountId);
+    this.checkQueryParams();
     // get all heroes local data
     // this.getHeroesLocal();
     // this.getLobbyTypeLocal();
@@ -219,22 +224,27 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
 
   }
 
-  async checkQueryParams(accountId): Promise<any> {
+  async checkQueryParams(): Promise<any> {
+    // during select the filter dropdown or click clear button
+    this.router.events
+    .subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // example url is http://localhost:4200/players/128741677/overview?hero_id=102&is_radiant=1
+        // split the event.url separator as '?' and validate whether [1] is undefinded or not
+        const currentRoute = event.url.split('?')[1]; // grab 'hero_id=102&is_radiant=1'
+        if (currentRoute === undefined) {
+          this.queryParamsHasValue = false;
+        } else {
+          this.queryParamsHasValue = true;
+        }
+      }
+    });
+
+    // this is for reload the browser
     if (Object.keys(this.queryParams.params).length > 0) {
-      // this.dataSourceRecentMatches.data = [];
-     //  await this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, this.queryParams));
       this.queryParamsHasValue = true;
     } else {
-      // await this.store.dispatch(new playersActions.LoadPlayersRecentMatches(accountId));
       this.queryParamsHasValue = false;
-      // this.store.select('playersRecentMatches').subscribe(data => {
-      //   const dataRecentMatches = [...data.matches];
-      //   this.dataSourceRecentMatches.data = dataRecentMatches;
-      //   this.dataSourceRecentMatchesIsLoading = data.isLoading;
-      //   this.queryParamsHasValue = data.isMatches;
-      // }, err => {
-      //   console.log(err);
-      // });
     }
 
 

@@ -37,7 +37,7 @@ export class TableHerosMatchesComponent implements OnInit {
   paginator;
   sort;
 
-  isLoading = false;
+  isLoading = true;
 
   dataSource = new MatTableDataSource();
 
@@ -55,16 +55,19 @@ export class TableHerosMatchesComponent implements OnInit {
 
     this.store.dispatch(new herosActions.LoadHerosMatches(heroId));
     this.store.select('herosMatches').subscribe(data => {
-      const dataMatches = [...data.matches];
-      // const dataNew = [];
-      // for (const i in dataMatches) {
-      //   if (dataMatches.hasOwnProperty(i)) {
-      //     const accountName = this.getPlayerName(dataMatches[i].account_id);
-      //     dataNew.push({ ...dataMatches[i], account_name: accountName });
-      //   }
-      // }
       this.isLoading = data.isLoading;
-      return this.dataSource.data = dataMatches;
+      if (!data.isLoading) {
+        const dataMatches = [...data.matches];
+        // const dataNew = [];
+        // for (const i in dataMatches) {
+        //   if (dataMatches.hasOwnProperty(i)) {
+        //     const accountName = this.getPlayerName(dataMatches[i].account_id);
+        //     dataNew.push({ ...dataMatches[i], account_name: accountName });
+        //   }
+        // }
+        this.isLoading = data.isLoading;
+        return this.dataSource.data = dataMatches;
+      }
     }, err => {
       console.log(err);
     });

@@ -26,7 +26,7 @@ export class TableTeamsComponent implements OnInit {
   // table sort
   sort;
   // for loading data validate
-  isLoading = false;
+  isLoading = true;
   dataSource = new MatTableDataSource();
 
   // call largest data for bar chart
@@ -43,10 +43,13 @@ export class TableTeamsComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(new teamsActions.LoadTeams());
     this.store.select('teamsList').subscribe(data => {
-      const dataTeams = [...data.teams];
-      this.getLargestData(dataTeams);
       this.isLoading = data.isLoading;
-      return this.dataSource.data = dataTeams.splice(0, 100);
+      if (!data.isLoading) {
+        const dataTeams = [...data.teams];
+        this.getLargestData(dataTeams);
+        this.isLoading = data.isLoading;
+        return this.dataSource.data = dataTeams.splice(0, 100);
+      }
     }, err => {
       console.log(err);
     });

@@ -52,7 +52,7 @@ export class TableMatchesComponent implements OnInit {
 
   playersMatches: IMatch[];
   playersRecentMatches: IRecentMatch[];
-  isLoading = false;
+  isLoading = true;
 
   playersMatches$: Observable<IMatchData>;
   playersRecentMatches$: Observable<IRecentMatchData>;
@@ -110,19 +110,24 @@ export class TableMatchesComponent implements OnInit {
 
       // load player matches
       this.store.select('playersMatches').subscribe(data => {
-        const dataMatches = [...data.matches];
         this.isLoading = data.isLoading;
-
-        return this.dataSource.data = dataMatches;
+        if (!data.isLoading) {
+            const dataMatches = [...data.matches];
+            this.isLoading = data.isLoading;
+            return this.dataSource.data = dataMatches;
+          }
       }, err => {
         console.log(err);
       });
     } else {
       this.store.dispatch(new playersActions.LoadPlayersRecentMatches(accountId));
       this.store.select('playersRecentMatches').subscribe(data => {
-        const dataRecentMatches = [...data.matches];
         this.isLoading = data.isLoading;
-        return this.dataSource.data = dataRecentMatches;
+        if (!data.isLoading) {
+            const dataRecentMatches = [...data.matches];
+            this.isLoading = data.isLoading;
+            return this.dataSource.data = dataRecentMatches;
+          }
       }, err => {
         console.log(err);
       });
@@ -198,10 +203,8 @@ export class TableMatchesComponent implements OnInit {
 
 
   getLaneRoleLocal(): any {
-    this.isLoading = false;
     this.laneRoleService.getLaneRoleLocal().subscribe(data => {
       this.laneRoleLocal = data;
-      this.isLoading = true;
     }, err => {
       console.log(err);
     });
