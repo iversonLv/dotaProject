@@ -108,4 +108,9 @@ export class PlayersService {
     return this.generalService.getLocalData(`/queryParams.json`);
   }
 
+  // GET pro players
+  getProPlayers(): Observable<IPro[]> {
+    return this.generalService.get(`/proPlayers`);
+  }
+
 }

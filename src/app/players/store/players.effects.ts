@@ -253,5 +253,21 @@ export class PlayersEffects {
 
   // Players ratings
 
+  getProPlayers$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(playersActions.PlayersActionTypes.LOAD_PRO_PLAYERS),
+      switchMap(() =>
+        this.playersService.getProPlayers()
+        .pipe(
+          map((pros: IPro[]) =>
+            new playersActions.LoadProPlayersSuccess(pros)
+          ),
+          catchError(() =>
+            EMPTY
+          )
+        )
+      )
+    ),
+  );
 }
 

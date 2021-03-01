@@ -9,7 +9,7 @@ import { map, catchError, switchMap } from 'rxjs/operators';
 import { MatchesService } from '../services/matches.service';
 
 // ngrx
-import * as MatchesAction from './matches.actions';
+import * as matchesActions from './matches.actions';
 
 // model
 import { IMatch } from '../model/match';
@@ -22,5 +22,22 @@ export class MatchesEffects {
     private actions$: Actions
   ) {}
 
+  // Get single match
+  getSingleMatch$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(matchesActions.MatchesActionTypes.LOAD_MATCH),
+      switchMap(({ matchId }) =>
+        this.matchesService.getSingleMatch(matchId)
+        .pipe(
+          map((match: any) =>
+            new matchesActions.LoadMatchSuccess(matchId, match)
+          ),
+          catchError(() =>
+            EMPTY
+          )
+        )
+      )
+    )
+  );
 
 }

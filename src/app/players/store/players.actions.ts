@@ -75,6 +75,10 @@ export enum PlayersActionTypes {
   // for player filter
   LOAD_PLAYERS_PEERS_FILTER = '[Players] Load Peers Filter',
   LOAD_PLAYERS_PEERS_FILTER_SUCCESS = '[Players] Load Peers Filter Success',
+
+  // for pro player
+  LOAD_PRO_PLAYERS = '[Players] Load Pro Players',
+  LOAD_PRO_PLAYERS_SUCCESS = '[Players] Load Pro Players Success',
 }
 
 // load player general data
@@ -243,6 +247,19 @@ export class LoadPlayersProsSuccess implements Action {
 
 // Players ratings
 
+// Pro Players
+export class LoadProPlayers implements Action {
+  readonly type = PlayersActionTypes.LOAD_PRO_PLAYERS;
+
+  constructor() {}
+}
+
+export class LoadProPlayersSuccess implements Action {
+  readonly type = PlayersActionTypes.LOAD_PRO_PLAYERS_SUCCESS;
+
+  constructor(public payload?: IPro[]) {}
+}
+
 // TODO: Fail?
 
 
@@ -258,4 +275,5 @@ export type PlayersActions =
   | LoadPlayersCounts | LoadPlayersCountsSuccess
   | LoadPlayersTotals | LoadPlayersTotalsSuccess
   | LoadPlayersRankings | LoadPlayersRankingsSuccess
-  | LoadPlayersPros | LoadPlayersProsSuccess;
+  | LoadPlayersPros | LoadPlayersProsSuccess
+  | LoadProPlayers | LoadProPlayersSuccess;

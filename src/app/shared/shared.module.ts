@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
+import { RouterModule } from '@angular/router';
 
 import { NgxEchartsModule } from 'ngx-echarts';
 
@@ -9,6 +10,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { NavTitleComponent } from './components/nav-title/nav-title.component';
 import { SubNavComponent } from './components/sub-nav/sub-nav.component';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
 
 // hero attri
 import { HeroAttrStrComponent } from './components/icons/hero-attr-str/hero-attr-str.component';
@@ -47,6 +49,7 @@ import { FieldTooltipPipe } from './utils/field-tooltip.pipe';
     DropdownComponent,
     NavTitleComponent,
     SubNavComponent,
+    MainNavComponent,
 
     // hero atti
     HeroAttrStrComponent,
@@ -83,6 +86,7 @@ import { FieldTooltipPipe } from './utils/field-tooltip.pipe';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    RouterModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     })
@@ -91,6 +95,7 @@ import { FieldTooltipPipe } from './utils/field-tooltip.pipe';
     DropdownComponent,
     NavTitleComponent,
     SubNavComponent,
+    MainNavComponent,
 
     // hero atti
     HeroAttrStrComponent,
