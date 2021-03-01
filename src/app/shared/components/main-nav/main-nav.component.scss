@@ -17,10 +17,21 @@
     font-weight: bold;
     display: inline-block;
     padding: 0 20px;
+  }
 
-    &:last-child {
-      margin-left: auto;
+  .search-form {
+    margin-left: auto;
+    
+    mat-form-field {
+      width: 250px!important;
+    }
+
+    mat-icon {
+      position: relative;
+      top: 5px;
     }
   }
+  
+  
 
 }

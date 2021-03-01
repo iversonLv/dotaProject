@@ -1,0 +1,70 @@
+<app-nav-title [title]="'Matches'"></app-nav-title>
+<div *ngIf="isLoading">Loading</div>
+<div *ngIf="!isLoading">
+  <div *ngIf="dataSource.data.length === 0 || dataSource.data[0].duration === null; else hasData">No data</div>
+  <ng-template #hasData>
+    <table mat-table [dataSource]="dataSource">
+      <!-- match id name Column -->
+      <ng-container matColumnDef="match_id" *ngIf="displayedColumns.includes('match_id')">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="ver-align">
+            <div class="account-date">
+              <a class="account_link" [routerLink]="['/matches', element.match_id]">{{element.match_id}} ></a>
+              <span *ngIf="element.skill !== null && skillLocal" class="skill-text">{{skillLocal[element.skill].name | nameDestruct: '_' : 1}}</span>
+              <span *ngIf="element.skill === null && skillLocal" class="skill-text-unknow">Unknow Skill</span>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- duration column -->
+      <ng-container matColumnDef="duration" *ngIf="displayedColumns.includes('duration')">
+        <th mat-header-cell *matHeaderCellDef matTooltip="The length of the match" matTooltipPosition="above"> DURATION </th>
+        <td mat-cell *matCellDef="let element">
+          <div>
+            {{element.duration | durationFormat}}
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- radient column -->
+      <ng-container matColumnDef="radient" *ngIf="displayedColumns.includes('radient')">
+        <th mat-header-cell *matHeaderCellDef> RADIENT </th>
+        <td mat-cell *matCellDef="let element">
+          <div>
+            <span *ngFor="let item of element.players | slice: 0:5">
+              <img width="52" height="29"
+                class="hero-img"
+                (click)="goPage(item.hero_id)"
+                *ngIf="item.hero_id && heroesLocal"
+                src="https://steamcdn-a.akamaihd.net/{{heroesLocal[item.hero_id]['img']}}"
+              />
+            </span>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- dire column -->
+      <ng-container matColumnDef="dire" *ngIf="displayedColumns.includes('dire')">
+        <th mat-header-cell *matHeaderCellDef> DIRE </th>
+        <td mat-cell *matCellDef="let element">
+          <div>
+            <span *ngFor="let item of element.players | slice: 5:10">
+              <img width="52" height="29"
+              class="hero-img"
+              (click)="goPage(item.hero_id)"
+              [routerLink]="['/heroes', item.hero_id]"
+              *ngIf="item.hero_id && heroesLocal"
+              src="https://steamcdn-a.akamaihd.net/{{heroesLocal[item.hero_id]['img']}}"
+              />
+            </span>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </ng-template>
+</div>

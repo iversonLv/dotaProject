@@ -247,9 +247,6 @@ export class FilterBarComponent implements OnInit {
     this.currentSelectedGameMode = 'None';
     this.currentSelectedPatch = 'None';
     this.currentSelectedInsignification = 'None';
-
-    // hide the clear button
-    this.checkQueryParams();
   }
 
   // set Hero id to update players win lose data

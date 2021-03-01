@@ -6,20 +6,19 @@ import { PlayersRoutingModule } from './players-routing.module';
 // material
 import { MaterialModule } from '../material.module';
 
+// ngrx and reducer
+import { StoreModule } from '@ngrx/store';
+import * as fromPlayersReducers from './store/players.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { PlayersEffects } from './store/players.effects';
+
 // shared model
 import { SharedModule } from '../shared/shared.module';
 
 import { PlayersComponent } from './players.component';
 import { OverviewComponent } from './pages/overview/overview.component';
 import { PlayersHeroComponent } from './components/players-hero/players-hero.component';
-
 import { PlayersNavComponent } from './components/players-nav/players-nav.component';
-
-// ngrx and reducer
-import { StoreModule } from '@ngrx/store';
-import * as fromPlayersReducers from './store/players.reducers';
-import { EffectsModule } from '@ngrx/effects';
-import { PlayersEffects } from './store/players.effects';
 import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
 import { PeersComponent } from './pages/peers/peers.component';
 import { HeroesComponent } from './pages/heroes/heroes.component';
@@ -87,6 +86,7 @@ import { TableActivitiesComponent } from './components/table-activities/table-ac
       playersTotals: fromPlayersReducers.playersTotals,
       playersRankings: fromPlayersReducers.playersRankings,
       playersPros: fromPlayersReducers.playersPros,
+      proPlayers: fromPlayersReducers.proPlayers,
     }),
     EffectsModule.forFeature([PlayersEffects])
   ],
