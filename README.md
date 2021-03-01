@@ -92,7 +92,9 @@ environment.pro.ts
     - [x] GET Ablitities Talents List (2021.2)
     [] Records service
     - [x] GET Records list data (2021.2.26)
-[] Setup/Finish pages  
+[] Setup/Finish pages
+  - [99%] Search page: Search matches/Players (2021.2.28) TODO: search term is empty the public table and match tables are odd behavior
+  - [x] 404 not found page (2021.2.28)
   - [] Heros page  
     - [] Heros list page
       - [] Heros list professional page

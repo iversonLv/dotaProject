@@ -45,14 +45,12 @@ export const initialStateHeroesPlayed: IHeroesPlayedData = {
 // init state for player matches
 export const initialStatePlayerMatches: IMatchData = {
   isLoading: false,
-  isMatches: true,
   matches: []
 };
 
 // init state for player recent matches
 export const initialStatePlayerRecentMatches: IRecentMatchData =  {
   isLoading: false,
-  isMatches: false,
   matches: []
 };
 
@@ -80,6 +78,7 @@ export const initialStatePlayerProps: IProData = {
   pros: []
 };
 
+
 // init state for players histograms
 
 // init state for players wardmap
@@ -87,6 +86,12 @@ export const initialStatePlayerProps: IProData = {
 // init state for players wordcloud
 
 // init state for players ratings
+
+// init state for prop players
+export const initialStateProPlayers: IProData = {
+  isLoading: false,
+  pros: []
+};
 
 // players win lose reducer
 export function playersWinLoseCount(state = initialStateWinLose, action: PlayersActions): IWinloseData {
@@ -243,3 +248,15 @@ export function playersPros(state = initialStatePlayerProps, action: PlayersActi
 // Players wordcloud
 
 // Players ratings
+
+// Pros players
+export function proPlayers(state = initialStateProPlayers, action: PlayersActions): IProData {
+  switch (action.type) {
+    case PlayersActionTypes.LOAD_PRO_PLAYERS:
+      return { ...state, isLoading: true };
+    case PlayersActionTypes.LOAD_PRO_PLAYERS_SUCCESS:
+      return { ...state, isLoading: false, pros: [...(action.payload || [])] };
+    default:
+      return state;
+  }
+}

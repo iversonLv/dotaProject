@@ -25,6 +25,7 @@ import { ListsComponent } from './components/lists/lists.component';
     MatchesRoutingModule,
     SharedModule,
     StoreModule.forFeature('matches', {
+      singleMatch: fromMatchesReducers.singleMatch,
     }),
     EffectsModule.forFeature([MatchesEffects]),
 

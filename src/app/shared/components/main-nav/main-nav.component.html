@@ -5,6 +5,14 @@
     <a [routerLink]="['teams']" routerLinkActive="active">Teams</a>
     <a [routerLink]="['records']" routerLinkActive="active">Records</a>
     <a [routerLink]="['medals']" routerLinkActive="active">Medals</a>
+    
+    <form class="search-form">
+      <mat-form-field class="search-form-width">
+        <mat-label>Search by player name, match ID</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input [ngModel]="searchTerm" name="searchTerm" matInput placeholder="Search by player name, match ID" (keydown)="doSearch($event)">
+      </mat-form-field>
+    </form>
     <a [routerLink]="['players/128741677/overview']" routerLinkActive="active">My Profile</a>
   </nav>
 </div>

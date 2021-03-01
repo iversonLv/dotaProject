@@ -27,4 +27,8 @@ export class MatchesService {
     };
   }
 
+  getSingleMatch(matchId: number): Observable<any> {
+    return this.generalService.get(`/matches/${matchId}`);
+  }
+
 }

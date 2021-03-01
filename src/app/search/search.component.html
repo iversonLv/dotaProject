@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <!-- Match result -->
+  <div class="table-box">
+    <app-table-match></app-table-match>
+  </div>
+
+  <div class="table-box">
+    <!-- pro player results table -->
+    <app-table-result [displayedColumns]="['name', 'team_name']" [isPage]="'proplayers'"></app-table-result>
+  </div>
+  
+  <div class="table-box">
+    <!-- public player results table -->
+    <app-table-result [isPage]="'publicplayers'"></app-table-result>
+  </div>
+</div>

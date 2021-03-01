@@ -7,7 +7,6 @@ export interface IAppState extends fromRoot.IAppState {
 
 export interface IRecentMatchData {
   isLoading: boolean;
-  isMatches: boolean;
   matches: IRecentMatch[];
 }
 

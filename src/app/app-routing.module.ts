@@ -9,6 +9,9 @@ const routes: Routes = [
   { path: 'teams', loadChildren: () => import('./teams/teams.module').then(m => m.TeamsModule) },
   { path: 'medals', loadChildren: () => import('./medals/medals.module').then(m => m.MedalsModule) },
   { path: 'records', loadChildren: () => import('./records/records.module').then(m => m.RecordsModule) },
+  { path: 'search', loadChildren: () => import('./search/search.module').then(m => m.SearchModule) },
+  { path: '**', loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule) },
+
 ];
 
 @NgModule({
