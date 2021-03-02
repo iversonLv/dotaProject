@@ -33,7 +33,7 @@
         <td mat-cell *matCellDef="let element" class="immortal-col">
           {{element["8_pick"] / totalMatch["8_pick"] * 1000 | number: '1.0-1'}}
           <span class="small-text">{{element["8_pick"] | greaterNum : '1000' : 'k'}}</span>
-          <app-bar-chart [data]='[1, (element["8_pick"] / totalMatch["8_pick" * 10])]'></app-bar-chart>
+          <app-bar-chart [data]='[1, (element["8_pick"] / totalMatch["8_pick"] * 10)]'></app-bar-chart>
         </td>
       </ng-container>
 
@@ -65,7 +65,7 @@
         <td mat-cell *matCellDef="let element" class="divine-col">
           {{element["7_pick"] / totalMatch["7_pick"] * 1000 | number: '1.0-1'}}
           <span class="small-text">{{element["7_pick"] | greaterNum : '1000' : 'k'}}</span>
-          <app-bar-chart [data]='[1, (element["7_pick"] / totalMatch["7_pick" * 10])]'></app-bar-chart>
+          <app-bar-chart [data]='[1, (element["7_pick"] / totalMatch["7_pick"] * 10)]'></app-bar-chart>
         </td>
       </ng-container>
 
@@ -97,7 +97,7 @@
         <td mat-cell *matCellDef="let element" class="ancient-col">
           {{element["6_pick"] / totalMatch["6_pick"] * 1000 | number: '1.0-1'}}
           <span class="small-text">{{element["6_pick"] | greaterNum : '1000' : 'k'}}</span>
-          <app-bar-chart [data]='[1, (element["6_pick"] / totalMatch["6_pick" * 10])]'></app-bar-chart>
+          <app-bar-chart [data]='[1, (element["6_pick"] / totalMatch["6_pick"] * 10)]'></app-bar-chart>
         </td>
       </ng-container>
 
@@ -129,7 +129,7 @@
         <td mat-cell *matCellDef="let element" class="legend-col">
           {{element["5_pick"] / totalMatch["5_pick"] * 1000 | number: '1.0-1'}}
           <span class="small-text">{{element["5_pick"] | greaterNum : '1000' : 'k'}}</span>
-          <app-bar-chart [data]='[1, (element["5_pick"] / totalMatch["5_pick" * 10])]'></app-bar-chart>
+          <app-bar-chart [data]='[1, (element["5_pick"] / totalMatch["5_pick"] * 10)]'></app-bar-chart>
         </td>
       </ng-container>
 
@@ -161,7 +161,7 @@
         <td mat-cell *matCellDef="let element" class="archon-col">
           {{element["4_pick"] / totalMatch["4_pick"] * 1000 | number: '1.0-1'}}
           <span class="small-text">{{element["4_pick"] | greaterNum : '1000' : 'k'}}</span>
-          <app-bar-chart [data]='[1, (element["4_pick"] / totalMatch["4_pick" * 10])]'></app-bar-chart>
+          <app-bar-chart [data]='[1, (element["4_pick"] / totalMatch["4_pick"] * 10)]'></app-bar-chart>
         </td>
       </ng-container>
 
@@ -193,7 +193,7 @@
         <td mat-cell *matCellDef="let element" class="cursader-col">
           {{element["3_pick"] / totalMatch["3_pick"] * 1000 | number: '1.0-1'}}
           <span class="small-text">{{element["3_pick"] | greaterNum : '1000' : 'k'}}</span>
-          <app-bar-chart [data]='[1, (element["3_pick"] / totalMatch["3_pick" * 10])]'></app-bar-chart>
+          <app-bar-chart [data]='[1, (element["3_pick"] / totalMatch["3_pick"] * 10)]'></app-bar-chart>
         </td>
       </ng-container>
 
@@ -225,7 +225,7 @@
         <td mat-cell *matCellDef="let element" class="guardian-col">
           {{element["2_pick"] / totalMatch["2_pick"] * 1000 | number: '1.0-1'}}
           <span class="small-text">{{element["2_pick"] | greaterNum : '1000' : 'k'}}</span>
-          <app-bar-chart [data]='[1, (element["2_pick"] / totalMatch["2_pick" * 10])]'></app-bar-chart>
+          <app-bar-chart [data]='[1, (element["2_pick"] / totalMatch["2_pick"] * 10)]'></app-bar-chart>
         </td>
       </ng-container>
 
@@ -257,7 +257,7 @@
         <td mat-cell *matCellDef="let element" class="herald-col">
           {{element["1_pick"] / totalMatch["1_pick"] * 1000 | number: '1.0-1'}}
           <span class="small-text">{{element["1_pick"] | greaterNum : '1000' : 'k'}}</span>
-          <app-bar-chart [data]='[1, (element["1_pick"] / totalMatch["1_pick" * 10])]'></app-bar-chart>
+          <app-bar-chart [data]='[1, (element["1_pick"] / totalMatch["1_pick"] * 10)]'></app-bar-chart>
         </td>
       </ng-container>
 
