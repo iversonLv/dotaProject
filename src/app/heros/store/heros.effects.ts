@@ -48,8 +48,8 @@ export class HerosEffects {
     switchMap(() =>
       this.herosService.getHeroStats()
         .pipe(
-          map((heroStats: any) =>
-            new herosActions.LoadHerosStatsSuccess(heroStats)
+          map((heros: any[]) =>
+            new herosActions.LoadHerosStatsSuccess(heros)
           ),
           catchError(() =>
             EMPTY

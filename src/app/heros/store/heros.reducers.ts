@@ -1,9 +1,9 @@
 import { HerosActionTypes, HerosActions } from './heros.actions';
 
 // model
-import { IHero, IHeroData } from '../model/hero';
-import { IHeroStats } from '../model/heroStats';
-import { IRanking, IRankingData } from '../model/ranking';
+import { IHeroData } from '../model/hero';
+import { IHeroStatsData } from '../model/heroStats';
+import { IRankingData } from '../model/ranking';
 import { IBenchmarkData } from '../model/benchmark';
 import { IMatchData } from '../model/match';
 import { IMatchupsDurationPlayerData } from '../model/matchup-duration-player';
@@ -14,9 +14,9 @@ export const initialStateGneral: IHeroData = {
   heros: []
 };
 
-export const initialStateStats: any = {
+export const initialStateStats: IHeroStatsData = {
   isLoading: false,
-  heroStats: []
+  heros: []
 };
 
 // init state for heros rankings
@@ -67,7 +67,7 @@ export function heroStats(state = initialStateStats, action: HerosActions): any 
     case HerosActionTypes.LOAD_HEROS_STATS:
       return { ...state, isLoading: true };
     case HerosActionTypes.LOAD_HEROS_STATS_SUCCESS:
-      return { ...state, heroStats: [...(action.payload || [])], isLoading: false };
+      return { ...state, heros: [...(action.payload || [])], isLoading: false };
     default:
       return state;
   }

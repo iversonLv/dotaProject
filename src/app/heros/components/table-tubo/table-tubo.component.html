@@ -1,0 +1,50 @@
+<app-nav-title [title]="'Heroes in Turbo Matches'"> {{ totalMatch  | greaterNum : '1000' : 'k' }} matches this month</app-nav-title>
+
+<div *ngIf="isLoading">Loading</div>
+<div *ngIf="!isLoading">
+  <div *ngIf="dataSource.data.length === 0; else hasData">No data</div>
+  <ng-template #hasData>
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- hero column -->
+      <ng-container matColumnDef="localized_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The hero played" matTooltipPosition="above"> Hero </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="ver-align">
+            <img class="hero-img" width="52" height="29" src="https://steamcdn-a.akamaihd.net/{{element.img}}"
+            (mouseover)="showHeroModalFn($event, element.hero_id)" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
+            />
+            <div class="account-date">
+              <a class="account_link" [routerLink]="['/heroes', element.hero_id]">{{element.localized_name}} ></a>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- pro_pick column -->
+      <ng-container matColumnDef="turbo_picks">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > TURBO P‰ </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.turbo_picks / totalMatch * 1000 | number: '1.0-1'}}
+          <span class="small-text">{{element.turbo_picks | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element.turbo_picks / totalMatch * 10)]'></app-bar-chart>
+        </td>
+      </ng-container>
+      
+      <!-- pro_win column -->
+      <ng-container matColumnDef="turbo_wins">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > TURBO WIN% </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.turbo_wins / element.turbo_picks * 100 | number: '1.0-1'}}
+          <span class="small-text">{{element.turbo_wins | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element.turbo_wins / element.turbo_picks)]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </ng-template>
+</div>
+
+<app-hero-modal *ngIf="showHeroModal" [hero]='currentMouseOverHero' [pageXY] = 'pageXY' class="hero-modal"></app-hero-modal>
