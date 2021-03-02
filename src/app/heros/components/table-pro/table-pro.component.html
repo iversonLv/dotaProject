@@ -1,0 +1,70 @@
+<app-nav-title [title]="'Heroes in Professional Matches'"> {{ totalMatch | greaterNum : '1000' : 'k'}} matches in last 30 days</app-nav-title>
+
+<div *ngIf="isLoading">Loading</div>
+<div *ngIf="!isLoading">
+  <div *ngIf="dataSource.data.length === 0; else hasData">No data</div>
+  <ng-template #hasData>
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- hero column -->
+      <ng-container matColumnDef="localized_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The hero played" matTooltipPosition="above"> Hero </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="ver-align" *ngIf="element.hero_id">
+            <img class="hero-img" width="52" height="29" src="https://steamcdn-a.akamaihd.net/{{element.img}}"
+            (mouseover)="showHeroModalFn($event, element.hero_id)" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
+            />
+            <div class="account-date">
+              <a class="account_link" [routerLink]="['/heroes', element.hero_id]">{{element.localized_name}} ></a>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- pro_bank_pick column -->
+      <ng-container matColumnDef="pro_pick_ban">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > PRO P+B‰ </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.pro_pick_ban * 1000 | number: '1.0-1'}}
+          <span class="small-text">{{(element.pro_pick + element.pro_ban) | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, element.pro_pick_ban * 10]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- pro_pick column -->
+      <ng-container matColumnDef="pro_pick">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > PRO P‰ </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.pro_pick / totalMatch * 1000 | number: '1.0-1'}}
+          <span class="small-text">{{element.pro_pick | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element.pro_pick / totalMatch * 10)]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- pro_ban column -->
+      <ng-container matColumnDef="pro_ban">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > PRO B‰ </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.pro_ban / totalMatch * 1000 | number: '1.0-1'}}
+          <span class="small-text">{{element.pro_ban | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element.pro_ban / totalMatch * 10)]'></app-bar-chart>
+        </td>
+      </ng-container>
+      
+      <!-- pro_win column -->
+      <ng-container matColumnDef="pro_win">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > PRO WIN% </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.pro_win / element.pro_pick * 100 | number: '1.0-1'}}
+          <span class="small-text">{{element.pro_win | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element.pro_win / element.pro_pick)]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </ng-template>
+</div>
+
+<app-hero-modal *ngIf="showHeroModal" [hero]='currentMouseOverHero' [pageXY] = 'pageXY' class="hero-modal"></app-hero-modal>

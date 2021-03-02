@@ -1,0 +1,287 @@
+<app-nav-title [title]="'Heroes in Public Matches (Sampled)'"> {{TotalMatches | greaterNum : '1000000' : 'm'}} matches in last 30 days</app-nav-title>
+
+<div *ngIf="isLoading">Loading</div>
+<div *ngIf="!isLoading">
+  <div *ngIf="dataSource.data.length === 0; else hasData">No data</div>
+  <ng-template #hasData>
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- hero column -->
+      <ng-container matColumnDef="localized_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The hero played" matTooltipPosition="above"> Hero </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="ver-align">
+            <img class="hero-img" width="52" height="29" src="https://steamcdn-a.akamaihd.net/{{element.img}}"
+            (mouseover)="showHeroModalFn($event, element.hero_id)" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
+            />
+            <div class="account-date">
+              <a class="account_link" [routerLink]="['/heroes', element.hero_id]">{{element.localized_name}} ></a>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- immortal pick -->
+      <ng-container matColumnDef="8_pick">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="immortal-col">
+          IM P‰
+          <img
+            width="24"
+            [matTooltip]="'8' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_8.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="immortal-col">
+          {{element["8_pick"] / totalMatch["8_pick"] * 1000 | number: '1.0-1'}}
+          <span class="small-text">{{element["8_pick"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["8_pick"] / totalMatch["8_pick" * 10])]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- divine win -->
+      <ng-container matColumnDef="8_win">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="immortal-col-alt">
+          IM W%
+          <img
+            width="24"
+            [matTooltip]="'7' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_8.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="immortal-col-alt">
+          {{element["8_win"] / element["8_pick"] * 100 | number: '1.0-1'}}
+          <span class="small-text">{{element["8_win"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["8_win"] / element["8_pick"])]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- divine pick -->
+      <ng-container matColumnDef="7_pick">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="divine-col">
+          DI P‰
+          <img
+            width="24"
+            [matTooltip]="'7' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_7.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="divine-col">
+          {{element["7_pick"] / totalMatch["7_pick"] * 1000 | number: '1.0-1'}}
+          <span class="small-text">{{element["7_pick"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["7_pick"] / totalMatch["7_pick" * 10])]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- divine win -->
+      <ng-container matColumnDef="7_win">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="divine-col-alt">
+          DI W%
+          <img
+            width="24"
+            [matTooltip]="'7' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_7.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="divine-col-alt">
+          {{element["7_win"] / element["7_pick"] * 100 | number: '1.0-1'}}
+          <span class="small-text">{{element["7_win"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["7_win"] / element["7_pick"])]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- Ancient pick -->
+      <ng-container matColumnDef="6_pick">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ancient-col">
+          AN P‰
+          <img
+            width="24"
+            [matTooltip]="'6' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_6.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="ancient-col">
+          {{element["6_pick"] / totalMatch["6_pick"] * 1000 | number: '1.0-1'}}
+          <span class="small-text">{{element["6_pick"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["6_pick"] / totalMatch["6_pick" * 10])]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- Ancient win -->
+      <ng-container matColumnDef="6_win">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ancient-col-alt">
+          AN W%
+          <img
+            width="24"
+            [matTooltip]="'6' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_6.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="ancient-col-alt">
+          {{element["6_win"] / element["6_pick"] * 100 | number: '1.0-1'}}
+          <span class="small-text">{{element["6_win"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["6_win"] / element["6_pick"])]'></app-bar-chart>
+        </td>
+      </ng-container>
+      
+      <!-- Legend pick -->
+      <ng-container matColumnDef="5_pick">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="legend-col">
+          LE P‰
+          <img
+            width="24"
+            [matTooltip]="'5' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_5.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="legend-col">
+          {{element["5_pick"] / totalMatch["5_pick"] * 1000 | number: '1.0-1'}}
+          <span class="small-text">{{element["5_pick"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["5_pick"] / totalMatch["5_pick" * 10])]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- Legend win -->
+      <ng-container matColumnDef="5_win">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="legend-col-alt">
+          LE W%
+          <img
+            width="24"
+            [matTooltip]="'5' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_5.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="legend-col-alt">
+          {{element["5_win"] / element["5_pick"] * 100 | number: '1.0-1'}}
+          <span class="small-text">{{element["5_win"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["5_win"] / element["5_pick"])]'></app-bar-chart>
+        </td>
+      </ng-container>
+      
+      <!-- Archon pick -->
+      <ng-container matColumnDef="4_pick">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="archon-col">
+          AR P‰
+          <img
+            width="24"
+            [matTooltip]="'4' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_4.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="archon-col">
+          {{element["4_pick"] / totalMatch["4_pick"] * 1000 | number: '1.0-1'}}
+          <span class="small-text">{{element["4_pick"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["4_pick"] / totalMatch["4_pick" * 10])]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- Archon win -->
+      <ng-container matColumnDef="4_win">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="archon-col-alt">
+          AR W%
+          <img
+            width="24"
+            [matTooltip]="'4' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_4.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="archon-col-alt">
+          {{element["4_win"] / element["4_pick"] * 100 | number: '1.0-1'}}
+          <span class="small-text">{{element["4_win"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["4_win"] / element["4_pick"])]'></app-bar-chart>
+        </td>
+      </ng-container>
+      
+      <!-- Crusader pick -->
+      <ng-container matColumnDef="3_pick">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="cursader-col">
+          CR P‰
+          <img
+            width="24"
+            [matTooltip]="'3' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_3.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="cursader-col">
+          {{element["3_pick"] / totalMatch["3_pick"] * 1000 | number: '1.0-1'}}
+          <span class="small-text">{{element["3_pick"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["3_pick"] / totalMatch["3_pick" * 10])]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- Crusader win -->
+      <ng-container matColumnDef="3_win">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="cursader-col-alt">
+          CR W%
+          <img
+            width="24"
+            [matTooltip]="'3' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_3.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="cursader-col-alt">
+          {{element["3_win"] / element["3_pick"] * 100 | number: '1.0-1'}}
+          <span class="small-text">{{element["3_win"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["3_win"] / element["3_pick"])]'></app-bar-chart>
+        </td>
+      </ng-container>
+      
+      <!-- Guardian pick -->
+      <ng-container matColumnDef="2_pick">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="guardian-col">
+          GU P‰
+          <img
+            width="24"
+            [matTooltip]="'2' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_2.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="guardian-col">
+          {{element["2_pick"] / totalMatch["2_pick"] * 1000 | number: '1.0-1'}}
+          <span class="small-text">{{element["2_pick"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["2_pick"] / totalMatch["2_pick" * 10])]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- Guardian win -->
+      <ng-container matColumnDef="2_win">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="guardian-col-alt">
+          GU W%
+          <img
+            width="24"
+            [matTooltip]="'2' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_2.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="guardian-col-alt">
+          {{element["2_win"] / element["2_pick"] * 100 | number: '1.0-1'}}
+          <span class="small-text">{{element["2_win"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["2_win"] / element["2_pick"])]'></app-bar-chart>
+        </td>
+      </ng-container>
+      
+      <!-- Herald pick -->
+      <ng-container matColumnDef="1_pick">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="herald-col">
+          HE P‰
+          <img
+            width="24"
+            [matTooltip]="'1' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_1.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="herald-col">
+          {{element["1_pick"] / totalMatch["1_pick"] * 1000 | number: '1.0-1'}}
+          <span class="small-text">{{element["1_pick"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["1_pick"] / totalMatch["1_pick" * 10])]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+      <!-- Herald win -->
+      <ng-container matColumnDef="1_win">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="herald-col-alt">
+          HE W%
+          <img
+            width="24"
+            [matTooltip]="'1' | rankTier" matTooltipPosition="below" 
+            [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_1.png'" />
+        </th>
+        <td mat-cell *matCellDef="let element" class="herald-col-alt">
+          {{element["1_win"] / element["1_pick"] * 100 | number: '1.0-1'}}
+          <span class="small-text">{{element["1_win"] | greaterNum : '1000' : 'k'}}</span>
+          <app-bar-chart [data]='[1, (element["1_win"] / element["1_pick"])]'></app-bar-chart>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </ng-template>
+</div>
+
+<app-hero-modal *ngIf="showHeroModal" [hero]='currentMouseOverHero' [pageXY] = 'pageXY' class="hero-modal"></app-hero-modal>

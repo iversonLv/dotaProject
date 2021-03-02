@@ -76,9 +76,9 @@ environment.pro.ts
     - [x] GET Teams matches (2021.2)
     - [x] GET Teams players (2021.2)
     - [x] GET Teams heroes (2021.2)
-    [] Heroes service
-    - [] GET Heroes list data (2021.2.16)
-    - [] GET Heroes Stats data (2021.2.16)
+    [x] Heroes service
+    - [x] GET Heroes list data (2021.2.16)
+    - [x] GET Heroes Stats data (2021.2.16)
     - [x] GET Heroes Rankings (2021.2.16)
     - [x] GET Heroes Benchmarks (2021.2.16)
     - [x] GET Heroes Matches (2021.2.16)
@@ -93,13 +93,14 @@ environment.pro.ts
     [] Records service
     - [x] GET Records list data (2021.2.26)
 [] Setup/Finish pages
+  - [] Home page
   - [99%] Search page: Search matches/Players (2021.2.28) TODO: search term is empty the public table and match tables are odd behavior
   - [x] 404 not found page (2021.2.28)
-  - [] Heros page  
-    - [] Heros list page
-      - [] Heros list professional page
-      - [] Heros list public page
-      - [] Heros list turbo page
+  - [x] Heros page  (2021.3.1)(2021.3.2)
+    - [x] Heros list page : QA: the total matches seems divided 10? and the percentage seems are permil(2021.3.1)(2021.3.2)
+      - [99%] Heros list professional page (2021.3.1)(2021.3.2)
+      - [99%] Heros list public page: (2021.3.1)(2021.3.2)
+      - [99%] Heros list turbo page: (2021.3.1)(2021.3.2)
     - [98%] Hero detail page
       - [99%] Heros detail top hero part (2021.2.8)(2021.2.14) TODO: attack speed is different, magic resistence current is static 25%, router navigate change, top hear part does not change
       - [100%] Heros detail rankings page (2021.2.15)(2021.2.18)(2021.2.27 fixed table setTimeout())
