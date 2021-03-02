@@ -2,7 +2,12 @@ import * as fromRoot from '../../../model/app';
 import { IHero } from './hero';
 
 export interface IAppState extends fromRoot.IAppState {
-  any: any;
+  IHeroStats: IHeroStats;
+}
+
+export interface IHeroStatsData {
+  isLoading: boolean;
+  heros: any[];
 }
 
 export interface IHeroStats extends IHero {

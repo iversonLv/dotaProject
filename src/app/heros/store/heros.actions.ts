@@ -66,7 +66,7 @@ export class LoadHerosStats implements Action {
 export class LoadHerosStatsSuccess implements Action {
   readonly type = HerosActionTypes.LOAD_HEROS_STATS_SUCCESS;
 
-  constructor(public payload?: any) {}
+  constructor(public payload?: any[]) {}
 }
 
 // load hero ranking

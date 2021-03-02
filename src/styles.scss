@@ -23,6 +23,31 @@ $item-common: #2BAB01;
 $item-epic: #B812F9;
 $item-component: #FFFFFF;
 
+// rank color
+$color-immortal: rgb(17 17 35 / 65%);
+$color-immortal-alt: rgb(17 17 35 / 45%);
+
+$color-divine: rgb(33 41 69 / 65%);
+$color-divine-alt: rgb(33 41 69 / 45%);
+
+$color-ancient: rgb(82 52 91 / 65%);
+$color-ancient-alt: rgb(82 52 91 / 45%);
+
+$color-legend: rgb(84 60 26 / 65%);
+$color-legend-alt: rgb(84 60 26 / 45%);
+
+$color-archon: rgb(24 85 74 / 65%);
+$color-archon-alt: rgb(24 85 74 / 45%);
+
+$color-cursader: rgb(58 73 124 / 65%);
+$color-cursader-alt: rgb(58 73 124 / 45%);
+
+$color-guardian: rgb(114 79 49 / 65%);
+$color-guardian-alt: rgb(114 79 49 / 45%);
+
+$color-herald: rgb(32 74 33 / 65%);
+$color-herald-alt: rgb(32 74 33 / 45%);
+
 $dropShadow: drop-shadow(rgba($black, 0.3) 2px -2px 2px) drop-shadow(rgba($black, 0.3) 2px -2px 2px);
 
 html, body { height: 100%; }

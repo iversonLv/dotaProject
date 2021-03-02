@@ -32,6 +32,10 @@ import { TableRankingsComponent } from './components/table-rankings/table-rankin
 import { TableHerosMatchesComponent } from './components/table-heros-matches/table-heros-matches.component';
 import { TableMatchupsPlayersComponent } from './components/table-matchups-players/table-matchups-players.component';
 import { TableBenchmarksComponent } from './components/table-benchmarks/table-benchmarks.component';
+import { TableProComponent } from './components/table-pro/table-pro.component';
+import { TableTuboComponent } from './components/table-tubo/table-tubo.component';
+import { TablePublicComponent } from './components/table-public/table-public.component';
+import { TablePublicColComponent } from './components/table-public-col/table-public-col.component';
 
 
 @NgModule({
@@ -53,7 +57,11 @@ import { TableBenchmarksComponent } from './components/table-benchmarks/table-be
     TableRankingsComponent,
     TableHerosMatchesComponent,
     TableMatchupsPlayersComponent,
-    TableBenchmarksComponent],
+    TableBenchmarksComponent,
+    TableProComponent,
+    TableTuboComponent,
+    TablePublicComponent,
+    TablePublicColComponent],
   imports: [
     CommonModule,
     HerosRoutingModule,

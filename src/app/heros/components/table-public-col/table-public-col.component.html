@@ -1,0 +1,13 @@
+<!-- divine pick -->
+<th mat-header-cell *matHeaderCellDef mat-sort-header >
+  IM P%
+  <img
+    width="36"
+    [matTooltip]="num | rankTier" matTooltipPosition="below" 
+    [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_' + num + '.png'" />
+</th>
+<td mat-cell *matCellDef="let element">
+  {{element[dataP] / totalMatch[dataP] * 1000 | number: '1.0-1'}}
+  <span class="small-text">{{element[dataP] | greaterNum : '1000' : 'k'}}</span>
+  <app-bar-chart [dataP]='[1, (element[dataP] / totalMatch[dataP])]'></app-bar-chart>
+</td>

@@ -38,7 +38,7 @@ export class HerosService {
   }
 
   // get hero stats
-  getHeroStats(): Observable<any> {
+  getHeroStats(): Observable<any[]> {
     return this.generalService.get(`/heroStats`);
   }
 
