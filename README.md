@@ -70,6 +70,7 @@ environment.pro.ts
     - [] GET Player ratings
     - [x] GET Player rankings
     - [x] POST Player refresh 
+    - [x] GET pro player data (2021.3.1)
   - [x] Teams service
     - [x] GET Teams list data (2021.2.5)
     - [x] GET Teams general data detail page top hero part (2021.2.6)
@@ -90,8 +91,17 @@ environment.pro.ts
     - [x] GET Heroes local (2021.1)
     - [x] GET Heroes Abilities (2021.2)
     - [x] GET Ablitities Talents List (2021.2)
-    [] Records service
+    - [X] GET Heros stas (2021.3.1)(2021.3.2)
+  - [x] Records service
     - [x] GET Records list data (2021.2.26)
+  - [x] Matches service
+    - [x] GET pro matches list data (2021.3.2)
+    - [x] GET public matches list data (2021.3.2)
+    - [x] GET matches detail data (2021.3.1)
+    - [] GET parsed matches
+  - [x] Search
+    - [] GET serch (2021.2.28)
+  - [] Find Matches
 [] Setup/Finish pages
   - [] Home page
   - [99%] Search page: Search matches/Players (2021.2.28) TODO: search term is empty the public table and match tables are odd behavior
