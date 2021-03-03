@@ -126,9 +126,31 @@ environment.pro.ts
     - [] Players mmr page  
     - [95%] Players rankings page TODO: rank coulmn, don't know how to cal(2021.1)
     - [98%] Players Activities page (2021.2.22,23 ) TODO: click same different cell within same calendar won't update, cell style for click
-  - [x] Matches page  (2021.1)
-    - [] Matches list page  
-    - [] Match detail page  
+  - [x] Matches page  (2021.3)  SETUP pages and route for all pages, tabs
+    - [x] Matches list page (2021.3.2)(2021.3.3)
+      - [x] Matches pro TODO: first column the time is start_time + duration, now mine is only start_time
+      - [x] Matches public TODO: first column the time is start_time + duration, now mine is only start_time
+    - [] Match detail page
+      - [] Top over part
+      - [] OVERVIEW
+      - [] BENCHMARKS
+      - [] DRAFT
+      - [] PERFORMANCES
+      - [] LANING
+      - [] COMBAT
+      - [] FARM
+      - [] ITEMS
+      - [] GRAPHS
+      - [] CASTS
+      - [] OBJECTIVES
+      - [] VISION
+      - [] ACTIONS
+      - [] ANALYSIS
+      - [] COSMETICS
+      - [] LOG
+      - [] FANTASY
+      - [] CHAT
+      - [] STORY
   - [99%] Teams page (2021.2.8)
     - [99%] Teams list page : The sort result is different from officaily one (2021.2.5)
     - [99%] Team detail page (2021.2.8)

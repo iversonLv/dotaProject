@@ -1,22 +1,49 @@
 import { Action } from '@ngrx/store';
+import { IQueryParams } from 'src/app/shared/model/query-params';
 
 // model
 import { IMatch } from '../model/match';
 import { IRecentMatch } from '../model/recent-match';
 
 export enum MatchesActionTypes {
-  LOAD_MATCHES_PLAYER = '[Matches] Load Matches',
+
+  // load pro matches
+  LOAD_PRO_MATCHES = '[Matches] Load Pro Matches',
+  LOAD_PRO_MATCHES_SUCCESS = '[Matches] Load Pro Matches Success',
+
+  // load public matches
+  LOAD_PUBLIC_MATCHES = '[Matches] Load Public Matches',
+  LOAD_PUBLIC_MATCHES_SUCCESS = '[Matches] Load Public Matches Success',
 
   // load single match
   LOAD_MATCH = '[Matches] Load Match',
   LOAD_MATCH_SUCCESS = '[Matches] Load Match Success',
 }
 
-// load player matches
-export class LoadMatchesPlayer implements Action {
-  readonly type = MatchesActionTypes.LOAD_MATCHES_PLAYER;
+// load pro matches
+export class LoadProMatches implements Action {
+  readonly type = MatchesActionTypes.LOAD_PRO_MATCHES;
 
-  constructor(public accountId, public queryParams?) {}
+  constructor(public queryParams?) {}
+}
+
+export class LoadProMatchesSuccess implements Action {
+  readonly type = MatchesActionTypes.LOAD_PRO_MATCHES_SUCCESS;
+
+  constructor(public queryParams?, public payload?) {}
+}
+
+// load public matches
+export class LoadPublicMatches implements Action {
+  readonly type = MatchesActionTypes.LOAD_PUBLIC_MATCHES;
+
+  constructor(public queryParams?) {}
+}
+
+export class LoadPublicMatchesSuccess implements Action {
+  readonly type = MatchesActionTypes.LOAD_PUBLIC_MATCHES_SUCCESS;
+
+  constructor(public queryParams?, public payload?) {}
 }
 
 // load match
@@ -32,6 +59,8 @@ export class LoadMatchSuccess implements Action {
   constructor(public matchId, public payload?) {}
 }
 
+
 export type MatchesActions =
-  LoadMatchesPlayer
-  | LoadMatch | LoadMatchSuccess;
+  | LoadMatch | LoadMatchSuccess
+  | LoadProMatches | LoadProMatchesSuccess
+  | LoadPublicMatches | LoadPublicMatchesSuccess;

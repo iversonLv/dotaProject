@@ -41,6 +41,7 @@ import { StringToArrayPipe } from './utils/string-to-array.pipe';
 import { ExcludeTextPipe } from './utils/exclude-text.pipe';
 import { OrdinalNumPipe } from './utils/ordinal-num.pipe';
 import { FieldTooltipPipe } from './utils/field-tooltip.pipe';
+import { WinComponent } from './components/icons/win/win.component';
 
 
 
@@ -51,7 +52,7 @@ import { FieldTooltipPipe } from './utils/field-tooltip.pipe';
     SubNavComponent,
     MainNavComponent,
 
-    // hero atti
+    // icons
     HeroAttrStrComponent,
     HeroAttrAgiComponent,
     HeroAttrIntComponent,
@@ -80,6 +81,7 @@ import { FieldTooltipPipe } from './utils/field-tooltip.pipe';
     ExcludeTextPipe,
     OrdinalNumPipe,
     FieldTooltipPipe,
+    WinComponent,
   ],
   imports: [
     CommonModule,
@@ -97,10 +99,11 @@ import { FieldTooltipPipe } from './utils/field-tooltip.pipe';
     SubNavComponent,
     MainNavComponent,
 
-    // hero atti
+    // icons
     HeroAttrStrComponent,
     HeroAttrAgiComponent,
     HeroAttrIntComponent,
+    WinComponent,
 
     // modals
     HeroModalComponent,
