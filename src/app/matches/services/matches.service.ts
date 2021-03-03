@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 import { GeneralService } from 'src/app/services/general.service';
 
 // model
-import { IQuery } from 'src/app/players/model/query';
-import { IMatch } from 'src/app/matches/model/match';
-import { IRecentMatch } from 'src/app/matches/model/recent-match';
+import { IQueryParams } from 'src/app/shared/model/query-params';
+import { IProMatch } from 'src/app/matches/model/pro-match';
+import { IPublicMatch } from 'src/app/matches/model/public-match';
+
 
 
 @Injectable({
@@ -27,6 +28,17 @@ export class MatchesService {
     };
   }
 
+  // get pro matches
+  getProMatches(queryParams?: IQueryParams): Observable<IProMatch[]> {
+    return this.generalService.get(`/proMatches`, queryParams);
+  }
+
+  // get public matches
+  getPublicMatches(queryParams?: IQueryParams): Observable<IPublicMatch[]> {
+    return this.generalService.get(`/publicMatches`, queryParams);
+  }
+
+  // get single match
   getSingleMatch(matchId: number): Observable<any> {
     return this.generalService.get(`/matches/${matchId}`);
   }
