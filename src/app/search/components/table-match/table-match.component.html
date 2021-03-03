@@ -54,7 +54,6 @@
               <img width="52" height="29"
               class="hero-img"
               (click)="goPage(item.hero_id)"
-              [routerLink]="['/heroes', item.hero_id]"
               *ngIf="item.hero_id && heroesLocal"
               src="https://steamcdn-a.akamaihd.net/{{heroesLocal[item.hero_id]['img']}}"
               />

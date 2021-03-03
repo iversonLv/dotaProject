@@ -14,6 +14,8 @@ import * as matchesActions from './matches.actions';
 // model
 import { IMatch } from '../model/match';
 import { IRecentMatch } from '../model/recent-match';
+import { IProMatch } from '../model/pro-match';
+import { IPublicMatch } from '../model/public-match';
 
 @Injectable()
 export class MatchesEffects {
@@ -21,6 +23,42 @@ export class MatchesEffects {
     private matchesService: MatchesService,
     private actions$: Actions
   ) {}
+
+  // Get pro matches
+  getProMatches$: Observable<Action> = createEffect(() =>
+  this.actions$.pipe(
+    ofType(matchesActions.MatchesActionTypes.LOAD_PRO_MATCHES),
+    switchMap(({ queryParams }) =>
+      this.matchesService.getProMatches(queryParams)
+      .pipe(
+        map((matches: IProMatch[]) =>
+          new matchesActions.LoadProMatchesSuccess(queryParams, matches)
+        ),
+        catchError(() =>
+          EMPTY
+        )
+      )
+    )
+  )
+);
+
+  // Get public matches
+  getPublicMatches$: Observable<Action> = createEffect(() =>
+  this.actions$.pipe(
+    ofType(matchesActions.MatchesActionTypes.LOAD_PUBLIC_MATCHES),
+    switchMap(({ queryParams }) =>
+      this.matchesService.getPublicMatches(queryParams)
+      .pipe(
+        map((matches: IPublicMatch[]) =>
+          new matchesActions.LoadPublicMatchesSuccess(queryParams, matches)
+        ),
+        catchError(() =>
+          EMPTY
+        )
+      )
+    )
+  )
+);
 
   // Get single match
   getSingleMatch$: Observable<Action> = createEffect(() =>

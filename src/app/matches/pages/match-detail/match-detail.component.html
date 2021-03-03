@@ -1,1 +1,28 @@
-<p>match-detail works!</p>
+<!-- match top overview section -->
+<app-match-hero></app-match-hero>
+<!-- teams page navigation -->
+<app-sub-nav [links]="[
+'overview',
+'benchmarks',
+'draft',
+'performances',
+'laning',
+'combat',
+'farm',
+'items',
+'graphs',
+'casts',
+'objectives',
+'vision',
+'actions',
+'analysis',
+'cosmetics',
+'log',
+'fantasy',
+'chat',
+'story'
+]" [parentPage]="'matchesDetail'"></app-sub-nav>
+
+<div class="wrapper">
+  <router-outlet></router-outlet>
+</div>
