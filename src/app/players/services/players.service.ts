@@ -15,6 +15,7 @@ import { ICount } from '../model/count';
 import { ITotal } from '../model/total';
 import { IRanking } from '../model/ranking';
 import { IPro } from '../model/pro';
+import { IHistogram } from '../model/histogram';
 
 @Injectable({
   providedIn: 'root'
@@ -83,6 +84,9 @@ export class PlayersService {
 
   // GET Player histograms
   // /players/{account_id}/histograms/{field}
+  getPlayerHistograms(accountId: number, field: string, queryParams?: IQuery): Observable<IHistogram[]> {
+    return this.generalService.get(`/players/${accountId}/histograms/${field}`, queryParams);
+  }
 
   // GET player wardmap
 
@@ -111,6 +115,12 @@ export class PlayersService {
   // GET pro players
   getProPlayers(): Observable<IPro[]> {
     return this.generalService.get(`/proPlayers`);
+  }
+
+
+  // GET fields
+  getFields(): Observable<any> {
+    return this.generalService.getLocalData(`/fields.json`);
   }
 
 }

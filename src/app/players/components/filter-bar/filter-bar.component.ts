@@ -166,6 +166,7 @@ export class FilterBarComponent implements OnInit {
 
   async clearQueryParams(): Promise<void> {
     const accountId = +this.activatedRoute.snapshot.paramMap.get('id');
+    const field = this.router.url.split('/')[4] === undefined ? 'kills' : this.router.url.split('/')[4].split('?')[0];
     await this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: {},
@@ -206,7 +207,7 @@ export class FilterBarComponent implements OnInit {
     } else if (this.router.url.split('/')[3].split('?')[0] === 'counts') {
       console.log('dispatch counts');
     } else if (this.router.url.split('/')[3].split('?')[0] === 'histograms') {
-      console.log('dispatch histograms');
+      this.store.dispatch(new playersActions.LoadPlayersHistograms(accountId, field, this.queryParams));
     } else if (this.router.url.split('/')[3].split('?')[0] === 'trends') {
       console.log('dispatch trends');
     } else if (this.router.url.split('/')[3].split('?')[0] === 'wardmap') {
@@ -255,6 +256,7 @@ export class FilterBarComponent implements OnInit {
     params[key] = value;
     // get current players id
     const accountId = +this.activatedRoute.snapshot.paramMap.get('id');
+    const field = this.router.url.split('/')[4] === undefined ? 'kills' : this.router.url.split('/')[4].split('?')[0];
     // TODO: navigate to current page with heroId params
     // now static for overview page
     await this.router.navigate([], {
@@ -310,7 +312,7 @@ export class FilterBarComponent implements OnInit {
     } else if (this.router.url.split('/')[3].split('?')[0] === 'counts') {
       console.log('dispatch counts');
     } else if (this.router.url.split('/')[3].split('?')[0] === 'histograms') {
-      console.log('dispatch histograms');
+      this.store.dispatch(new playersActions.LoadPlayersHistograms(accountId, field, this.queryParams));
     } else if (this.router.url.split('/')[3].split('?')[0] === 'trends') {
       console.log('dispatch trends');
     } else if (this.router.url.split('/')[3].split('?')[0] === 'wardmap') {

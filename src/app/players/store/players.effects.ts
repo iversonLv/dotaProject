@@ -21,6 +21,7 @@ import { ICount } from '../model/count';
 import { ITotal } from '../model/total';
 import { IRanking } from '../model/ranking';
 import { IPro } from '../model/pro';
+import { IHistogram } from '../model/histogram';
 
 
 @Injectable()
@@ -246,6 +247,22 @@ export class PlayersEffects {
   );
 
   // Players histograms
+  getPlayerHistograms$: Observable<Action> = createEffect(() =>
+  this.actions$.pipe(
+    ofType(playersActions.PlayersActionTypes.LOAD_PLAYERS_HISTOGRAMS),
+    switchMap(({ accountId, queryParams, field }) =>
+      this.playersService.getPlayerHistograms(accountId, field, queryParams)
+      .pipe(
+        map((histograsms: IHistogram[]) =>
+          new playersActions.LoadPlayersHistogramsSuccess(accountId, field, queryParams, histograsms)
+        ),
+        catchError(() =>
+          EMPTY
+        )
+      )
+    )
+  ),
+);
 
   // Players wardmap
 

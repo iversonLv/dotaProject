@@ -8,7 +8,7 @@
 <mat-form-field appearance="fill">
   <mat-label>{{defaultValue}}</mat-label>
   <mat-select [(value)]="model" (selectionChange)="selectionChange($event)">
-    <mat-option>None</mat-option>
-    <mat-option [value]="item.id" *ngFor="let item of reStructure(data) | orderBy: sortBy : order">{{item.value || item.localized_name || item.personaname || (item.name | nameDestruct: '_' : 2)}}</mat-option>
+    <mat-option *ngIf="hasNone">None</mat-option>
+    <mat-option [value]="item.id" *ngFor="let item of reStructure(data) | orderBy: sortBy : order">{{item.value || item.localized_name || item.personaname || (item.name | nameDestruct: '_' : 2 : 'upperCase')}}</mat-option>
   </mat-select>
 </mat-form-field>

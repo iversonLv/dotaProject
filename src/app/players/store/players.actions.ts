@@ -10,6 +10,7 @@ import { ICount } from '../model/count';
 import { ITotal } from '../model/total';
 import { IRanking } from '../model/ranking';
 import { IPro } from '../model/pro';
+import { IHistogram } from '../model/histogram';
 
 export enum PlayersActionTypes {
   // for player general (top hero part)
@@ -240,6 +241,17 @@ export class LoadPlayersProsSuccess implements Action {
 }
 
 // Players histograms
+export class LoadPlayersHistograms implements Action {
+  readonly type = PlayersActionTypes.LOAD_PLAYERS_HISTOGRAMS;
+
+  constructor(public accountId, public field?, public queryParams?, ) {}
+}
+
+export class LoadPlayersHistogramsSuccess implements Action {
+  readonly type = PlayersActionTypes.LOAD_PLAYERS_HISTOGRAMS_SUCCESS;
+
+  constructor(public accountId, public field?, public queryParams?, public payload?: IHistogram[]) {}
+}
 
 // Players wardmap
 
@@ -276,4 +288,5 @@ export type PlayersActions =
   | LoadPlayersTotals | LoadPlayersTotalsSuccess
   | LoadPlayersRankings | LoadPlayersRankingsSuccess
   | LoadPlayersPros | LoadPlayersProsSuccess
-  | LoadProPlayers | LoadProPlayersSuccess;
+  | LoadProPlayers | LoadProPlayersSuccess
+  | LoadPlayersHistograms | LoadPlayersHistogramsSuccess;

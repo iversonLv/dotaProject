@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { PlayersRoutingModule } from './players-routing.module';
 
+import { NgxEchartsModule } from 'ngx-echarts';
+
 // material
 import { MaterialModule } from '../material.module';
 
@@ -39,6 +41,7 @@ import { ActvityComponent } from './pages/actvity/actvity.component';
 import { TablePlayersComponent } from './components/table-players/table-players.component';
 import { TableCountsComponent } from './components/table-counts/table-counts.component';
 import { TableActivitiesComponent } from './components/table-activities/table-activities.component';
+import { HistogramChartComponent } from './components/histogram-chart/histogram-chart.component';
 
 
 @NgModule({
@@ -66,13 +69,15 @@ import { TableActivitiesComponent } from './components/table-activities/table-ac
     ActvityComponent,
     TablePlayersComponent,
     TableCountsComponent,
-    TableActivitiesComponent
+    TableActivitiesComponent,
+    HistogramChartComponent
   ],
   imports: [
     CommonModule,
     PlayersRoutingModule,
     MaterialModule,
     SharedModule,
+    NgxEchartsModule,
     StoreModule.forFeature('players', {
       playersMyRecordWithWinLoseCount: fromPlayersReducers.playersMyRecordWithWinLoseCount,
       playersWinLoseCount: fromPlayersReducers.playersWinLoseCount,
@@ -87,6 +92,7 @@ import { TableActivitiesComponent } from './components/table-activities/table-ac
       playersRankings: fromPlayersReducers.playersRankings,
       playersPros: fromPlayersReducers.playersPros,
       proPlayers: fromPlayersReducers.proPlayers,
+      playersHistograms: fromPlayersReducers.playersHistograms,
     }),
     EffectsModule.forFeature([PlayersEffects])
   ],
