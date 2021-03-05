@@ -1,1 +1,24 @@
-<p>histograms works!</p>
+<app-nav-title [title]="'Histograms'"> Percentages indicate win rates for the labeled bin</app-nav-title>
+
+<div class="warpper">
+  <!-- sides dropdown -->
+  <app-dropdown
+    [data]="fieldsLocal"
+    *ngIf="fieldsLocal"
+    [model]="currentSelectedField"
+    (setEventEmit)="setQueryParams([$event])"
+    [defaultValue]="setDropdownDefaultValue()"
+    [hasNone]="false"
+  >
+  </app-dropdown>
+  
+  <br/>
+  <app-nav-title [title]="field | nameDestruct: '_' : 0 : 'upperCase'"> {{fieldDescription}} (Total Matches: {{totalMatches}}, Median: {{histogramMedian}})</app-nav-title>
+    <div *ngIf="isLoading">Loading</div>
+    <div *ngIf="!isLoading">
+      <div *ngIf="histograms.length === 0; else hasData">No data</div>
+      <ng-template #hasData>
+        <app-histogram-chart [data]="histograms"></app-histogram-chart>
+      </ng-template>
+    </div>
+

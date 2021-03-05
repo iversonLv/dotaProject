@@ -1,8 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-// model
-import { IOption } from '../../model/option';
-
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
@@ -10,6 +7,7 @@ import { IOption } from '../../model/option';
 })
 export class DropdownComponent implements OnInit {
   @Input() data;
+  @Input() hasNone = true;
   @Input() order = 'asc';
   @Input() sortBy = 'id';
   @Input() model;

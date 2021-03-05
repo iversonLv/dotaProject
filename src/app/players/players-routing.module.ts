@@ -31,7 +31,11 @@ const routes: Routes = [
       { path: 'records', component: RecordsComponent },
       { path: 'totals', component: TotalsComponent },
       { path: 'counts', component: CountsComponent },
-      { path: 'histograms', component: HistogramsComponent },
+      { path: 'histograms', component: HistogramsComponent,
+        children: [
+          { path: ':field', component: HistogramsComponent}
+        ]
+      },
       { path: 'trends', component: TrendsComponent },
       { path: 'wardmap', component: WardmapComponent },
       { path: 'wordcloud', component: WordcloudComponent },
