@@ -2,14 +2,15 @@ import { Component, Input, OnInit } from '@angular/core';
 
 // ngx-echart
 import { EChartsOption } from 'echarts';
+import { IHistogram } from '../../model/histogram';
 
 @Component({
-  selector: 'app-bar-column-chart',
-  templateUrl: './bar-column-chart.component.html',
-  styleUrls: ['./bar-column-chart.component.scss']
+  selector: 'app-histogram-chart',
+  templateUrl: './histogram-chart.component.html',
+  styleUrls: ['./histogram-chart.component.scss']
 })
-export class BarColumnChartComponent implements OnInit {
-  @Input() data: any;
+export class HistogramChartComponent implements OnInit {
+  @Input() data: IHistogram[];
   chartOption: EChartsOption;
   constructor() { }
 
@@ -27,10 +28,15 @@ export class BarColumnChartComponent implements OnInit {
             type: 'shadow'        // default line, type：'line' | 'shadow'
         },
         formatter(params): any {
-          return `<div style="background-color: rgba(0, 0, 0, 1); margin: -12px; color: rgba(255, 255, 255); font-size:13px; padding: 12px">${params[0].data.content.duration_bin} Minutes <br/>
-          ${params[0].value} Matches <br/>
-          <span style="color: ${params[0].data.itemStyle.borderColor}">${Math.floor(params[0].data.content.winPecentage * 100) / 100}</span> Win %
-          </div>`;
+          if (params[0].value > 0) {
+            return `<div style="background-color: rgba(0, 0, 0, 1); margin: -12px; color: rgba(255, 255, 255); font-size:13px; padding: 12px">${params[0].data.content.col} <br/>
+            ${params[0].value} Matches <br/>
+            <span style="color: ${params[0].data.itemStyle.borderColor}">${Math.floor(params[0].data.content.winPecentage * 100) / 100}</span> Win %
+            </div>`;
+          } else {
+            return `<div style="background-color: rgba(0, 0, 0, 1); margin: -12px; color: rgba(255, 255, 255); font-size:13px; padding: 12px">${params[0].data.content.col} <br/>
+            ${params[0].value} Matches`;
+          }
         }
       },
       yAxis: [{
@@ -52,11 +58,11 @@ export class BarColumnChartComponent implements OnInit {
   calXData(data): string[] {
     const xData = [];
     const d = [...data];
-    d.sort((a, b) => a.duration_bin - b.duration_bin); // show the bar order as duration_bin
+    // d.sort((a, b) => a.duration_bin - b.duration_bin); // show the bar order as duration_bin
     for (const i in d) {
       if (d.hasOwnProperty(i)) {
-        const calDuration = d[i].duration_bin / 60;
-        xData.push(calDuration);
+        const col = d[i].x;
+        xData.push(col);
       }
     }
     return xData;
@@ -65,25 +71,25 @@ export class BarColumnChartComponent implements OnInit {
   calSeriesData(data): string[] {
     const seriesData = [];
     const d = [...data];
-    d.sort((a, b) => a.duration_bin - b.duration_bin);
+    // d.sort((a, b) => a.duration_bin - b.duration_bin);
     for (const i in d) {
       if (d.hasOwnProperty(i)) {
-        const value = d[i].games_played;
-        const winP = d[i].wins / d[i].games_played;
+        const col = d[i].x;
+        const value = d[i].games;
+        const winP = d[i].win / d[i].games;
         const red = 255 - 255 * winP;
         const green = 255 * winP;
         const color = `rgba(${red}, ${green}, 0, .7)`;
         const borderColor = `rgba(${red}, ${green}, 0, 1)`;
-        const calDuration = d[i].duration_bin / 60;
         // rgb('+ (255 - 255 * data[1] / data[0]) +', ' + 255 * data[1] / data[0] + ', 0)'
         seriesData.push({
           value,
           itemStyle: {
             borderColor,
             color,
-            borderWidth: 2
+            borderWidth: value === 0 ? 0 : 2  // if value is 0, dont' show border as well
           },
-          content: { duration_bin: calDuration, winPecentage: winP * 100 }
+          content: { col, winPecentage: winP * 100 }
         });
       }
     }

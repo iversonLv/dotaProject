@@ -129,7 +129,7 @@ environment.pro.ts
     - [] Players records page   
     - [x] Players totals page   (2021.1)
     - [] Players counts page   
-    - [] Players histograms page  
+    - [99%] Players histograms page  (2021.3.5) TODO: array remove all data if it's 0 till end
     - [] Players trends page  
     - [] Players wardmap page  
     - [] Players wordcloud page  

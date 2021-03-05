@@ -11,6 +11,7 @@ import { ICountData } from '../model/count';
 import { ITotalData } from '../model/total';
 import { IRankingData } from '../model/ranking';
 import { IProData } from '../model/pro';
+import { IHistogramData } from '../model/histogram';
 
 // init state for player win lose
 export const initialStateWinLose: IWinloseData = {
@@ -80,6 +81,10 @@ export const initialStatePlayerProps: IProData = {
 
 
 // init state for players histograms
+export const initialStatePlayerHistograms: IHistogramData = {
+  isLoading: false,
+  histograms: [],
+};
 
 // init state for players wardmap
 
@@ -242,6 +247,16 @@ export function playersPros(state = initialStatePlayerProps, action: PlayersActi
 }
 
 // Players histograms
+export function playersHistograms(state = initialStatePlayerHistograms, action: PlayersActions): IHistogramData {
+  switch (action.type) {
+    case PlayersActionTypes.LOAD_PLAYERS_HISTOGRAMS:
+      return { ...state, isLoading: true };
+      case PlayersActionTypes.LOAD_PLAYERS_HISTOGRAMS_SUCCESS:
+        return { ...state, isLoading: false, histograms: [...(action.payload || [])] };
+    default:
+      return state;
+  }
+}
 
 // Players wardmap
 
