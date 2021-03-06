@@ -16,6 +16,7 @@ import { ITotal } from '../model/total';
 import { IRanking } from '../model/ranking';
 import { IPro } from '../model/pro';
 import { IHistogram } from '../model/histogram';
+import { IRecord } from '../model/record';
 
 @Injectable({
   providedIn: 'root'
@@ -70,6 +71,12 @@ export class PlayersService {
   // GET player pros
   getPlayersPros(accountId: number, queryParams?: IQuery): Observable<IPro[]> {
     return this.generalService.get(`/players/${accountId}/pros`, queryParams);
+  }
+
+  // GET Player records
+  // /players/{account_id}/records/{field}
+  getPlayerRecords(accountId: number, field: string, queryParams?: IQuery): Observable<IRecord[]> {
+    return this.generalService.get(`/players/${accountId}/matches?sort=${field}&limit=20`, queryParams);
   }
 
   // GET player totals
