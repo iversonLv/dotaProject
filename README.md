@@ -64,7 +64,7 @@ environment.pro.ts
     - [x] GET Player pros
     - [x] GET Player totals
     - [x] GET Player counts 
-    - [] GET Player histograms
+    - [X] GET Player histograms
     - [] GET Player wardmap 
     - [] GET Player wordcloud
     - [] GET Player ratings
@@ -128,7 +128,7 @@ environment.pro.ts
     - [x] Players pro page   (2021.1)
     - [x] Players records page (2021.3.6) 
     - [x] Players totals page   (2021.1)
-    - [] Players counts page   
+    - [x] Players counts page (2021.3.6)   
     - [99%] Players histograms page  (2021.3.5) TODO: array remove all data if it's 0 till end
     - [] Players trends page  
     - [] Players wardmap page  
