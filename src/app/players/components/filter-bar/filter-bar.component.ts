@@ -199,8 +199,7 @@ export class FilterBarComponent implements OnInit {
       this.store.dispatch(new playersActions.LoadPlayersPros(accountId, this.queryParams));
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'records') {
-      console.log('dispatch records');
-
+      this.store.dispatch(new playersActions.LoadPlayersRecords(accountId, field, this.queryParams));
     } else if (this.router.url.split('/')[3].split('?')[0] === 'totals') {
       this.store.dispatch(new playersActions.LoadPlayersTotals(accountId, this.queryParams));
 
@@ -304,8 +303,7 @@ export class FilterBarComponent implements OnInit {
       this.store.dispatch(new playersActions.LoadPlayersPros(accountId, this.queryParams));
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'records') {
-      console.log('dispatch records');
-
+      this.store.dispatch(new playersActions.LoadPlayersRecords(accountId, field, this.queryParams));
     } else if (this.router.url.split('/')[3].split('?')[0] === 'totals') {
       this.store.dispatch(new playersActions.LoadPlayersTotals(accountId, this.queryParams));
 

@@ -42,6 +42,7 @@ import { TablePlayersComponent } from './components/table-players/table-players.
 import { TableCountsComponent } from './components/table-counts/table-counts.component';
 import { TableActivitiesComponent } from './components/table-activities/table-activities.component';
 import { HistogramChartComponent } from './components/histogram-chart/histogram-chart.component';
+import { TablePlayersRecordsComponent } from './components/table-players-records/table-players-records.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { HistogramChartComponent } from './components/histogram-chart/histogram-
     TablePlayersComponent,
     TableCountsComponent,
     TableActivitiesComponent,
-    HistogramChartComponent
+    HistogramChartComponent,
+    TablePlayersRecordsComponent
   ],
   imports: [
     CommonModule,
@@ -93,6 +95,7 @@ import { HistogramChartComponent } from './components/histogram-chart/histogram-
       playersPros: fromPlayersReducers.playersPros,
       proPlayers: fromPlayersReducers.proPlayers,
       playersHistograms: fromPlayersReducers.playersHistograms,
+      playersRecords: fromPlayersReducers.playersRecords,
     }),
     EffectsModule.forFeature([PlayersEffects])
   ],
