@@ -28,7 +28,11 @@ const routes: Routes = [
       { path: 'heroes', component: HeroesComponent },
       { path: 'peers', component: PeersComponent },
       { path: 'pros', component: ProsComponent },
-      { path: 'records', component: RecordsComponent },
+      { path: 'records', component: RecordsComponent,
+        children: [
+          { path: ':field', component: HistogramsComponent}
+        ]
+      },
       { path: 'totals', component: TotalsComponent },
       { path: 'counts', component: CountsComponent },
       { path: 'histograms', component: HistogramsComponent,

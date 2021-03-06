@@ -126,7 +126,7 @@ environment.pro.ts
     - [x] Players heroes page  (2021.1)
     - [x] Players peers page   (2021.1)
     - [x] Players pro page   (2021.1)
-    - [] Players records page   
+    - [x] Players records page (2021.3.6) 
     - [x] Players totals page   (2021.1)
     - [] Players counts page   
     - [99%] Players histograms page  (2021.3.5) TODO: array remove all data if it's 0 till end

@@ -8,7 +8,7 @@ import * as playersActions from '../../store/players.actions';
 // model
 import { IHistogram, IHistogramData } from '../../model/histogram';
 import { PlayersService } from '../../services/players.service';
-import { number } from 'echarts';
+
 
 @Component({
   selector: 'app-histograms',

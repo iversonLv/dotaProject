@@ -12,6 +12,7 @@ import { ITotalData } from '../model/total';
 import { IRankingData } from '../model/ranking';
 import { IProData } from '../model/pro';
 import { IHistogramData } from '../model/histogram';
+import { IRecordData } from '../model/record';
 
 // init state for player win lose
 export const initialStateWinLose: IWinloseData = {
@@ -77,6 +78,12 @@ export const initialStatePlayerRanks: IRankingData = {
 export const initialStatePlayerProps: IProData = {
   isLoading: false,
   pros: []
+};
+
+// init state for players records
+export const initialStatePlayerRecords: IRecordData = {
+  isLoading: false,
+  records: [],
 };
 
 
@@ -229,6 +236,18 @@ export function playersRankings(state = initialStatePlayerRanks, action: Players
       return { ...state, isLoading: true };
     case PlayersActionTypes.LOAD_PLAYERS_RANKINGS_SUCCESS:
       return { ...state, isLoading: false, rankings: [...(action.payload || [])] };
+    default:
+      return state;
+  }
+}
+
+// Players records
+export function playersRecords(state = initialStatePlayerRecords, action: PlayersActions): IRecordData {
+  switch (action.type) {
+    case PlayersActionTypes.LOAD_PLAYERS_RECORDS:
+      return { ...state, isLoading: true };
+      case PlayersActionTypes.LOAD_PLAYERS_RECORDS_SUCCESS:
+        return { ...state, isLoading: false, records: [...(action.payload || [])] };
     default:
       return state;
   }

@@ -11,6 +11,7 @@ import { ITotal } from '../model/total';
 import { IRanking } from '../model/ranking';
 import { IPro } from '../model/pro';
 import { IHistogram } from '../model/histogram';
+import { IRecord } from '../model/record';
 
 export enum PlayersActionTypes {
   // for player general (top hero part)
@@ -44,6 +45,10 @@ export enum PlayersActionTypes {
   // for player pros
   LOAD_PLAYERS_PROS = '[Players] Load Pros',
   LOAD_PLAYERS_PROS_SUCCESS = '[Players] Load Pros Success',
+
+  // for player records
+  LOAD_PLAYERS_RECORDS = '[Players] Load Records',
+  LOAD_PLAYERS_RECORDS_SUCCESS = '[Players] Load Records Success',
 
   // for player totals
   LOAD_PLAYERS_TOTALS = '[Players] Load Totals',
@@ -189,6 +194,7 @@ export class LoadPlayersRecentMatchesSuccess implements Action {
   constructor(public accountId, public payload?: IRecentMatch[]) {}
 }
 
+// load player counts
 export class LoadPlayersCounts implements Action {
   readonly type = PlayersActionTypes.LOAD_PLAYERS_COUNTS;
 
@@ -240,11 +246,24 @@ export class LoadPlayersProsSuccess implements Action {
   constructor(public accountId, public queryParams?, public payload?: IPro[]) {}
 }
 
+// Players records
+export class LoadPlayersRecords implements Action {
+  readonly type = PlayersActionTypes.LOAD_PLAYERS_RECORDS;
+
+  constructor(public accountId, public field?, public queryParams? ) {}
+}
+
+export class LoadPlayersRecordsSuccess implements Action {
+  readonly type = PlayersActionTypes.LOAD_PLAYERS_RECORDS_SUCCESS;
+
+  constructor(public accountId, public field?, public queryParams?, public payload?: IRecord[]) {}
+}
+
 // Players histograms
 export class LoadPlayersHistograms implements Action {
   readonly type = PlayersActionTypes.LOAD_PLAYERS_HISTOGRAMS;
 
-  constructor(public accountId, public field?, public queryParams?, ) {}
+  constructor(public accountId, public field?, public queryParams? ) {}
 }
 
 export class LoadPlayersHistogramsSuccess implements Action {
@@ -289,4 +308,5 @@ export type PlayersActions =
   | LoadPlayersRankings | LoadPlayersRankingsSuccess
   | LoadPlayersPros | LoadPlayersProsSuccess
   | LoadProPlayers | LoadProPlayersSuccess
+  | LoadPlayersRecords | LoadPlayersRecordsSuccess
   | LoadPlayersHistograms | LoadPlayersHistogramsSuccess;

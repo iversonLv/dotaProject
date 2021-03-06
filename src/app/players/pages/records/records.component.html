@@ -1,1 +1,23 @@
-<p>records works!</p>
+<div class="warpper">
+  <!-- sides dropdown -->
+  <app-dropdown
+    [data]="fieldsLocal"
+    *ngIf="fieldsLocal"
+    [model]="currentSelectedField"
+    (setEventEmit)="setQueryParams([$event])"
+    [defaultValue]="setDropdownDefaultValue()"
+    [hasNone]="false"
+  >
+  </app-dropdown>
+  <br/>
+  <div *ngIf="isLoading">Loading</div>
+  <div *ngIf="!isLoading">
+    <div *ngIf="records.length === 0; else hasData">No data</div>
+    <ng-template #hasData>
+      <app-nav-title [title]="'Records'"> {{field | nameDestruct: '_' : 0 : 'upperCase'}} {{fieldDescription}}</app-nav-title>
+      
+      <app-table-players-records [field]="field" [data]="records" [displayedColumns]="displayedColumns"></app-table-players-records>
+    
+    </ng-template>
+  </div>
+</div>
