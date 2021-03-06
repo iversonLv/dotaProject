@@ -46,7 +46,7 @@
   },
   "10": {
     "id": 10,
-    "name": "field_name_gems_purchased",
+    "name": "field_name_purchase_gem",
     "description": ""
   },
   "11": {
@@ -66,7 +66,7 @@
   },
   "14": {
     "id": 14,
-    "name": "field_name_kla",
+    "name": "field_name_kda",
     "description": ""
   },
   "15": {
@@ -86,7 +86,7 @@
   },
   "18": {
     "id": 18,
-    "name": "field_name_map_pings",
+    "name": "field_name_pings",
     "description": "Number of times the player pinged the map"
   },
   "19": {
@@ -96,17 +96,17 @@
   },
   "20": {
     "id": 20,
-    "name": "field_name_observers_purchased",
+    "name": "field_name_purchase_ward_observer",
     "description": ""
   },
   "21": {
     "id": 21,
-    "name": "field_name_rapiers_purchased",
+    "name": "field_name_purchase_rapier",
     "description": ""
   },
   "22": {
     "id": 22,
-    "name": "field_name_sentries_purchased",
+    "name": "field_name_purchase_ward_sentry",
     "description": ""
   },
   "23": {
@@ -126,17 +126,17 @@
   },
   "26": {
     "id": 26,
-    "name": "field_name_twoer_damage",
+    "name": "field_name_tower_damage",
     "description": ""
   },
   "27": {
     "id": 27,
-    "name": "field_name_twoser_kills",
+    "name": "field_name_tower_kills",
     "description": ""
   },
   "28": {
     "id": 28,
-    "name": "field_name_tps_purchased",
+    "name": "field_name_purchase_tpscroll",
     "description": "Town Portal Scroll purchases"
   },
   "29": {
