@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 // ngx-echart
 import { EChartsOption } from 'echarts';
+
+// model
 import { IHistogram } from '../../model/histogram';
 
 @Component({

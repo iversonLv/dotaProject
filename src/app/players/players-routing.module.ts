@@ -40,7 +40,11 @@ const routes: Routes = [
           { path: ':field', component: HistogramsComponent}
         ]
       },
-      { path: 'trends', component: TrendsComponent },
+      { path: 'trends', component: TrendsComponent,
+        children: [
+          { path: ':field', component: HistogramsComponent}
+        ]
+      },
       { path: 'wardmap', component: WardmapComponent },
       { path: 'wordcloud', component: WordcloudComponent },
       { path: 'mmr', component: MmrComponent },

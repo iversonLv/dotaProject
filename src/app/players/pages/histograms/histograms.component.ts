@@ -7,6 +7,8 @@ import * as playersActions from '../../store/players.actions';
 
 // model
 import { IHistogram, IHistogramData } from '../../model/histogram';
+
+// service
 import { PlayersService } from '../../services/players.service';
 
 

@@ -12,6 +12,7 @@ import { IRanking } from '../model/ranking';
 import { IPro } from '../model/pro';
 import { IHistogram } from '../model/histogram';
 import { IRecord } from '../model/record';
+import { ITrend } from '../model/trend';
 
 export enum PlayersActionTypes {
   // for player general (top hero part)
@@ -61,6 +62,10 @@ export enum PlayersActionTypes {
   // for player histograms
   LOAD_PLAYERS_HISTOGRAMS = '[Players] Load Histograms',
   LOAD_PLAYERS_HISTOGRAMS_SUCCESS  = '[Players] Load Histograms Success',
+
+  // for player trends
+  LOAD_PLAYERS_TRENDS = '[Players] Load Trends',
+  LOAD_PLAYERS_TRENDS_SUCCESS  = '[Players] Load Trends Success',
 
   // for player wardmap
   LOAD_PLAYERS_WARDMAP = '[Players] Load Wardmap',
@@ -272,6 +277,19 @@ export class LoadPlayersHistogramsSuccess implements Action {
   constructor(public accountId, public field?, public queryParams?, public payload?: IHistogram[]) {}
 }
 
+// Players trends
+export class LoadPlayersTrends implements Action {
+  readonly type = PlayersActionTypes.LOAD_PLAYERS_TRENDS;
+
+  constructor(public accountId, public field?, public queryParams? ) {}
+}
+
+export class LoadPlayersTrendsSuccess implements Action {
+  readonly type = PlayersActionTypes.LOAD_PLAYERS_TRENDS_SUCCESS;
+
+  constructor(public accountId, public field?, public queryParams?, public payload?: ITrend[]) {}
+}
+
 // Players wardmap
 
 // Players wordcloud
@@ -309,4 +327,5 @@ export type PlayersActions =
   | LoadPlayersPros | LoadPlayersProsSuccess
   | LoadProPlayers | LoadProPlayersSuccess
   | LoadPlayersRecords | LoadPlayersRecordsSuccess
+  | LoadPlayersTrends | LoadPlayersTrendsSuccess
   | LoadPlayersHistograms | LoadPlayersHistogramsSuccess;
