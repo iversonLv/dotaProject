@@ -23,6 +23,7 @@ import { IRanking } from '../model/ranking';
 import { IPro } from '../model/pro';
 import { IHistogram } from '../model/histogram';
 import { IRecord } from '../model/record';
+import { ITrend } from '../model/trend';
 
 
 @Injectable()
@@ -281,6 +282,24 @@ export class PlayersEffects {
       )
     )
   ),
+);
+
+// Players trends
+getPlayerTrends$: Observable<Action> = createEffect(() =>
+this.actions$.pipe(
+  ofType(playersActions.PlayersActionTypes.LOAD_PLAYERS_TRENDS),
+  switchMap(({ accountId, queryParams, field }) =>
+    this.playersService.getPlayerTrends(accountId, field, queryParams)
+    .pipe(
+      map((trends: ITrend[]) =>
+        new playersActions.LoadPlayersTrendsSuccess(accountId, field, queryParams, trends)
+      ),
+      catchError(() =>
+        EMPTY
+      )
+    )
+  )
+),
 );
 
   // Players wardmap

@@ -17,6 +17,7 @@ import { IRanking } from '../model/ranking';
 import { IPro } from '../model/pro';
 import { IHistogram } from '../model/histogram';
 import { IRecord } from '../model/record';
+import { ITrend } from '../model/trend';
 
 @Injectable({
   providedIn: 'root'
@@ -74,7 +75,6 @@ export class PlayersService {
   }
 
   // GET Player records
-  // /players/{account_id}/records/{field}
   getPlayerRecords(accountId: number, field: string, queryParams?: IQuery): Observable<IRecord[]> {
     return this.generalService.get(`/players/${accountId}/matches?sort=${field}&limit=20`, queryParams);
   }
@@ -93,6 +93,16 @@ export class PlayersService {
   // /players/{account_id}/histograms/{field}
   getPlayerHistograms(accountId: number, field: string, queryParams?: IQuery): Observable<IHistogram[]> {
     return this.generalService.get(`/players/${accountId}/histograms/${field}`, queryParams);
+  }
+
+  // GET Player trends
+  // /players/{account_id}/trends/{field}
+
+  // matches?limit=1000&project=kills&project=hero_id&project=start_time
+  getPlayerTrends(accountId: number, field: string, queryParams?: IQuery): Observable<ITrend[]> {
+    return this.generalService.get(`/players/${accountId}/matches?limit=1000&project=${field}&project=hero_id&project=start_time`,
+      queryParams
+    );
   }
 
   // GET player wardmap
