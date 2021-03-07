@@ -63,8 +63,9 @@ environment.pro.ts
     - [x] GET Player peers  
     - [x] GET Player pros
     - [x] GET Player totals
-    - [x] GET Player counts 
+    - [x] GET Player counts (GET matches)
     - [X] GET Player histograms
+    - [X] GET Player trends (GET matches)
     - [] GET Player wardmap 
     - [] GET Player wordcloud
     - [] GET Player ratings
@@ -130,7 +131,7 @@ environment.pro.ts
     - [x] Players totals page   (2021.1)
     - [x] Players counts page (2021.3.6)   
     - [99%] Players histograms page  (2021.3.5) TODO: array remove all data if it's 0 till end
-    - [] Players trends page  
+    - [99%] Players trends page  (2021.3.8) TODO: Don't how to grab title Avg data, it's not the match field avarage data
     - [] Players wardmap page  
     - [] Players wordcloud page  
     - [] Players mmr page  

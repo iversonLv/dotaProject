@@ -200,15 +200,19 @@ export class FilterBarComponent implements OnInit {
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'records') {
       this.store.dispatch(new playersActions.LoadPlayersRecords(accountId, field, this.queryParams));
+
     } else if (this.router.url.split('/')[3].split('?')[0] === 'totals') {
       this.store.dispatch(new playersActions.LoadPlayersTotals(accountId, this.queryParams));
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'counts') {
-      console.log('dispatch counts');
+      this.store.dispatch(new playersActions.LoadPlayersCounts(accountId, this.queryParams));
+
     } else if (this.router.url.split('/')[3].split('?')[0] === 'histograms') {
       this.store.dispatch(new playersActions.LoadPlayersHistograms(accountId, field, this.queryParams));
+
     } else if (this.router.url.split('/')[3].split('?')[0] === 'trends') {
-      console.log('dispatch trends');
+      this.store.dispatch(new playersActions.LoadPlayersTrends(accountId, field, this.queryParams));
+
     } else if (this.router.url.split('/')[3].split('?')[0] === 'wardmap') {
       console.log('dispatch wardmap');
     } else if (this.router.url.split('/')[3].split('?')[0] === 'wordcloud') {
@@ -304,15 +308,19 @@ export class FilterBarComponent implements OnInit {
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'records') {
       this.store.dispatch(new playersActions.LoadPlayersRecords(accountId, field, this.queryParams));
+
     } else if (this.router.url.split('/')[3].split('?')[0] === 'totals') {
       this.store.dispatch(new playersActions.LoadPlayersTotals(accountId, this.queryParams));
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'counts') {
-      console.log('dispatch counts');
+      this.store.dispatch(new playersActions.LoadPlayersCounts(accountId, this.queryParams));
+
     } else if (this.router.url.split('/')[3].split('?')[0] === 'histograms') {
       this.store.dispatch(new playersActions.LoadPlayersHistograms(accountId, field, this.queryParams));
+
     } else if (this.router.url.split('/')[3].split('?')[0] === 'trends') {
-      console.log('dispatch trends');
+      this.store.dispatch(new playersActions.LoadPlayersTrends(accountId, field, this.queryParams));
+
     } else if (this.router.url.split('/')[3].split('?')[0] === 'wardmap') {
       console.log('dispatch wardmap');
     } else if (this.router.url.split('/')[3].split('?')[0] === 'wordcloud') {

@@ -13,6 +13,7 @@ import { IRankingData } from '../model/ranking';
 import { IProData } from '../model/pro';
 import { IHistogramData } from '../model/histogram';
 import { IRecordData } from '../model/record';
+import { ITrendData } from '../model/trend';
 
 // init state for player win lose
 export const initialStateWinLose: IWinloseData = {
@@ -86,11 +87,16 @@ export const initialStatePlayerRecords: IRecordData = {
   records: [],
 };
 
-
 // init state for players histograms
 export const initialStatePlayerHistograms: IHistogramData = {
   isLoading: false,
   histograms: [],
+};
+
+// init state for players trends
+export const initialStatePlayerTrends: ITrendData = {
+  isLoading: false,
+  trends: [],
 };
 
 // init state for players wardmap
@@ -272,6 +278,18 @@ export function playersHistograms(state = initialStatePlayerHistograms, action: 
       return { ...state, isLoading: true };
       case PlayersActionTypes.LOAD_PLAYERS_HISTOGRAMS_SUCCESS:
         return { ...state, isLoading: false, histograms: [...(action.payload || [])] };
+    default:
+      return state;
+  }
+}
+
+// Players trends
+export function playersTrends(state = initialStatePlayerTrends, action: PlayersActions): ITrendData {
+  switch (action.type) {
+    case PlayersActionTypes.LOAD_PLAYERS_TRENDS:
+      return { ...state, isLoading: true };
+      case PlayersActionTypes.LOAD_PLAYERS_TRENDS_SUCCESS:
+        return { ...state, isLoading: false, trends: [...(action.payload || [])] };
     default:
       return state;
   }

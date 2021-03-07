@@ -1,4 +1,5 @@
-<div class="wrapper">
+<div *ngIf="isLoading">Loading</div>
+<div class="wrapper" *ngIf="!isLoading">
   <div class="count-box">
     <app-nav-title [title]="'Leaver Status'"></app-nav-title>
     <app-table-counts
