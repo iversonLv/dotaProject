@@ -24,6 +24,7 @@ import { IPro } from '../model/pro';
 import { IHistogram } from '../model/histogram';
 import { IRecord } from '../model/record';
 import { ITrend } from '../model/trend';
+import { IRating } from '../model/rating';
 
 
 @Injectable()
@@ -307,6 +308,22 @@ this.actions$.pipe(
   // Players wordcloud
 
   // Players ratings
+  getPlayersRatings$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(playersActions.PlayersActionTypes.LOAD_PLAYERS_RATINGS),
+      switchMap(({ accountId }) =>
+        this.playersService.getPlayerRatings(accountId)
+        .pipe(
+          map((ratings: IRating[]) =>
+            new playersActions.LoadPlayersRatingsSuccess(accountId, ratings)
+          ),
+          catchError(() =>
+            EMPTY
+          )
+        )
+      )
+    )
+  );
 
   getProPlayers$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(

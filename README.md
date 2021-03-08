@@ -68,7 +68,7 @@ environment.pro.ts
     - [X] GET Player trends (GET matches)
     - [] GET Player wardmap 
     - [] GET Player wordcloud
-    - [] GET Player ratings
+    - [x] GET Player ratings
     - [x] GET Player rankings
     - [x] POST Player refresh 
     - [x] GET pro player data (2021.3.1)
@@ -134,7 +134,7 @@ environment.pro.ts
     - [99%] Players trends page  (2021.3.8) TODO: Don't how to grab title Avg data, it's not the match field avarage data
     - [] Players wardmap page  
     - [] Players wordcloud page  
-    - [] Players mmr page  
+    - [x] Players mmr page (2021.3.8)
     - [95%] Players rankings page TODO: rank coulmn, don't know how to cal(2021.1)
     - [98%] Players Activities page (2021.2.22,23 ) TODO: click same different cell within same calendar won't update, cell style for click
   - [x] Matches page  (2021.3)  SETUP pages and route for all pages, tabs

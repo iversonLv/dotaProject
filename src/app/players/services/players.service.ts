@@ -18,6 +18,7 @@ import { IPro } from '../model/pro';
 import { IHistogram } from '../model/histogram';
 import { IRecord } from '../model/record';
 import { ITrend } from '../model/trend';
+import { IRating } from '../model/rating';
 
 @Injectable({
   providedIn: 'root'
@@ -96,8 +97,6 @@ export class PlayersService {
   }
 
   // GET Player trends
-  // /players/{account_id}/trends/{field}
-
   // matches?limit=1000&project=kills&project=hero_id&project=start_time
   getPlayerTrends(accountId: number, field: string, queryParams?: IQuery): Observable<ITrend[]> {
     return this.generalService.get(`/players/${accountId}/matches?limit=1000&project=${field}&project=hero_id&project=start_time`,
@@ -110,6 +109,9 @@ export class PlayersService {
   // GET player wordcloud
 
   // GET player ratings
+  getPlayerRatings(accountId: number): Observable<IRating[]> {
+    return this.generalService.get(`/players/${accountId}/ratings`);
+  }
 
 
   // GET player ranking

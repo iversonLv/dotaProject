@@ -14,6 +14,7 @@ import { IProData } from '../model/pro';
 import { IHistogramData } from '../model/histogram';
 import { IRecordData } from '../model/record';
 import { ITrendData } from '../model/trend';
+import { IRatingData } from '../model/rating';
 
 // init state for player win lose
 export const initialStateWinLose: IWinloseData = {
@@ -104,6 +105,10 @@ export const initialStatePlayerTrends: ITrendData = {
 // init state for players wordcloud
 
 // init state for players ratings
+export const initialStatePlayerRatings: IRatingData = {
+  isLoading: false,
+  ratings: [],
+};
 
 // init state for prop players
 export const initialStateProPlayers: IProData = {
@@ -300,6 +305,16 @@ export function playersTrends(state = initialStatePlayerTrends, action: PlayersA
 // Players wordcloud
 
 // Players ratings
+export function playersRatings(state = initialStatePlayerRatings, action: PlayersActions): IRatingData {
+  switch (action.type) {
+    case PlayersActionTypes.LOAD_PLAYERS_RATINGS:
+      return { ...state, isLoading: true };
+    case PlayersActionTypes.LOAD_PLAYERS_RATINGS_SUCCESS:
+      return { ...state, isLoading: false, ratings: [...(action.payload || [])] };
+    default:
+      return state;
+  }
+}
 
 // Pros players
 export function proPlayers(state = initialStateProPlayers, action: PlayersActions): IProData {
