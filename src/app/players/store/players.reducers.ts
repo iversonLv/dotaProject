@@ -101,8 +101,16 @@ export const initialStatePlayerTrends: ITrendData = {
 };
 
 // init state for players wardmap
+export const initialStatePlayerWardMap: any = {
+  isLoading: false,
+  wardMaps: null,
+};
 
 // init state for players wordcloud
+export const initialStatePlayerWordCloud: any = {
+  isLoading: false,
+  wordClouds: null,
+};
 
 // init state for players ratings
 export const initialStatePlayerRatings: IRatingData = {
@@ -301,8 +309,28 @@ export function playersTrends(state = initialStatePlayerTrends, action: PlayersA
 }
 
 // Players wardmap
+export function playersWardMaps(state = initialStatePlayerWardMap, action: PlayersActions): any {
+  switch (action.type) {
+    case PlayersActionTypes.LOAD_PLAYERS_WARDMAP:
+      return { ...state, isLoading: true };
+      case PlayersActionTypes.LOAD_PLAYERS_WARDMAP_SUCCESS:
+        return { ...state, isLoading: false, wardMaps: {...action.payload } };
+    default:
+      return state;
+  }
+}
 
 // Players wordcloud
+export function playersWordClouds(state = initialStatePlayerWordCloud, action: PlayersActions): any {
+  switch (action.type) {
+    case PlayersActionTypes.LOAD_PLAYERS_WORDCLOUD:
+      return { ...state, isLoading: true };
+      case PlayersActionTypes.LOAD_PLAYERS_WORDCLOUD_SUCCESS:
+        return { ...state, isLoading: false, wordClouds: {...action.payload } };
+    default:
+      return state;
+  }
+}
 
 // Players ratings
 export function playersRatings(state = initialStatePlayerRatings, action: PlayersActions): IRatingData {

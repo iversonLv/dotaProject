@@ -45,6 +45,7 @@ import { HistogramChartComponent } from './components/histogram-chart/histogram-
 import { TablePlayersRecordsComponent } from './components/table-players-records/table-players-records.component';
 import { TrendsChartComponent } from './components/trends-chart/trends-chart.component';
 import { MmrChartComponent } from './components/mmr-chart/mmr-chart.component';
+import { WordCloudChartComponent } from './components/word-cloud-chart/word-cloud-chart.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { MmrChartComponent } from './components/mmr-chart/mmr-chart.component';
     HistogramChartComponent,
     TablePlayersRecordsComponent,
     TrendsChartComponent,
-    MmrChartComponent
+    MmrChartComponent,
+    WordCloudChartComponent
   ],
   imports: [
     CommonModule,
@@ -102,6 +104,9 @@ import { MmrChartComponent } from './components/mmr-chart/mmr-chart.component';
       playersRecords: fromPlayersReducers.playersRecords,
       playersTrends: fromPlayersReducers.playersTrends,
       playersRatings: fromPlayersReducers.playersRatings,
+      playersWardMaps: fromPlayersReducers.playersWardMaps,
+      playersWordClouds: fromPlayersReducers.playersWordClouds,
+
     }),
     EffectsModule.forFeature([PlayersEffects])
   ],

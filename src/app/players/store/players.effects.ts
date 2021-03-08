@@ -304,8 +304,40 @@ this.actions$.pipe(
 );
 
   // Players wardmap
+  getPlayerWardMaps$: Observable<Action> = createEffect(() =>
+  this.actions$.pipe(
+    ofType(playersActions.PlayersActionTypes.LOAD_PLAYERS_WARDMAP),
+    switchMap(({ accountId, queryParams }) =>
+      this.playersService.getPlayerWardMaps(accountId, queryParams)
+      .pipe(
+        map((wardMaps: any) =>
+          new playersActions.LoadPlayersWardMapsSuccess(accountId, queryParams, wardMaps)
+        ),
+        catchError(() =>
+          EMPTY
+        )
+      )
+    )
+  )
+);
 
   // Players wordcloud
+  getPlayerWordClouds$: Observable<Action> = createEffect(() =>
+  this.actions$.pipe(
+    ofType(playersActions.PlayersActionTypes.LOAD_PLAYERS_WORDCLOUD),
+    switchMap(({ accountId, queryParams }) =>
+      this.playersService.getPlayerWordClouds(accountId, queryParams)
+      .pipe(
+        map((wordClouds: any) =>
+          new playersActions.LoadPlayersWordCloudsSuccess(accountId, queryParams, wordClouds)
+        ),
+        catchError(() =>
+          EMPTY
+        )
+      )
+    )
+  )
+);
 
   // Players ratings
   getPlayersRatings$: Observable<Action> = createEffect(() =>
