@@ -214,14 +214,18 @@ export class FilterBarComponent implements OnInit {
       this.store.dispatch(new playersActions.LoadPlayersTrends(accountId, field, this.queryParams));
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'wardmap') {
-      console.log('dispatch wardmap');
+      this.store.dispatch(new playersActions.LoadPlayersWardMaps(accountId, this.queryParams));
+
     } else if (this.router.url.split('/')[3].split('?')[0] === 'wordcloud') {
-      console.log('dispatch wordcloud');
+      this.store.dispatch(new playersActions.LoadPlayersWordClouds(accountId, this.queryParams));
+
     } else if (this.router.url.split('/')[3].split('?')[0] === 'mmr') {
-      console.log('dispatch mmr');
+      // rating does not need filter queryparams, just for placeholder
+      this.store.dispatch(new playersActions.LoadPlayersRatings(accountId));
+
     } else if (this.router.url.split('/')[3].split('?')[0] === 'rankings') {
       // rankings does not need filter queryparams, just for placeholder
-      this.store.dispatch(new playersActions.LoadPlayersRatings(accountId));
+      this.store.dispatch(new playersActions.LoadPlayersRankings(accountId));
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'actvity') {
       this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, this.queryParams));
@@ -323,14 +327,18 @@ export class FilterBarComponent implements OnInit {
       this.store.dispatch(new playersActions.LoadPlayersTrends(accountId, field, this.queryParams));
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'wardmap') {
-      console.log('dispatch wardmap');
+      this.store.dispatch(new playersActions.LoadPlayersWardMaps(accountId, this.queryParams));
+
     } else if (this.router.url.split('/')[3].split('?')[0] === 'wordcloud') {
-      console.log('dispatch wordcloud');
+      this.store.dispatch(new playersActions.LoadPlayersWordClouds(accountId, this.queryParams));
+
     } else if (this.router.url.split('/')[3].split('?')[0] === 'mmr') {
-      console.log('dispatch mmr');
+      // rating does not need filter queryparams, just for placeholder
+      this.store.dispatch(new playersActions.LoadPlayersRatings(accountId));
+
     } else if (this.router.url.split('/')[3].split('?')[0] === 'rankings') {
       // rankings does not need filter queryparams, just for placeholder
-      this.store.dispatch(new playersActions.LoadPlayersRatings(accountId));
+      this.store.dispatch(new playersActions.LoadPlayersRankings(accountId));
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'actvity') {
       this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, this.queryParams));
