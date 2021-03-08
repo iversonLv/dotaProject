@@ -13,6 +13,7 @@ import { IPro } from '../model/pro';
 import { IHistogram } from '../model/histogram';
 import { IRecord } from '../model/record';
 import { ITrend } from '../model/trend';
+import { IRating } from '../model/rating';
 
 export enum PlayersActionTypes {
   // for player general (top hero part)
@@ -295,6 +296,15 @@ export class LoadPlayersTrendsSuccess implements Action {
 // Players wordcloud
 
 // Players ratings
+export class LoadPlayersRatings implements Action {
+  readonly type = PlayersActionTypes.LOAD_PLAYERS_RATINGS;
+  constructor(public accountId) {}
+}
+
+export class LoadPlayersRatingsSuccess implements Action {
+  readonly type = PlayersActionTypes.LOAD_PLAYERS_RATINGS_SUCCESS;
+  constructor(public accountId, public payload?: IRating[]) {}
+}
 
 // Pro Players
 export class LoadProPlayers implements Action {
@@ -328,4 +338,5 @@ export type PlayersActions =
   | LoadProPlayers | LoadProPlayersSuccess
   | LoadPlayersRecords | LoadPlayersRecordsSuccess
   | LoadPlayersTrends | LoadPlayersTrendsSuccess
+  | LoadPlayersRatings | LoadPlayersRatingsSuccess
   | LoadPlayersHistograms | LoadPlayersHistogramsSuccess;
