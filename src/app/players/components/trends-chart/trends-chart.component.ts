@@ -7,10 +7,6 @@ import { EChartsOption } from 'echarts';
 import { ITrend } from '../../model/trend';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 
-// service
-import { HerosService } from 'src/app/heros/services/heros.service';
-import { GameModeService } from 'src/app/services/game-mode.service';
-
 @Component({
   selector: 'app-trends-chart',
   templateUrl: './trends-chart.component.html',
