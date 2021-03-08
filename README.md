@@ -66,8 +66,8 @@ environment.pro.ts
     - [x] GET Player counts (GET matches)
     - [X] GET Player histograms
     - [X] GET Player trends (GET matches)
-    - [] GET Player wardmap 
-    - [] GET Player wordcloud
+    - [x] GET Player wardmap 
+    - [x] GET Player wordcloud
     - [x] GET Player ratings
     - [x] GET Player rankings
     - [x] POST Player refresh 

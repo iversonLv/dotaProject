@@ -105,8 +105,14 @@ export class PlayersService {
   }
 
   // GET player wardmap
+  getPlayerWardMaps(accountId: number, queryParams?: IQuery): Observable<any> {
+    return this.generalService.get(`/players/${accountId}/wardmap`, queryParams);
+  }
 
   // GET player wordcloud
+  getPlayerWordClouds(accountId: number, queryParams?: IQuery): Observable<any> {
+    return this.generalService.get(`/players/${accountId}/wordcloud?date=365`, queryParams);
+  }
 
   // GET player ratings
   getPlayerRatings(accountId: number): Observable<IRating[]> {

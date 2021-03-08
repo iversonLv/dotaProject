@@ -292,8 +292,29 @@ export class LoadPlayersTrendsSuccess implements Action {
 }
 
 // Players wardmap
+export class LoadPlayersWardMaps implements Action {
+  readonly type = PlayersActionTypes.LOAD_PLAYERS_WARDMAP;
+
+  constructor(public accountId, public queryParams? ) {}
+}
+export class LoadPlayersWardMapsSuccess implements Action {
+  readonly type = PlayersActionTypes.LOAD_PLAYERS_WARDMAP_SUCCESS;
+
+  constructor(public accountId, public queryParams?, public payload?: any) {}
+}
 
 // Players wordcloud
+export class LoadPlayersWordClouds implements Action {
+  readonly type = PlayersActionTypes.LOAD_PLAYERS_WORDCLOUD;
+
+  constructor(public accountId, public queryParams? ) {}
+}
+export class LoadPlayersWordCloudsSuccess implements Action {
+  readonly type = PlayersActionTypes.LOAD_PLAYERS_WORDCLOUD_SUCCESS;
+
+  constructor(public accountId, public queryParams?, public payload?: any) {}
+}
+
 
 // Players ratings
 export class LoadPlayersRatings implements Action {
@@ -339,4 +360,6 @@ export type PlayersActions =
   | LoadPlayersRecords | LoadPlayersRecordsSuccess
   | LoadPlayersTrends | LoadPlayersTrendsSuccess
   | LoadPlayersRatings | LoadPlayersRatingsSuccess
+  | LoadPlayersWardMaps | LoadPlayersWardMapsSuccess
+  | LoadPlayersWordClouds | LoadPlayersWordCloudsSuccess
   | LoadPlayersHistograms | LoadPlayersHistogramsSuccess;
