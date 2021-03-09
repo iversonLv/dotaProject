@@ -3,6 +3,11 @@ import { Component, Input, OnInit } from '@angular/core';
 // ngx-echart
 import { EChartsOption } from 'echarts';
 
+// pipe
+import { NameDestructPipe } from '../../../shared/utils/name-destruct.pipe';
+import { DurationFormatPipe } from '../../../shared/utils/duration-format.pipe';
+import { DateTillTodayPipe } from '../../../shared/utils/date-till-today.pipe';
+
 // model
 import { ITrend } from '../../model/trend';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
@@ -10,7 +15,8 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 @Component({
   selector: 'app-trends-chart',
   templateUrl: './trends-chart.component.html',
-  styleUrls: ['./trends-chart.component.scss']
+  styleUrls: ['./trends-chart.component.scss'],
+  providers: [NameDestructPipe, DurationFormatPipe, DateTillTodayPipe]
 })
 export class TrendsChartComponent implements OnInit {
   @Input() data: ITrend[];
@@ -21,6 +27,9 @@ export class TrendsChartComponent implements OnInit {
   chartOption: EChartsOption;
 
   constructor(
+    private nameDestruct: NameDestructPipe,
+    private durationFormat: DurationFormatPipe,
+    private dateTillToday: DateTillTodayPipe,
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +42,7 @@ export class TrendsChartComponent implements OnInit {
           data: this.calXData(this.data)
       },
       legend: {
-          data: [`${this.nameDestruct(this.field, '_', 0, 'upperCase')} ${this.fieldDescription !== '' ? '(' + this.fieldDescription + ')' : ''}`],
+          data: [`${this.nameDestruct.transform(this.field, '_', 0, 'upperCase')} ${this.fieldDescription !== '' ? '(' + this.fieldDescription + ')' : ''}`],
           textStyle: {
               color: 'white'
           }
@@ -78,7 +87,7 @@ export class TrendsChartComponent implements OnInit {
           }
       }],
       series: [{
-          name: `${this.nameDestruct(this.field, '_', 0, 'upperCase')} ${this.fieldDescription !== '' ? '(' + this.fieldDescription + ')' : ''}`,
+          name: `${this.nameDestruct.transform(this.field, '_', 0, 'upperCase')} ${this.fieldDescription !== '' ? '(' + this.fieldDescription + ')' : ''}`,
           data: this.calSeriesData(this.data, this.field, this.hero, this.gamemode),
           type: 'line',
       }],
@@ -105,11 +114,11 @@ export class TrendsChartComponent implements OnInit {
         const { game_mode, hero_id, duration, start_time } = d[i];
         const value = d[i][field];
         // rgb('+ (255 - 255 * data[1] / data[0]) +', ' + 255 * data[1] / data[0] + ', 0)'
-        const gameModeName = this.nameDestruct(gamemode[game_mode].name, '_', 2);
+        const gameModeName = this.nameDestruct.transform(gamemode[game_mode].name, '_', 2);
         const heroImg = hero[hero_id].img;
-        const durationFormat = this.durationFormat(duration);
-        const tillToday = this.tillToday(start_time * 1000);
-        const fieldT = this.nameDestruct(this.field, '_', 0, 'upperCase');
+        const durationFormat = this.durationFormat.transform(duration);
+        const tillToday = this.dateTillToday.transform(start_time * 1000);
+        const fieldT = this.nameDestruct.transform(this.field, '_', 0, 'upperCase');
         seriesData.push({
           value,
           content: { ...d[i], field: fieldT, heroImg, gameModeName, durationFormat, tillToday  }
@@ -118,77 +127,5 @@ export class TrendsChartComponent implements OnInit {
     }
     return seriesData;
   }
-
-  durationFormat(duration): string {
-    const getMin = (duration / 60).toString().split('.')[0];
-    let getSec = duration % 60 === 0 ? '00' : duration % 60;
-    if (getSec < 10) {
-      getSec = '0' + getSec + '';
-    }
-    return `${getMin}:${getSec}`;
-  }
-
-  tillToday(date): string {
-    const today = (new Date()).toString();
-    const todayParse = Date.parse(today);
-
-    const lastPlayedTillToday = todayParse - date;
-
-    const tillYears = lastPlayedTillToday / 1000 / 60  / 60 / 24 / 30 / 12;
-    const tillMonths = lastPlayedTillToday / 1000 / 60  / 60 / 24 / 30;
-    const tillDays = lastPlayedTillToday / 1000 / 60  / 60 / 24;
-    const tillHours = lastPlayedTillToday / 1000 / 60  / 60;
-    const tillMinutes = lastPlayedTillToday / 1000 / 60;
-
-    if (date === 0 ) {
-        return null;
-      }
-    if (tillYears >= 1 ) {
-      if (Math.floor(tillYears) > 1) {
-        return `${Math.floor(tillYears)} years ago`;
-      } else {
-        return 'a year ago';
-      }
-    } else if (tillMonths >= 1 ){
-      if (Math.floor(tillMonths) > 1) {
-        return `${Math.floor(tillMonths)} months ago`;
-      } else {
-        return 'a month ago';
-      }
-    } else if (tillDays >= 1) {
-      if (Math.floor(tillDays) > 1) {
-        return `${Math.floor(tillDays)} days ago`;
-      } else {
-        return 'a day ago';
-      }
-    } else if (tillHours >= 1) {
-      if (Math.floor(tillHours) > 1) {
-        return `${Math.floor(tillHours)} hours ago`;
-      } else {
-        return 'an hour ago';
-      }
-    } else if (tillMinutes  >= 1) {
-      if (Math.floor(tillMinutes) > 1) {
-        return `${Math.floor(tillMinutes)} minutes ago`;
-      } else {
-        return 'a minute ago';
-      }
-    }
-    return null;
-  }
-
-
-  nameDestruct(value: string, separator: string, separatorPlacement: number, upperCase?: string): string {
-    if (typeof(value) === 'string' && value !== null && value.split(separator).length > 1) {
-      if (upperCase === 'upperCase') {
-        return value.split(separator).splice(separatorPlacement).map(i => i.charAt(0).toUpperCase() + i.slice(1, i.length)).join(' ');
-      } else {
-        return value.split(separator).splice(separatorPlacement).join(' ');
-      }
-    } else {
-      return value;
-    }
-  }
-
 
 }
