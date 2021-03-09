@@ -54,7 +54,7 @@ environment.pro.ts
   - [x] errorHandle  
 [x] Setup Service/Store/Action/Reducers/Effects
   - [] constants TODO: now all constants are locally, we should update use api call
-  - [] Player service
+  - [x] Player service
     - [x] GET Player data  
     - [x] GET Player win lose  
     - [x] GET Player recent matches  
@@ -132,8 +132,8 @@ environment.pro.ts
     - [x] Players counts page (2021.3.6)   
     - [99%] Players histograms page  (2021.3.5) TODO: array remove all data if it's 0 till end
     - [99%] Players trends page  (2021.3.8) TODO: Don't how to grab title Avg data, it's not the match field avarage data
-    - [] Players wardmap page  
-    - [] Players wordcloud page  
+    - [x] Players wardmap page  (2021.3.9) currently, can't do heatmap, use scatter effect
+    - [x] Players wordcloud page  (2021.3.8) I used treemap rather than use word cloud as no suite plugin for it currently
     - [x] Players mmr page (2021.3.8)
     - [95%] Players rankings page TODO: rank coulmn, don't know how to cal(2021.1)
     - [98%] Players Activities page (2021.2.22,23 ) TODO: click same different cell within same calendar won't update, cell style for click

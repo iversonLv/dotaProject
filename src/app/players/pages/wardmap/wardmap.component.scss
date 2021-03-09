@@ -1,0 +1,43 @@
+@import '../../../../styles.scss';
+
+.map-list {
+  display: flex;
+  position: relative;
+  ::ng-deep {
+    app-nav-title {
+      h2 {
+        display: block;
+        background: $dark;
+      }
+    }
+  }
+  .map-box {
+    cursor: pointer;
+    margin: 10px;
+
+    &.show-large {
+      position: absolute;
+      left: 0;
+      z-index: 1;
+      ::ng-deep {
+        .chart {
+          width: 1200px;
+          height: 1200px;
+        }
+      }
+    }
+    
+    &:hover {
+      ::ng-deep {
+        .chart {
+          border: 1px solid $gray;
+        }
+      }
+    }
+    ::ng-deep {
+      .chart {
+        border: 1px solid rgba($color: $black, $alpha: 0);
+      }
+    }
+  }
+}

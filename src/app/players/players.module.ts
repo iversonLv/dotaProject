@@ -46,6 +46,7 @@ import { TablePlayersRecordsComponent } from './components/table-players-records
 import { TrendsChartComponent } from './components/trends-chart/trends-chart.component';
 import { MmrChartComponent } from './components/mmr-chart/mmr-chart.component';
 import { WordCloudChartComponent } from './components/word-cloud-chart/word-cloud-chart.component';
+import { WardMapChartComponent } from './components/ward-map-chart/ward-map-chart.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { WordCloudChartComponent } from './components/word-cloud-chart/word-clou
     TablePlayersRecordsComponent,
     TrendsChartComponent,
     MmrChartComponent,
-    WordCloudChartComponent
+    WordCloudChartComponent,
+    WardMapChartComponent
   ],
   imports: [
     CommonModule,
