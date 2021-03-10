@@ -14,11 +14,6 @@ import { ICount, ICountData } from '../../model/count';
 import { IMatch, IMatchData } from 'src/app/matches/model/match';
 import { IRecentMatch, IRecentMatchData } from 'src/app/matches/model/recent-match';
 
-// material for table
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-
 // service
 import { HerosService } from 'src/app/heros/services/heros.service';
 import { LobbyTypeService } from 'src/app/services/lobby-type.service';
@@ -34,9 +29,6 @@ import { SkillService } from 'src/app/services/skill.service';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
-  @ViewChild(MatSort) matSortPeers: MatSort;
-  @ViewChild(MatSort) matSortHeroesPlayed: MatSort;
-  @ViewChild(MatSort) matSortRecentMatches: MatSort;
 
   playersPeers: IPeer[];
   playersHeroesPlayed: IHeroesPlayed[];
@@ -52,9 +44,13 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
   playersHeroesPlayed$: Observable<IHeroesPlayedData>;
   playersRecentMatches$: Observable<IRecentMatchData>;
 
+  avgMaxData$: Observable<IRecentMatchData | IMatchData>;
+
   playersCounts$: Observable<ICountData>;
 
   queryParams;
+
+  enableTurbo = true;
 
   // hero modal default hidden
   // showHeroModal = false;
@@ -75,20 +71,6 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
   laneRoleLocal: any;
   skillLocal: any;
 
-  // table for peers
-  // displayedColumnsPeers: string[] = ['personaname', 'with_games_peer', 'win_pecentage'];
-  // dataSourcePeers = new MatTableDataSource();
-  // table for heroes played
-  // displayedColumnsHeroesPlayed: string[] = ['hero_id_list', 'with_games_hero', 'win_pecentage_hero'];
-  // dataSourceHeroesPlayed = new MatTableDataSource();
-
-  // table for recentMatches
-  displayedColumnsRecentMatches: string[] = ['hero_id', 'result', 'game_mode', 'duration', 'kills', 'deaths', 'assists'];
-  dataSourceRecentMatches = new MatTableDataSource();
-
-
-
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -104,12 +86,14 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
     private store: Store<{
       // playersPeers: IPeerData,
       // playersHeroesPlayed: IHeroesPlayedData,
-      // playersRecentMatches: IRecentMatchData,
+      playersMatches: IMatchData,
+      playersRecentMatches: IRecentMatchData,
       playersCounts: ICountData,
     }>,
   ) {
     // this.playersPeers$ = store.select('playersPeers');
     // this.playersHeroesPlayed$ = store.select('playersHeroesPlayed');
+    // this.playersRecentMatches$ = store.select('playersRecentMatches');
     // this.playersRecentMatches$ = store.select('playersRecentMatches');
     this.playersCounts$ = store.select('playersCounts');
   }
@@ -118,7 +102,6 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
     const currentUrl = this.router.url;
     const accountId = +currentUrl.split('/')[2];
     this.activatedRoute.queryParamMap.subscribe(data => this.queryParams = data);
-    console.log(Object.keys(this.queryParams.params));
 
     // load player counts
     this.store.dispatch(new playersActions.LoadPlayersCounts(accountId, this.queryParams));
@@ -206,7 +189,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
     //   return this.dataSourceHeroesPlayed.data = dataNew.splice(0, 10);
     // });
 
-    this.checkQueryParams();
+    this.checkQueryParams(accountId);
     // get all heroes local data
     // this.getHeroesLocal();
     // this.getLobbyTypeLocal();
@@ -220,11 +203,10 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
   ngAfterViewInit(): void {
     // this.dataSourcePeers.sort = this.matSortPeers;
     // this.dataSourceHeroesPlayed.sort = this.matSortHeroesPlayed;
-    this.dataSourceRecentMatches.sort = this.matSortRecentMatches;
 
   }
 
-  async checkQueryParams(): Promise<any> {
+  async checkQueryParams(accountId): Promise<any> {
     // during select the filter dropdown or click clear button
     this.router.events
     .subscribe((event) => {
@@ -234,8 +216,14 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
         const currentRoute = event.url.split('?')[1]; // grab 'hero_id=102&is_radiant=1'
         if (currentRoute === undefined) {
           this.queryParamsHasValue = false;
+          this.store.dispatch(new playersActions.LoadPlayersRecentMatches(accountId));
+          this.avgMaxData$ = this.store.select('playersRecentMatches');
+
         } else {
           this.queryParamsHasValue = true;
+          this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, this.queryParams));
+          this.avgMaxData$ = this.store.select('playersMatches');
+          this.enableTurbo = true;
         }
       }
     });
@@ -243,11 +231,26 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
     // this is for reload the browser
     if (Object.keys(this.queryParams.params).length > 0) {
       this.queryParamsHasValue = true;
+      this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, this.queryParams));
+      this.avgMaxData$ = this.store.select('playersMatches');
+      this.enableTurbo = true;
     } else {
       this.queryParamsHasValue = false;
+      this.store.dispatch(new playersActions.LoadPlayersRecentMatches(accountId));
+      this.avgMaxData$ = this.store.select('playersRecentMatches');
     }
 
 
+  }
+
+  filterMatchesLobbyMode(matches: IMatch[] | IRecentMatch[], enableTurbo): IMatch[] | IRecentMatch[] {
+    matches = matches.filter(i => i.lobby_type !== 4);
+    if (!enableTurbo) {
+      matches = matches.filter(i => i.game_mode !== 23);
+    }
+    return matches;
+    // co op bot = 4
+    // turbo = 23
   }
 
   // getHeroesLocal(): any {

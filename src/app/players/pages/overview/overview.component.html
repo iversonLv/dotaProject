@@ -1,3 +1,18 @@
+
+
+<div class="average-maximum-box" *ngIf="avgMaxData$ | async as avgMaxMatches">
+  <app-nav-title [title]="'Averages/Maximums'" [link]="'records'" [parentPage]="'playersDetail'"> in last {{filterMatchesLobbyMode(avgMaxMatches['matches'], enableTurbo).length > 20 ? 20 : filterMatchesLobbyMode(avgMaxMatches['matches'], enableTurbo).length}} displayed matches</app-nav-title><mat-checkbox class="turbo-control" *ngIf="queryParamsHasValue" [checked]="true" (change)="enableTurbo = !enableTurbo" matTooltip="Include Turbo Matches" matTooltipPosition="above"></mat-checkbox>
+  <div *ngIf="avgMaxMatches['isLoading']" class="average-maximum-content">Loading</div>
+  <div *ngIf="!avgMaxMatches['isLoading']" class="average-maximum-content">
+    <div *ngIf="filterMatchesLobbyMode(avgMaxMatches['matches'], enableTurbo).length === 0; else hasData">No data</div>
+    <ng-template #hasData>
+      <app-average-maximun-overview [data]="filterMatchesLobbyMode(avgMaxMatches['matches'], enableTurbo)" [enableTurbo]="enableTurbo"></app-average-maximun-overview>
+    </ng-template>
+  </div>
+</div>
+
+
+
 <app-nav-title [title]="'Counts'" [link]="'counts'" [parentPage]="'playersDetail'"> Win %</app-nav-title>
 <div class="count-box">
   <div *ngIf="isLoading; else countBox">Loading</div>
