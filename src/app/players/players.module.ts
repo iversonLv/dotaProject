@@ -47,6 +47,7 @@ import { TrendsChartComponent } from './components/trends-chart/trends-chart.com
 import { MmrChartComponent } from './components/mmr-chart/mmr-chart.component';
 import { WordCloudChartComponent } from './components/word-cloud-chart/word-cloud-chart.component';
 import { WardMapChartComponent } from './components/ward-map-chart/ward-map-chart.component';
+import { AverageMaximunOverviewComponent } from './components/average-maximun-overview/average-maximun-overview.component';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { WardMapChartComponent } from './components/ward-map-chart/ward-map-char
     TrendsChartComponent,
     MmrChartComponent,
     WordCloudChartComponent,
-    WardMapChartComponent
+    WardMapChartComponent,
+    AverageMaximunOverviewComponent
   ],
   imports: [
     CommonModule,

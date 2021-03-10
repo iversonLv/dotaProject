@@ -122,7 +122,7 @@ environment.pro.ts
       - [100%] Heros detail durations page (2021.2.20-21)
       - [99%] Heros detail players page: (2021.2.16)TODO: the account_id should bind with playerGeneralData to show account_id related name
   - [] Players page  
-    - [90%] Players overview page: Average block, land_role don't know how to definde roaming (2021.1)
+    - [99%] Players overview page:land_role don't know how to definde roaming (2021.1)(2021.3.10) TODO: include turbo seems contary with official website
     - [x] Players matches page (2021.1)
     - [x] Players heroes page  (2021.1)
     - [x] Players peers page   (2021.1)
