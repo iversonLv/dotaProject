@@ -177,6 +177,7 @@ environment.pro.ts
   - [x] Update sub navigation as share component (2021.2.6)
   - [x] update nav title to support teams detail and player detail (2021.2.6)
   - [x] Update all isLoading = true for all page? update all subscribe method with !data.isLoading?
+  - [] Update all win game player slot 120 as some RPG co op RADIENT player slot from 0-25
 [] Deploy
   - [x] Setup the repo on github page(2021.2.26)
   - [x] Deploy to github page (2021.2.26)

@@ -94,7 +94,7 @@ export class CalendarChartComponent implements OnInit {
     for (const i in data) {
       if (data.hasOwnProperty(i)) {
         // tslint:disable-next-line:max-line-length
-        const winsLen = data[i].filter(item => (item.player_slot <= 4 && item.radiant_win) || (item.player_slot > 4 && !item.radiant_win)).length;
+        const winsLen = data[i].filter(item => (item.player_slot <= 120 && item.radiant_win) || (item.player_slot > 120 && !item.radiant_win)).length;
         dataArr.push([
           i,
           data[i].length,
