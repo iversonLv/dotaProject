@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { IHero } from '../../model/hero';
 import { IHeroAbility } from '../../model/hero-abilities';
 
 // model
@@ -13,7 +14,6 @@ import { HerosService } from '../../services/heros.service';
 })
 export class HeroesHeroComponent implements OnInit {
   showSubBox = false; // show/hide the sub detail
-  heroId;
 
   // User for hero modal to mapping
   heroesLocal: IheroLocal;
@@ -27,6 +27,8 @@ export class HeroesHeroComponent implements OnInit {
   showAbilityModal = false;
   showTalentModal = false;
 
+  hero: IHero;
+
   constructor(
     private herosService: HerosService,
     private router: Router,
@@ -34,17 +36,31 @@ export class HeroesHeroComponent implements OnInit {
 
   ngOnInit(): void {
     const currentUrl = this.router.url;
-    this.heroId = +currentUrl.split('/')[2];
+    let heroId = +currentUrl.split('/')[2];
 
     // get all heroes local data
-    this.getHeroesLocal();
+    this.getHeroesLocal(heroId);
     this.getAbilitiesTalentsLocal();
     this.getHeroesAbilitiesTalentsLocal();
+
+    // update the hero after click matchup other hero
+    this.router.events
+    .subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // example url is /heroes/86/rankings
+        const currentRoute = event.url.split('/')[3]; // Grab last route 'rankings'
+        // if heroId change will dispatch the player data or won't dispatch
+        if (heroId !== +event.url.split('/')[2] && currentRoute !== 'rankings') {
+          heroId = +event.url.split('/')[2]; // Grab middle id
+          this.getHeroesLocal(heroId); // Rerun the getPlayerData data
+        }
+      }
+    });
   }
 
-  getHeroesLocal(): any {
+  getHeroesLocal(heroId): any {
     this.herosService.getHeroesLocal().subscribe(data => {
-      this.heroesLocal = data;
+      this.hero = data[heroId];
     }, err => {
       console.log(err);
     });
