@@ -99,7 +99,7 @@ environment.pro.ts
     - [x] GET pro matches list data (2021.3.2)
     - [x] GET public matches list data (2021.3.2)
     - [x] GET matches detail data (2021.3.1)
-    - [] GET parsed matches
+    - [] POST parsed matches
   - [x] Search
     - [] GET serch (2021.2.28)
   - [] Find Matches
@@ -142,7 +142,7 @@ environment.pro.ts
       - [x] Matches pro TODO: first column the time is start_time + duration, now mine is only start_time
       - [x] Matches public TODO: first column the time is start_time + duration, now mine is only start_time
     - [] Match detail page
-      - [] Top over part
+      - [x] Top over part TODO: parse match button function
       - [] OVERVIEW
       - [] BENCHMARKS
       - [] DRAFT

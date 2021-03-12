@@ -18,6 +18,10 @@ export enum MatchesActionTypes {
   // load single match
   LOAD_MATCH = '[Matches] Load Match',
   LOAD_MATCH_SUCCESS = '[Matches] Load Match Success',
+
+  // request match
+  REQUEST_MATCH = '[Matches] Request Match',
+  REQUEST_MATCH_SUCCESS = '[Matches] Request Match Success',
 }
 
 // load pro matches
@@ -59,8 +63,22 @@ export class LoadMatchSuccess implements Action {
   constructor(public matchId, public payload?) {}
 }
 
+// request match
+export class RequestMatch implements Action {
+  readonly type = MatchesActionTypes.REQUEST_MATCH;
+
+  constructor(public matchId) {}
+}
+
+export class RequestMatchSuccess implements Action {
+  readonly type = MatchesActionTypes.REQUEST_MATCH_SUCCESS;
+
+  constructor(public matchId, public payload?) {}
+}
+
 
 export type MatchesActions =
   | LoadMatch | LoadMatchSuccess
   | LoadProMatches | LoadProMatchesSuccess
-  | LoadPublicMatches | LoadPublicMatchesSuccess;
+  | LoadPublicMatches | LoadPublicMatchesSuccess
+  | RequestMatch | RequestMatchSuccess;
