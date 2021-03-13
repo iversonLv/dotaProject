@@ -25,4 +25,5 @@
 
 <div class="wrapper">
   <router-outlet></router-outlet>
+  <app-draft-list [data]="matchData?.picks_bans" [heroesLocal]="heroesLocal" [radiantTeam]="matchData?.radiant_team" [direTeam]="matchData?.dire_team"></app-draft-list>
 </div>

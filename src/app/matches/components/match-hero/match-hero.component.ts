@@ -57,7 +57,7 @@ export class MatchHeroComponent implements OnInit {
 
   // reparse match
   parseMatch(matchId): any {
-    console.log(matchId)
+    console.log(matchId);
   }
 
 

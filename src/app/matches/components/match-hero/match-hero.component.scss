@@ -88,12 +88,10 @@
 
 // sub-info
 .sub-info {
-  display: flex;
-  justify-content: flex-end;
+  text-align: right;
 
   .sub-info-title {
     font-size: 12px;
-    text-align: right;
     text-transform: uppercase;
   }
   span {
@@ -102,6 +100,7 @@
 
   .sub-info-block {
     padding-left: 15px;
+    padding-bottom: 5px;
   }
 }
 

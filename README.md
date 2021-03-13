@@ -113,7 +113,7 @@ environment.pro.ts
       - [99%] Heros list public page: (2021.3.1)(2021.3.2)
       - [99%] Heros list turbo page: (2021.3.1)(2021.3.2)
     - [98%] Hero detail page
-      - [99%] Heros detail top hero part (2021.2.8)(2021.2.14) TODO: attack speed is different, magic resistence current is static 25%, router navigate change, top hear part does not change
+      - [x] Heros detail top hero part (2021.2.8)(2021.2.14) TODO: attack speed is different, magic resistence current is static 25%
       - [100%] Heros detail rankings page (2021.2.15)(2021.2.18)(2021.2.27 fixed table setTimeout())
       - [100%] Heros detail benchmarks page(2021.2.18): Charts (2021.2.20)(2021.2.27 fixed table setTimeout())
       - [99%] Heros detail recent page: (2021.2.15)TODO: the account_id should bind with playerGeneralData to show account_id related name
@@ -145,7 +145,7 @@ environment.pro.ts
       - [x] Top over part TODO: parse match button function
       - [] OVERVIEW
       - [] BENCHMARKS
-      - [] DRAFT
+      - [X] DRAFT now, use picks_bans for data, the draft_timings looked odd and some ban pick are skip
       - [] PERFORMANCES
       - [] LANING
       - [] COMBAT

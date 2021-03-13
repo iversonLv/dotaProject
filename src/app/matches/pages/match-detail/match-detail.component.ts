@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 
 // ngrx
 import { Store } from '@ngrx/store';
@@ -10,6 +9,8 @@ import * as teamsActions from 'src/app/teams/store/teams.actions';
 // model
 import { ISingleMatchData } from '../../model/onematch';
 import { ITeamData } from 'src/app/teams/model/team';
+import { IheroLocal } from 'src/app/heros/model/heroLocal';
+import { HerosService } from 'src/app/heros/services/heros.service';
 
 @Component({
   selector: 'app-match-detail',
@@ -20,9 +21,13 @@ export class MatchDetailComponent implements OnInit {
   isLoading = false;
   matchData: any;
 
+  // User for hero modal to mapping
+  heroesLocal: IheroLocal;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private herosService: HerosService,
     private store: Store<{ singleMatch: ISingleMatchData, teamsGeneral: ITeamData, }>
   ) { }
 
@@ -37,6 +42,18 @@ export class MatchDetailComponent implements OnInit {
         this.matchData = singleMatchData[0];
         return this.matchData;
       }
+    }, err => {
+      console.log(err);
+    });
+
+    // get all heroes local data
+    this.getHeroesLocal();
+  }
+
+
+  getHeroesLocal(): any {
+    this.herosService.getHeroesLocal().subscribe(data => {
+      this.heroesLocal = data;
     }, err => {
       console.log(err);
     });
