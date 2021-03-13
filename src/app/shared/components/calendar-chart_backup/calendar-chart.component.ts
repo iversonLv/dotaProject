@@ -104,7 +104,7 @@ export class CalendarChartComponent implements OnInit {
       const item = new Date(data[i].start_time *　1000).toISOString().slice(0, 10);
       objTotal[item] = (objTotal[item] + 1) || 1;
 
-      if ((data[i].player_slot <= 4 && data[i].radiant_win) || (data[i].player_slot > 4 && !data[i].radiant_win)) {
+      if ((data[i].player_slot <= 120 && data[i].radiant_win) || (data[i].player_slot > 120 && !data[i].radiant_win)) {
               // winning
               objWins[item] = (objWins[item] + 1) || 1;
             } else {

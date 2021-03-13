@@ -56,7 +56,7 @@ export class TrendsChartComponent implements OnInit {
           // console.log(params[0])
           if (params[0].value > 0) {
             const  { field, heroImg, gameModeName, durationFormat, tillToday, player_slot, radiant_win } = params[0].data.content;
-            const result = (player_slot > 4 && !radiant_win) || (player_slot <= 4 && radiant_win) ? 'Won Match' : 'Lost Match';
+            const result = (player_slot > 120 && !radiant_win) || (player_slot <= 120 && radiant_win) ? 'Won Match' : 'Lost Match';
             return `
             <div style="background-color: rgba(0, 0, 0, 1); margin: -12px; color: rgba(255, 255, 255); font-size:13px; padding: 12px">
               <header style="text-transform: capitalize; margin: -12px -12px 12px; text-align: center; background-color: white; color: black;">${field}</header>

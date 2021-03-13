@@ -127,7 +127,7 @@ export class TableMatchupsPlayersComponent implements OnInit {
     this.router.navigate([`/heroes/${heroId}`])
     .then(() => {
       this.store.dispatch(new herosActions.LoadHerosRankings({ params: { hero_id: heroId } }));
-      window.location.reload();
+      // indow.location.reload();
     });
   }
 

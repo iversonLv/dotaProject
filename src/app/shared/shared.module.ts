@@ -42,6 +42,8 @@ import { ExcludeTextPipe } from './utils/exclude-text.pipe';
 import { OrdinalNumPipe } from './utils/ordinal-num.pipe';
 import { FieldTooltipPipe } from './utils/field-tooltip.pipe';
 import { WinComponent } from './components/icons/win/win.component';
+import { RadientComponent } from './components/icons/radient/radient.component';
+import { DireComponent } from './components/icons/dire/dire.component';
 
 
 
@@ -82,6 +84,8 @@ import { WinComponent } from './components/icons/win/win.component';
     OrdinalNumPipe,
     FieldTooltipPipe,
     WinComponent,
+    RadientComponent,
+    DireComponent,
   ],
   imports: [
     CommonModule,
@@ -104,6 +108,8 @@ import { WinComponent } from './components/icons/win/win.component';
     HeroAttrAgiComponent,
     HeroAttrIntComponent,
     WinComponent,
+    RadientComponent,
+    DireComponent,
 
     // modals
     HeroModalComponent,

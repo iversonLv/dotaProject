@@ -1,5 +1,6 @@
 <!-- match top overview section -->
-<app-match-hero></app-match-hero>
+<div *ngIf="isLoading">Loading</div>
+<app-match-hero [data]="matchData" *ngIf="!isLoading"></app-match-hero>
 <!-- teams page navigation -->
 <app-sub-nav [links]="[
 'overview',
@@ -24,5 +25,49 @@
 ]" [parentPage]="'matchesDetail'"></app-sub-nav>
 
 <div class="wrapper">
-  <router-outlet></router-outlet>
+  <div *ngIf="isLoading; else hasData">Loading</div>
+
+  <ng-template #hasData>
+    <div *ngIf="currentPage === 'benchmarks'" class="single-match-benchmarks">
+      <div class="team-box">
+        <div class="team-row">
+          <app-radient class="sides-icon"></app-radient>
+          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Benchmarks' : 'Radiant - Benchmarks'"> {{radiant_win ? 'WINNER' : ''}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-benchmarks
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players | slice: 0:5"></app-table-match-detail-benchmarks>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
+
+      <div class="team-box">
+        <div class="team-row">
+          <app-dire class="sides-icon"></app-dire>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Benchmarks' : 'Dire - Benchmarks'"> {{radiant_win ? '' : 'WINNER'}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-benchmarks
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players | slice: 5:10">
+        </app-table-match-detail-benchmarks>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
+    </div>
+  
+    <!-- draft tab content -->
+    <div class="single-match-draft" *ngIf="currentPage === 'draft'">
+      <app-draft-list
+        [data]="matchData?.picks_bans"
+        [heroesLocal]="heroesLocal"
+        [radiantTeam]="matchData?.radiant_team"
+        [direTeam]="matchData?.dire_team">
+      </app-draft-list>
+    </div>
+  </ng-template>
+  
 </div>

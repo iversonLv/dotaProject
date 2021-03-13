@@ -10,6 +10,8 @@ $green: rgb(102, 187, 106);
 $red: rgb(255, 76, 76);
 $golden: rgb(236, 217, 200);
 $yellow: rgb(201, 175, 29);
+$orange: #E29B01;
+$blue: #03a9f4;
 $dark-blue: rgb(102, 187, 255);
 $hero-str: #f44336;
 $hero-int:  #03a9f4;
@@ -22,6 +24,23 @@ $item-consumable: #1D80E7;
 $item-common: #2BAB01;
 $item-epic: #B812F9;
 $item-component: #FFFFFF;
+
+// player color
+$player-slot-0: "#3375FF";
+$player-slot-1: "#66FFBF";
+$player-slot-2: "#BF00BF";
+$player-slot-3: "#F3F00B";
+$player-slot-4: "#FF6B00";
+$player-slot-1-2-8: "#FE86C2";
+$player-slot-1-2-9: "#A1B447";
+$player-slot-1-3-0: "#65D9F7";
+$player-slot-1-3-1: "#008321";
+$player-slot-1-3-2: "#A46900";
+
+.unknown-txt {
+  color: $gray;
+}
+
 
 // rank color
 $color-immortal: rgb(17 17 35 / 65%);
@@ -106,5 +125,10 @@ a:hover {
   td {
     color: $gray;
     font-size: 13px;
+  }
+  
+
+  .mat-row:hover {
+    background-color: rgba($color: #000000, $alpha: .1);
   }
 }

@@ -618,9 +618,9 @@ export class AverageMaximunOverviewComponent implements OnInit {
 
   // calculate win rate
   winRate(data): any {
-    // win: (element.player_slot > 4 && !element.radiant_win) || (element.player_slot <= 4 && element.radiant_win)
+    // win: (element.player_slot > 120 && !element.radiant_win) || (element.player_slot <= 120 && element.radiant_win)
     const winLength = data.filter(i => {
-      return (i.player_slot > 4 && !i.radiant_win) || (i.player_slot <= 4 && i.radiant_win);
+      return (i.player_slot > 120 && !i.radiant_win) || (i.player_slot <= 120 && i.radiant_win);
     }).length;
     const totalMatchLength = data.length;
     // console.log(winLength, totalMatchLength);

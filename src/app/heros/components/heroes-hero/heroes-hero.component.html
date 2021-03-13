@@ -1,54 +1,54 @@
-<div *ngIf="!heroId || !heroesLocal">isLoading</div>
-<div class="heroes-hero" *ngIf="heroId && heroesLocal">
+<div *ngIf="!hero">isLoading</div>
+<div class="heroes-hero" *ngIf="hero">
   <div class="heroes-box">
     <!-- for big bg -->
-    <img class="heroes-bg" [src]="'https://steamcdn-a.akamaihd.net' + heroesLocal[heroId]['img']" />
+    <img class="heroes-bg" [src]="'https://steamcdn-a.akamaihd.net' + hero['img']" />
     <div class="hero-main">
       <div class="hero-main-left">
         <span class="hero-primary-attr">
-          <app-hero-attr-str class="hero-attr" *ngIf="heroesLocal[heroId]['primary_attr'] === 'str'"></app-hero-attr-str>
-          <app-hero-attr-agi class="hero-attr" *ngIf="heroesLocal[heroId]['primary_attr'] === 'agi'"></app-hero-attr-agi>
-          <app-hero-attr-int class="hero-attr" *ngIf="heroesLocal[heroId]['primary_attr'] === 'int'"></app-hero-attr-int>
+          <app-hero-attr-str class="hero-attr" *ngIf="hero['primary_attr'] === 'str'"></app-hero-attr-str>
+          <app-hero-attr-agi class="hero-attr" *ngIf="hero['primary_attr'] === 'agi'"></app-hero-attr-agi>
+          <app-hero-attr-int class="hero-attr" *ngIf="hero['primary_attr'] === 'int'"></app-hero-attr-int>
         </span>
         <div class="hero-main-left-img-mp-hp">
-          <img class="hero-img" [src]="'https://steamcdn-a.akamaihd.net' + heroesLocal[heroId]['img']" />
+          <img class="hero-img" [src]="'https://steamcdn-a.akamaihd.net' + hero['img']" />
           <!-- hero-img -->
           <div class="hero-hpmp">
-            <span class="hero-hp"><label>HP</label>{{heroesLocal[heroId].base_health + heroesLocal[heroId].base_str * 20}}</span>
+            <span class="hero-hp"><label>HP</label>{{hero.base_health + hero.base_str * 20}}</span>
             /
-            <span  class="hero-mp"><label>MP</label>{{heroesLocal[heroId].base_mana + heroesLocal[heroId].base_int * 12}}</span>
+            <span  class="hero-mp"><label>MP</label>{{hero.base_mana + hero.base_int * 12}}</span>
           </div>
           <!-- hero-hpmp -->
         </div>
         <!-- hero-main-left-img-mp-hp" -->
         <div class="hero-main-right-name-attr-info">
-          <h3>{{heroesLocal[heroId].localized_name}}</h3>
-          <span class="hero-type">{{heroesLocal[heroId].attack_type}} - </span>
-          <span class="hero-roles" *ngFor="let role of heroesLocal[heroId].roles">{{role}}, </span>
+          <h3>{{hero.localized_name}}</h3>
+          <span class="hero-type">{{hero.attack_type}} - </span>
+          <span class="hero-roles" *ngFor="let role of hero.roles">{{role}}, </span>
         </div>
         <!-- hero-main-right-name-attr-info -->
       </div>
       <!-- hero-main-left -->
       <div class="hero-main-right">
         <div class="hero-attr-info">
-          <span class="hero-attr-row" [class]="heroesLocal[heroId].primary_attr === 'str' ? 'hero-attr-row-hero-str' : ''">
-            <app-hero-attr-str class="hero-attr" [class]="heroesLocal[heroId].primary_attr === 'str' ? 'is-hero-primary-attr' : ''"></app-hero-attr-str>
-            {{heroesLocal[heroId].base_str}} + {{heroesLocal[heroId].str_gain}}
+          <span class="hero-attr-row" [class]="hero.primary_attr === 'str' ? 'hero-attr-row-hero-str' : ''">
+            <app-hero-attr-str class="hero-attr" [class]="hero.primary_attr === 'str' ? 'is-hero-primary-attr' : ''"></app-hero-attr-str>
+            {{hero.base_str}} + {{hero.str_gain}}
           </span>
-          <span class="hero-attr-row" [class]="heroesLocal[heroId].primary_attr === 'agi' ? 'hero-attr-row-hero-agi' : ''">
-            <app-hero-attr-agi class="hero-attr" [class]="heroesLocal[heroId].primary_attr === 'agi' ? 'is-hero-primary-attr' : ''"></app-hero-attr-agi>
-            {{heroesLocal[heroId].base_agi}} + {{heroesLocal[heroId].agi_gain}}
+          <span class="hero-attr-row" [class]="hero.primary_attr === 'agi' ? 'hero-attr-row-hero-agi' : ''">
+            <app-hero-attr-agi class="hero-attr" [class]="hero.primary_attr === 'agi' ? 'is-hero-primary-attr' : ''"></app-hero-attr-agi>
+            {{hero.base_agi}} + {{hero.agi_gain}}
           </span>
-          <span class="hero-attr-row" [class]="heroesLocal[heroId].primary_attr === 'int' ? 'hero-attr-row-hero-int' : ''">
-            <app-hero-attr-int class="hero-attr" [class]="heroesLocal[heroId].primary_attr === 'int' ? 'is-hero-primary-attr' : ''"></app-hero-attr-int>
-            {{heroesLocal[heroId].base_int}} + {{heroesLocal[heroId].int_gain}}
+          <span class="hero-attr-row" [class]="hero.primary_attr === 'int' ? 'hero-attr-row-hero-int' : ''">
+            <app-hero-attr-int class="hero-attr" [class]="hero.primary_attr === 'int' ? 'is-hero-primary-attr' : ''"></app-hero-attr-int>
+            {{hero.base_int}} + {{hero.int_gain}}
           </span>
         </div>
         <!-- hero-attr-info -->
         <!-- hero-ability -->
-        <div class="hero-ability" *ngIf="heroesAbilitiesTalentsLocal && heroesLocal && heroId && abilitiesTalentsLocal">
+        <div class="hero-ability" *ngIf="heroesAbilitiesTalentsLocal && hero && abilitiesTalentsLocal">
           <span
-            *ngFor="let item of heroesAbilitiesTalentsLocal[heroesLocal[heroId]['name']]?.abilities | excludeText: ['release', 'generic_hidden', 'rubick_hidden']"
+            *ngFor="let item of heroesAbilitiesTalentsLocal[hero['name']]?.abilities | excludeText: ['release', 'generic_hidden', 'rubick_hidden']"
             class="ablility-box"
             (mouseover)="showAbilityModalFn($event, item)"
             (mouseout)="showAbilityModal=false; currentMouseOverAbilityName = null"
@@ -67,8 +67,8 @@
             with="64px"
             height="64px"
             class="hero-talent"
-            *ngIf="heroesAbilitiesTalentsLocal[heroesLocal[heroId]['name']]?.talents"
-            (mouseover)="showTalentModalFn($event, heroesAbilitiesTalentsLocal[heroesLocal[heroId]['name']].talents)"
+            *ngIf="heroesAbilitiesTalentsLocal[hero['name']]?.talents"
+            (mouseover)="showTalentModalFn($event, heroesAbilitiesTalentsLocal[hero['name']].talents)"
             (mouseout)="showTalentModal=false; currentMouseOverTalent = null"
           />
         </div>
@@ -85,38 +85,38 @@
   <div class="heroes-sub-box" *ngIf="showSubBox">
     <div class="heroes-sub-box-col">
       <div class="heroes-sub-box-row">
-        <label>BASE ATTACK:</label>{{heroesLocal[heroId].base_attack_min + heroesLocal[heroId].base_agi}} - {{heroesLocal[heroId].base_attack_max  + heroesLocal[heroId].base_agi}}
+        <label>BASE ATTACK:</label>{{hero.base_attack_min + hero.base_agi}} - {{hero.base_attack_max  + hero.base_agi}}
       </div>
       <!-- heroes-sub-box-row -->
       <div class="heroes-sub-box-row">
-        <label>ATTACK RANGE:</label>{{heroesLocal[heroId].attack_range}}
+        <label>ATTACK RANGE:</label>{{hero.attack_range}}
       </div>
       <!-- heroes-sub-box-row -->
       <div class="heroes-sub-box-row">
-        <label>ATTACK SPEED:</label>{{heroesLocal[heroId].attack_rate}}
+        <label>ATTACK SPEED:</label>{{hero.attack_rate}}
       </div>
       <!-- heroes-sub-box-row -->
       <div class="heroes-sub-box-row">
-        <label>PROJECTILE SPEED:</label>{{heroesLocal[heroId].projectile_speed}}
+        <label>PROJECTILE SPEED:</label>{{hero.projectile_speed}}
       </div>
       <!-- heroes-sub-box-row -->
     </div>
     <!-- heroes-sub-box-col -->
     <div class="heroes-sub-box-col">
       <div class="heroes-sub-box-row">
-        <label>HEALTH:</label>{{heroesLocal[heroId].base_health + heroesLocal[heroId].base_str * 20}}
+        <label>HEALTH:</label>{{hero.base_health + hero.base_str * 20}}
       </div>
       <!-- heroes-sub-box-row -->
       <div class="heroes-sub-box-row">
-        <label>HEALTH REGEN:</label>{{heroesLocal[heroId].base_health_regen}}
+        <label>HEALTH REGEN:</label>{{hero.base_health_regen}}
       </div>
       <!-- heroes-sub-box-row -->
       <div class="heroes-sub-box-row">
-        <label>MANA:</label>{{heroesLocal[heroId].base_mana + heroesLocal[heroId].base_int * 12}}
+        <label>MANA:</label>{{hero.base_mana + hero.base_int * 12}}
       </div>
       <!-- heroes-sub-box-row -->
       <div class="heroes-sub-box-row">
-        <label>MANA REGEN:</label>{{heroesLocal[heroId].base_mana_regen}}
+        <label>MANA REGEN:</label>{{hero.base_mana_regen}}
       </div>
       <!-- heroes-sub-box-row -->
     </div>
@@ -124,7 +124,7 @@
     
     <div class="heroes-sub-box-col">
       <div class="heroes-sub-box-row">
-        <label>BASE ARMOR:</label>{{heroesLocal[heroId].base_armor + 0.167 * heroesLocal[heroId].base_agi | number :'1.1-1'}}
+        <label>BASE ARMOR:</label>{{hero.base_armor + 0.167 * hero.base_agi | number :'1.1-1'}}
       </div>
       <!-- heroes-sub-box-row -->
       <div class="heroes-sub-box-row">
@@ -132,11 +132,11 @@
       </div>
       <!-- heroes-sub-box-row -->
       <div class="heroes-sub-box-row">
-        <label>MOVE SPEED:</label>{{heroesLocal[heroId].move_speed}}
+        <label>MOVE SPEED:</label>{{hero.move_speed}}
       </div>
       <!-- heroes-sub-box-row -->
       <div class="heroes-sub-box-row">
-        <label>TURN SPEED:</label>{{heroesLocal[heroId].turn_rate}}
+        <label>TURN SPEED:</label>{{hero.turn_rate}}
       </div>
       <!-- heroes-sub-box-row -->
     </div>
@@ -144,11 +144,11 @@
 
     <div class="heroes-sub-box-col">
       <div class="heroes-sub-box-row">
-        <label>NUMBER OF LEGS:</label>{{heroesLocal[heroId].legs}}
+        <label>NUMBER OF LEGS:</label>{{hero.legs}}
       </div>
       <!-- heroes-sub-box-row -->
       <div class="heroes-sub-box-row">
-        <label>CM ENABLED:</label>{{heroesLocal[heroId].cm_enabled ? 'Yes' : 'No'}}
+        <label>CM ENABLED:</label>{{hero.cm_enabled ? 'Yes' : 'No'}}
       </div>
       <!-- heroes-sub-box-row -->
     </div>
