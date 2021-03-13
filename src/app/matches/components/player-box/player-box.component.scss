@@ -1,0 +1,59 @@
+@import '../../../../styles.scss';
+
+.ver-align {
+  display: flex;
+  align-items: center;
+
+  .account_link {
+    margin-left: 5px;
+  }
+}
+
+.account-date {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  
+  .account-name {
+    display: flex;
+    padding-left: 5px;
+  
+   .players-confirmed {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
+
+
+// rank tier
+.rank-tier {
+  top: 8px;
+  margin-left: 10px;
+  position: relative;
+  width: 40px;
+  text-align: center;
+  filter: $dropShadow;
+
+  img {
+    width: 100%;
+
+    &.rank-start {
+      position: absolute;
+    }
+  }
+  
+  .leaderboard-rank {
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    width: 65px;
+    left: 50%;
+    margin-left: -32px;
+    font-size: 16px;
+    top: 100px;
+    color: $golden;
+    text-shadow: black 0px 0px 10px;
+  }
+}

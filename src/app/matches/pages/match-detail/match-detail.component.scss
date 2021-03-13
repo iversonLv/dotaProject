@@ -1,0 +1,21 @@
+@import '../../../../styles.scss';
+
+
+.team-row {
+  display: flex;
+}
+
+.sides-icon {
+  display: inline-block;
+  margin-right: 10px;
+  ::ng-deep {
+    svg {
+      width: 30px;
+    }
+  }
+}
+.single-match-benchmarks {
+  .team-box {
+    padding-bottom: 15px;
+  }
+}
