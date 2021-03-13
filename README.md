@@ -99,7 +99,7 @@ environment.pro.ts
     - [x] GET pro matches list data (2021.3.2)
     - [x] GET public matches list data (2021.3.2)
     - [x] GET matches detail data (2021.3.1)
-    - [] GET parsed matches
+    - [] POST parsed matches
   - [x] Search
     - [] GET serch (2021.2.28)
   - [] Find Matches
@@ -113,7 +113,7 @@ environment.pro.ts
       - [99%] Heros list public page: (2021.3.1)(2021.3.2)
       - [99%] Heros list turbo page: (2021.3.1)(2021.3.2)
     - [98%] Hero detail page
-      - [99%] Heros detail top hero part (2021.2.8)(2021.2.14) TODO: attack speed is different, magic resistence current is static 25%, router navigate change, top hear part does not change
+      - [x] Heros detail top hero part (2021.2.8)(2021.2.14) TODO: attack speed is different, magic resistence current is static 25%
       - [100%] Heros detail rankings page (2021.2.15)(2021.2.18)(2021.2.27 fixed table setTimeout())
       - [100%] Heros detail benchmarks page(2021.2.18): Charts (2021.2.20)(2021.2.27 fixed table setTimeout())
       - [99%] Heros detail recent page: (2021.2.15)TODO: the account_id should bind with playerGeneralData to show account_id related name
@@ -142,10 +142,10 @@ environment.pro.ts
       - [x] Matches pro TODO: first column the time is start_time + duration, now mine is only start_time
       - [x] Matches public TODO: first column the time is start_time + duration, now mine is only start_time
     - [] Match detail page
-      - [] Top over part
+      - [x] Top over part TODO: parse match button function
       - [] OVERVIEW
       - [] BENCHMARKS
-      - [] DRAFT
+      - [X] DRAFT now, use picks_bans for data, the draft_timings looked odd and some ban pick are skip
       - [] PERFORMANCES
       - [] LANING
       - [] COMBAT
@@ -177,6 +177,7 @@ environment.pro.ts
   - [x] Update sub navigation as share component (2021.2.6)
   - [x] update nav title to support teams detail and player detail (2021.2.6)
   - [x] Update all isLoading = true for all page? update all subscribe method with !data.isLoading?
+  - [] Update all win game player slot 120 as some RPG co op RADIENT player slot from 0-25
 [] Deploy
   - [x] Setup the repo on github page(2021.2.26)
   - [x] Deploy to github page (2021.2.26)

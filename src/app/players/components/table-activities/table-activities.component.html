@@ -28,7 +28,7 @@
     <td mat-cell *matCellDef="let element">
       <div>
         <a [routerLink]="['/matches', element.match_id]">
-          <span [class]="(element.player_slot > 4 && !element.radiant_win) || (element.player_slot <= 4 && element.radiant_win) ? 'win-match' : 'lose-match'">{{(element.player_slot > 4 && !element.radiant_win) || (element.player_slot <= 4 && element.radiant_win) ? 'Win Match >' : 'Lose Match >'}}</span>
+          <span [class]="(element.player_slot > 120 && !element.radiant_win) || (element.player_slot <= 120 && element.radiant_win) ? 'win-match' : 'lose-match'">{{(element.player_slot > 120 && !element.radiant_win) || (element.player_slot <= 120 && element.radiant_win) ? 'Win Match >' : 'Lose Match >'}}</span>
         </a>
         <br/>
         <span class="type-name" *ngIf="element?.lobby_type && lobbyTypeLocal">{{lobbyTypeLocal[element?.lobby_type]?.name | nameDestruct: '_' : 2}}</span>

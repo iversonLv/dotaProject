@@ -1,0 +1,33 @@
+<div *ngIf="data && heroesLocal && playerColorLocal" class="ver-align">
+  <img width="52" height="29"
+    class="hero-img"
+    src="https://steamcdn-a.akamaihd.net/{{heroesLocal[data.hero_id]['img']}}"
+    (mouseover)="showHeroModalFn($event, data.hero_id)" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
+    [style]="'border-left: 2px solid ' + playerColorLocal[data.player_slot]"
+  />
+  <div class="account-date">
+    <div class="account-name">
+      <mat-icon  class="players-confirmed" matTooltip="Confirmed by {{data.name}}" matTooltipPosition="above" *ngIf="data.name">face</mat-icon>
+      <a 
+        *ngIf="data.account_id"
+        class="account_link"
+        [routerLink]="['/players', data.account_id]">
+        {{data.name ? data.name : data.personaname}} >
+      </a>
+      <span *ngIf="!data.account_id" class="unknown-txt">Unknown</span>
+    </div>
+    <div class="rank-tier" [matTooltip]="data.rank_tier | rankTier" matTooltipPosition="above">
+      <!-- if players in leaderboard rank -->
+      <span class="leaderboard-rank" *ngIf="data.leaderboard_rank">{{data.leaderboard_rank}}</span>
+      <!-- if players in leaderboard rank then no start -->
+      <img class="rank-start" *ngIf="data.rank_tier !== null && data.rank_tier.toString()[1] !== '0'" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_star_{{data.rank_tier.toString()[1]}}.png' />
+      <!-- 
+        rank icon if immortal, the icon base on the leaderboar rank
+        
+        -->
+      <img class="rank-icon" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_{{data.rank_tier !== null ? data.rank_tier.toString()[0] : "0"}}{{data.leaderboard_rank >= 1  &&  data.leaderboard_rank <= 10 ? "c" : (data.leaderboard_rank <=100 && data.leaderboard_rank > 10 ? "b" : "")}}.png' />
+    </div>
+    <!-- rank tier -->
+  </div>
+</div>
+<app-hero-modal *ngIf="showHeroModal" [hero]='currentMouseOverHero' [pageXY] = 'pageXY' class="hero-modal"></app-hero-modal>
