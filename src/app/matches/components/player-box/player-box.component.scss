@@ -6,6 +6,10 @@
 
   .account_link {
     margin-left: 5px;
+    width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
@@ -20,6 +24,15 @@
   
    .players-confirmed {
       font-size: 14px;
+      width: 14px;
+      height: 14px;
+    }
+
+    .predict-victory {
+      font-size: 14px;
+      position: relative;
+      color: $orange;
+      top: 3px;
       width: 14px;
       height: 14px;
     }

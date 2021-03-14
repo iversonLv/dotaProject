@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+
+// model
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 
 @Component({
