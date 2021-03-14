@@ -84,7 +84,7 @@ export class TableMatchDetailBenchmarksComponent implements OnInit {
   extractData(data): any[] {
     const finalData = [];
     data.forEach(z => {
-      const { hero_id, player_slot, account_id, rank_tier, name, personaname, benchmarks} = z;
+      const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname, benchmarks} = z;
       finalData.push({
         hero_id,
         account_id,
@@ -92,6 +92,8 @@ export class TableMatchDetailBenchmarksComponent implements OnInit {
         name,
         personaname,
         player_slot,
+        pred_vict,
+        // above is common data for player
         benchmarks
       });
     });

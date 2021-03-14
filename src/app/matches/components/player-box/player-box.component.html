@@ -7,7 +7,8 @@
   />
   <div class="account-date">
     <div class="account-name">
-      <mat-icon  class="players-confirmed" matTooltip="Confirmed by {{data.name}}" matTooltipPosition="above" *ngIf="data.name">face</mat-icon>
+      <mat-icon class="predict-victory" matTooltip="Predicted Victory" matTooltipPosition="above" *ngIf="data.pred_vict">bookmark_border</mat-icon>
+      <mat-icon class="players-confirmed" matTooltip="Confirmed by {{data.name}}" matTooltipPosition="above" *ngIf="data.name">face</mat-icon>
       <a 
         *ngIf="data.account_id"
         class="account_link"

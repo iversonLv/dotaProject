@@ -46,8 +46,9 @@ import { MatchHeroComponent } from './components/match-hero/match-hero.component
 import { TableMatchesProComponent } from './components/table-matches-pro/table-matches-pro.component';
 import { TableMatchesPublicComponent } from './components/table-matches-public/table-matches-public.component';
 import { DraftListComponent } from './components/draft-list/draft-list.component';
-import { TableMatchDetailBenchmarksComponent } from './component/table-match-detail-benchmarks/table-match-detail-benchmarks.component';
+import { TableMatchDetailBenchmarksComponent } from './components/table-match-detail-benchmarks/table-match-detail-benchmarks.component';
 import { PlayerBoxComponent } from './components/player-box/player-box.component';
+import { TableMatchDetailActionsComponent } from './components/table-match-detail-actions/table-match-detail-actions.component';
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { PlayerBoxComponent } from './components/player-box/player-box.component
     TableMatchesPublicComponent,
     DraftListComponent,
     TableMatchDetailBenchmarksComponent,
-    PlayerBoxComponent
+    PlayerBoxComponent,
+    TableMatchDetailActionsComponent
   ],
   imports: [
     CommonModule,
