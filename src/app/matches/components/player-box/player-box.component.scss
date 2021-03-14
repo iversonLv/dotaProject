@@ -6,6 +6,10 @@
 
   .account_link {
     margin-left: 5px;
+    width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 

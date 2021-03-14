@@ -144,7 +144,7 @@ environment.pro.ts
     - [] Match detail page
       - [x] Top over part TODO: parse match button function
       - [] OVERVIEW
-      - [] BENCHMARKS
+      - [x] BENCHMARKS TODO: table column highlight not implemented yet
       - [X] DRAFT now, use picks_bans for data, the draft_timings looked odd and some ban pick are skip
       - [] PERFORMANCES
       - [] LANING
