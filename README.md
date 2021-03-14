@@ -155,7 +155,7 @@ environment.pro.ts
       - [] CASTS
       - [] OBJECTIVES
       - [] VISION
-      - [] ACTIONS
+      - [X] ACTIONS
       - [] ANALYSIS
       - [] COSMETICS
       - [] LOG

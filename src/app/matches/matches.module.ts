@@ -48,6 +48,7 @@ import { TableMatchesPublicComponent } from './components/table-matches-public/t
 import { DraftListComponent } from './components/draft-list/draft-list.component';
 import { TableMatchDetailBenchmarksComponent } from './components/table-match-detail-benchmarks/table-match-detail-benchmarks.component';
 import { PlayerBoxComponent } from './components/player-box/player-box.component';
+import { TableMatchDetailActionsComponent } from './components/table-match-detail-actions/table-match-detail-actions.component';
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { PlayerBoxComponent } from './components/player-box/player-box.component
     TableMatchesPublicComponent,
     DraftListComponent,
     TableMatchDetailBenchmarksComponent,
-    PlayerBoxComponent
+    PlayerBoxComponent,
+    TableMatchDetailActionsComponent
   ],
   imports: [
     CommonModule,
