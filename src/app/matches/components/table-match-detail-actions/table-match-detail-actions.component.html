@@ -1,0 +1,30 @@
+<table mat-table [dataSource]="dataSource" matSort>  
+  <!-- name column -->
+  <ng-container matColumnDef="player_slot" *ngIf="displayedColumns.includes('player_slot')">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
+    <td mat-cell *matCellDef="let element">
+      <app-player-box [data]="element" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+    </td>
+  </ng-container>
+  
+  <!-- gold per min column -->
+  <ng-container matColumnDef="actions_per_min">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Actions performed by player per minute" matTooltipPosition="above">APM</th>
+    <td mat-cell *matCellDef="let element">
+      {{element.actions_per_min}}
+      <app-bar-chart [data]='[teamsLargest?.actions_per_min, element.actions_per_min]'></app-bar-chart>
+    </td>
+  </ng-container>
+
+  <!-- actions column -->
+  <ng-container [matColumnDef]="item" *ngFor="let item of displayedColumns | slice: 2">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header [matTooltip]="actionstKey[item]?.tooltip" matTooltipPosition="above"> {{actionstKey[item]?.title}} </th>
+    <td mat-cell *matCellDef="let element">
+      {{element[item] ? element[item] : '-'}}
+      <app-bar-chart [data]='[teamsLargest[item], element[item]]'></app-bar-chart>
+    </td>
+  </ng-container>
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
