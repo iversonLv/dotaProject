@@ -34,6 +34,7 @@ export class MatchDetailComponent implements OnInit {
   // User for hero modal to mapping
   heroesLocal: IheroLocal;
   heroesNameLocal: IheroLocal;
+  abilitiesByIdLocal: any; // this is for overview page that ability_upgrades_arr[]
   playerColorLocal: any;
   heroesAbilitiesTalentsLocal: IHeroAbility;
   abilitiesTalentsLocal: any;
@@ -119,6 +120,15 @@ export class MatchDetailComponent implements OnInit {
   getPlayerColor(): any {
     this.playerColorService.getPlayerColorLocal().subscribe(data => {
       this.playerColorLocal = data;
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  // get abilities by id
+  getAbilitiesByIdLocal(): any {
+    this.herosService.getAbilitiesByIdLocal().subscribe(data => {
+      this.abilitiesByIdLocal = data;
     }, err => {
       console.log(err);
     });
