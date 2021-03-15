@@ -32,7 +32,7 @@ export class TableMatchDetailPerformancesComponent implements OnInit {
     'life_state_dead',
     'buyback_count',
     'pings',
-    'max_hero_hit',
+    'max_hero_hit_value',
     'performance_others'
   ];
   sort;
@@ -77,6 +77,7 @@ export class TableMatchDetailPerformancesComponent implements OnInit {
         camps_stacked,
         pings,
         performance_others: this.extractAblitiesForPerformanceOther(performance_others),
+        max_hero_hit_value: max_hero_hit.value,
         max_hero_hit
         // above is common data for player
       });

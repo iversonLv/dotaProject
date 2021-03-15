@@ -1,0 +1,39 @@
+<table mat-table matSort [dataSource]="dataSource">
+  <!-- player_slot column -->
+  <ng-container matColumnDef="player_slot" *ngIf="displayedColumns.includes('player_slot')">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
+    <td mat-cell *matCellDef="let element">
+      <app-player-box [data]="element" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+    </td>
+  </ng-container>
+
+  <!-- cosmetics column -->
+  <ng-container matColumnDef="cosmetics">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="true">COSMETICS</th>
+    <td mat-cell *matCellDef="let element">
+      <div class="cosmetics-list">
+        <a
+          class="cosmetics-item"
+          *ngFor="let item of element.cosmetics"
+          [href]="'http://steamcommunity.com/market/listings/570/' + item.name"
+          target="_blank"
+          (mouseover)="showComesticModalFn($event, item)"
+          (mouseout)="showCosmeticModal=false; currentMouseOverCosmetic = null"
+        >
+          <mat-icon class="launch-icon">launch</mat-icon>
+          <img width="63"
+            class="hero-img"
+            src="https://steamcdn-a.akamaihd.net/apps/570/{{item?.image_path}}"
+            [class]="'item-rarity-' + item?.item_rarity"
+          />
+        </a>
+      </div>
+    </td>
+  </ng-container>
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<app-cosmetic-modal *ngIf="showCosmeticModal" [cosmetic]="currentMouseOverCosmetic" [pageXY] = 'pageXY' class="cosmetis-modal"></app-cosmetic-modal>
+

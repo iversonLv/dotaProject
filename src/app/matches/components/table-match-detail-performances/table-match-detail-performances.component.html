@@ -80,7 +80,7 @@
   </ng-container>
 
   <!-- pings column -->
-  <ng-container matColumnDef="max_hero_hit">
+  <ng-container matColumnDef="max_hero_hit_value">
     <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Largest instance of damage on a hero" matTooltipPosition="above">GIGGEST HIT</th>
     <td mat-cell *matCellDef="let element">
       <span *ngIf="element?.max_hero_hit?.inflictor; else noInflictor"
