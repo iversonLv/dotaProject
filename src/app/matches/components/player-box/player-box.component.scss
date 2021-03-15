@@ -3,6 +3,7 @@
 .ver-align {
   display: flex;
   align-items: center;
+  width: 183px; // for match detail fixed this column width then other column will align well
 
   .account_link {
     margin-left: 5px;

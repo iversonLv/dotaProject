@@ -7,6 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BarChartComponent implements OnInit {
   @Input() data: number[] = [266, 160, 3];
+  // new feature, some data is more bigger, more worse, example match detail page performance dead column, long dead time is worse
+  @Input() longIsBad = false;
 
   kdaColor: string[] = ['rgb(102, 187, 106)', 'rgb(255, 76, 76)', 'rgb(124, 153, 168)'];
   constructor(

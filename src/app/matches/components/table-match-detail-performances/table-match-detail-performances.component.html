@@ -1,0 +1,135 @@
+
+<table mat-table [dataSource]="dataSource" matSort>  
+  <!-- name column -->
+  <ng-container matColumnDef="player_slot" *ngIf="displayedColumns.includes('player_slot')">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
+    <td mat-cell *matCellDef="let element">
+      <app-player-box [data]="element" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+    </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <!-- multi_kills column -->
+  <ng-container matColumnDef="multi_kills">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Longest multi-kills" matTooltipPosition="above">MULTI</th>
+    <td mat-cell *matCellDef="let element">
+      {{element.multi_kills}}
+      <app-bar-chart [data]='[teamsLargest?.multi_kills, element.multi_kills]'></app-bar-chart>
+    </td>
+    <td mat-footer-cell *matFooterCellDef>{{finalData ? calTotal(finalData, 'multi_kills') : ''}}</td>
+  </ng-container>
+
+  <!-- kill_streaks column -->
+  <ng-container matColumnDef="kill_streaks">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Longest killstreak" matTooltipPosition="above">STREAK</th>
+    <td mat-cell *matCellDef="let element">
+      {{element.kill_streaks}}
+      <app-bar-chart [data]='[teamsLargest?.kill_streaks, element.kill_streaks]'></app-bar-chart>
+    </td>
+    <td mat-footer-cell *matFooterCellDef>{{finalData ? calTotal(finalData, 'kill_streaks') : ''}}</td>
+  </ng-container>
+  
+  <!-- stuns column -->
+  <ng-container matColumnDef="stuns">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Seconds of disable on heroes" matTooltipPosition="above">STUNS</th>
+    <td mat-cell *matCellDef="let element">
+      {{element.stuns | number: '1.0-2'}}
+      <app-bar-chart [data]='[teamsLargest?.stuns, element.stuns]'></app-bar-chart>
+    </td>
+    <td mat-footer-cell *matFooterCellDef>{{finalData ? (calTotal(finalData, 'stuns') | number: '1.0-2') : ''}}</td>
+  </ng-container>
+
+  <!-- camps_stacked column -->
+  <ng-container matColumnDef="camps_stacked">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Camps stacked" matTooltipPosition="above">STACKED</th>
+    <td mat-cell *matCellDef="let element">
+      {{element.camps_stacked === 0 ? '-' : element.camps_stacked}}
+      <app-bar-chart [data]='[teamsLargest?.camps_stacked, element.camps_stacked]'></app-bar-chart>
+    </td>
+    <td mat-footer-cell *matFooterCellDef>{{finalData ? calTotal(finalData, 'camps_stacked') : ''}}</td>
+  </ng-container>
+  
+  <!-- dead column -->
+  <ng-container matColumnDef="life_state_dead">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Time dead: More longer more worse" matTooltipPosition="above">DEAD</th>
+    <td mat-cell *matCellDef="let element">
+      {{element.life_state_dead | durationFormat}}
+      <app-bar-chart [longIsBad]="true" [data]='[teamsLargest?.life_state_dead, element.life_state_dead]'></app-bar-chart>
+    </td>
+    <td mat-footer-cell *matFooterCellDef>{{finalData ? (calTotal(finalData, 'life_state_dead') | durationFormat) : ''}}</td>
+  </ng-container>
+
+  <!-- buyback_count column -->
+  <ng-container matColumnDef="buyback_count">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Number of buybacks" matTooltipPosition="above">BUYBACKS</th>
+    <td mat-cell *matCellDef="let element">
+      {{element.buyback_count === 0 ? '-' : element.buyback_count}}
+      <app-bar-chart [data]='[teamsLargest?.buyback_count, element.buyback_count]'></app-bar-chart>
+    </td>
+    <td mat-footer-cell *matFooterCellDef>{{finalData ? calTotal(finalData, 'buyback_count') : ''}}</td>
+  </ng-container>
+
+  <!-- pings column -->
+  <ng-container matColumnDef="pings">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Number of times the player pinged the map" matTooltipPosition="above">PNG (M)</th>
+    <td mat-cell *matCellDef="let element">
+      {{element.pings === 0 ? '-' : element.pings}}
+      <app-bar-chart [data]='[teamsLargest?.pings, element.pings]'></app-bar-chart>
+    </td>
+    <td mat-footer-cell *matFooterCellDef>{{finalData ? calTotal(finalData, 'pings') : ''}}</td>
+  </ng-container>
+
+  <!-- pings column -->
+  <ng-container matColumnDef="max_hero_hit">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Largest instance of damage on a hero" matTooltipPosition="above">GIGGEST HIT</th>
+    <td mat-cell *matCellDef="let element">
+      <span *ngIf="element?.max_hero_hit?.inflictor; else noInflictor"
+        class="max-hero-hit-ability"
+        (mouseover)="showAbilityModalFn.emit([$event, element?.max_hero_hit?.inflictor])"
+        (mouseout)="hideAbilityModalFn.emit($event)"
+      >
+        <img class="hero-img" width="29" height="29"
+          src="https://steamcdn-a.akamaihd.net/{{abilitiesTalentsLocal[element?.max_hero_hit?.inflictor]?.img}}"
+          *ngIf="abilitiesTalentsLocal"
+        />
+        <span class="max-hero-hit-value">{{element?.max_hero_hit?.value}}</span>
+      </span>
+      <ng-template #noInflictor>
+        <span class="max-hero-hit-ability" matTooltip="Auto Attack/Other" matTooltipPosition="above">
+          <img width="29" height="29" src="assets/images/default_attack.png" />
+          <span class="max-hero-hit-value">{{element?.max_hero_hit?.value}}</span>
+        </span>
+      </ng-template>
+      
+      <img class="hero-img" width="52" height="29" src="https://steamcdn-a.akamaihd.net/{{heroesNameLocal[element?.max_hero_hit?.key]['img']}}"/>
+    </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+
+
+  <!-- performance_others column -->
+  <ng-container matColumnDef="performance_others">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>OTHERS</th>
+    <td mat-cell *matCellDef="let element">
+      <span *ngIf="element.performance_others === '-'; else performanceOthers"> {{element.performance_others}}</span>
+      <ng-template #performanceOthers>
+        <span *ngFor="let item of element.performance_others"
+          [matTooltip]="item.tooltip" matTooltipPosition="above"
+          class="max-hero-hit-ability"
+        >
+          <img width="29" height="29"
+            src="https://steamcdn-a.akamaihd.net/{{item.img}}"
+          />
+          <span class="max-hero-hit-value">{{item.value | greaterNum: '1000': 'k'}}</span>
+        </span>
+      </ng-template>
+      
+    </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+</table>
