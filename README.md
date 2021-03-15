@@ -142,11 +142,11 @@ environment.pro.ts
       - [x] Matches pro TODO: first column the time is start_time + duration, now mine is only start_time
       - [x] Matches public TODO: first column the time is start_time + duration, now mine is only start_time
     - [] Match detail page
-      - [x] Top over part TODO: parse match button function
+      - [x] Top over part (2021.3.11) TODO: parse match button function
       - [] OVERVIEW
-      - [x] BENCHMARKS TODO: table column highlight not implemented yet
-      - [X] DRAFT now, use picks_bans for data, the draft_timings looked odd and some ban pick are skip
-      - [] PERFORMANCES
+      - [x] BENCHMARKS (2021.3.13) TODO: table column highlight not implemented yet
+      - [X] DRAFT (2021.3.12) now, use picks_bans for data, the draft_timings looked odd and some ban pick are skip
+      - [x] PERFORMANCES
       - [] LANING
       - [] COMBAT
       - [] FARM
@@ -155,7 +155,7 @@ environment.pro.ts
       - [] CASTS
       - [] OBJECTIVES
       - [] VISION
-      - [X] ACTIONS
+      - [X] ACTIONS (2021.3.14)
       - [] ANALYSIS
       - [] COSMETICS
       - [] LOG

@@ -14,6 +14,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 // service
 import { HerosService } from 'src/app/heros/services/heros.service';
 import { PlayerColorService } from 'src/app/services/player-color.service';
+import { IHeroAbility } from 'src/app/heros/model/hero-abilities';
 
 @Component({
   selector: 'app-match-detail',
@@ -25,9 +26,17 @@ export class MatchDetailComponent implements OnInit {
   matchData: any;
   currentPage;
 
+  // ablity modal default hidden
+  currentMouseOverAbilityName = null;
+  pageXY = [];
+  showAbilityModal = false;
+
   // User for hero modal to mapping
   heroesLocal: IheroLocal;
+  heroesNameLocal: IheroLocal;
   playerColorLocal: any;
+  heroesAbilitiesTalentsLocal: IHeroAbility;
+  abilitiesTalentsLocal: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -64,11 +73,41 @@ export class MatchDetailComponent implements OnInit {
 
     // get all heroes local data
     this.getHeroesLocal();
+    // this use for some data grab hero data via hero name rather than id
+    this.getHeroesNameLocal();
     this.getPlayerColor();
+    this.getAbilitiesTalentsLocal();
   }
 
   // get hero local data
   getHeroesLocal(): any {
+    this.herosService.getHeroesNameLocal().subscribe(data => {
+      this.heroesNameLocal = data;
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  // get ablities
+  getHeroesAbilitiesTalentsLocal(): any {
+    this.herosService.getHeroesAbilitiesTalentsLocal().subscribe(data => {
+      this.heroesAbilitiesTalentsLocal = data;
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  getAbilitiesTalentsLocal(): any {
+    this.herosService.getAbilitiesTalentsLocal().subscribe(data => {
+      this.abilitiesTalentsLocal = data;
+      }, err => {
+        console.log(err);
+      });
+  }
+
+
+  // get hero local data base name
+  getHeroesNameLocal(): any {
     this.herosService.getHeroesLocal().subscribe(data => {
       this.heroesLocal = data;
     }, err => {
@@ -83,6 +122,15 @@ export class MatchDetailComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+  }
+
+  // show/hide ability modal
+  showAbilityModalFn(emitObj): any {
+    const e = emitObj[0];
+    const abilityName = emitObj[1];
+    this.pageXY = [e.pageX - 370, e.pageY - 280];
+    this.showAbilityModal = true;
+    this.currentMouseOverAbilityName = abilityName;
   }
 
 }
