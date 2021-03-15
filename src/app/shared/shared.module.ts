@@ -29,6 +29,7 @@ import { HeroModalComponent } from './components/hero-modal/hero-modal.component
 import { TalentModalComponent } from './components/talent-modal/talent-modal.component';
 import { ItemModalComponent } from './components/item-modal/item-modal.component';
 import { AbilityModalComponent } from './components/ability-modal/ability-modal.component';
+import { CosmeticModalComponent } from './components/cosmetic-modal/cosmetic-modal.component';
 
 // pipes
 import { OrderByPipe } from './utils/order-by.pipe';
@@ -86,6 +87,7 @@ import { DireComponent } from './components/icons/dire/dire.component';
     WinComponent,
     RadientComponent,
     DireComponent,
+    CosmeticModalComponent,
   ],
   imports: [
     CommonModule,
@@ -116,6 +118,7 @@ import { DireComponent } from './components/icons/dire/dire.component';
     ItemModalComponent,
     AbilityModalComponent,
     TalentModalComponent,
+    CosmeticModalComponent,
 
     // charts
     CountChartComponent,

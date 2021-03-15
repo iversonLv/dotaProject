@@ -143,6 +143,16 @@
       </div>
       <!-- team-box -->
     </div>
+
+    <!-- Cosmetics -->
+    <div *ngIf="currentPage === 'cosmetics'">
+      <app-nav-title [title]="'Cosmetics'"></app-nav-title>
+      <app-table-cosmetics
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players"
+      ></app-table-cosmetics>
+    </div>
   </ng-template>
   
 </div>

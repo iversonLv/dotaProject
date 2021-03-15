@@ -1,0 +1,4 @@
+<div class="cosmetic-tooltip" *ngIf="cosmetic" [class]="'item-rarity-' + cosmetic.item_rarity" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
+  <h2>{{cosmetic.name}}</h2>
+  <span>{{cosmetic.item_rarity}}</span>
+</div>

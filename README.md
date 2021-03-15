@@ -146,7 +146,7 @@ environment.pro.ts
       - [] OVERVIEW
       - [x] BENCHMARKS (2021.3.13) TODO: table column highlight not implemented yet
       - [X] DRAFT (2021.3.12) now, use picks_bans for data, the draft_timings looked odd and some ban pick are skip
-      - [x] PERFORMANCES
+      - [x] PERFORMANCES (2021.3.14, 15)
       - [] LANING
       - [] COMBAT
       - [] FARM
@@ -157,7 +157,7 @@ environment.pro.ts
       - [] VISION
       - [X] ACTIONS (2021.3.14)
       - [] ANALYSIS
-      - [] COSMETICS
+      - [x] COSMETICS (2021.3.15)
       - [] LOG
       - [] FANTASY
       - [] CHAT
