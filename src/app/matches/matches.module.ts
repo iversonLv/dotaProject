@@ -50,6 +50,7 @@ import { TableMatchDetailBenchmarksComponent } from './components/table-match-de
 import { PlayerBoxComponent } from './components/player-box/player-box.component';
 import { TableMatchDetailActionsComponent } from './components/table-match-detail-actions/table-match-detail-actions.component';
 import { TableMatchDetailPerformancesComponent } from './components/table-match-detail-performances/table-match-detail-performances.component';
+import { TableCosmeticsComponent } from './components/table-cosmetics/table-cosmetics.component';
 
 
 @NgModule({
@@ -87,7 +88,8 @@ import { TableMatchDetailPerformancesComponent } from './components/table-match-
     TableMatchDetailBenchmarksComponent,
     PlayerBoxComponent,
     TableMatchDetailActionsComponent,
-    TableMatchDetailPerformancesComponent
+    TableMatchDetailPerformancesComponent,
+    TableCosmeticsComponent
   ],
   imports: [
     CommonModule,
