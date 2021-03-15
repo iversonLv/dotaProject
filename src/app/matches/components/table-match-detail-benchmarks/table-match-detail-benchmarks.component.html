@@ -7,7 +7,7 @@
     </td>
   </ng-container>
 
-  <!-- rating column -->
+  <!-- benchmarks loop columns -->
   <ng-container [matColumnDef]="item" *ngFor="let item of displayedColumns | slice: 1">
     <th mat-header-cell *matHeaderCellDef mat-sort-header [matTooltip]="herosBenchmarksResultKey[item]?.tooltip" matTooltipPosition="above" [disabled]="true"> {{herosBenchmarksResultKey[item]?.title}} </th>
     <td mat-cell *matCellDef="let element" [matTooltip]="(element.benchmarks[item]?.raw | number: '1.0-2') + ' ' + herosBenchmarksResultKey[item]?.title + ' is equal or higher than ' + (element.benchmarks[item]?.pct | percent: '1.0-2') + ' of recent performances on this hero'" matTooltipPosition="above">

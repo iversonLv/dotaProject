@@ -82,6 +82,11 @@ export class HerosService {
     return this.generalService.getGitRawData(`/heroes.json`);
   }
 
+  // get Hero name local
+  getHeroesNameLocal(): Observable<IheroLocal> {
+    return this.generalService.getGitRawData('/hero_names.json');
+  }
+
   // get Hero ability local
   getHeroesAbilitiesTalentsLocal(): Observable<IHeroAbility> {
     return this.generalService.getGitRawData(`/hero_abilities.json`);
