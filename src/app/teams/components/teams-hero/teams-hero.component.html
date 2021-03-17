@@ -1,7 +1,9 @@
 <div *ngIf="teamsGeneral$ | async as teamsData" class="team-hero">
   <div *ngIf="teamsData['isLoading']; else teamsDataTeam">Loading</div>
   <ng-template #teamsDataTeam>
-    <img class="team-avatar" [src]="teamsData.team?.logo_url"/>
+    <img
+    onError="this.src='/assets/images/Dota2Logo.svg'"
+    class="team-avatar" [src]="teamsData.team?.logo_url"/>
     <div class="team-info">
       <h1>
         {{teamsData.team?.name}}

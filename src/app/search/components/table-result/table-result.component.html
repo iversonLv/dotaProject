@@ -13,7 +13,9 @@
         <th mat-header-cell *matHeaderCellDef> NAME </th>
         <td mat-cell *matCellDef="let element">
           <div class="ver-align">
-            <img [src]="element.avatarfull" width="29"/>
+            <img
+            onError="this.src='/assets/images/Dota2Logo.svg'"
+            [src]="element.avatarfull" width="29"/>
             <div class="account-date">
               <a class="account_link" [routerLink]="['/players', element.account_id]">{{element.name ? element.name : element.personaname}} ></a>
               <span class="date-time" [matTooltip]="element.last_match_time | date: 'mediumDate'" matTooltipPosition="above">{{calDate(element.last_match_time) | dateTillToday }}</span>

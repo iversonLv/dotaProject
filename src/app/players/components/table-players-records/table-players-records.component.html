@@ -6,7 +6,9 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The hero played" matTooltipPosition="above"> HERO </th>
     <td mat-cell *matCellDef="let element">
       <div *ngIf="element.hero_id && heroesLocal" class="ver-align">
-        <img width="52" height="29"
+        <img
+        onError="this.src='/assets/images/Dota2Logo.svg'"
+        width="52" height="29"
           class="hero-img"
           src="https://steamcdn-a.akamaihd.net/{{heroesLocal[element.hero_id]['img']}}"
           (mouseover)="showHeroModalFn($event, element.hero_id)" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
@@ -16,7 +18,9 @@
           <span class="date-time">
             <span class="date-time-value" [matTooltip]="element.start_time * 1000 | date: 'mediumDate'" matTooltipPosition="above">{{element.start_time * 1000 | dateTillToday }}</span>
             <span class="land_role" *ngIf="isRecentMatches">
-              <img  class="land-role-img" width="14" height="14" *ngIf="element?.lane_role && laneRoleLocal"  matTooltipPosition="above" [matTooltip]="laneRoleLocal[element.lane_role]['name'] | nameDestruct: '_' : 2" [src]="'https://www.opendota.com/assets/images/dota2/lane_' + element?.lane_role + '.svg'"/>
+              <img
+              onError="this.src='/assets/images/Dota2Logo.svg'"
+              class="land-role-img" width="14" height="14" *ngIf="element?.lane_role && laneRoleLocal"  matTooltipPosition="above" [matTooltip]="laneRoleLocal[element.lane_role]['name'] | nameDestruct: '_' : 2" [src]="'https://www.opendota.com/assets/images/dota2/lane_' + element?.lane_role + '.svg'"/>
             </span>
           </span>
         </div>

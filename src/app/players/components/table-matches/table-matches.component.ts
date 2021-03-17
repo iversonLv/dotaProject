@@ -23,9 +23,7 @@ import { HerosService } from 'src/app/heros/services/heros.service';
 import { LobbyTypeService } from 'src/app/services/lobby-type.service';
 import { GameModeService } from 'src/app/services/game-mode.service';
 import { SkillService } from 'src/app/services/skill.service';
-import { ItemIdsService } from 'src/app/services/item-ids.service';
 import { ItemsService } from 'src/app/services/items.service';
-import { ItemColorService } from 'src/app/services/item-color.service';
 import { IRecentMatch, IRecentMatchData } from 'src/app/matches/model/recent-match';
 import { LaneRoleService } from 'src/app/services/lane-role.service';
 
@@ -58,6 +56,7 @@ export class TableMatchesComponent implements OnInit {
   playersRecentMatches$: Observable<IRecentMatchData>;
 
   queryParams;
+  items: number[];
 
   // hero modal default hidden
   showHeroModal = false;
@@ -89,11 +88,9 @@ export class TableMatchesComponent implements OnInit {
     private herosService: HerosService,
     private lobbyTypeService: LobbyTypeService,
     private gameModeService: GameModeService,
-    private itemIdsService: ItemIdsService,
     private itemsService: ItemsService,
     private skillService: SkillService,
     private laneRoleService: LaneRoleService,
-    private itemColorService: ItemColorService,
     private store: Store<{
       playersMatches: IMatchData,
       playersRecentMatches: IRecentMatchData,
@@ -219,7 +216,7 @@ export class TableMatchesComponent implements OnInit {
   }
 
   getItemIdsLocal(): any {
-    this.itemIdsService.getItemIdsLocal().subscribe(data => {
+    this.itemsService.getItemIdsLocal().subscribe(data => {
     this.itemIdsLocal = data;
     }, err => {
       console.log(err);
@@ -227,7 +224,7 @@ export class TableMatchesComponent implements OnInit {
   }
 
   getItemColorLocal(): any {
-    this.itemColorService.getItemColorLocal().subscribe(data => {
+    this.itemsService.getItemColorLocal().subscribe(data => {
       this.itemColorLocal = data;
     }, err => {
       console.log(err);

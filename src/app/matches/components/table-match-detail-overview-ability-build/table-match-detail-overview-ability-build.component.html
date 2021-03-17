@@ -1,0 +1,41 @@
+<table mat-table [dataSource]="dataSource" matSort>  
+  <!-- name column -->
+  <ng-container matColumnDef="player_slot">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
+    <td mat-cell *matCellDef="let element">
+      <app-player-box [data]="element" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+    </td>
+  </ng-container>
+
+  <!-- level column list -->
+  <ng-container [matColumnDef]="item" *ngFor="let item of displayedColumns | slice: 1; let i = index">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="true" matTooltip="Ability upgraded at this level"> {{item}} </th>
+    <td mat-cell *matCellDef="let element" class="abilit-col">
+      <!-- for normal ability -->
+      <img
+        width="30px"
+        class="item"
+        *ngIf="element.ability_upgrades_arr[item - 1] !== 0 && abilitiesByIdLocal && abilitiesTalentsLocal[abilitiesByIdLocal[element?.ability_upgrades_arr[i]]]?.img"
+        onError="this.src='/assets/images/Dota2Logo.svg'"
+        [src]="'https://steamcdn-a.akamaihd.net/' + abilitiesTalentsLocal[abilitiesByIdLocal[element.ability_upgrades_arr[item - 1]]]?.img"
+        (mouseover)="showAbilityModalFn.emit([$event, abilitiesByIdLocal[element.ability_upgrades_arr[item - 1]]])"
+        (mouseout)="hideAbilityModalFn.emit($event)"
+      />
+      <!-- for special bouns evasion: only have dname no img -->
+      <img
+        width="30px"
+        class="item-talent"
+        *ngIf="element.ability_upgrades_arr[item - 1] !== 0  && abilitiesByIdLocal && !abilitiesTalentsLocal[abilitiesByIdLocal[element?.ability_upgrades_arr[i]]]?.img && abilitiesTalentsLocal[abilitiesByIdLocal[element?.ability_upgrades_arr[i]]]?.dname"
+        onError="this.src='/assets/images/Dota2Logo.svg'"
+        src="/assets/images/talent_tree.svg"
+        (mouseover)="showAbilityModalFn.emit([$event, abilitiesByIdLocal[element.ability_upgrades_arr[item - 1]]])"
+        (mouseout)="hideAbilityModalFn.emit($event)"
+      >
+
+    </td>
+  </ng-container>
+
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

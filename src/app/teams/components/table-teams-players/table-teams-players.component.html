@@ -10,7 +10,12 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header > NAME </th>
         <td mat-cell *matCellDef="let element">
           <div *ngIf="element.account_id" class="ver-align">
-            <img class="hero-img" width="35" height="35" [src]="'https://www.opendota.com/assets/images/dota2/players/' + element.account_id + '.png'"
+            <img
+              onError="this.src='/assets/images/portrait.png'"
+              class="hero-img"
+              width="35"
+              height="35"
+              [src]="'https://www.opendota.com/assets/images/dota2/players/' + element.account_id + '.png'"
             />
             <div class="account-date">
               <a class="account_link" [routerLink]="['/players', element.account_id]">{{element.name}} ></a>

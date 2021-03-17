@@ -1,0 +1,41 @@
+@import '../../../../styles.scss';
+
+.ban-pick-list {
+  display: flex;
+
+  .ban-pick-item {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+  }
+
+  .middle-text {
+    text-align: center;
+    color: $gray;
+    font-size: 11px;
+    background: rgba($color: #000000, $alpha: 1.0);
+  }
+
+}
+
+.hero-img {
+  height: 29px;
+  position: relative;
+  cursor: pointer;
+
+  .banned-icon {
+    position: absolute;
+    z-index: 1;
+    width: 29px;
+    height: 29px;
+    font-size: 29px;
+    top: 0;
+    left: 50%;
+    margin-left: -15px;
+    color: $red;
+  }
+
+  .is-banned {
+    filter: grayscale(100%); 
+  }
+}

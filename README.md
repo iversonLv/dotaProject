@@ -143,7 +143,7 @@ environment.pro.ts
       - [x] Matches public TODO: first column the time is start_time + duration, now mine is only start_time
     - [] Match detail page
       - [x] Top over part (2021.3.11) TODO: parse match button function
-      - [] OVERVIEW
+      - [85%] OVERVIEW (2021.3.16, 17) overview table, abilit updagrades table
       - [x] BENCHMARKS (2021.3.13) TODO: table column highlight not implemented yet
       - [X] DRAFT (2021.3.12) now, use picks_bans for data, the draft_timings looked odd and some ban pick are skip
       - [x] PERFORMANCES (2021.3.14, 15)
@@ -164,12 +164,12 @@ environment.pro.ts
       - [] STORY
   - [99%] Teams page (2021.2.8)
     - [99%] Teams list page : The sort result is different from officaily one (2021.2.5)
-    - [99%] Team detail page (2021.2.8)
+    - [x] Team detail page (2021.2.8)
       - [x] Top hero part which will be for all detail sub pages (2021.2.6)
       - [x] Team detail overview page (2021.2.8)
       - [x] Team detail matches page (overview page limit 20 rows without pagination)(2021.2.7)
       - [x] Team detail heroes page (2021.2.8)
-      - [99%] Team detail players page (some player does not have avatar) (2021.2.8)
+      - [x] Team detail players page (some player does not have avatar will use onError="this.src='/assets/images/portrait.png'") (2021.2.8)
   - [x] Records page (2021.2.26)
     - [x] sub pages very similar: duration, kills, deaths, assists, gold per min, xp per min, last hits, denies, hero damage, tower damage, hero healing (2021.2.26)
 [] Improve
@@ -178,6 +178,7 @@ environment.pro.ts
   - [x] update nav title to support teams detail and player detail (2021.2.6)
   - [x] Update all isLoading = true for all page? update all subscribe method with !data.isLoading?
   - [] Update all win game player slot 120 as some RPG co op RADIENT player slot from 0-25
+  - [] Update all image onError="this.src='/assets/images/Dota2Logo.svg'"
 [] Deploy
   - [x] Setup the repo on github page(2021.2.26)
   - [x] Deploy to github page (2021.2.26)

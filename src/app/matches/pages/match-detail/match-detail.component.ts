@@ -7,14 +7,17 @@ import * as matchesActions from '../../store/matches.actions';
 import * as teamsActions from 'src/app/teams/store/teams.actions';
 
 // model
-import { ISingleMatchData } from '../../model/onematch';
+import { ISingleMatchData, ISingleMatchPickBand } from '../../model/onematch';
 import { ITeamData } from 'src/app/teams/model/team';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
+import { IItemColorLocal } from 'src/app/shared/model/item_color';
+import { IHeroAbility } from 'src/app/heros/model/hero-abilities';
 
 // service
 import { HerosService } from 'src/app/heros/services/heros.service';
 import { PlayerColorService } from 'src/app/services/player-color.service';
-import { IHeroAbility } from 'src/app/heros/model/hero-abilities';
+import { ItemsService } from 'src/app/services/items.service';
+import { PermanentBuffsService } from 'src/app/services/permanent-buffs.service';
 
 @Component({
   selector: 'app-match-detail',
@@ -31,19 +34,29 @@ export class MatchDetailComponent implements OnInit {
   pageXY = [];
   showAbilityModal = false;
 
+  // item modal default hidden
+  showItemModal = false;
+  currentMouseOverItem: any = null;
+
   // User for hero modal to mapping
   heroesLocal: IheroLocal;
   heroesNameLocal: IheroLocal;
+  itemIdsLocal: any;
+  itemsLocal: any;
+  itemColorLocal: IItemColorLocal;
   abilitiesByIdLocal: any; // this is for overview page that ability_upgrades_arr[]
   playerColorLocal: any;
   heroesAbilitiesTalentsLocal: IHeroAbility;
   abilitiesTalentsLocal: any;
+  permanentBuffsLocal: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private herosService: HerosService,
+    private itemsService: ItemsService,
     private playerColorService: PlayerColorService,
+    private permanentBuffsService: PermanentBuffsService,
     private store: Store<{ singleMatch: ISingleMatchData, teamsGeneral: ITeamData, }>
   ) { }
 
@@ -78,6 +91,10 @@ export class MatchDetailComponent implements OnInit {
     this.getHeroesNameLocal();
     this.getPlayerColor();
     this.getAbilitiesTalentsLocal();
+    this.getAbilitiesByIdLocal();
+    this.getItemsLocal();
+    this.getItemIdsLocal();
+    this.getPermanentBuffsLocal();
   }
 
   // get hero local data
@@ -134,6 +151,38 @@ export class MatchDetailComponent implements OnInit {
     });
   }
 
+  getItemColorLocal(): any {
+    this.itemsService.getItemColorLocal().subscribe(data => {
+      this.itemColorLocal = data;
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  getItemIdsLocal(): any {
+    this.itemsService.getItemIdsLocal().subscribe(data => {
+    this.itemIdsLocal = data;
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  getItemsLocal(): any {
+    this.itemsService.getItemsLocal().subscribe(data => {
+    this.itemsLocal = data;
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  getPermanentBuffsLocal(): any {
+    this.permanentBuffsService.getPermanentBuffsLocal().subscribe(data => {
+    this.permanentBuffsLocal = data;
+    }, err => {
+      console.log(err);
+    });
+  }
+
   // show/hide ability modal
   showAbilityModalFn(emitObj): any {
     const e = emitObj[0];
@@ -141,6 +190,22 @@ export class MatchDetailComponent implements OnInit {
     this.pageXY = [e.pageX - 370, e.pageY - 280];
     this.showAbilityModal = true;
     this.currentMouseOverAbilityName = abilityName;
+  }
+
+  showItemModalFn(emitObj): any {
+    const e = emitObj[0];
+    const itemId = emitObj[1];
+    this.pageXY = [e.pageX - 350, e.pageY - 120];
+    this.showItemModal = true;
+    this.currentMouseOverItem = this.itemsLocal[this.itemIdsLocal[itemId]];
+  }
+
+  extractBanPickListBaseOnTeam(data: ISingleMatchPickBand[], team: number): ISingleMatchPickBand[] {
+    if (data) {
+      return data.filter(i => i.team === team);
+    } else {
+      return;
+    }
   }
 
 }

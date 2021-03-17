@@ -2,6 +2,7 @@
 <th mat-header-cell *matHeaderCellDef mat-sort-header >
   IM P%
   <img
+    onError="this.src='/assets/images/Dota2Logo.svg'"
     width="36"
     [matTooltip]="num | rankTier" matTooltipPosition="below" 
     [src]="'https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_' + num + '.png'" />
