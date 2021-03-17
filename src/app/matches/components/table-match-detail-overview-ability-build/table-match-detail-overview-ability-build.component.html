@@ -27,7 +27,7 @@
         class="item-talent"
         *ngIf="element.ability_upgrades_arr[item - 1] !== 0  && abilitiesByIdLocal && !abilitiesTalentsLocal[abilitiesByIdLocal[element?.ability_upgrades_arr[i]]]?.img && abilitiesTalentsLocal[abilitiesByIdLocal[element?.ability_upgrades_arr[i]]]?.dname"
         onError="this.src='./assets/images/Dota2Logo.svg'"
-        src="/assets/images/talent_tree.svg"
+        src="./assets/images/talent_tree.svg"
         (mouseover)="showAbilityModalFn.emit([$event, abilitiesByIdLocal[element.ability_upgrades_arr[item - 1]]])"
         (mouseout)="hideAbilityModalFn.emit($event)"
       >
