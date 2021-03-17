@@ -210,7 +210,7 @@
               <img
                 width="40px"
                 class="item"
-                *ngIf="item.stack_count !== 0 && itemsLocal && itemsLocal[permanentBuffsLocal[item?.permanent_buff]]?.img"
+                *ngIf="item.stack_count !== 0 && itemsLocal && permanentBuffsLocal && itemsLocal[permanentBuffsLocal[item?.permanent_buff]]?.img"
                 onError="this.src='./assets/images/Dota2Logo.svg'"
                 [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[permanentBuffsLocal[item?.permanent_buff]]?.img"
                 (mouseover)="showItemModalFn.emit([$event, itemsLocal[permanentBuffsLocal[item?.permanent_buff]]?.id])"
@@ -221,7 +221,7 @@
               <img
                 width="40px"
                 class="item"
-                *ngIf="item.stack_count !== 0 && abilitiesTalentsLocal && abilitiesTalentsLocal[permanentBuffsLocal[item?.permanent_buff]]?.img"
+                *ngIf="item.stack_count !== 0 && abilitiesTalentsLocal && permanentBuffsLocal && abilitiesTalentsLocal[permanentBuffsLocal[item?.permanent_buff]]?.img"
                 onError="this.src='./assets/images/Dota2Logo.svg'"
                 [src]="'https://steamcdn-a.akamaihd.net/' + abilitiesTalentsLocal[permanentBuffsLocal[item?.permanent_buff]]?.img"
                 (mouseover)="showAbilityModalFn.emit([$event, permanentBuffsLocal[item?.permanent_buff]])"
