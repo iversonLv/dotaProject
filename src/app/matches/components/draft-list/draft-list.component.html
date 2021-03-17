@@ -14,7 +14,7 @@
     <div class="hero-img" [routerLink]="['/heroes', item.hero_id]">
       <mat-icon class="banned-icon" *ngIf="!item.is_pick">block</mat-icon>
       <img
-        onError="this.src='/assets/images/Dota2Logo.svg'"
+        onError="this.src='./assets/images/Dota2Logo.svg'"
         width="104" height="58"
         [class]="!item.is_pick ? 'is-banned' : ''"
         *ngIf="item.hero_id && heroesLocal"

@@ -16,7 +16,7 @@
         </span>
         <span class="maximum">{{parseAvgMaxData(data, enableTurbo)[item]?.maximums[item]}}</span>
         <img
-        onError="this.src='/assets/images/Dota2Logo.svg'"
+        onError="this.src='./assets/images/Dota2Logo.svg'"
         width="23" *ngIf="heroesLocal && parseAvgMaxData(data, enableTurbo)[item]?.maximums?.hero_id && heroesLocal[parseAvgMaxData(data, enableTurbo)[item]?.maximums?.hero_id].icon" [src]="'https://steamcdn-a.akamaihd.net' + heroesLocal[parseAvgMaxData(data, enableTurbo)[item]?.maximums?.hero_id].icon" [alt]="heroesLocal[parseAvgMaxData(data, enableTurbo)[item].maximums.hero_id]?.localized_name" />
       </a>
   </div>

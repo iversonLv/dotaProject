@@ -1,7 +1,7 @@
 <div class="item-tooltip" *ngIf="abilitiesTalentsLocal && item && abilitiesTalentsLocal[item].dname && abilitiesTalentsLocal[item].img" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
   <div class="item-main box">
     <img
-    onError="this.src='/assets/images/Dota2Logo.svg'"
+    onError="this.src='./assets/images/Dota2Logo.svg'"
     height="50px" [src]="'https://steamcdn-a.akamaihd.net' + abilitiesTalentsLocal[item].img" />
     <div class="item-main-right">
       <h3>{{abilitiesTalentsLocal[item].dname}}</h3>
@@ -38,13 +38,13 @@
   <div class="item-mc-cd">
     <span class="item-mc">
       <img
-      onError="this.src='/assets/images/Dota2Logo.svg'"
+      onError="this.src='./assets/images/Dota2Logo.svg'"
       width="15px" height="15px" src="assets/images/mana.png">
       <span *ngFor="let value of abilitiesTalentsLocal[item].mc | stringToArray" class="item-value">{{value}}</span>
     </span>
     <span class="item-cd">
       <img
-      onError="this.src='/assets/images/Dota2Logo.svg'"
+      onError="this.src='./assets/images/Dota2Logo.svg'"
       width="15px" height="15px" src="assets/images/cooldown.png">
       <span *ngFor="let value of abilitiesTalentsLocal[item].cd | stringToArray" class="item-value">{{value}}</span>
     </span>
@@ -57,8 +57,8 @@
   class="item-tooltip item-tooltip-talent-only" [style]="'left:' + pageXY[0] + 'px; top:' + (pageXY[1] + 250) + 'px'">
   <div class="item-main box">
     <img
-    onError="this.src='/assets/images/Dota2Logo.svg'"
-    height="50px" src='/assets/images/talent_tree.svg' />
+    onError="this.src='./assets/images/Dota2Logo.svg'"
+    height="50px" src='./assets/images/talent_tree.svg' />
     <div class="item-main-right">
       <h3>{{abilitiesTalentsLocal[item].dname}}</h3>
     </div>
