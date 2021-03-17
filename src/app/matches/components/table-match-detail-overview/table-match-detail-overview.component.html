@@ -126,13 +126,13 @@
               width="40px"
               [class]="'item-color item-color-' + itemsLocal[itemIdsLocal[item]]?.qual"
               class="item"
-              *ngIf="item !== 0 && item && itemIdsLocal && itemsLocal && itemsLocal[itemIdsLocal[item]]?.img"
+              *ngIf="item !== 0 && itemIdsLocal && itemsLocal && itemIdsLocal[item] && itemsLocal[itemIdsLocal[item]]?.img"
               onError="this.src='./assets/images/Dota2Logo.svg'"
               [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[itemIdsLocal[item]]?.img"
               (mouseover)="showItemModalFn.emit([$event, item])"
               (mouseout)="hideItemModalFn.emit($event)"
             />
-            <span class="middle-text" *ngIf="item !== 0 && element.purchase_time[itemIdsLocal[item]]">
+            <span class="middle-text" *ngIf="item !== 0 && itemIdsLocal[item] && element?.purchase_time[itemIdsLocal[item]]">
               <span>{{element.purchase_time[itemIdsLocal[item]] | durationFormat}}</span>
             </span>
         </span>
@@ -144,13 +144,13 @@
             width="30px"
             [class]="'item-color item-color-' + itemsLocal[itemIdsLocal[item]]?.qual"
             class="item"
-            *ngIf="item !== 0 && item && itemIdsLocal && itemsLocal && itemsLocal[itemIdsLocal[item]]?.img"
+            *ngIf="item !== 0&& itemIdsLocal && itemsLocal && itemIdsLocal[item] && itemsLocal[itemIdsLocal[item]]?.img"
             onError="this.src='./assets/images/Dota2Logo.svg'"
             [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[itemIdsLocal[item]]?.img"
             (mouseover)="showItemModalFn.emit([$event, item])"
             (mouseout)="hideItemModalFn.emit($event)"
           />
-          <span class="middle-text" *ngIf="item !== 0 && element.purchase_time[itemIdsLocal[item]]">
+          <span class="middle-text" *ngIf="item !== 0 && itemIdsLocal[item] && element?.purchase_time[itemIdsLocal[item]]">
             <span>{{element.purchase_time[itemIdsLocal[item]] | durationFormat}}</span>
           </span>
         </span>
