@@ -89,7 +89,7 @@
         (mouseout)="hideAbilityModalFn.emit($event)"
       >
         <img
-          onError="this.src='/assets/images/Dota2Logo.svg'"
+          onError="this.src='./assets/images/Dota2Logo.svg'"
           class="hero-img" width="29" height="29"
           src="https://steamcdn-a.akamaihd.net/{{abilitiesTalentsLocal[element?.max_hero_hit?.inflictor]?.img}}"
           *ngIf="abilitiesTalentsLocal"
@@ -99,14 +99,14 @@
       <ng-template #noInflictor>
         <span class="max-hero-hit-ability" matTooltip="Auto Attack/Other" matTooltipPosition="above">
           <img
-            onError="this.src='/assets/images/Dota2Logo.svg'"
+            onError="this.src='./assets/images/Dota2Logo.svg'"
             width="29" height="29" src="assets/images/default_attack.png" />
           <span class="max-hero-hit-value">{{element?.max_hero_hit?.value}}</span>
         </span>
       </ng-template>
       
       <img
-        onError="this.src='/assets/images/Dota2Logo.svg'"
+        onError="this.src='./assets/images/Dota2Logo.svg'"
         class="hero-img" width="52" height="29" src="https://steamcdn-a.akamaihd.net/{{heroesNameLocal[element?.max_hero_hit?.key]['img']}}"/>
     </td>
     <td mat-footer-cell *matFooterCellDef></td>
@@ -125,7 +125,7 @@
           class="max-hero-hit-ability"
         >
           <img
-            onError="this.src='/assets/images/Dota2Logo.svg'"
+            onError="this.src='./assets/images/Dota2Logo.svg'"
             width="29" height="29"
             src="https://steamcdn-a.akamaihd.net/{{item.img}}"
           />

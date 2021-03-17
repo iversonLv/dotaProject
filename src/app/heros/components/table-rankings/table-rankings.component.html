@@ -17,7 +17,7 @@
         <td mat-cell *matCellDef="let element">
           <div class="ver-align">
             <img 
-            onError="this.src='/assets/images/Dota2Logo.svg'"
+            onError="this.src='./assets/images/Dota2Logo.svg'"
             [src]="element.avatar"/>
             <div class="account-date">
               <div class="rank-tier" [matTooltip]="element.rank_tier | rankTier" matTooltipPosition="above">
@@ -25,14 +25,14 @@
                 <span class="leaderboard-rank" *ngIf="element.leaderboard_rank">{{element.leaderboard_rank}}</span>
                 <!-- if players in leaderboard rank then no start -->
                 <img
-                onError="this.src='/assets/images/Dota2Logo.svg'"
+                onError="this.src='./assets/images/Dota2Logo.svg'"
                 class="rank-start" *ngIf="element.rank_tier !== null && element.rank_tier.toString()[1] !== '0'" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_star_{{element.rank_tier.toString()[1]}}.png' />
                 <!-- 
                   rank icon if immortal, the icon base on the leaderboar rank
                   
                  -->
                 <img
-                onError="this.src='/assets/images/Dota2Logo.svg'"
+                onError="this.src='./assets/images/Dota2Logo.svg'"
                 class="rank-icon" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_{{element.rank_tier !== null ? element.rank_tier.toString()[0] : "0"}}{{element.leaderboard_rank >= 1  &&  element.leaderboard_rank <= 10 ? "c" : (element.leaderboard_rank <=100 && element.leaderboard_rank > 10 ? "b" : "")}}.png' />
               </div>
               <!-- rank tier -->

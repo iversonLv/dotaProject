@@ -8,7 +8,7 @@
         <app-hero-attr-int class="hero-attr" *ngIf="hero.primary_attr === 'int'"></app-hero-attr-int>
       </span>
       <img
-      onError="this.src='/assets/images/Dota2Logo.svg'"
+      onError="this.src='./assets/images/Dota2Logo.svg'"
       class="hero-img" [src]="'https://steamcdn-a.akamaihd.net' + hero.img" />
       <div class="hero-hpmp">
         <span class="hero-hp"><label>HP</label>{{hero.base_health + hero.base_str * 20}}</span>
