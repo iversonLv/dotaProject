@@ -1,13 +1,13 @@
 <div class="item-tooltip" *ngIf="item" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
   <div class="item-main">
     <img
-      onError="this.src='/assets/images/Dota2Logo.svg'"
+      onError="this.src='./assets/images/Dota2Logo.svg'"
       height="50px" src="https://www.opendota.com/assets/images/Dota2Logo.svg" [src]="'https://steamcdn-a.akamaihd.net' + item.img" />
     <div class="item-main-right">
       <h3>{{item.dname}}</h3>
       <span class="item-cost">
         <img
-        onError="this.src='/assets/images/Dota2Logo.svg'"
+        onError="this.src='./assets/images/Dota2Logo.svg'"
         width="20px" src="https://steamcdn-a.akamaihd.net/apps/dota2/images/tooltips/gold.png" alt="$" />
         {{item.cost}}
       </span>
@@ -35,13 +35,13 @@
     <div class="components-row">
       <span *ngFor="let component of item.components" class="components-block">
         <img
-        onError="this.src='/assets/images/Dota2Logo.svg'"
+        onError="this.src='./assets/images/Dota2Logo.svg'"
         width="40px" src="https://www.opendota.com/assets/images/Dota2Logo.svg" [src]="'https://steamcdn-a.akamaihd.net' + itemsLocal[component]['img']" *ngIf="itemsLocal && component && itemsLocal[component]?.img" />
         <span *ngIf="itemsLocal" class="item-cost">{{itemsLocal[component]['cost']}}</span>
       </span>
       <span class="components-block">
         <img
-        onError="this.src='/assets/images/Dota2Logo.svg'"
+        onError="this.src='./assets/images/Dota2Logo.svg'"
         width="40px" src="https://www.opendota.com/assets/images/Dota2Logo.svg" [src]="'https://steamcdn-a.akamaihd.net' + itemsLocal['recipe_' + item.dname.replace(' ', '_').toLowerCase()]?.img" *ngIf="itemsLocal && itemsLocal['recipe_' + item.dname.replace(' ', '_').toLowerCase()]?.img" />
         <span *ngIf="itemsLocal && itemsLocal['recipe_' + item.dname.replace(' ', '_').toLowerCase()]?.cost" class="item-cost">{{itemsLocal['recipe_' + item.dname.replace(' ', '_').toLowerCase()]['cost']}}</span>
       </span>

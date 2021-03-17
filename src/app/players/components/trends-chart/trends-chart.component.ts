@@ -69,7 +69,7 @@ export class TrendsChartComponent implements OnInit {
                 </div>
 
                 <img
-                onError="this.src='/assets/images/Dota2Logo.svg'"
+                onError="this.src='./assets/images/Dota2Logo.svg'"
                 width="93" height="52"
                   src="https://steamcdn-a.akamaihd.net/${heroImg}"
                   (mouseover)="showHeroModalFn($event, element.hero_id)" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
