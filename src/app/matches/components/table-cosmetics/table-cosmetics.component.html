@@ -21,7 +21,9 @@
           (mouseout)="showCosmeticModal=false; currentMouseOverCosmetic = null"
         >
           <mat-icon class="launch-icon">launch</mat-icon>
-          <img width="63"
+          <img
+            onError="this.src='/assets/images/Dota2Logo.svg'"
+            width="63"
             class="hero-img"
             src="https://steamcdn-a.akamaihd.net/apps/570/{{item?.image_path}}"
             [class]="'item-rarity-' + item?.item_rarity"

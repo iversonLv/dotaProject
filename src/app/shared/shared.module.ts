@@ -23,6 +23,7 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { BarColumnChartComponent } from './components/bar-column-chart/bar-column-chart.component';
 import { CalendarChartComponent } from './components/calendar-chart/calendar-chart.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 // modals component
 import { HeroModalComponent } from './components/hero-modal/hero-modal.component';
@@ -59,12 +60,16 @@ import { DireComponent } from './components/icons/dire/dire.component';
     HeroAttrStrComponent,
     HeroAttrAgiComponent,
     HeroAttrIntComponent,
+    WinComponent,
+    RadientComponent,
+    DireComponent,
 
     // modals
     HeroModalComponent,
     ItemModalComponent,
     AbilityModalComponent,
     TalentModalComponent,
+    CosmeticModalComponent,
 
     // charts
     CountChartComponent,
@@ -72,6 +77,7 @@ import { DireComponent } from './components/icons/dire/dire.component';
     LineChartComponent,
     BarColumnChartComponent,
     CalendarChartComponent,
+    PieChartComponent,
 
     // pipes
     OrderByPipe,
@@ -84,10 +90,6 @@ import { DireComponent } from './components/icons/dire/dire.component';
     ExcludeTextPipe,
     OrdinalNumPipe,
     FieldTooltipPipe,
-    WinComponent,
-    RadientComponent,
-    DireComponent,
-    CosmeticModalComponent,
   ],
   imports: [
     CommonModule,
@@ -126,6 +128,7 @@ import { DireComponent } from './components/icons/dire/dire.component';
     LineChartComponent,
     BarColumnChartComponent,
     CalendarChartComponent,
+    PieChartComponent,
 
     // pipes
     OrderByPipe,
