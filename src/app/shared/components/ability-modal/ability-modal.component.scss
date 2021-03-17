@@ -41,6 +41,19 @@
   }
 }
 
+// talent
+.item-tooltip-talent-only {
+  padding: 10px 10px 0;
+  .item-main {
+    margin: -10px -10px 0;
+  }
+  img {
+    display: inline-block;
+    border: 1px solider $darken;
+    padding: 0;
+  }
+}
+
 .red-txt {
   color: $red;
 }

@@ -2,7 +2,7 @@
 <div class="heroes-hero" *ngIf="hero">
   <div class="heroes-box">
     <!-- for big bg -->
-    <img class="heroes-bg" [src]="'https://steamcdn-a.akamaihd.net' + hero['img']" />
+    <img class="heroes-bg" [src]="'https://steamcdn-a.akamaihd.net' + hero['img']" onError="this.src='/assets/images/Dota2Logo.svg'" />
     <div class="hero-main">
       <div class="hero-main-left">
         <span class="hero-primary-attr">
@@ -57,12 +57,14 @@
               <span *ngIf="value !== '0'" class="mana-tip">{{value}}</span>
             </ng-container>
             <img
+              onError="this.src='/assets/images/Dota2Logo.svg'"
               [src]="'https://steamcdn-a.akamaihd.net//apps/dota2/images/abilities/' + item + '_md.png'"
               [alt]="item"
             />
           </span>
           
           <img
+            onError="this.src='/assets/images/Dota2Logo.svg'"
             src="./assets/images/talent_tree.svg"
             with="64px"
             height="64px"

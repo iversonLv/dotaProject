@@ -97,4 +97,9 @@ export class HerosService {
     return this.generalService.getGitRawData(`/abilities.json`);
   }
 
+  // get all abilities local by id
+  getAbilitiesByIdLocal(): Observable<any> {
+    return this.generalService.getGitRawData(`/ability_ids.json`);
+  }
+
 }

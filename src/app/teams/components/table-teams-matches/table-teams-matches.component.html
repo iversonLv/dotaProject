@@ -47,7 +47,9 @@
         <th mat-header-cell *matHeaderCellDef [disabled]="true"> OPPOSING TEAM </th>
         <td mat-cell *matCellDef="let element">
           <div class="ver-align">
-            <img width="35"
+            <img
+              onError="this.src='/assets/images/Dota2Logo.svg'"
+              width="35"
               class="hero-img"
               [src]="element.opposing_team_logo ? element.opposing_team_logo : 'assets/images/Dota2Logo.svg'"
               [alt]="element.name"

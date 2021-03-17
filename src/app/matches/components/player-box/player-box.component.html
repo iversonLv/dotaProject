@@ -1,5 +1,7 @@
 <div *ngIf="data && heroesLocal && playerColorLocal" class="ver-align">
-  <img width="52" height="29"
+  <img
+    onError="this.src='/assets/images/Dota2Logo.svg'"
+    width="52" height="29"
     class="hero-img"
     src="https://steamcdn-a.akamaihd.net/{{heroesLocal[data.hero_id]['img']}}"
     (mouseover)="showHeroModalFn($event, data.hero_id)" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
@@ -21,7 +23,9 @@
       <!-- if players in leaderboard rank -->
       <span class="leaderboard-rank" *ngIf="data.leaderboard_rank">{{data.leaderboard_rank}}</span>
       <!-- if players in leaderboard rank then no start -->
-      <img class="rank-start" *ngIf="data.rank_tier !== null && data.rank_tier.toString()[1] !== '0'" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_star_{{data.rank_tier.toString()[1]}}.png' />
+      <img
+        onError="this.src='/assets/images/Dota2Logo.svg'"
+        class="rank-start" *ngIf="data.rank_tier !== null && data.rank_tier.toString()[1] !== '0'" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_star_{{data.rank_tier.toString()[1]}}.png' />
       <!-- 
         rank icon if immortal, the icon base on the leaderboar rank
         

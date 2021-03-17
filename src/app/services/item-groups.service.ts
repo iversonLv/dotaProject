@@ -11,7 +11,7 @@ export class ItemGroupsService {
     private generalService: GeneralService
   ) { }
 
-  getItemIdsLocal(): Observable<any> {
+  getItemGroupsLocal(): Observable<any> {
     return this.generalService.getGitRawData('/item_groups.json');
   }
 }

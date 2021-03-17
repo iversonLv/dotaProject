@@ -1,6 +1,8 @@
-<div class="item-tooltip" *ngIf="abilitiesTalentsLocal && item" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
+<div class="item-tooltip" *ngIf="abilitiesTalentsLocal && item && abilitiesTalentsLocal[item].dname && abilitiesTalentsLocal[item].img" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
   <div class="item-main box">
-    <img height="50px" src="https://www.opendota.com/assets/images/Dota2Logo.svg" [src]="'https://steamcdn-a.akamaihd.net' + abilitiesTalentsLocal[item].img" />
+    <img
+    onError="this.src='/assets/images/Dota2Logo.svg'"
+    height="50px" [src]="'https://steamcdn-a.akamaihd.net' + abilitiesTalentsLocal[item].img" />
     <div class="item-main-right">
       <h3>{{abilitiesTalentsLocal[item].dname}}</h3>
     </div>
@@ -35,12 +37,31 @@
   <!-- item-sub -->
   <div class="item-mc-cd">
     <span class="item-mc">
-      <img width="15px" height="15px" src="assets/images/mana.png">
+      <img
+      onError="this.src='/assets/images/Dota2Logo.svg'"
+      width="15px" height="15px" src="assets/images/mana.png">
       <span *ngFor="let value of abilitiesTalentsLocal[item].mc | stringToArray" class="item-value">{{value}}</span>
     </span>
     <span class="item-cd">
-      <img width="15px" height="15px" src="assets/images/cooldown.png">
+      <img
+      onError="this.src='/assets/images/Dota2Logo.svg'"
+      width="15px" height="15px" src="assets/images/cooldown.png">
       <span *ngFor="let value of abilitiesTalentsLocal[item].cd | stringToArray" class="item-value">{{value}}</span>
     </span>
   </div>
+</div>
+<!-- only for talent ability icon and dname -->
+
+<div
+  *ngIf="abilitiesTalentsLocal && item && abilitiesTalentsLocal[item].dname && !abilitiesTalentsLocal[item].img"
+  class="item-tooltip item-tooltip-talent-only" [style]="'left:' + pageXY[0] + 'px; top:' + (pageXY[1] + 250) + 'px'">
+  <div class="item-main box">
+    <img
+    onError="this.src='/assets/images/Dota2Logo.svg'"
+    height="50px" src='/assets/images/talent_tree.svg' />
+    <div class="item-main-right">
+      <h3>{{abilitiesTalentsLocal[item].dname}}</h3>
+    </div>
+  </div>
+  <!-- item-main -->
 </div>

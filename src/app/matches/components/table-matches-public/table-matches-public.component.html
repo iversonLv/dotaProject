@@ -18,12 +18,16 @@
               <!-- if players in leaderboard rank -->
               <span class="leaderboard-rank" *ngIf="element.leaderboard_rank">{{element.leaderboard_rank}}</span>
               <!-- if players in leaderboard rank then no start -->
-              <img class="rank-start" *ngIf="element.avg_rank_tier !== null && element.avg_rank_tier.toString()[1] !== '0'" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_star_{{element.avg_rank_tier.toString()[1]}}.png' />
+              <img
+                onError="this.src='/assets/images/Dota2Logo.svg'"
+                class="rank-start" *ngIf="element.avg_rank_tier !== null && element.avg_rank_tier.toString()[1] !== '0'" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_star_{{element.avg_rank_tier.toString()[1]}}.png' />
               <!-- 
                 rank icon if immortal, the icon base on the leaderboar rank
                 
               -->
-              <img class="rank-icon" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_{{element.avg_rank_tier !== null ? element.avg_rank_tier.toString()[0] : "0"}}{{element.leaderboard_rank >= 1  &&  element.leaderboard_rank <= 10 ? "c" : (element.leaderboard_rank <=100 && element.leaderboard_rank > 10 ? "b" : "")}}.png' />
+              <img
+                onError="this.src='/assets/images/Dota2Logo.svg'"
+                class="rank-icon" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_{{element.avg_rank_tier !== null ? element.avg_rank_tier.toString()[0] : "0"}}{{element.leaderboard_rank >= 1  &&  element.leaderboard_rank <= 10 ? "c" : (element.leaderboard_rank <=100 && element.leaderboard_rank > 10 ? "b" : "")}}.png' />
             </div>
             <!-- rank tier -->
           </div>
@@ -47,7 +51,9 @@
           <div class="teams">
             <app-win *ngIf="element.radiant_win" class="icon-win"></app-win>
             <span *ngFor="let item of element.radiant_team.split(',')">
-              <img width="52" height="29"
+              <img
+                onError="this.src='/assets/images/Dota2Logo.svg'"
+                width="52" height="29"
                 class="hero-img"
                 (click)="goPage(item)"
                 *ngIf="item && heroesLocal && heroesLocal[item]['img']"
@@ -65,11 +71,13 @@
           <div class="teams">
             <app-win *ngIf="!element.radiant_win" class="icon-win"></app-win>
             <span *ngFor="let item of element.dire_team.split(',')">
-              <img width="52" height="29"
-              class="hero-img"
-              (click)="goPage(item)"
-              *ngIf="item && heroesLocal && heroesLocal[item]['img']"
-              src="https://steamcdn-a.akamaihd.net/{{heroesLocal[item]['img']}}"
+              <img
+                onError="this.src='/assets/images/Dota2Logo.svg'"
+                width="52" height="29"
+                class="hero-img"
+                (click)="goPage(item)"
+                *ngIf="item && heroesLocal && heroesLocal[item]['img']"
+                src="https://steamcdn-a.akamaihd.net/{{heroesLocal[item]['img']}}"
               />
             </span>
           </div>

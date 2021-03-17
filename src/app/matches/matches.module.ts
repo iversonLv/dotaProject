@@ -51,6 +51,9 @@ import { PlayerBoxComponent } from './components/player-box/player-box.component
 import { TableMatchDetailActionsComponent } from './components/table-match-detail-actions/table-match-detail-actions.component';
 import { TableMatchDetailPerformancesComponent } from './components/table-match-detail-performances/table-match-detail-performances.component';
 import { TableCosmeticsComponent } from './components/table-cosmetics/table-cosmetics.component';
+import { BandPickListComponent } from './components/band-pick-list/band-pick-list.component';
+import { TableMatchDetailOverviewComponent } from './components/table-match-detail-overview/table-match-detail-overview.component';
+import { TableMatchDetailOverviewAbilityBuildComponent } from './components/table-match-detail-overview-ability-build/table-match-detail-overview-ability-build.component';
 
 
 @NgModule({
@@ -89,7 +92,10 @@ import { TableCosmeticsComponent } from './components/table-cosmetics/table-cosm
     PlayerBoxComponent,
     TableMatchDetailActionsComponent,
     TableMatchDetailPerformancesComponent,
-    TableCosmeticsComponent
+    TableCosmeticsComponent,
+    BandPickListComponent,
+    TableMatchDetailOverviewComponent,
+    TableMatchDetailOverviewAbilityBuildComponent
   ],
   imports: [
     CommonModule,
