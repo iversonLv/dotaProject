@@ -126,7 +126,7 @@
               width="40px"
               [class]="'item-color item-color-' + itemsLocal[itemIdsLocal[item]]?.qual"
               class="item"
-              *ngIf="item !== 0 itemsLocal && itemIdsLocal && itemIdsLocal[item] && itemsLocal[itemIdsLocal[item]]?.img"
+              *ngIf="item !== 0 && itemsLocal && itemIdsLocal && itemIdsLocal[item] && itemsLocal[itemIdsLocal[item]]?.img"
               onError="this.src='./assets/images/Dota2Logo.svg'"
               [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[itemIdsLocal[item]]?.img"
               (mouseover)="showItemModalFn.emit([$event, item])"
