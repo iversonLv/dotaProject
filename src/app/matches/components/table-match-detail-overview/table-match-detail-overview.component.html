@@ -121,7 +121,7 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="true" matTooltip="Items built" matTooltipPosition="above"><span> ITEMS</span></th>
     <td mat-cell *matCellDef="let element">
       <div class="item-list">
-        <span *ngFor="let item of element.items" class="item-list-item">
+        <span *ngFor="let item of element?.items" class="item-list-item">
           <img
               width="40px"
               [class]="'item-color item-color-' + itemsLocal[itemIdsLocal[item]]?.qual"
@@ -139,7 +139,7 @@
       </div>
       <div class="backpack-list" *ngIf="whetherShowBackPackList(element.backpack)">
         <mat-icon class="backpack" matTooltip="Backpack" matTooltipPosition="above">card_travel</mat-icon>
-        <span *ngFor="let item of element.backpack" class="item-list-item">
+        <span *ngFor="let item of element?.backpack" class="item-list-item">
           <img
             width="30px"
             [class]="'item-color item-color-' + itemsLocal[itemIdsLocal[item]]?.qual"
@@ -166,10 +166,10 @@
       
       <img
         class="item-neutral"
-        *ngIf="element.item_neutral !== 0 && itemIdsLocal && itemsLocal && itemsLocal[itemIdsLocal[element.item_neutral]]?.img"
+        *ngIf="element.item_neutral !== 0 && itemIdsLocal && itemsLocal && itemsLocal[itemIdsLocal[element?.item_neutral]]?.img"
         onError="this.src='./assets/images/Dota2Logo.svg'"
-        [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[itemIdsLocal[element.item_neutral]]?.img"
-        (mouseover)="showItemModalFn.emit([$event, element.item_neutral])"
+        [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[itemIdsLocal[element?.item_neutral]]?.img"
+        (mouseover)="showItemModalFn.emit([$event, element?.item_neutral])"
         (mouseout)="hideItemModalFn.emit($event)"
       />
     </td>
@@ -182,14 +182,14 @@
     <td mat-cell *matCellDef="let element">
       <img
         class="aghanims-scepter"
-        [src]="'./assets/images/scepter_' + (whetherShowScepterShard(element.permanent_buffs, 2)  ? '1' : '0') + '.png'"
+        [src]="'./assets/images/scepter_' + (whetherShowScepterShard(element?.permanent_buffs, 2)  ? '1' : '0') + '.png'"
         onError="this.src='./assets/images/Dota2Logo.svg'"
         (mouseover)="showItemModalFn.emit([$event, 108])"
         (mouseout)="hideItemModalFn.emit($event)"
       />
       <img
         class="aghanims-shard"
-        [src]="'./assets/images/shard_' + (whetherShowScepterShard(element.permanent_buffs, 12) ? '1' : '0') + '.png'"
+        [src]="'./assets/images/shard_' + (whetherShowScepterShard(element?.permanent_buffs, 12) ? '1' : '0') + '.png'"
         onError="this.src='./assets/images/Dota2Logo.svg'"
         (mouseover)="showItemModalFn.emit([$event, 609])"
         (mouseout)="hideItemModalFn.emit($event)"
@@ -205,7 +205,7 @@
       <span *ngIf="!element.permanent_buffs; else hasPermanentBuffs">-</span>
       <ng-template #hasPermanentBuffs>
         <div class="permanent-buffs-list">
-          <span *ngFor="let item of element.permanent_buffs" class="item-list-item">
+          <span *ngFor="let item of element?.permanent_buffs" class="item-list-item">
             <!-- for item -->
               <img
                 width="40px"
