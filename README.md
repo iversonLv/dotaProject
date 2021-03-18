@@ -152,7 +152,7 @@ environment.pro.ts
       - [] FARM
       - [] ITEMS
       - [] GRAPHS
-      - [] CASTS
+      - [99%] CASTS (2021.3.14, 18) TODO: hover on other image, ability target image will fresh
       - [] OBJECTIVES
       - [] VISION
       - [X] ACTIONS (2021.3.14)
@@ -177,8 +177,10 @@ environment.pro.ts
   - [x] Update sub navigation as share component (2021.2.6)
   - [x] update nav title to support teams detail and player detail (2021.2.6)
   - [x] Update all isLoading = true for all page? update all subscribe method with !data.isLoading?
+  - [x] Updated ability modal, item modal pass local data from parent compnent, then won't need read the json every hover, just one fetch
+  - [] Maybe update abliltiy modal and item modal like player box in separated component with img and modal?
   - [] Update all win game player slot 120 as some RPG co op RADIENT player slot from 0-25
-  - [] Update all image onError="this.src='./assets/images/Dota2Logo.svg'"
+  - [X] Update all image onError="this.src='./assets/images/Dota2Logo.svg'"
 [] Deploy
   - [x] Setup the repo on github page(2021.2.26)
   - [x] Deploy to github page (2021.2.26)

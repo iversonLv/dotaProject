@@ -11,7 +11,7 @@ export class ItemModalComponent implements OnInit {
   @Input() pageXY: number[];
   @Input() item: IItemLocal;
 
-  itemsLocal: any;
+  @Input() itemsLocal: any;
 
   // @Input() pageXY: number[] = [0, 100];
   // @Input() item: IItemLocal = {
@@ -46,19 +46,19 @@ export class ItemModalComponent implements OnInit {
   // };
 
   constructor(
-    private itemsService: ItemsService,
+    // private itemsService: ItemsService,
   ) { }
 
   ngOnInit(): void {
-    this.getItemsLocal();
+    // this.getItemsLocal();
   }
 
-  getItemsLocal(): any {
-    this.itemsService.getItemsLocal().subscribe(data => {
-    this.itemsLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
+  // getItemsLocal(): any {
+  //   this.itemsService.getItemsLocal().subscribe(data => {
+  //   this.itemsLocal = data;
+  //   }, err => {
+  //     console.log(err);
+  //   });
+  // }
 
 }
