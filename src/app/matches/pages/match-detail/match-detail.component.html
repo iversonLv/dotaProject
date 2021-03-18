@@ -240,12 +240,64 @@
       <!-- team-box -->
     </div>
 
+    <!-- casts -->
+    <div *ngIf="currentPage === 'casts'">
+      <div class="team-box">
+        <div class="team-row">
+          <app-radient class="sides-icon"></app-radient>
+          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Casts' : 'Radiant - Casts'"> {{radiant_win ? 'WINNER' : ''}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-casts
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players | slice: 0:5"
+          
+          [heroesNameLocal]="heroesNameLocal"
+          [itemIdsLocal]="itemIdsLocal"
+          [itemsLocal]="itemsLocal"
+          (showItemModalFn)="showItemModalFn($event)"
+          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
+          [abilitiesTalentsLocal]="abilitiesTalentsLocal"
+          (showAbilityModalFn)="showAbilityModalFn($event)"
+          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
+        >
+        </app-table-match-detail-casts>
+      </div>
+      <!-- team-box -->
+
+      <div class="team-box">
+        <div class="team-row">
+          <app-dire class="sides-icon"></app-dire>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Casts' : 'Dire - Casts'"> {{radiant_win ? '' : 'WINNER'}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-casts
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players | slice: 5:10"
+          
+          [heroesNameLocal]="heroesNameLocal"
+          [itemIdsLocal]="itemIdsLocal"
+          [itemsLocal]="itemsLocal"
+          (showItemModalFn)="showItemModalFn($event)"
+          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
+          [abilitiesTalentsLocal]="abilitiesTalentsLocal"
+          (showAbilityModalFn)="showAbilityModalFn($event)"
+          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
+        >
+      </app-table-match-detail-casts>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
+    </div>
+
     <!-- actions -->
     <div *ngIf="currentPage === 'actions'" class="single-match-actions">
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - actions' : 'Radiant - Actions'"> {{radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Actions' : 'Radiant - Actions'"> {{radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
         <app-table-match-detail-actions
@@ -259,7 +311,7 @@
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - actions' : 'Dire - Actions'"> {{radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Actions' : 'Dire - Actions'"> {{radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
         <app-table-match-detail-actions
@@ -285,5 +337,5 @@
   
 </div>
 
-<app-ability-modal *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName' [pageXY] = 'pageXY'></app-ability-modal>
-<app-item-modal *ngIf="showItemModal" [item]='currentMouseOverItem' [pageXY] = 'pageXY' class="item-modal"></app-item-modal>
+<app-ability-modal [abilitiesTalentsLocal]="abilitiesTalentsLocal" *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName' [pageXY] = 'pageXY'></app-ability-modal>
+<app-item-modal [itemsLocal]="itemsLocal" *ngIf="showItemModal" [item]='currentMouseOverItem' [pageXY] = 'pageXY' class="item-modal"></app-item-modal>

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ITalent } from 'src/app/heros/model/hero-abilities';
-import { HerosService } from 'src/app/heros/services/heros.service';
+// import { HerosService } from 'src/app/heros/services/heros.service';
 
 @Component({
   selector: 'app-talent-modal',
@@ -9,25 +9,23 @@ import { HerosService } from 'src/app/heros/services/heros.service';
 })
 export class TalentModalComponent implements OnInit {
   @Input() talents: ITalent[] = [];
-
   @Input() pageXY: number[] = [0, 100];
-
-  abilitiesTalentsLocal: any;
+  @Input() abilitiesTalentsLocal: any;
 
   constructor(
-    private herosService: HerosService,
+    // private herosService: HerosService,
   ) { }
 
   ngOnInit(): void {
-    this.getAbilitiesTalentsLocal();
+    // this.getAbilitiesTalentsLocal();
   }
 
-  getAbilitiesTalentsLocal(): any  {
-    this.herosService.getAbilitiesTalentsLocal().subscribe(data => {
-      this.abilitiesTalentsLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
+  // getAbilitiesTalentsLocal(): any  {
+  //   this.herosService.getAbilitiesTalentsLocal().subscribe(data => {
+  //     this.abilitiesTalentsLocal = data;
+  //   }, err => {
+  //     console.log(err);
+  //   });
+  // }
 
 }

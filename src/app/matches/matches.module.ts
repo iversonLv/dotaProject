@@ -54,6 +54,7 @@ import { TableCosmeticsComponent } from './components/table-cosmetics/table-cosm
 import { BandPickListComponent } from './components/band-pick-list/band-pick-list.component';
 import { TableMatchDetailOverviewComponent } from './components/table-match-detail-overview/table-match-detail-overview.component';
 import { TableMatchDetailOverviewAbilityBuildComponent } from './components/table-match-detail-overview-ability-build/table-match-detail-overview-ability-build.component';
+import { TableMatchDetailCastsComponent } from './components/table-match-detail-casts/table-match-detail-casts.component';
 
 
 @NgModule({
@@ -95,7 +96,8 @@ import { TableMatchDetailOverviewAbilityBuildComponent } from './components/tabl
     TableCosmeticsComponent,
     BandPickListComponent,
     TableMatchDetailOverviewComponent,
-    TableMatchDetailOverviewAbilityBuildComponent
+    TableMatchDetailOverviewAbilityBuildComponent,
+    TableMatchDetailCastsComponent
   ],
   imports: [
     CommonModule,

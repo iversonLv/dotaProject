@@ -73,7 +73,7 @@
   <ng-container matColumnDef="pings">
     <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Number of times the player pinged the map" matTooltipPosition="above">PNG (M)</th>
     <td mat-cell *matCellDef="let element">
-      {{element.pings === 0 ? '-' : element.pings}}
+      {{!element.pings ? '-' : element.pings}}
       <app-bar-chart [data]='[teamsLargest?.pings, element.pings]'></app-bar-chart>
     </td>
     <td mat-footer-cell *matFooterCellDef>{{finalData ? calTotal(finalData, 'pings') : ''}}</td>
@@ -100,7 +100,7 @@
         <span class="max-hero-hit-ability" matTooltip="Auto Attack/Other" matTooltipPosition="above">
           <img
             onError="this.src='./assets/images/Dota2Logo.svg'"
-            width="29" height="29" src="assets/images/default_attack.png" />
+            width="29" height="29" src="./assets/images/default_attack.png" />
           <span class="max-hero-hit-value">{{element?.max_hero_hit?.value}}</span>
         </span>
       </ng-template>
