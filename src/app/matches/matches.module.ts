@@ -56,6 +56,7 @@ import { TableMatchDetailOverviewComponent } from './components/table-match-deta
 import { TableMatchDetailOverviewAbilityBuildComponent } from './components/table-match-detail-overview-ability-build/table-match-detail-overview-ability-build.component';
 import { TableMatchDetailCastsComponent } from './components/table-match-detail-casts/table-match-detail-casts.component';
 import { TableMatchDetailRunesComponent } from './components/table-match-detail-runes/table-match-detail-runes.component';
+import { TableMatchDetailObjectiveDamageComponent } from './components/table-match-detail-objective-damage/table-match-detail-objective-damage.component';
 
 
 @NgModule({
@@ -99,7 +100,8 @@ import { TableMatchDetailRunesComponent } from './components/table-match-detail-
     TableMatchDetailOverviewComponent,
     TableMatchDetailOverviewAbilityBuildComponent,
     TableMatchDetailCastsComponent,
-    TableMatchDetailRunesComponent
+    TableMatchDetailRunesComponent,
+    TableMatchDetailObjectiveDamageComponent
   ],
   imports: [
     CommonModule,

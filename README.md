@@ -153,7 +153,7 @@ environment.pro.ts
       - [] ITEMS
       - [] GRAPHS
       - [99%] CASTS (2021.3.14, 18) TODO: hover on other image, ability target image will fresh
-      - [] OBJECTIVES
+      - [99%] OBJECTIVES (2021.3.18) TODO: RAXT, RAXM, RAXB chartbar need improve, need calperfect number for plus data, now only for one data
       - [] VISION
       - [X] ACTIONS (2021.3.14)
       - [] ANALYSIS
