@@ -121,11 +121,19 @@ export class TableMatchDetailOverviewComponent implements OnInit {
 
   }
 
-  calPerfectData(data: any, field: string, min: string = ''): number {
+  calPerfectData(data: any, field: string, min: string = '', subField?: string): number {
+    const dataField = data.map(item => item[field]).filter(i => i !== undefined);
+    const dataWithSubField = data.map(item => item[field]).map(sub => sub[subField]).filter(i => i !== undefined);
     if (!min) {
-      return Math.max(...data.map(item => item[field]));
+      if (subField) {
+        return Math.max(...dataWithSubField);
+      }
+      return Math.max(...dataField);
     } else {
-      return Math.min(...data.map(item => item[field]));
+      if (subField) {
+        return Math.min(...dataWithSubField);
+      }
+      return Math.min(...dataField);
     }
   }
 

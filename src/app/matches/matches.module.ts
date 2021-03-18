@@ -55,6 +55,7 @@ import { BandPickListComponent } from './components/band-pick-list/band-pick-lis
 import { TableMatchDetailOverviewComponent } from './components/table-match-detail-overview/table-match-detail-overview.component';
 import { TableMatchDetailOverviewAbilityBuildComponent } from './components/table-match-detail-overview-ability-build/table-match-detail-overview-ability-build.component';
 import { TableMatchDetailCastsComponent } from './components/table-match-detail-casts/table-match-detail-casts.component';
+import { TableMatchDetailRunesComponent } from './components/table-match-detail-runes/table-match-detail-runes.component';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import { TableMatchDetailCastsComponent } from './components/table-match-detail-
     BandPickListComponent,
     TableMatchDetailOverviewComponent,
     TableMatchDetailOverviewAbilityBuildComponent,
-    TableMatchDetailCastsComponent
+    TableMatchDetailCastsComponent,
+    TableMatchDetailRunesComponent
   ],
   imports: [
     CommonModule,
