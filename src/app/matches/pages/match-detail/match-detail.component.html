@@ -292,6 +292,73 @@
       <!-- team-box -->
     </div>
 
+    <!-- objectives -->
+    <div *ngIf="currentPage === 'objectives'">
+      <!-- objectives damage section -->
+      <div class="team-box">
+        <div class="team-row">
+          <app-radient class="sides-icon"></app-radient>
+          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Objectives Damage' : 'Radiant - Objectives Damage'"> {{radiant_win ? 'WINNER' : ''}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-objective-damage
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players | slice: 0:5">
+        </app-table-match-detail-objective-damage>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
+
+      
+      <div class="team-box">
+        <div class="team-row">
+          <app-dire class="sides-icon"></app-dire>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Objectives Damage' : 'Dire - Objectives Damage'"> {{radiant_win ? '' : 'WINNER'}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-objective-damage
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players | slice: 5:10">
+        </app-table-match-detail-objective-damage>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
+
+      <!-- runes section -->
+      <div class="team-box">
+        <div class="team-row">
+          <app-radient class="sides-icon"></app-radient>
+          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Runes' : 'Radiant - Runes'"> {{radiant_win ? 'WINNER' : ''}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-runes
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players | slice: 0:5">
+        </app-table-match-detail-runes>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
+
+      <div class="team-box">
+        <div class="team-row">
+          <app-dire class="sides-icon"></app-dire>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Runes' : 'Dire - Runes'"> {{radiant_win ? '' : 'WINNER'}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-runes
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players | slice: 5:10">
+        </app-table-match-detail-runes>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
+
+    </div>
+
     <!-- actions -->
     <div *ngIf="currentPage === 'actions'" class="single-match-actions">
       <div class="team-box">

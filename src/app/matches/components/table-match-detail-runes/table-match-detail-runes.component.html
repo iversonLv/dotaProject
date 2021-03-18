@@ -1,0 +1,29 @@
+<table mat-table [dataSource]="dataSource" matSort>  
+  <!-- name column -->
+  <ng-container matColumnDef="player_slot" *ngIf="displayedColumns.includes('player_slot')">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
+    <td mat-cell *matCellDef="let element">
+      <app-player-box [data]="element" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+    </td>
+  </ng-container>
+
+  <!-- runes list column -->
+  <ng-container [matColumnDef]="item" *ngFor="let item of displayedColumns | slice: 1">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header [matTooltip]="runsKeyObj[item]?.tooltip" matTooltipPosition="above">
+      <img
+        width="32px"
+        height="32px"
+        onError="this.src='./assets/images/Dota2Logo.svg'"
+        [src]="'./assets/images/' + item + '.png'"
+      >
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{element[item] ? element[item] : '-'}}
+      <app-bar-chart [data]="[calPerfectData(data, 'runes', '', item ), (element[item] ? element[item] : 0)]"></app-bar-chart>
+    </td>
+  </ng-container>
+
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

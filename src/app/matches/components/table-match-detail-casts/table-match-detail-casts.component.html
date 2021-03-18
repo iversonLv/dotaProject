@@ -33,9 +33,9 @@
                   <img
                     width="32px"
                     class="item"
-                    *ngIf="target && heroesNameLocal && heroesNameLocal[target.key]?.img"
+                    *ngIf="target && target?.key && heroesNameLocal && heroesNameLocal[target?.key]?.icon"
                     onError="this.src='./assets/images/Dota2Logo.svg'"
-                    [src]="'https://steamcdn-a.akamaihd.net/' + heroesNameLocal[target.key]?.icon"
+                    [src]="'https://steamcdn-a.akamaihd.net/' + heroesNameLocal[target?.key]?.icon"
                   />
                 <span class="middle-text">{{target?.value}}</span>
               </div>

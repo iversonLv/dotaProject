@@ -127,7 +127,10 @@ export class TableMatchDetailPerformancesComponent implements OnInit {
 
   calTotal(data: any, field: string): any {
     if (data.filter(i => i[field] !== '-').length !== 0) {
-      const totalNum =  data.filter(i => i[field] !== '-').map(i => i[field]).reduce((cur, total) => cur + total, 0);
+      const totalNum =  data.filter(i => i[field] !== undefined)
+                            .filter(i => i[field] !== '-')
+                            .map(i => i[field])
+                            .reduce((cur, total) => cur + total, 0);
       return totalNum === 0 ? '-' : totalNum;
     } else {
       return '-';
