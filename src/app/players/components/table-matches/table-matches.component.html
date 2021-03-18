@@ -197,4 +197,4 @@
 </div>
 
 <app-hero-modal *ngIf="showHeroModal" [hero]='currentMouseOverHero' [pageXY] = 'pageXY' class="hero-modal"></app-hero-modal>
-<app-item-modal *ngIf="showItemModal" [item]='currentMouseOverItem' [pageXY] = 'pageXY' class="item-modal"></app-item-modal>
+<app-item-modal [itemsLocal]="itemsLocal" *ngIf="showItemModal" [item]='currentMouseOverItem' [pageXY] = 'pageXY' class="item-modal"></app-item-modal>

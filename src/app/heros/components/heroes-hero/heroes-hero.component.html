@@ -161,6 +161,6 @@
 
 </div>
 
-<app-ability-modal *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName' [pageXY] = 'pageXY'></app-ability-modal>
+<app-ability-modal [abilitiesTalentsLocal]="abilitiesTalentsLocal" *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName' [pageXY] = 'pageXY'></app-ability-modal>
 
-<app-talent-modal *ngIf="showTalentModal" [talents]='currentMouseOverTalent' [pageXY] = 'pageXY'></app-talent-modal>
+<app-talent-modal [abilitiesTalentsLocal]="abilitiesTalentsLocal" *ngIf="showTalentModal" [talents]='currentMouseOverTalent' [pageXY] = 'pageXY'></app-talent-modal>

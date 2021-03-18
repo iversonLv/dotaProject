@@ -1,0 +1,124 @@
+<table mat-table [dataSource]="dataSource" matSort>  
+  <!-- name column -->
+  <ng-container matColumnDef="player_slot" *ngIf="displayedColumns.includes('player_slot')">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
+    <td mat-cell *matCellDef="let element">
+      <app-player-box [data]="element" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+    </td>
+  </ng-container>
+
+  <!-- abilities column -->
+  <ng-container matColumnDef="abilities">
+    <th mat-header-cell *matHeaderCellDef matTooltip="Number of times this ability/item was cast" matTooltipPosition="above" mat-sort-header [disabled]="true"> ABILITIES </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="item-list-ablility">
+        <div *ngFor="let item of element?.ability_uses" class="item-list-item">
+            <div class="item-list-item-main">
+              <!-- for ability -->
+              <img
+                width="35px"
+                class="item"
+                *ngIf="item && abilitiesTalentsLocal && abilitiesTalentsLocal[item?.key]?.img"
+                onError="this.src='./assets/images/Dota2Logo.svg'"
+                [src]="'https://steamcdn-a.akamaihd.net/' + abilitiesTalentsLocal[item?.key]?.img"
+                (mouseover)="showAbilityModalFn.emit([$event, item?.key])"
+                (mouseout)="hideAbilityModalFn.emit($event)"
+              />
+              <span class="middle-text">{{item?.value}}</span>
+            </div>
+            <mat-icon>arrow_right_alt</mat-icon>
+            <div class="item-list" *ngIf="element?.ability_targets[item?.key]">
+              <div *ngFor="let target of extractObjToArry(element?.ability_targets[item?.key])" class="item-list-item">
+                <!-- for hero -->
+                  <img
+                    width="32px"
+                    class="item"
+                    *ngIf="target && heroesNameLocal && heroesNameLocal[target.key]?.img"
+                    onError="this.src='./assets/images/Dota2Logo.svg'"
+                    [src]="'https://steamcdn-a.akamaihd.net/' + heroesNameLocal[target.key]?.icon"
+                  />
+                <span class="middle-text">{{target?.value}}</span>
+              </div>
+            </div>
+        </div>
+      </div>
+      <!-- ability_uses -->
+      <!-- ability_targets -->
+    </td>
+  </ng-container>
+
+  <!-- items column -->
+  <ng-container matColumnDef="items">
+    <th mat-header-cell *matHeaderCellDef matTooltip="Number of times this ability/item was cast" matTooltipPosition="above" mat-sort-header [disabled]="true"> ITEMS </th>
+    <td mat-cell *matCellDef="let element" class="item-list-col">
+      <!-- item_uses -->
+      <div class="item-list">
+        <div *ngFor="let item of element?.item_uses" class="item-list-item">
+            <!-- for item -->
+            <img
+              width="35px"
+              class="item"
+              *ngIf="item && itemsLocal && itemsLocal[item?.key]?.img"
+              onError="this.src='./assets/images/Dota2Logo.svg'"
+              [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[item?.key]?.img"
+              (mouseover)="showItemModalFn.emit([$event, itemsLocal[item?.key]?.id])"
+              (mouseout)="hideItemModalFn.emit($event)"
+            />
+            <span class="middle-text">{{item?.value}}</span>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <!-- hits column -->
+  <ng-container matColumnDef="hits">
+    <th mat-header-cell *matHeaderCellDef matTooltip="Number of damage instances to heroes caused by this ablitity/item" matTooltipPosition="above" mat-sort-header [disabled]="true"> HITS </th>
+    <td mat-cell *matCellDef="let element">
+      <!-- hero_hits -->
+      <div class="item-list">
+
+        <div *ngFor="let item of element?.hero_hits" class="item-list-item">
+          <span *ngIf="item?.key !== 'null'; else noInflictor">
+            <!-- for item -->
+            <img
+              width="35px"
+              class="item"
+              *ngIf="item && itemsLocal && itemsLocal[item?.key]?.img"
+              onError="this.src='./assets/images/Dota2Logo.svg'"
+              [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[item?.key]?.img"
+              (mouseover)="showItemModalFn.emit([$event, itemsLocal[item?.key]?.id])"
+              (mouseout)="hideItemModalFn.emit($event)"
+            />
+          
+            <!-- for ability -->
+            <img
+              width="35px"
+              class="item"
+              *ngIf="item && abilitiesTalentsLocal && abilitiesTalentsLocal[item?.key]?.img"
+              onError="this.src='./assets/images/Dota2Logo.svg'"
+              [src]="'https://steamcdn-a.akamaihd.net/' + abilitiesTalentsLocal[item?.key]?.img"
+              (mouseover)="showAbilityModalFn.emit([$event, item?.key])"
+              (mouseout)="hideAbilityModalFn.emit($event)"
+            />
+            <span class="middle-text">{{item?.value}}</span>
+          </span>
+    
+    
+          <ng-template #noInflictor>
+            <span matTooltip="Auto Attack/Other" matTooltipPosition="above">
+              <img
+                onError="this.src='./assets/images/Dota2Logo.svg'"
+                width="29" height="29" src="./assets/images/default_attack.png"
+              />
+              <span class="middle-text">{{item?.value}}</span>
+            </span>
+          </ng-template>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
