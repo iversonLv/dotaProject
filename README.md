@@ -148,11 +148,11 @@ environment.pro.ts
       - [X] DRAFT (2021.3.12) now, use picks_bans for data, the draft_timings looked odd and some ban pick are skip
       - [x] PERFORMANCES (2021.3.14, 15)
       - [] LANING
-      - [] COMBAT
+      - [X] COMBAT (2021.3.14, 19) merge kills and damage table together
       - [] FARM
       - [] ITEMS
       - [] GRAPHS
-      - [99%] CASTS (2021.3.14, 18) TODO: hover on other image, ability target image will fresh
+      - [99%] CASTS (2021.3.14, 18) TODO: hover on other image, ability target image will fresh(only happen if open the dev tools), some error in dev tools for undefinded
       - [99%] OBJECTIVES (2021.3.18) TODO: RAXT, RAXM, RAXB chartbar need improve, need calperfect number for plus data, now only for one data
       - [] VISION
       - [X] ACTIONS (2021.3.14)
