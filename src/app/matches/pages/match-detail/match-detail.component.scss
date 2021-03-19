@@ -24,3 +24,21 @@
 .build-map-advantage {
   display: flex;
 }
+
+
+
+.killed-damage-by-txt {
+  border: 1px solid $red;
+  padding: 0 5px;
+  display: inline-block;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.killed-damage-txt {
+  border: 1px solid $green;
+  padding: 0 5px;
+  display: inline-block;
+  text-align: center;
+  margin-right: 5px;
+}
