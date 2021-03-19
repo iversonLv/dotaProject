@@ -24,7 +24,7 @@
                 (mouseover)="showAbilityModalFn.emit([$event, item?.key])"
                 (mouseout)="hideAbilityModalFn.emit($event)"
               />
-              <span class="middle-text">{{item?.value}}</span>
+              <span class="middle-text">{{item?.value | greaterNum: 1000 : 'k'}}</span>
             </div>
             <mat-icon>arrow_right_alt</mat-icon>
             <div class="item-list" *ngIf="element?.ability_targets[item?.key]">
@@ -37,7 +37,7 @@
                     onError="this.src='./assets/images/Dota2Logo.svg'"
                     [src]="'https://steamcdn-a.akamaihd.net/' + heroesNameLocal[target?.key]?.icon"
                   />
-                <span class="middle-text">{{target?.value}}</span>
+                <span class="middle-text">{{target?.value | greaterNum: 1000 : 'k'}}</span>
               </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
               (mouseover)="showItemModalFn.emit([$event, itemsLocal[item?.key]?.id])"
               (mouseout)="hideItemModalFn.emit($event)"
             />
-            <span class="middle-text">{{item?.value}}</span>
+            <span class="middle-text">{{item?.value | greaterNum: 1000 : 'k'}}</span>
         </div>
       </div>
     </td>
@@ -100,7 +100,7 @@
               (mouseover)="showAbilityModalFn.emit([$event, item?.key])"
               (mouseout)="hideAbilityModalFn.emit($event)"
             />
-            <span class="middle-text">{{item?.value}}</span>
+            <span class="middle-text">{{item?.value | greaterNum: 1000 : 'k'}}</span>
           </span>
     
     
@@ -110,7 +110,7 @@
                 onError="this.src='./assets/images/Dota2Logo.svg'"
                 width="29" height="29" src="./assets/images/default_attack.png"
               />
-              <span class="middle-text">{{item?.value}}</span>
+              <span class="middle-text">{{item?.value | greaterNum: 1000 : 'k'}}</span>
             </span>
           </ng-template>
         </div>
