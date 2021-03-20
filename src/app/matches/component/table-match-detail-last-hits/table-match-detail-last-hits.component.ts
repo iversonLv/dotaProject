@@ -17,7 +17,7 @@ export class TableMatchDetailLastHitsComponent implements OnInit {
     this.setDataSourceAttributes();
   }
 
-  lastHitTimeList = ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50'];
+  lastHitTimeList: string[] = [];
 
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = [
@@ -29,9 +29,10 @@ export class TableMatchDetailLastHitsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.lastHitTimeList = this.calLastHitData(this.data[0].lh_t);
+    this.displayedColumns.push(...this.lastHitTimeList.slice(1));
     // extract the data
     this.dataSource.data = this.extractData(this.data);
-    this.displayedColumns.push(...this.lastHitTimeList.slice(1));
   }
   // extract matches players[] to less data to meet for this page table
   extractData(data): any[] {
@@ -94,6 +95,16 @@ export class TableMatchDetailLastHitsComponent implements OnInit {
     } else {
       return Math.min(...dataField);
     }
+  }
+
+  // calLastHitData
+  calLastHitData(data: any): string[] {
+    const lastHitRange = [];
+    const len = Math.floor(data.slice(1).length / 5);
+    for (let i = 0; i <= len; i++) {
+      lastHitRange.push(i * 5 + '');
+    }
+    return lastHitRange;
   }
 
 }
