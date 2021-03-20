@@ -60,6 +60,8 @@ import { TableMatchDetailObjectiveDamageComponent } from './components/table-mat
 import { TableMatchDetailCombatKillsComponent } from './components/table-match-detail-combat-kills/table-match-detail-combat-kills.component';
 import { TableMatchDetailCombatDamageComponent } from './components/table-match-detail-combat-damage/table-match-detail-combat-damage.component';
 import { TableMatchDetailCombatDamageDetailComponent } from './components/table-match-detail-combat-damage-detail/table-match-detail-combat-damage-detail.component';
+import { TableMatchDetailUnitKillsComponent } from './component/table-match-detail-unit-kills/table-match-detail-unit-kills.component';
+import { TableMatchDetailLastHitsComponent } from './component/table-match-detail-last-hits/table-match-detail-last-hits.component';
 
 
 @NgModule({
@@ -107,7 +109,9 @@ import { TableMatchDetailCombatDamageDetailComponent } from './components/table-
     TableMatchDetailObjectiveDamageComponent,
     TableMatchDetailCombatKillsComponent,
     TableMatchDetailCombatDamageComponent,
-    TableMatchDetailCombatDamageDetailComponent
+    TableMatchDetailCombatDamageDetailComponent,
+    TableMatchDetailUnitKillsComponent,
+    TableMatchDetailLastHitsComponent
   ],
   imports: [
     CommonModule,

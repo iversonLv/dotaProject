@@ -1,0 +1,44 @@
+<table mat-table [dataSource]="dataSource" matSort>  
+  <!-- name column -->
+  <ng-container matColumnDef="player_slot">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
+    <td mat-cell *matCellDef="let element">
+      <app-player-box [data]="element" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+    </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  
+  <!-- units kills columns -->
+  <ng-container [matColumnDef]="item" *ngFor="let item of displayedColumns | slice: 1 : unitKillsObjKeyLength + 1">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header [matTooltip]="unitKillsObjKey[item]?.tooltip" matTooltipPosition="above"> {{unitKillsObjKey[item]?.title}} </th>
+    <td mat-cell *matCellDef="let element">
+      {{element[item] === 0 ? '-' : element[item]}}
+      <app-bar-chart [data]="[calPerfectData(data, item), (element[item] ? element[item] : 0)]"></app-bar-chart>
+    </td>
+    <td mat-footer-cell *matFooterCellDef>
+      {{calTotalData(data, item)}}
+    </td>
+  </ng-container>
+
+  <!-- other columns -->
+  <ng-container matColumnDef="OTHER">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="true"> OTHER</th>
+    <td mat-cell *matCellDef="let element" class="other-item">
+      <p *ngFor="let item of element.other">
+        {{item.value}} {{item.key | nameDestruct: '_' : '2': 'upperCase'}}
+      </p>
+    </td>
+    <td mat-footer-cell *matFooterCellDef class="other-item">
+      <p *ngFor="let item of extractOtherUnitKillsFinall(data)">
+        {{item.value}} {{item.key | nameDestruct: '_' : '2': 'upperCase'}}
+      </p>
+    </td>
+  </ng-container>
+  
+
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+</table>
