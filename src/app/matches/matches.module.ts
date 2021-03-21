@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 // shared
 import { SharedModule } from '../shared/shared.module';
 
+import { NgxEchartsModule } from 'ngx-echarts';
+
 // material
 import { MaterialModule } from '../material.module';
 
@@ -60,8 +62,9 @@ import { TableMatchDetailObjectiveDamageComponent } from './components/table-mat
 import { TableMatchDetailCombatKillsComponent } from './components/table-match-detail-combat-kills/table-match-detail-combat-kills.component';
 import { TableMatchDetailCombatDamageComponent } from './components/table-match-detail-combat-damage/table-match-detail-combat-damage.component';
 import { TableMatchDetailCombatDamageDetailComponent } from './components/table-match-detail-combat-damage-detail/table-match-detail-combat-damage-detail.component';
-import { TableMatchDetailUnitKillsComponent } from './component/table-match-detail-unit-kills/table-match-detail-unit-kills.component';
-import { TableMatchDetailLastHitsComponent } from './component/table-match-detail-last-hits/table-match-detail-last-hits.component';
+import { TableMatchDetailUnitKillsComponent } from './components/table-match-detail-unit-kills/table-match-detail-unit-kills.component';
+import { TableMatchDetailLastHitsComponent } from './components/table-match-detail-last-hits/table-match-detail-last-hits.component';
+import { ChartStackBarComponent } from './components/chart-stack-bar/chart-stack-bar.component';
 
 
 @NgModule({
@@ -111,7 +114,8 @@ import { TableMatchDetailLastHitsComponent } from './component/table-match-detai
     TableMatchDetailCombatDamageComponent,
     TableMatchDetailCombatDamageDetailComponent,
     TableMatchDetailUnitKillsComponent,
-    TableMatchDetailLastHitsComponent
+    TableMatchDetailLastHitsComponent,
+    ChartStackBarComponent
   ],
   imports: [
     CommonModule,
@@ -125,6 +129,9 @@ import { TableMatchDetailLastHitsComponent } from './component/table-match-detai
     }),
     EffectsModule.forFeature([MatchesEffects]),
 
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ]
 })
 export class MatchesModule { }

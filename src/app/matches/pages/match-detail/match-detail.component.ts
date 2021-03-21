@@ -50,6 +50,66 @@ export class MatchDetailComponent implements OnInit {
   abilitiesTalentsLocal: any;
   permanentBuffsLocal: any;
 
+
+  // reason mapping for farm bottom stack bar chart
+  xpReasonMapping = {
+    0: {
+      color: '#609cc8',
+      title: 'other',
+    },
+    1: {
+      color: '#ff8127',
+      title: 'hero',
+    },
+    2: {
+      color: '#2ca02c',
+      title: 'creep',
+    },
+    3: {
+      color: '#da272b',
+      title: 'roshan',
+    }
+  };
+
+  goldReasonMapping = {
+    0: {
+      color: '#609cc8',
+      title: 'other',
+    },
+    1: {
+      color: '#ff8127',
+      title: 'death',
+    },
+    11: {
+      color: '#da272b',
+      title: 'building',
+    },
+    12: {
+      color: '#9962b9',
+      title: 'hero',
+    },
+    13: {
+      color: '#96635a',
+      title: 'creep',
+    },
+    14: {
+      color: '#eb80c4',
+      title: 'neutrals',
+    },
+    15: {
+      color: '#b9c03c',
+      title: 'roshan',
+    },
+    17: {
+      color: '#12c3d2',
+      title: 'rune',
+    },
+    20: {
+      color: '#609cc8',
+      title: 'ward',
+    },
+  };
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,

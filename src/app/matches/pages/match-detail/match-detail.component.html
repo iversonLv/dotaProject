@@ -384,6 +384,26 @@
         <!-- table -->
       </div>
       <!-- team-box -->
+
+      <!-- Gold Sources -->
+      <app-nav-title [title]="'Gold Sources'"></app-nav-title>
+      <app-chart-stack-bar
+        [heroesLocal]="heroesLocal"
+        [data]="matchData?.players"
+        [field]="'gold_reasons'"
+        [mapping]="goldReasonMapping"
+      >
+      </app-chart-stack-bar>
+
+      <!-- XP Sources -->
+      <app-nav-title [title]="'XP Sources'"></app-nav-title>
+      <app-chart-stack-bar
+        [heroesLocal]="heroesLocal"
+        [data]="matchData?.players"
+        [field]="'xp_reasons'"
+        [mapping]="xpReasonMapping"
+      >
+      </app-chart-stack-bar>
     </div>
 
     <!-- casts -->
