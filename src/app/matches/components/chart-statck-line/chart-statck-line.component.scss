@@ -1,0 +1,36 @@
+@import '../../../../styles.scss';
+
+.chart {
+  height: 600px;
+  width: 1304px;
+
+  ::ng-deep {
+    .tooltip-item-row {
+      margin: 4px 0;
+      padding-left: 10px;
+      padding-right: 10px;
+      border-left-width: 5px;
+      border-left-style: solid;
+      text-transform: capitalize;
+      align-items: center;
+      display: flex;
+      justify-content: space-between; 
+      background-color: rgba($color: $red, $alpha: .3);
+      
+      > div {
+        flex-direction: column;
+        display: flex;
+        padding-right: 10px;
+
+        img {
+          display: inline-block;
+          margin-right: 5px;
+        }
+      }
+
+      &.is-radiant {
+        background-color: rgba($color: $green, $alpha: .3);
+      }
+    }
+  }
+}
