@@ -1,0 +1,105 @@
+@import '../../../../styles.scss';
+// override the table style
+
+.mat-table {
+  border: 1px solid rgba($color: $white, $alpha: 0.03);
+  background: none;
+  width: 100%;
+
+  th {
+    background: rgba($color: $white, $alpha: 0.03);
+  }
+
+  th.mat-header-cell:first-of-type,
+  td.mat-cell:first-of-type,
+  td.mat-footer-cell:first-of-type {
+    padding-left: 10px;
+  }
+  
+  th.mat-header-cell:last-of-type,
+  td.mat-cell:last-of-type,
+  td.mat-footer-cell:last-of-type {
+    padding-right: 10px;
+  }
+
+  td {
+    color: $gray;
+    font-size: 13px;
+    vertical-align: top;
+  }
+}
+
+
+
+
+.item-num {
+  display: inline-block;
+  padding: 5px 0;
+  width: calc(100% - 19px);
+  border-bottom: 1px solid rgb(128 128 128);
+  margin-bottom: 10px;
+}
+
+// item list
+.item-list {
+  display: flex;
+  max-height: 350px;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  .item-list-item {
+    position: relative;
+    margin-right: 10px;
+  }
+
+  .middle-text {
+    position: absolute;
+    bottom: 7px;
+    width: 35px;
+    line-height: 14px;
+    height: 14px;
+    left: 1px;
+    right: 1px;
+    text-align: center;
+    color: $gray;
+    font-size: 10px;
+    background: rgb(0 0 0 / 60%);
+  }
+}
+
+.item {
+  cursor: pointer;
+}
+
+.item-color {
+  border-width: 1px;
+  border-style: solid;
+
+  &.item-color-rare {
+    border-color: $item-rare;
+  }
+  
+  &.item-color-artifact {
+    border-color: $item-artifact;
+  }
+  
+  &.item-color-secret-shop {
+    border-color: $item-secret-shop;
+  }
+  
+  &.item-color-consumable {
+    border-color: $item-consumable;
+  }
+  
+  &.item-color-common {
+    border-color: $item-common;
+  }
+  
+  &.item-color-epic {
+    border-color: $item-epic;
+  }
+  
+  &.item-color-component {
+    border-color: $item-component;
+  }
+}

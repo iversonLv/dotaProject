@@ -110,6 +110,9 @@ export class MatchDetailComponent implements OnInit {
     },
   };
 
+  // item tab show consumable
+  enableConsumable = false;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
