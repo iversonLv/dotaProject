@@ -52,7 +52,6 @@ export class TableMatchDetailLastHitsComponent implements OnInit {
         ...this.extractLastHit(lh_t)
       });
     });
-
     return this.finalData;
   }
 
