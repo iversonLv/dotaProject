@@ -453,6 +453,44 @@
       <!-- team-box -->
     </div>
 
+    <!-- graphs -->
+    <div *ngIf="currentPage === 'graphs'">
+
+      <!-- gold graphs -->
+      <app-nav-title [title]="'Gold'"></app-nav-title>
+      <app-chart-statck-line
+        [playerColorLocal]="playerColorLocal"
+        [heroesLocal]="heroesLocal"
+        [data]="matchData?.players"
+        [heroesNameLocal]="heroesNameLocal"
+        [field]="'gold_t'"
+      >
+      </app-chart-statck-line>
+      <!-- experience graphs -->
+      <app-nav-title [title]="'Experience'"></app-nav-title>
+      <app-chart-statck-line
+        [playerColorLocal]="playerColorLocal"
+        [heroesLocal]="heroesLocal"
+        [data]="matchData?.players"
+        [heroesNameLocal]="heroesNameLocal"
+        [field]="'xp_t'"
+      >
+      </app-chart-statck-line>
+
+      
+      <!-- last_hit graphs -->
+      <app-nav-title [title]="'Last Hits'"></app-nav-title>
+      <app-chart-statck-line
+        [playerColorLocal]="playerColorLocal"
+        [heroesLocal]="heroesLocal"
+        [data]="matchData?.players"
+        [heroesNameLocal]="heroesNameLocal"
+        [field]="'lh_t'"
+      >
+      </app-chart-statck-line>
+
+    </div>
+
     <!-- casts -->
     <div *ngIf="currentPage === 'casts'">
       <div class="team-box">
