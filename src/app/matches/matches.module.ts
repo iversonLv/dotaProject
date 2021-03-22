@@ -65,6 +65,7 @@ import { TableMatchDetailCombatDamageDetailComponent } from './components/table-
 import { TableMatchDetailUnitKillsComponent } from './components/table-match-detail-unit-kills/table-match-detail-unit-kills.component';
 import { TableMatchDetailLastHitsComponent } from './components/table-match-detail-last-hits/table-match-detail-last-hits.component';
 import { ChartStackBarComponent } from './components/chart-stack-bar/chart-stack-bar.component';
+import { TableMatchDetailItemsComponent } from './components/table-match-detail-items/table-match-detail-items.component';
 
 
 @NgModule({
@@ -115,7 +116,8 @@ import { ChartStackBarComponent } from './components/chart-stack-bar/chart-stack
     TableMatchDetailCombatDamageDetailComponent,
     TableMatchDetailUnitKillsComponent,
     TableMatchDetailLastHitsComponent,
-    ChartStackBarComponent
+    ChartStackBarComponent,
+    TableMatchDetailItemsComponent
   ],
   imports: [
     CommonModule,

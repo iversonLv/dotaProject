@@ -6,10 +6,14 @@ import { EChartsOption } from 'echarts';
 // model
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 
+// pipe
+import { GreaterNumPipe } from '../../../shared/utils/greater-num.pipe';
+
 @Component({
   selector: 'app-chart-stack-bar',
   templateUrl: './chart-stack-bar.component.html',
-  styleUrls: ['./chart-stack-bar.component.scss']
+  styleUrls: ['./chart-stack-bar.component.scss'],
+  providers: [GreaterNumPipe]
 })
 export class ChartStackBarComponent implements OnInit {
   @Input() data: any;
@@ -18,7 +22,9 @@ export class ChartStackBarComponent implements OnInit {
   @Input() mapping;
   chartOption: EChartsOption;
 
-  constructor() { }
+  constructor(
+    private greaterNum: GreaterNumPipe
+  ) { }
 
   ngOnInit(): void {
     this.chartOption = {
@@ -79,6 +85,7 @@ export class ChartStackBarComponent implements OnInit {
     return xData;
   }
 
+  // for xAxis hero image
   calXDataRich(data, field, heroesLocal): any {
     const xDataRich = {};
     this.calXData(data, field).forEach(x => {
@@ -109,7 +116,7 @@ export class ChartStackBarComponent implements OnInit {
         data: [],
         type: 'bar',
         name: null,
-        color: null
+        color: null,
       };
       resson.forEach(x => {
         if (x[i] !== undefined) {
