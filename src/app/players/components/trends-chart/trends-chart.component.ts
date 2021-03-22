@@ -127,7 +127,6 @@ export class TrendsChartComponent implements OnInit {
         });
       }
     }
-    console.log(seriesData)
     return seriesData;
   }
 
