@@ -149,8 +149,8 @@ environment.pro.ts
       - [x] PERFORMANCES (2021.3.14, 15)
       - [] LANING
       - [X] COMBAT (2021.3.14, 19) merge kills and damage table together
-      - [80%] FARM (2021.3.14, 19) bottom 2 charts are not implemented
-      - [] ITEMS
+      - [99%] FARM (2021.3.14, 19, 20, 21) TODO: last_hit sort not work, the finalData does not grab the spread data
+      - [x] ITEMS
       - [] GRAPHS
       - [99%] CASTS (2021.3.14, 18) TODO: hover on other image, ability target image will fresh(only happen if open the dev tools), some error in dev tools for undefinded
       - [99%] OBJECTIVES (2021.3.18) TODO: RAXT, RAXM, RAXB chartbar need improve, need calperfect number for plus data, now only for one data
