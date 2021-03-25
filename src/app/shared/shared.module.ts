@@ -12,10 +12,13 @@ import { NavTitleComponent } from './components/nav-title/nav-title.component';
 import { SubNavComponent } from './components/sub-nav/sub-nav.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 
-// hero attri
+// icon
 import { HeroAttrStrComponent } from './components/icons/hero-attr-str/hero-attr-str.component';
 import { HeroAttrAgiComponent } from './components/icons/hero-attr-agi/hero-attr-agi.component';
 import { HeroAttrIntComponent } from './components/icons/hero-attr-int/hero-attr-int.component';
+import { IconRoshanComponent } from './components/icons/icon-roshan/icon-roshan.component';
+import { RadientComponent } from './components/icons/radient/radient.component';
+import { DireComponent } from './components/icons/dire/dire.component';
 
 // charts
 import { CountChartComponent } from './components/count-chart/count-chart.component';
@@ -31,6 +34,9 @@ import { TalentModalComponent } from './components/talent-modal/talent-modal.com
 import { ItemModalComponent } from './components/item-modal/item-modal.component';
 import { AbilityModalComponent } from './components/ability-modal/ability-modal.component';
 import { CosmeticModalComponent } from './components/cosmetic-modal/cosmetic-modal.component';
+import { FirstBloodModalComponent } from './components/first-blood-modal/first-blood-modal.component';
+import { RoshanKilledModalComponent } from './components/roshan-killed-modal/roshan-killed-modal.component';
+import { TeamFightModalComponent } from './components/team-fight-modal/team-fight-modal.component';
 
 // pipes
 import { OrderByPipe } from './utils/order-by.pipe';
@@ -44,8 +50,6 @@ import { ExcludeTextPipe } from './utils/exclude-text.pipe';
 import { OrdinalNumPipe } from './utils/ordinal-num.pipe';
 import { FieldTooltipPipe } from './utils/field-tooltip.pipe';
 import { WinComponent } from './components/icons/win/win.component';
-import { RadientComponent } from './components/icons/radient/radient.component';
-import { DireComponent } from './components/icons/dire/dire.component';
 
 
 
@@ -63,6 +67,7 @@ import { DireComponent } from './components/icons/dire/dire.component';
     WinComponent,
     RadientComponent,
     DireComponent,
+    IconRoshanComponent,
 
     // modals
     HeroModalComponent,
@@ -70,6 +75,9 @@ import { DireComponent } from './components/icons/dire/dire.component';
     AbilityModalComponent,
     TalentModalComponent,
     CosmeticModalComponent,
+    FirstBloodModalComponent,
+    RoshanKilledModalComponent,
+    TeamFightModalComponent,
 
     // charts
     CountChartComponent,
@@ -114,6 +122,7 @@ import { DireComponent } from './components/icons/dire/dire.component';
     WinComponent,
     RadientComponent,
     DireComponent,
+    IconRoshanComponent,
 
     // modals
     HeroModalComponent,
@@ -121,6 +130,9 @@ import { DireComponent } from './components/icons/dire/dire.component';
     AbilityModalComponent,
     TalentModalComponent,
     CosmeticModalComponent,
+    FirstBloodModalComponent,
+    RoshanKilledModalComponent,
+    TeamFightModalComponent,
 
     // charts
     CountChartComponent,

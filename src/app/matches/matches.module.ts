@@ -68,6 +68,7 @@ import { ChartStackBarComponent } from './components/chart-stack-bar/chart-stack
 import { TableMatchDetailItemsComponent } from './components/table-match-detail-items/table-match-detail-items.component';
 import { ChartStatckLineComponent } from './components/chart-statck-line/chart-statck-line.component';
 import { ChartStackLineWithMinusComponent } from './components/chart-stack-line-with-minus/chart-stack-line-with-minus.component';
+import { TimeLineTeamfightComponent } from './components/time-line-teamfight/time-line-teamfight.component';
 
 
 @NgModule({
@@ -121,7 +122,8 @@ import { ChartStackLineWithMinusComponent } from './components/chart-stack-line-
     ChartStackBarComponent,
     TableMatchDetailItemsComponent,
     ChartStatckLineComponent,
-    ChartStackLineWithMinusComponent
+    ChartStackLineWithMinusComponent,
+    TimeLineTeamfightComponent
   ],
   imports: [
     CommonModule,

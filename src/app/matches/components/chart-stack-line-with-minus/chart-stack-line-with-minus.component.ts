@@ -116,7 +116,7 @@ export class ChartStackLineWithMinusComponent implements OnInit {
       };
       seriesData.push(seriesItem);
     }
-    console.log(seriesData);
+    // console.log(seriesData);
     return seriesData;
   }
 

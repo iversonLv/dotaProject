@@ -466,7 +466,13 @@
     <!-- graphs -->
     <div *ngIf="currentPage === 'graphs'">
 
-      <!-- time line -->
+      <!-- team fight time line -->
+      <app-time-line-teamfight
+        [playerColorLocal]="playerColorLocal"
+        [heroesLocal]="heroesLocal"
+        [heroesNameLocal]="heroesNameLocal"
+        [data]="matchData"
+      ></app-time-line-teamfight>
 
       <!-- Radiant Advantage -->
       <app-nav-title [title]="'Radiant Advantage'"></app-nav-title>

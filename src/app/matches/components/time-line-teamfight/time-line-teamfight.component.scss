@@ -1,0 +1,134 @@
+@import '../../../../styles.scss';
+
+.team-fight-time-line {
+  margin-bottom: 15px;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .team-fight-time-line-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 12px;
+    color: $white;
+    font-weight: bold;
+
+    .team-side {
+      font-weight: normal;
+      color: $gray;
+    }
+  }
+
+  .team-fight-time-line-main {
+    position: relative;
+    width: calc(100% - 100px);
+
+
+    // game start point
+    .start-piont {
+      width: 2px;
+      height: 4px;
+      position: absolute;
+      top: 0;
+      background-color: $white;
+    }
+
+    // action-piont
+    // for first blood, roshan kill and aegis pick
+    .action-piont {
+      position: absolute;
+      display: flex;
+      top: -17px;
+      flex-direction: column;
+      cursor: pointer;
+
+      .action-icon {
+        color: $red;
+        width: 24px;
+        height: 24px;
+        font-size: 24px;
+        position: absolute;
+        top: 28px;
+      }
+
+      .roshan-icon {
+        fill: $red;
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: 28px;
+      }
+
+      .action-piont-arrow {
+        color: $red;
+        position: absolute;
+        top: 11px;
+      }
+
+      .action-piont-time {
+        position: absolute;
+        top: -12px;
+        font-size: 12px;
+      }
+
+      &.action-from-radiant {
+        .action-icon {
+          color: $green;
+          transform: rotate(180deg);
+          top: -17px;
+        }
+
+        .roshan-icon {
+          fill: $green;
+          top: -17px;
+        }
+
+        .action-piont-arrow {
+          color: $green;
+          top: 3px;
+        }
+
+        .action-piont-time {
+          top: 24px;
+        }
+      }
+    }
+
+    .team-fights-point {
+      position: absolute;
+      display: flex;
+      top: -10px;
+      flex-direction: column;
+      cursor: pointer;
+
+      .team-fights-icon {
+        color: $red;
+        width: 24px;
+        height: 24px;
+        font-size: 24px;
+
+        &.is-radiant-win-team-fight {
+          color: $green;
+        }
+      }
+    }
+
+    .line {
+      display: block;
+      background-color: rgba($color: $gray, $alpha: .7);
+      height: 4px;
+      width: 100%;
+    }
+  }
+
+  .team-fight-time-line-right {
+    font-size: 12px;
+    color: $white;
+    font-weight: bold;
+  }
+}
+
+
