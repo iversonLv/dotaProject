@@ -1,0 +1,17 @@
+@import '../../../../styles.scss';
+
+.fist-blood-tooltip {
+  border: 2px solid $deep;
+  position: absolute;
+  z-index: 10;
+  border-bottom: 1px solid $black;
+  background-color: $darken;
+
+  display: flex;
+  align-items: baseline;
+
+  .first-blood-txt {
+    display: inline-block;
+    padding: 0 5px;
+  }
+}

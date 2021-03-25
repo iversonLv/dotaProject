@@ -44,3 +44,18 @@
   text-align: center;
   margin-right: 5px;
 }
+
+// overview-map-adv
+.overview-map-adv {
+  display: flex;
+
+  .overview-adv {
+    width: 70%;
+
+    ::ng-deep {
+      .chart {
+        width: 100%;
+      }
+    }
+  }
+}

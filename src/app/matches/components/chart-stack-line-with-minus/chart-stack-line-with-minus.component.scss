@@ -1,0 +1,19 @@
+@import '../../../../styles.scss';
+
+.chart {
+  height: 600px;
+  width: 1304px;
+
+  ::ng-deep {
+    .side-dire {
+      display: inline-block;
+      padding-right: 10px;
+      color: $red;
+    }
+    .side-radiant {
+      display: inline-block;
+      padding-right: 10px;
+      color: $green;
+    }
+  }
+}
