@@ -143,6 +143,16 @@
           [data]="matchData?.players | slice: 5:10"
           >
         </app-table-match-detail-overview-ability-build>
+
+        <div class="overview-map-adv">
+          <!-- Radiant Advantage -->
+          <div class="overview-adv">
+            <app-nav-title [title]="'Radiant Advantage'"></app-nav-title>
+            <app-chart-stack-line-with-minus
+              [data]="[matchData.radiant_xp_adv, matchData.radiant_gold_adv]"
+            ></app-chart-stack-line-with-minus>
+          </div>
+        </div>
         
       </div>
       <!-- team-box -->
@@ -455,6 +465,20 @@
 
     <!-- graphs -->
     <div *ngIf="currentPage === 'graphs'">
+
+      <!-- team fight time line -->
+      <app-time-line-teamfight
+        [playerColorLocal]="playerColorLocal"
+        [heroesLocal]="heroesLocal"
+        [heroesNameLocal]="heroesNameLocal"
+        [data]="matchData"
+      ></app-time-line-teamfight>
+
+      <!-- Radiant Advantage -->
+      <app-nav-title [title]="'Radiant Advantage'"></app-nav-title>
+      <app-chart-stack-line-with-minus
+        [data]="[matchData.radiant_xp_adv, matchData.radiant_gold_adv]"
+      ></app-chart-stack-line-with-minus>
 
       <!-- gold graphs -->
       <app-nav-title [title]="'Gold'"></app-nav-title>
