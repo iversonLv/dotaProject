@@ -4,13 +4,12 @@
     *ngFor="let item of data.players; index as i"
   >
     <div class="player-box">
-      <img
-        width="24"
-        height="24"
-        onError="this.src='./assets/images/Dota2Logo.svg'"
-        src="https://steamcdn-a.akamaihd.net/{{heroesLocal[playerData[i]?.hero_id]?.icon}}"
-      />
-      <span class="player-box-name" [style]="'color:' + playerColorLocal[playerData[i]?.player_slot]"> {{playerData[i].name ? playerData[i].name : playerData[i].personaname}}</span>
+      <app-hero-icon-player-name
+        [player]="playerData[i]"
+        [heroesLocal]="heroesLocal"
+        [playerColorLocal]="playerColorLocal"
+      ></app-hero-icon-player-name>
+      
       <img
         width="24"
         height="24"

@@ -90,7 +90,7 @@ export class ChartStatckLineComponent implements OnInit {
           color: null,
         },
       };
-      const playerName = i.name ? i.name : i.personaname;
+      const playerName = this.calPlayerName(i);
       legend.name = playerName;
       legend.icon = `image://https://steamcdn-a.akamaihd.net/${heroesLocal[i.hero_id].icon}`;
       legend.textStyle.color = playerColorLocal[i.player_slot];
@@ -118,7 +118,7 @@ export class ChartStatckLineComponent implements OnInit {
         silent: true,
         legendHoverLink: true
       };
-      const playerName = player.name ? player.name : player.personaname;
+      const playerName = this.calPlayerName(player);
       seriesItem.color = playerColorLocal[player?.player_slot];
       seriesItem.name = playerName;
 
@@ -140,6 +140,19 @@ export class ChartStatckLineComponent implements OnInit {
       seriesData.push(seriesItem);
     });
     return seriesData;
+  }
+
+  calPlayerName(player: any): string {
+    const { name, personaname, player_slot } = player;
+    if (!name) {
+      if (!personaname) {
+        return `Anonymous ${player_slot}`;
+      } else {
+        return personaname;
+      }
+    } else {
+      return name;
+    }
   }
 
 }
