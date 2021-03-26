@@ -159,7 +159,7 @@ environment.pro.ts
       - [] ANALYSIS
       - [x] COSMETICS (2021.3.15)
       - [] LOG
-      - [] FANTASY
+      - [X] FANTASY observer column number fomular is odd, current is observer + ser uses
       - [] CHAT
       - [] STORY
   - [99%] Teams page (2021.2.8)

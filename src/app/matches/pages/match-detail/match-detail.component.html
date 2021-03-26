@@ -674,8 +674,40 @@
           [data]="matchData?.players"
       ></app-table-cosmetics>
     </div>
+
+    <!-- Fantasy -->
+    <div *ngIf="currentPage === 'fantasy'">
+      <div class="team-box">
+        <div class="team-row">
+          <app-radient class="sides-icon"></app-radient>
+          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Fantasy' : 'Radiant - Fantasy'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-fantasy
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players | slice: 0:5"></app-table-match-detail-fantasy>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
+
+      <div class="team-box">
+        <div class="team-row">
+          <app-dire class="sides-icon"></app-dire>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Fantasy' : 'Dire - Fantasy'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-fantasy
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players | slice: 5:10">
+        </app-table-match-detail-fantasy>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
+    </div>
+
   </ng-template>
-  
 </div>
 
 <app-ability-modal [abilitiesTalentsLocal]="abilitiesTalentsLocal" *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName' [pageXY] = 'pageXY'></app-ability-modal>
