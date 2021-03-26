@@ -104,7 +104,7 @@ environment.pro.ts
     - [] GET serch (2021.2.28)
   - [] Find Matches
 [] Setup/Finish pages
-  - [] Home page
+  - [X] Home page (2021.3.27)
   - [99%] Search page: Search matches/Players (2021.2.28) TODO: search term is empty the public table and match tables are odd behavior
   - [x] 404 not found page (2021.2.28)
   - [x] Heros page  (2021.3.1)(2021.3.2)
@@ -159,7 +159,7 @@ environment.pro.ts
       - [] ANALYSIS
       - [x] COSMETICS (2021.3.15)
       - [] LOG
-      - [X] FANTASY observer column number fomular is odd, current is observer + ser uses
+      - [X] FANTASY (2021.3.26) observer column number fomular is odd, current is observer + ser uses
       - [] CHAT
       - [] STORY
   - [99%] Teams page (2021.2.8)
