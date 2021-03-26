@@ -1,24 +1,15 @@
 <div  class="fist-blood-tooltip" *ngIf="heroesLocal && data" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
-  <div class="first-blood-player">
-    <img
-      width="24"
-      height="24"
-      onError="this.src='./assets/images/Dota2Logo.svg'"
-      src="https://steamcdn-a.akamaihd.net/{{heroesLocal[data?.drewPlayer?.hero_id]?.icon}}"
-    />
-    
-    <span [style]="'color:' + playerColorLocal[data?.drewPlayer?.player_slot]"> {{data?.drewPlayer?.name ? data?.drewPlayer?.name : data?.drewPlayer?.personaname}}</span>
-  </div>
+  <app-hero-icon-player-name
+    [player]="data?.drewPlayer"
+    [heroesLocal]="heroesLocal"
+    [playerColorLocal]="playerColorLocal"
+  ></app-hero-icon-player-name>
   <span class="first-blood-txt">
     drew first blood by killg
   </span>
-  <div class="first-blood-player">
-    <img
-      width="24"
-      height="24"
-      onError="this.src='./assets/images/Dota2Logo.svg'"
-      src="https://steamcdn-a.akamaihd.net/{{heroesLocal[data?.takenPlayer?.hero_id]?.icon}}"
-    />
-    <span [style]="'color:' + playerColorLocal[data?.takenPlayer?.player_slot]"> {{data?.takenPlayer?.name ? data?.takenPlayer?.name : data?.takenPlayer?.personaname}}</span>
-  </div>
+  <app-hero-icon-player-name
+    [player]="data?.takenPlayer"
+    [heroesLocal]="heroesLocal"
+    [playerColorLocal]="playerColorLocal"
+  ></app-hero-icon-player-name>
 </div>

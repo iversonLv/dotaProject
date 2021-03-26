@@ -11,6 +11,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { NavTitleComponent } from './components/nav-title/nav-title.component';
 import { SubNavComponent } from './components/sub-nav/sub-nav.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { HeroIconPlayerNameComponent } from './components/hero-icon-player-name/hero-icon-player-name.component';
 
 // icon
 import { HeroAttrStrComponent } from './components/icons/hero-attr-str/hero-attr-str.component';
@@ -59,6 +60,7 @@ import { WinComponent } from './components/icons/win/win.component';
     NavTitleComponent,
     SubNavComponent,
     MainNavComponent,
+    HeroIconPlayerNameComponent,
 
     // icons
     HeroAttrStrComponent,
@@ -114,6 +116,7 @@ import { WinComponent } from './components/icons/win/win.component';
     NavTitleComponent,
     SubNavComponent,
     MainNavComponent,
+    HeroIconPlayerNameComponent,
 
     // icons
     HeroAttrStrComponent,

@@ -1,13 +1,10 @@
 <div  class="roshan-aegis-tooltip" *ngIf="heroesLocal && data" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
-  <div>
-    <img
-      width="24"
-      height="24"
-      onError="this.src='./assets/images/Dota2Logo.svg'"
-      src="https://steamcdn-a.akamaihd.net/{{heroesLocal[data?.pickedAegisPlayer?.hero_id]?.icon}}"
-    />
-    <span [style]="'color:' + playerColorLocal[data?.pickedAegisPlayer?.player_slot]"> {{data?.pickedAegisPlayer?.name ? data?.pickedAegisPlayer?.name : data?.pickedAegisPlayer?.personaname}}</span>
-  </div>
+  <app-hero-icon-player-name
+    [player]="data?.pickedAegisPlayer"
+    [heroesLocal]="heroesLocal"
+    [playerColorLocal]="playerColorLocal"
+  ></app-hero-icon-player-name>
+  
   <span class="txt">
     picked up
   </span>
