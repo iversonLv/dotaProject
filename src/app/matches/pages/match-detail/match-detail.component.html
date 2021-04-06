@@ -16,7 +16,8 @@
 'objectives',
 'vision',
 'actions',
-'analysis',
+'teamfights',
+
 'cosmetics',
 'log',
 'fantasy',
@@ -633,6 +634,43 @@
 
     </div>
 
+    <!-- vision -->
+    <div *ngIf="currentPage === 'vision'">
+      <div class="team-box">
+        <div class="team-row">
+          <app-radient class="sides-icon"></app-radient>
+          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Vision' : 'Radiant - Vision'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-vision
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players | slice: 0:5"></app-table-match-detail-vision>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
+
+      <div class="team-box">
+        <div class="team-row">
+          <app-dire class="sides-icon"></app-dire>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Vision' : 'Dire - Vision'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-vision
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players | slice: 5:10">
+        </app-table-match-detail-vision>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
+      <app-table-match-detail-ward-log
+        [playerColorLocal]="playerColorLocal"
+        [heroesLocal]="heroesLocal"
+        [data]="matchData?.players">
+      </app-table-match-detail-ward-log>
+    </div>
+
     <!-- actions -->
     <div *ngIf="currentPage === 'actions'" class="single-match-actions">
       <div class="team-box">
@@ -665,6 +703,66 @@
       <!-- team-box -->
     </div>
 
+    <!-- team fights -->
+    <div *ngIf="currentPage === 'teamfights'">
+      <!-- team fight time line -->
+      <app-time-line-teamfight
+        (emitCurrentTeamFightData)="emitCurrentTeamFightData($event)"
+        [playerColorLocal]="playerColorLocal"
+        [heroesLocal]="heroesLocal"
+        [heroesNameLocal]="heroesNameLocal"
+        [data]="matchData"
+      ></app-time-line-teamfight>
+
+      <div class="team-box">
+        <div class="team-row">
+          <app-radient class="sides-icon"></app-radient>
+          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Teamfights' : 'Radiant - Teamfights'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-teamfights
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [currentTeamFightDataForTable]="currentTeamFightDataForTable | slice: 0:5"
+          [data]="matchData?.players | slice: 0:5"
+
+          [itemsLocal]="itemsLocal"
+          (showItemModalFn)="showItemModalFn($event)"
+          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
+          [abilitiesTalentsLocal]="abilitiesTalentsLocal"
+          (showAbilityModalFn)="showAbilityModalFn($event)"
+          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"  
+        >
+        </app-table-match-detail-teamfights>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
+
+      <div class="team-box">
+        <div class="team-row">
+          <app-dire class="sides-icon"></app-dire>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Teamfights' : 'Dire - Teamfights'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-teamfights
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [currentTeamFightDataForTable]="currentTeamFightDataForTable | slice: 5:10"
+          [data]="matchData?.players | slice: 5:10"
+          
+          [itemsLocal]="itemsLocal"
+          (showItemModalFn)="showItemModalFn($event)"
+          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
+          [abilitiesTalentsLocal]="abilitiesTalentsLocal"
+          (showAbilityModalFn)="showAbilityModalFn($event)"
+          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null" 
+        >
+        </app-table-match-detail-teamfights>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
+    </div>
+
     <!-- Cosmetics -->
     <div *ngIf="currentPage === 'cosmetics'">
       <app-nav-title [title]="'Cosmetics'"></app-nav-title>
@@ -673,6 +771,45 @@
           [heroesLocal]="heroesLocal"
           [data]="matchData?.players"
       ></app-table-cosmetics>
+    </div>
+
+    <!-- analysis -->
+    <div *ngIf="currentPage === 'analysis'">
+      <div class="team-box">
+        <div class="team-row">
+          <app-radient class="sides-icon"></app-radient>
+          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Analysis' : 'Radiant - Analysis'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-analysis
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players | slice: 0:5"
+
+          [laneRoleLocal]="laneRoleLocal"
+        >
+        </app-table-match-detail-analysis>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
+
+      <div class="team-box">
+        <div class="team-row">
+          <app-dire class="sides-icon"></app-dire>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Analysis' : 'Dire - Analysis'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+        </div>
+        <!-- team-row -->
+        <app-table-match-detail-analysis
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players | slice: 5:10"
+          
+          [laneRoleLocal]="laneRoleLocal"
+        >
+        </app-table-match-detail-analysis>
+        <!-- table -->
+      </div>
+      <!-- team-box -->
     </div>
 
     <!-- Fantasy -->

@@ -1,0 +1,68 @@
+<table mat-table [dataSource]="dataSource" matSort>  
+  <!-- name column -->
+  <ng-container matColumnDef="player_slot" *ngIf="displayedColumns.includes('player_slot')">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
+    <td mat-cell *matCellDef="let element">
+      <app-player-box [data]="element" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+    </td>
+  </ng-container>
+
+  <!--  deaths column -->
+  <ng-container matColumnDef="deaths">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>DEATHS</th>
+    <td mat-cell *matCellDef="let element">
+        <img
+          *ngIf="element?.deaths === 1"
+          width="24"
+          height="24"
+          onError="this.src='./assets/images/Dota2Logo.svg'"
+          src="./assets/images/player_death.png" />
+    </td>
+  </ng-container>
+
+    <!-- 'damage', 'healing', 'gold_delta', 'xp_delta', -->
+    <ng-container [matColumnDef]="item" *ngFor="let item of displayedColumns | slice: 2: 6">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{item | nameDestruct: '_' : 0 }}</th>
+      <td mat-cell *matCellDef="let element">
+        {{element[item]}}
+        <app-bar-chart [data]="[calPerfectData(finalData, item)[0], (element[item] + calPerfectData(finalData, item)[1])]"></app-bar-chart>
+      </td>
+    </ng-container>
+
+    <!-- ability_uses, item_uses-->
+    <ng-container [matColumnDef]="item" *ngFor="let item of displayedColumns | slice: 6">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="uses-col">{{item | nameDestruct: '_' : 0 }}</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="item-list">
+          <div *ngFor="let i of objKey(element, item)" class="item-list-item">
+            <!-- for item -->
+            <img
+              width="35px"
+              [class]="'item-color item-color-' + itemsLocal[i]?.qual"
+              class="item"
+              *ngIf="item && itemsLocal && itemsLocal[i]?.img"
+              onError="this.src='./assets/images/Dota2Logo.svg'"
+              [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[i]?.img"
+              (mouseover)="showItemModalFn.emit([$event, itemsLocal[i]?.id])"
+              (mouseout)="hideItemModalFn.emit($event)"
+            />
+          
+            <!-- for ability -->
+            <img
+              width="35px"
+              class="item"
+              *ngIf="item && abilitiesTalentsLocal && abilitiesTalentsLocal[i]?.img"
+              onError="this.src='./assets/images/Dota2Logo.svg'"
+              [src]="'https://steamcdn-a.akamaihd.net/' + abilitiesTalentsLocal[i]?.img"
+              (mouseover)="showAbilityModalFn.emit([$event, i])"
+              (mouseout)="hideAbilityModalFn.emit($event)"
+            />
+            <span class="middle-text">{{element[item][i]}}</span>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -8,8 +8,8 @@ export class DurationFormatPipe implements PipeTransform {
   transform(duration: number): unknown {
     let minus = false;
     duration < 0 ? minus = true : minus = false;
-    const getMin = (Math.abs(duration) / 60).toString().split('.')[0];
-    let getSec = Math.abs(duration) % 60 === 0 ? '00' : Math.abs(duration) % 60;
+    const getMin = (Math.abs(Math.floor(duration) / 60)).toString().split('.')[0];
+    let getSec = Math.abs(Math.floor(duration)) % 60 === 0 ? '00' : Math.abs(Math.floor(duration)) % 60;
     if (getSec < 10 && getSec > 0) {
       getSec = '0' + getSec + '';
     }

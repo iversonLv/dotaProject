@@ -18,6 +18,7 @@ import { HerosService } from 'src/app/heros/services/heros.service';
 import { PlayerColorService } from 'src/app/services/player-color.service';
 import { ItemsService } from 'src/app/services/items.service';
 import { PermanentBuffsService } from 'src/app/services/permanent-buffs.service';
+import { LaneRoleService } from 'src/app/services/lane-role.service';
 
 @Component({
   selector: 'app-match-detail',
@@ -38,9 +39,12 @@ export class MatchDetailComponent implements OnInit {
   showItemModal = false;
   currentMouseOverItem: any = null;
 
+  currentTeamFightDataForTable = null;
+
   // User for hero modal to mapping
   heroesLocal: IheroLocal;
   heroesNameLocal: IheroLocal;
+  laneRoleLocal: any;
   itemIdsLocal: any;
   itemsLocal: any;
   itemColorLocal: IItemColorLocal;
@@ -117,6 +121,7 @@ export class MatchDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private herosService: HerosService,
+    private laneRoleService: LaneRoleService,
     private itemsService: ItemsService,
     private playerColorService: PlayerColorService,
     private permanentBuffsService: PermanentBuffsService,
@@ -134,6 +139,7 @@ export class MatchDetailComponent implements OnInit {
         const singleMatchData = [ ...data.match ];
         this.isLoading = data.isLoading;
         this.matchData = singleMatchData[0];
+        this.currentTeamFightDataForTable = [...singleMatchData[0].teamfights[0].players];
         return this.matchData;
       }
     }, err => {
@@ -150,6 +156,7 @@ export class MatchDetailComponent implements OnInit {
 
     // get all heroes local data
     this.getHeroesLocal();
+    this.getLaneRoleLocal();
     // this use for some data grab hero data via hero name rather than id
     this.getHeroesNameLocal();
     this.getPlayerColor();
@@ -167,6 +174,10 @@ export class MatchDetailComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+  }
+
+  getLaneRoleLocal(): any {
+    this.laneRoleService.getLaneRoleLocal().subscribe(data => this.laneRoleLocal = data);
   }
 
   // get ablities
@@ -269,6 +280,11 @@ export class MatchDetailComponent implements OnInit {
     } else {
       return;
     }
+  }
+
+  emitCurrentTeamFightData(e): void {
+    console.log('emit', this.currentTeamFightDataForTable);
+    this.currentTeamFightDataForTable = [...e.players];
   }
 
 }

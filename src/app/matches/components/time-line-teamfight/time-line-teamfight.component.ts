@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 // model
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
@@ -14,6 +14,8 @@ export class TimeLineTeamfightComponent implements OnInit {
   @Input() heroesLocal: IheroLocal;
   @Input() heroesNameLocal: any;
 
+  @Output() emitCurrentTeamFightData: EventEmitter<any> = new EventEmitter();
+
   pageXY = [];
 
   // first bolld modal
@@ -28,6 +30,9 @@ export class TimeLineTeamfightComponent implements OnInit {
   currentRoshanAegisData = null;
   showRoshanAegisModal = false;
 
+  // team fight for table
+  currentTeamFightDataForTable = null;
+
   firstBloodData = {
     time: null,
     drewPlayer: null,
@@ -39,6 +44,8 @@ export class TimeLineTeamfightComponent implements OnInit {
   ngOnInit(): void {
     this.calFirstBlood(this.data.objectives, this.data.players);
     this.calRoshanKillAegisData(this.data.objectives, this.data.players);
+
+    this.currentTeamFightDataForTable = this.data?.teamfights[0];
   }
 
   // extract first blood data
@@ -89,7 +96,7 @@ calTeamFightIsRadiantWin(teamfight: any): boolean {
 
   // show team-fight-modal
   showTeamFightModalFn(e, data): any {
-    this.pageXY = [e.pageX, e.pageY - 80];
+    this.pageXY = [e.pageX + 30, e.pageY - 200];
     this.showTeamFightModal = true;
     this.currentTeamFightData = data;
   }
@@ -99,5 +106,12 @@ calTeamFightIsRadiantWin(teamfight: any): boolean {
     this.pageXY = [e.pageX, e.pageY - 80];
     this.showRoshanAegisModal = true;
     this.currentRoshanAegisData = data;
+  }
+
+
+  // get current team fight data and emit it
+  getCurrentTeamFightDataAndEmit(item): void {
+    this.currentTeamFightDataForTable = item;
+    this.emitCurrentTeamFightData.emit(this.currentTeamFightDataForTable);
   }
 }
