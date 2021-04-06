@@ -70,6 +70,10 @@ import { ChartStatckLineComponent } from './components/chart-statck-line/chart-s
 import { ChartStackLineWithMinusComponent } from './components/chart-stack-line-with-minus/chart-stack-line-with-minus.component';
 import { TimeLineTeamfightComponent } from './components/time-line-teamfight/time-line-teamfight.component';
 import { TableMatchDetailFantasyComponent } from './components/table-match-detail-fantasy/table-match-detail-fantasy.component';
+import { TableMatchDetailTeamfightsComponent } from './components/table-match-detail-teamfights/table-match-detail-teamfights.component';
+import { TableMatchDetailAnalysisComponent } from './components/table-match-detail-analysis/table-match-detail-analysis.component';
+import { TableMatchDetailVisionComponent } from './components/table-match-detail-vision/table-match-detail-vision.component';
+import { TableMatchDetailWardLogComponent } from './components/table-match-detail-ward-log/table-match-detail-ward-log.component';
 
 
 @NgModule({
@@ -125,7 +129,11 @@ import { TableMatchDetailFantasyComponent } from './components/table-match-detai
     ChartStatckLineComponent,
     ChartStackLineWithMinusComponent,
     TimeLineTeamfightComponent,
-    TableMatchDetailFantasyComponent
+    TableMatchDetailFantasyComponent,
+    TableMatchDetailTeamfightsComponent,
+    TableMatchDetailAnalysisComponent,
+    TableMatchDetailVisionComponent,
+    TableMatchDetailWardLogComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,69 @@
+@import '../../../../styles.scss';
+
+.uses-col {
+  width: 150px;
+}
+
+// item list
+.item-list {
+  display: flex;
+  width: 150px;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  .item-list-item {
+    position: relative;
+    margin-right: 3px;
+  }
+
+  .middle-text {
+    position: absolute;
+    bottom: 7px;
+    width: 35px;
+    line-height: 14px;
+    height: 14px;
+    left: 1px;
+    right: 1px;
+    text-align: center;
+    color: $gray;
+    font-size: 10px;
+    background: rgb(0 0 0 / 60%);
+  }
+}
+
+.item {
+  cursor: pointer;
+}
+
+.item-color {
+  border-width: 1px;
+  border-style: solid;
+
+  &.item-color-rare {
+    border-color: $item-rare;
+  }
+  
+  &.item-color-artifact {
+    border-color: $item-artifact;
+  }
+  
+  &.item-color-secret-shop {
+    border-color: $item-secret-shop;
+  }
+  
+  &.item-color-consumable {
+    border-color: $item-consumable;
+  }
+  
+  &.item-color-common {
+    border-color: $item-common;
+  }
+  
+  &.item-color-epic {
+    border-color: $item-epic;
+  }
+  
+  &.item-color-component {
+    border-color: $item-component;
+  }
+}
