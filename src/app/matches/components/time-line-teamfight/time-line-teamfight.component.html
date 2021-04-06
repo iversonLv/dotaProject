@@ -1,8 +1,8 @@
 <div class="team-fight-time-line">
   <div class="team-fight-time-line-left">
-    <span class="team-side">Radiant</span>
+    <span class="team-side">{{data?.radiant_team ? data?.radiant_team?.name : 'Radiant'}}</span>
     <span>-1:30</span>
-    <span class="team-side">Dire</span>
+    <span class="team-side">{{data?.dire_team ? data?.dire_team?.name : 'Dire'}}</span>
   </div>
   <!-- left -->
   <div class="team-fight-time-line-main">
@@ -24,6 +24,8 @@
     <span
       (mouseover)="showTeamFightModalFn($event, item)"
       (mouseout)="showTeamFightModal=false; currentTeamFightData = null"
+      (click)="getCurrentTeamFightDataAndEmit(item)"
+      [class]="currentTeamFightDataForTable === item ? 'current-team-fight' : ''"
       *ngFor="let item of data?.teamfights" class="team-fights-point"
       [style]="'left:' + ((item?.start + 90) / (data.duration + 90) * 100) + '%'">
       <mat-icon

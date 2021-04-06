@@ -15,6 +15,22 @@ export interface IHeroes {
   player_slot: number;
 }
 
+export interface IObsSenLeftLog extends IObsSenLog {
+  attackername: string;
+}
+
+export interface IObsSenLog {
+    time: number;
+    type: string;
+    key: string;
+    slot: number;
+    x: number;
+    y: number;
+    z: number;
+    entityleft: boolean;
+    ehandle: number;
+    player_slot: number;
+}
 
 export interface IMatch {
   match_id: number;
