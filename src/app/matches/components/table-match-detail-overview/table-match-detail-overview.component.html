@@ -184,14 +184,14 @@
         class="aghanims-scepter"
         [src]="'./assets/images/scepter_' + (whetherShowScepterShard(element?.permanent_buffs, 2)  ? '1' : '0') + '.png'"
         onError="this.src='./assets/images/Dota2Logo.svg'"
-        (mouseover)="showItemModalFn.emit([$event, 108])"
+        (mouseover)="showItemModalFn.emit([$event, 108, (whetherShowScepterShard(element?.permanent_buffs, 2)  ? [element?.hero_id, 'scepter'] : '')])"
         (mouseout)="hideItemModalFn.emit($event)"
       />
       <img
         class="aghanims-shard"
         [src]="'./assets/images/shard_' + (whetherShowScepterShard(element?.permanent_buffs, 12) ? '1' : '0') + '.png'"
         onError="this.src='./assets/images/Dota2Logo.svg'"
-        (mouseover)="showItemModalFn.emit([$event, 609])"
+        (mouseover)="showItemModalFn.emit([$event, 609, (whetherShowScepterShard(element?.permanent_buffs, 12)  ? [element?.hero_id, 'shard'] : '')])"
         (mouseout)="hideItemModalFn.emit($event)"
       />
     </td>
