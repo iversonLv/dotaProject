@@ -636,6 +636,50 @@
 
     <!-- vision -->
     <div *ngIf="currentPage === 'vision'">
+      <div class="team-box vision-map-show-hide-timeline-row">
+        <app-vision-map
+          [playerColorLocal]="playerColorLocal"
+          [heroesLocal]="heroesLocal"
+          [data]="matchData?.players"
+          [showHideVisionPlayersData]="showHideVisionPlayersData"
+        >
+        ></app-vision-map>
+        <div class="vision-timeline-show-hide-col">
+          <!-- timeline goes here -->
+          <div class="team-box">
+            <div class="team-row">
+              <app-radient class="sides-icon"></app-radient>
+              <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name : 'Radiant'"></app-nav-title>
+            </div>
+            <!-- team-row -->
+            <app-table-match-detail-vision-showhide
+              [heroesLocal]="heroesLocal"
+              [data]="matchData?.players | slice: 0:5"
+              (emitShowHideVisionPlayersData)="emitShowHideVisionPlayersData($event)"
+            >
+            </app-table-match-detail-vision-showhide>
+            <!-- table -->
+          </div>
+          <!-- team-box -->
+    
+          <div class="team-box">
+            <div class="team-row">
+              <app-dire class="sides-icon"></app-dire>
+              <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name : 'Dire'"> </app-nav-title>
+            </div>
+            <!-- team-row -->
+            <app-table-match-detail-vision-showhide
+              [heroesLocal]="heroesLocal"
+              [data]="matchData?.players | slice: 5:10"
+              (emitShowHideVisionPlayersData)="emitShowHideVisionPlayersData($event)"
+            >
+            </app-table-match-detail-vision-showhide>
+            <!-- table -->
+          </div>
+          <!-- team-box -->
+        </div>
+      </div>
+
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
@@ -664,9 +708,12 @@
         <!-- table -->
       </div>
       <!-- team-box -->
+
+      <app-nav-title [title]="'Ward Log'"></app-nav-title>
       <app-table-match-detail-ward-log
         [playerColorLocal]="playerColorLocal"
         [heroesLocal]="heroesLocal"
+        [heroesNameLocal]="heroesNameLocal"
         [data]="matchData?.players">
       </app-table-match-detail-ward-log>
     </div>

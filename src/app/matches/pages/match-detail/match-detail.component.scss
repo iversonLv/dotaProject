@@ -19,6 +19,15 @@
   padding-bottom: 15px;
 }
 
+.vision-map-show-hide-timeline-row {
+  display: flex;
+  
+  .vision-timeline-show-hide-col {
+    padding-left: 75px;
+    flex-grow: 2;
+  }
+}
+
 
 // overview bottom build map and advantage chart
 .build-map-advantage {

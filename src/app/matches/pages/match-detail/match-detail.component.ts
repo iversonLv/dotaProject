@@ -47,6 +47,7 @@ export class MatchDetailComponent implements OnInit {
   laneRoleLocal: any;
   itemIdsLocal: any;
   itemsLocal: any;
+  aghsDescriptionLocal: any;
   itemColorLocal: IItemColorLocal;
   abilitiesByIdLocal: any; // this is for overview page that ability_upgrades_arr[]
   playerColorLocal: any;
@@ -54,6 +55,8 @@ export class MatchDetailComponent implements OnInit {
   abilitiesTalentsLocal: any;
   permanentBuffsLocal: any;
 
+
+  showHideVisionPlayersData = {};
 
   // reason mapping for farm bottom stack bar chart
   xpReasonMapping = {
@@ -139,7 +142,8 @@ export class MatchDetailComponent implements OnInit {
         const singleMatchData = [ ...data.match ];
         this.isLoading = data.isLoading;
         this.matchData = singleMatchData[0];
-        this.currentTeamFightDataForTable = [...singleMatchData[0].teamfights[0].players];
+        this.currentTeamFightDataForTable = singleMatchData[0].teamfights[0].players;
+        this.getShowHideVisionPlayersData(singleMatchData[0]?.players);
         return this.matchData;
       }
     }, err => {
@@ -164,7 +168,9 @@ export class MatchDetailComponent implements OnInit {
     this.getAbilitiesByIdLocal();
     this.getItemsLocal();
     this.getItemIdsLocal();
+    this.getAghsDescriptionLocal();
     this.getPermanentBuffsLocal();
+
   }
 
   // get hero local data
@@ -241,6 +247,14 @@ export class MatchDetailComponent implements OnInit {
     });
   }
 
+  getAghsDescriptionLocal(): any {
+    this.itemsService.getAghsDescriptionLocal().subscribe(data => {
+    this.aghsDescriptionLocal = data;
+    }, err => {
+      console.log(err);
+    });
+  }
+
   getItemsLocal(): any {
     this.itemsService.getItemsLocal().subscribe(data => {
     this.itemsLocal = data;
@@ -283,8 +297,25 @@ export class MatchDetailComponent implements OnInit {
   }
 
   emitCurrentTeamFightData(e): void {
-    console.log('emit', this.currentTeamFightDataForTable);
-    this.currentTeamFightDataForTable = [...e.players];
+    console.log('emit teamfight', this.currentTeamFightDataForTable);
+    this.currentTeamFightDataForTable = e.players;
+  }
+
+  emitShowHideVisionPlayersData(e: any): any {
+    console.log('emit show hide player data', e);
+    this.showHideVisionPlayersData = { ...this.showHideVisionPlayersData, ...e };
+    console.log(this.showHideVisionPlayersData);
+    return this.showHideVisionPlayersData;
+  }
+
+  // extract matches players[] to less data to meet for this page table
+  getShowHideVisionPlayersData(data): any {
+    data.forEach(i => {
+      const { hero_id, player_slot } = i;
+      this.showHideVisionPlayersData[hero_id] = { hero_id, player_slot, obs_log: true, sen_log: true };
+    });
+    console.log(this.showHideVisionPlayersData);
+    return this.showHideVisionPlayersData;
   }
 
 }
