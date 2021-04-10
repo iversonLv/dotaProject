@@ -28,6 +28,7 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
 import { BarColumnChartComponent } from './components/bar-column-chart/bar-column-chart.component';
 import { CalendarChartComponent } from './components/calendar-chart/calendar-chart.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { WorldPopulationChartComponent } from './components/world-population-chart/world-population-chart.component';
 
 // modals component
 import { HeroModalComponent } from './components/hero-modal/hero-modal.component';
@@ -90,6 +91,7 @@ import { WinComponent } from './components/icons/win/win.component';
     BarColumnChartComponent,
     CalendarChartComponent,
     PieChartComponent,
+    WorldPopulationChartComponent,
 
     // pipes
     OrderByPipe,
@@ -147,6 +149,7 @@ import { WinComponent } from './components/icons/win/win.component';
     BarColumnChartComponent,
     CalendarChartComponent,
     PieChartComponent,
+    WorldPopulationChartComponent,
 
     // pipes
     OrderByPipe,
