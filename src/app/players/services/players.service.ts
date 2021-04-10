@@ -148,4 +148,9 @@ export class PlayersService {
     return this.generalService.getLocalData(`/fields.json`);
   }
 
+  // GET Countries
+  getCountriesLocal(): Observable<any> {
+    return this.generalService.getLocalData(`/countries.json`);
+  }
+
 }

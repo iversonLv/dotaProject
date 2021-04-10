@@ -31,4 +31,9 @@ export class ItemsService {
   getItemGroupsLocal(): Observable<any> {
     return this.generalService.getGitRawData('/item_groups.json');
   }
+
+  // get aghs_desc.json
+  getAghsDescriptionLocal(): Observable<any> {
+    return this.generalService.getGitRawData('/aghs_desc.json');
+  }
 }
