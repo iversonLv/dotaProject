@@ -98,3 +98,22 @@
     display: block;
   }
 }
+
+
+// aghs
+
+.aghs-box {
+  padding: 15px;
+  border-top: 1px solid rgba($color: $white, $alpha: .3);
+}
+
+.new-ablility {
+  font-size: 12px;
+  font-weight: bold;
+  color: $red;
+}
+
+.enhance-ablility {
+  font-size: 12px;
+  color: $green;
+}

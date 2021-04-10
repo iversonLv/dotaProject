@@ -38,8 +38,10 @@ export class MatchDetailComponent implements OnInit {
   // item modal default hidden
   showItemModal = false;
   currentMouseOverItem: any = null;
+  currentMouseOverAghs: any = null;
 
   currentTeamFightDataForTable = null;
+
 
   // User for hero modal to mapping
   heroesLocal: IheroLocal;
@@ -285,7 +287,28 @@ export class MatchDetailComponent implements OnInit {
     const itemId = emitObj[1];
     this.pageXY = [e.pageX - 350, e.pageY - 120];
     this.showItemModal = true;
+
+    // if does not has agh
+    if (emitObj[2] && emitObj[2] !== '' && emitObj[2] !== undefined) {
+      this.currentMouseOverAghs = this.showAghsDescriptionLocal(emitObj[2]);
+    }
     this.currentMouseOverItem = this.itemsLocal[this.itemIdsLocal[itemId]];
+  }
+
+  showAghsDescriptionLocal([heroId, hasScepterShard ]): any {
+    const heroAghs = this.aghsDescriptionLocal.filter(i => i.hero_id === heroId)[0];
+    const abilitiesArr = this.extractAblitiesArr(this.abilitiesTalentsLocal);
+    return {
+      has: hasScepterShard,
+      ...heroAghs,
+      scepter_img: abilitiesArr.find(i => i.dname === heroAghs.scepter_skill_name).img,
+      shard_img: abilitiesArr.find(i => i.dname === heroAghs.shard_skill_name).img,
+    };
+  }
+
+  // extractAblitiesArr
+  extractAblitiesArr(data: any): any[] {
+    return Object.values(data);
   }
 
   extractBanPickListBaseOnTeam(data: ISingleMatchPickBand[], team: number): ISingleMatchPickBand[] {
