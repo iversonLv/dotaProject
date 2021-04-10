@@ -1,0 +1,17 @@
+@import '../../../../styles.scss';
+
+.chart {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  .echarts-tooltip {
+    border: 1px solid rgba(0, 0, 0, 1)!important;
+    background-color: rgba(0, 0, 0, 1)!important;
+    color: rgba(255, 255, 255)!important; 
+    font-size:13px!important;
+    padding: 12px!important;
+  }
+}

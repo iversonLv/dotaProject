@@ -173,7 +173,7 @@ environment.pro.ts
       - [x] Team detail players page (some player does not have avatar will use onError="this.src='./assets/images/portrait.png'") (2021.2.8)
   - [x] Records page (2021.2.26)
     - [x] sub pages very similar: duration, kills, deaths, assists, gold per min, xp per min, last hits, denies, hero damage, tower damage, hero healing (2021.2.26)
-  - [] Dota2 pro player word population
+  - [X] Dota2 pro player word population (2021.4. 11)
 [] Improve
   - [] Update ngfor with trackby?
   - [x] Update sub navigation as share component (2021.2.6)
