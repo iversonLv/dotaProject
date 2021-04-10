@@ -154,7 +154,7 @@ environment.pro.ts
       - [x] GRAPHS (2021.3.22, 23)
       - [99%] CASTS (2021.3.14, 18) TODO: hover on other image, ability target image will fresh(only happen if open the dev tools), some error in dev tools for undefinded
       - [99%] OBJECTIVES (2021.3.18) TODO: RAXT, RAXM, RAXB chartbar need improve, need calperfect number for plus data, now only for one data
-      - [80%] VISION (2021.3.30,31,4.6) The vision table
+      - [90%] VISION (2021.3.30,31,4.6, 4.8, 4.9) The vision timeline
       - [X] ACTIONS (2021.3.14)
       - [85%] TEAMSFIGHTS (2021.3.27,28) TODO click the fight icon does not update the data, left map
       - [] ANALYSIS onhold
@@ -173,6 +173,7 @@ environment.pro.ts
       - [x] Team detail players page (some player does not have avatar will use onError="this.src='./assets/images/portrait.png'") (2021.2.8)
   - [x] Records page (2021.2.26)
     - [x] sub pages very similar: duration, kills, deaths, assists, gold per min, xp per min, last hits, denies, hero damage, tower damage, hero healing (2021.2.26)
+  - [] Dota2 pro player word population
 [] Improve
   - [] Update ngfor with trackby?
   - [x] Update sub navigation as share component (2021.2.6)

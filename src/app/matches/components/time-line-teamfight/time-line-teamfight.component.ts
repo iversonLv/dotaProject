@@ -46,6 +46,7 @@ export class TimeLineTeamfightComponent implements OnInit {
     this.calRoshanKillAegisData(this.data.objectives, this.data.players);
 
     this.currentTeamFightDataForTable = this.data?.teamfights[0];
+    this.emitCurrentTeamFightData.emit(this.currentTeamFightDataForTable);
   }
 
   // extract first blood data
@@ -112,6 +113,7 @@ calTeamFightIsRadiantWin(teamfight: any): boolean {
   // get current team fight data and emit it
   getCurrentTeamFightDataAndEmit(item): void {
     this.currentTeamFightDataForTable = item;
+    console.log('emit', this.currentTeamFightDataForTable);
     this.emitCurrentTeamFightData.emit(this.currentTeamFightDataForTable);
   }
 }

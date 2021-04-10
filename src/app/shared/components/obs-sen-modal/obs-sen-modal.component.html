@@ -1,0 +1,18 @@
+<div
+  class="obs-sen-tooltip" *ngIf="data && playerColorLocal && player"
+  [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'"
+  [class]="data.player_slot < 127 ? 'goodguys-obs-sen' : 'badguys-obs-sen'">
+  <div class="main">
+    <app-hero-icon-player-name
+      [heroesLocal]="heroesLocal"
+      [playerColorLocal]="playerColorLocal"
+      [player]="player"
+    ></app-hero-icon-player-name>
+    <span>placed {{data.type === 'obs_log' ? 'Observer' : 'Sentry'}} at {{data.placed_time}}</span>
+  </div>
+  <!-- main -->
+  <!-- If the ward are destory by some hero -->
+  <p class="info" *ngIf="data.left_time_num !== player.duration && data.attackername !== 'npc_dota_observer_wards'">Destoryed after {{data.lifespan}}</p>
+  <!-- if the ward disappear naturely  -->
+  <p class="info" *ngIf="data.left_time_num !== player.duration && data.attackername === 'npc_dota_observer_wards'">Expired after {{data.lifespan}}</p>
+</div>

@@ -38,6 +38,7 @@ import { CosmeticModalComponent } from './components/cosmetic-modal/cosmetic-mod
 import { FirstBloodModalComponent } from './components/first-blood-modal/first-blood-modal.component';
 import { RoshanKilledModalComponent } from './components/roshan-killed-modal/roshan-killed-modal.component';
 import { TeamFightModalComponent } from './components/team-fight-modal/team-fight-modal.component';
+import { ObsSenModalComponent } from './components/obs-sen-modal/obs-sen-modal.component';
 
 // pipes
 import { OrderByPipe } from './utils/order-by.pipe';
@@ -80,6 +81,7 @@ import { WinComponent } from './components/icons/win/win.component';
     FirstBloodModalComponent,
     RoshanKilledModalComponent,
     TeamFightModalComponent,
+    ObsSenModalComponent,
 
     // charts
     CountChartComponent,
@@ -136,6 +138,7 @@ import { WinComponent } from './components/icons/win/win.component';
     FirstBloodModalComponent,
     RoshanKilledModalComponent,
     TeamFightModalComponent,
+    ObsSenModalComponent,
 
     // charts
     CountChartComponent,

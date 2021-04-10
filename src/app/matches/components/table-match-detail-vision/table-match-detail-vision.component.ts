@@ -8,14 +8,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 import { IObsSenLeftLog, IObsSenLog } from '../../model/match';
 
-// pipe
-import { DurationFormatPipe } from 'src/app/shared/utils/duration-format.pipe';
 
 @Component({
   selector: 'app-table-match-detail-vision',
   templateUrl: './table-match-detail-vision.component.html',
   styleUrls: ['./table-match-detail-vision.component.scss'],
-  providers: [DurationFormatPipe]
 })
 export class TableMatchDetailVisionComponent implements OnInit {
   @Input() data: any;
@@ -92,7 +89,6 @@ export class TableMatchDetailVisionComponent implements OnInit {
     }
   };
   constructor(
-    private durationFormat: DurationFormatPipe
   ) { }
 
   ngOnInit(): void {
@@ -102,7 +98,7 @@ export class TableMatchDetailVisionComponent implements OnInit {
   }
 
   // extract matches players[] to less data to meet for this page table
-  extractData(data: any, ): any[] {
+  extractData(data: any ): any[] {
     data.forEach((d, i) => {
       const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
         purchase_ward_observer, purchase_ward_sentry,

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, OnChanges } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
@@ -8,7 +8,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
   templateUrl: './table-match-detail-teamfights.component.html',
   styleUrls: ['./table-match-detail-teamfights.component.scss']
 })
-export class TableMatchDetailTeamfightsComponent implements OnInit {
+export class TableMatchDetailTeamfightsComponent implements OnInit, OnChanges {
   @Input() data: any;
   @Input() playerColorLocal: any;
   @Input() heroesLocal: IheroLocal;
@@ -47,13 +47,18 @@ export class TableMatchDetailTeamfightsComponent implements OnInit {
     this.dataSource.data = this.extractData(this.data, this.currentTeamFightDataForTable);
   }
 
+  ngOnChanges(): void {
+    // this.dataSource.data = this.extractData(this.data, this.currentTeamFightDataForTable);
+  }
+
   // extract matches players[] to less data to meet for this page table
   extractData(data: any, currentTeamFightDataForTable: any): any[] {
-    console.log('in', currentTeamFightDataForTable);
+    const arr = [];
+    // console.log('in', currentTeamFightDataForTable);
     data.forEach((d, i) => {
       const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
         } = data[i];
-      this.finalData.push({
+      arr.push({
         hero_id,
         pred_vict,
         player_slot,
@@ -65,7 +70,9 @@ export class TableMatchDetailTeamfightsComponent implements OnInit {
         ...currentTeamFightDataForTable[i]
       });
     });
-    return this.finalData;
+    console.log('default', arr);
+    this.finalData = arr;
+    return arr;
   }
 
   // set table sort
