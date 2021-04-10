@@ -47,7 +47,7 @@
           [itemIdsLocal]="itemIdsLocal"
           [itemsLocal]="itemsLocal"
           (showItemModalFn)="showItemModalFn($event)"
-          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
+          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null; currentMouseOverAghs = null"
           [data]="matchData?.players"
           [dataRange]="[0, 5]"
           [abilitiesTalentsLocal]="abilitiesTalentsLocal"
@@ -82,7 +82,7 @@
           [itemIdsLocal]="itemIdsLocal"
           [itemsLocal]="itemsLocal"
           (showItemModalFn)="showItemModalFn($event)"
-          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
+          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null; currentMouseOverAghs = null;"
           [data]="matchData?.players"
           [dataRange]="[5, 10]"
           [abilitiesTalentsLocal]="abilitiesTalentsLocal"
@@ -895,4 +895,4 @@
 </div>
 
 <app-ability-modal [abilitiesTalentsLocal]="abilitiesTalentsLocal" *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName' [pageXY] = 'pageXY'></app-ability-modal>
-<app-item-modal [itemsLocal]="itemsLocal" *ngIf="showItemModal" [item]='currentMouseOverItem' [pageXY] = 'pageXY' class="item-modal"></app-item-modal>
+<app-item-modal [itemsLocal]="itemsLocal" *ngIf="showItemModal" [aghs]="currentMouseOverAghs" [item]='currentMouseOverItem' [pageXY] = 'pageXY' class="item-modal"></app-item-modal>

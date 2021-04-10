@@ -10,6 +10,7 @@ import { IItemLocal } from '../../model/item';
 export class ItemModalComponent implements OnInit {
   @Input() pageXY: number[];
   @Input() item: IItemLocal;
+  @Input() aghs: any;
 
   @Input() itemsLocal: any;
 

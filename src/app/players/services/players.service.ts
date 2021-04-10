@@ -153,4 +153,14 @@ export class PlayersService {
     return this.generalService.getLocalData(`/countries.json`);
   }
 
+  // GET latlong
+  getLatlongLocal(): Observable<any> {
+    return this.generalService.getLocalData(`/latlong.json`);
+  }
+
+  // GET world
+  getWorldLocal(): Observable<any> {
+    return this.generalService.getLocalData('/world.json');
+  }
+
 }

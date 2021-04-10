@@ -1,4 +1,4 @@
-<div class="item-tooltip" *ngIf="item" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
+<div class="item-tooltip" *ngIf="item && (!aghs || !aghs['has_' + aghs?.has])" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
   <div class="item-main">
     <img
       onError="this.src='./assets/images/Dota2Logo.svg'"
@@ -48,5 +48,42 @@
     </div>
   </div>
   <!-- item-components -->
+
 </div>
 <!-- item-tooltip -->
+
+<div class="item-tooltip" *ngIf="item && aghs && aghs['has_' + aghs.has]" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
+  <div class="item-main">
+    <img
+      onError="this.src='./assets/images/Dota2Logo.svg'"
+      height="50px" src="https://www.opendota.com/assets/images/Dota2Logo.svg" [src]="'https://steamcdn-a.akamaihd.net' + item.img" />
+    <div class="item-main-right">
+      <h3>{{item.dname}}</h3>
+    </div>
+  </div>
+  <!-- item-main -->
+  
+  <div *ngIf="aghs && aghs['has_' + aghs?.has]" class="aghs-box">
+    <div class="item-main">
+      <img
+      onError="this.src='./assets/images/Dota2Logo.svg'"
+      height="50px" [src]="'https://steamcdn-a.akamaihd.net' + aghs[aghs?.has + '_img']" />
+      <div class="item-main-right">
+        <h3>{{aghs[aghs?.has + '_skill_name']}}
+          <span *ngIf="aghs[aghs?.has + '_new_skill']" class="new-ablility">
+            New Ability <mat-icon>fiber_new</mat-icon>
+          </span>
+          <span *ngIf="!aghs[aghs?.has + '_new_skill']" class="enhance-ablility">
+            Enhance Ability <mat-icon>offline_bolt</mat-icon>
+          </span>
+        </h3> 
+      </div>
+    </div>
+    <!-- item-main -->
+
+    <div class="item-lore" *ngIf="item.lore">
+      {{aghs[aghs.has + '_desc']}}
+    </div>
+  </div>
+  
+</div>
