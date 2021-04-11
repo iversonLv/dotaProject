@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 
 // material
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,11 +16,12 @@ import { DurationFormatPipe } from 'src/app/shared/utils/duration-format.pipe';
   styleUrls: ['./table-match-detail-ward-log.component.scss'],
   providers: [DurationFormatPipe]
 })
-export class TableMatchDetailWardLogComponent implements OnInit {
+export class TableMatchDetailWardLogComponent implements OnInit, OnChanges {
   @Input() data: any;
   @Input() playerColorLocal: any;
   @Input() heroesLocal: IheroLocal;
   @Input() heroesNameLocal: IheroLocal;
+  @Input() showHideVisionPlayersData: any;
 
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = [
@@ -38,7 +39,12 @@ export class TableMatchDetailWardLogComponent implements OnInit {
 
   ngOnInit(): void {
     // extract the data
-    this.dataSource.data = this.extractObsSenFinalData(this.data);
+    // this.dataSource.data = this.extractObsSenFinalData(this.data);
+  }
+
+  ngOnChanges(): void {
+    this.dataSource.data = this.filterShowHideVisionDataFn(this.showHideVisionPlayersData, this.extractObsSenFinalData(this.data))
+    .sort((a, b) => a.time - b.time);
   }
   // extract matches players[] to less data to meet for this page table
   extractData(data: any, slot: number): any {
@@ -130,6 +136,29 @@ calDuration(duration: number, left: IObsSenLeftLog[], place: IObsSenLog[]): any[
   });
   return arr;
   // return duration(arr.reduce((cur, total) => cur + total, 0) / place.length)
+}
+
+filterShowHideVisionDataFn(players: any, data: any[]): any[] {
+  // console.log(players, data)
+  const arr = [];
+  for (const i in players) {
+    if (players.hasOwnProperty(i)) {
+      arr.push(...data.filter(x => {
+          if (players[i].obs_log && players[i].sen_log) {
+            return x.player_slot === players[i].player_slot && (x.type === 'obs_log' || x.type === 'sen_log');
+          } else if (!players[i].obs_log && players[i].sen_log) {
+            return x.player_slot === players[i].player_slot && (x.type !== 'obs_log' && x.type === 'sen_log');
+          } else if (players[i].obs_log && !players[i].sen_log) {
+            return x.player_slot === players[i].player_slot && (x.type === 'obs_log' && x.type !== 'sen_log');
+          } else {
+            return x.player_slot === players[i].player_slot && (x.type !== 'obs_log' && x.type !== 'sen_log');
+          }
+        })
+      );
+    }
+  }
+  console.log('filter', arr);
+  return arr;
 }
 
 }
