@@ -14,7 +14,9 @@
 
 // left win side
 .win-side {
+  width: calc(100% / 3);
   font-size: 32px;
+  line-height: 40px;
 
   .victory-text {
     display: inline-block;
@@ -88,6 +90,7 @@
 
 // sub-info
 .sub-info {
+  width: calc(100% / 3);
   text-align: right;
 
   .sub-info-title {
