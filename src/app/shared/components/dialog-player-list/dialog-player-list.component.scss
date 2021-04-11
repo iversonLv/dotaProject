@@ -4,8 +4,14 @@
   .mat-list-item-content {
     justify-content: space-between!important;
   }
+  
   .mat-divider {
     margin-top: 15px!important;
+  }
+  
+  .mat-subheader {
+    display: flex!important;
+    justify-content: space-between!important;
   }
 }
 
@@ -28,6 +34,10 @@
 
 .no-team {
   color: $gray;
+  font-size: 10px;
+}
+
+.sm-txt {
   font-size: 10px;
 }
 

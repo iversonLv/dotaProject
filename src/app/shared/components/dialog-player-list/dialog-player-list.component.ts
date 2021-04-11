@@ -20,7 +20,10 @@ export class DialogPlayerListComponent implements OnInit {
     this.extractPlayersBaseSameTeam(this.data.players);
   }
 
-  extractPlayersBaseSameTeam(data): any {
+
+  // extract Players list base team
+  // So same team players will list together
+  extractPlayersBaseSameTeam(data: any[]): any[] {
     let teamList = data.map(i => i.team_name);
     teamList = [...new Set(teamList)];
 
@@ -43,4 +46,8 @@ export class DialogPlayerListComponent implements OnInit {
     return this.playerBaseTeamData;
   }
 
+  // extract players whether current or not
+  extractPlayersCurrentLength(data: any[]): number {
+    return data.filter(i => i.team_id !== 0).length;
+  }
 }
