@@ -1,8 +1,9 @@
 <!-- match top overview section -->
 <div *ngIf="isLoading">Loading</div>
 <app-match-hero [data]="matchData" *ngIf="!isLoading"></app-match-hero>
+<div class="warning" *ngIf="!matchData?.objectives && !isLoading"><mat-icon>warning</mat-icon> The matches is not yet parsed completed! So some data is not visible</div>
 <!-- teams page navigation -->
-<app-sub-nav [links]="[
+<app-sub-nav *ngIf="!isLoading" [links]="matchData?.objectives ? [
 'overview',
 'benchmarks',
 'draft',
@@ -23,7 +24,7 @@
 'fantasy',
 'chat',
 'story'
-]" [parentPage]="'matchesDetail'"></app-sub-nav>
+] : ['overview', 'benchmarks', 'draft']" [parentPage]="'matchesDetail'"></app-sub-nav>
 
 <div class="wrapper">
   <div *ngIf="isLoading; else hasData">Loading</div>
