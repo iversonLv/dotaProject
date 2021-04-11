@@ -45,8 +45,14 @@ export class TimeLineTeamfightComponent implements OnInit {
     this.calFirstBlood(this.data.objectives, this.data.players);
     this.calRoshanKillAegisData(this.data.objectives, this.data.players);
 
-    this.currentTeamFightDataForTable = this.data?.teamfights[0];
+    this.currentTeamFightDataForTable = {
+      ...this.data?.teamfights[0],
+      isRadient: this.calTeamFightIsRadiantWin(this.data?.teamfights[0])[0],
+      gold_delta_total: this.calTeamFightIsRadiantWin(this.data?.teamfights[0])[1],
+    };
+
     this.emitCurrentTeamFightData.emit(this.currentTeamFightDataForTable);
+
   }
 
   // extract first blood data
@@ -73,7 +79,7 @@ export class TimeLineTeamfightComponent implements OnInit {
   }
 
   // cal teamfight win side
-calTeamFightIsRadiantWin(teamfight: any): boolean {
+calTeamFightIsRadiantWin(teamfight: any): any[] {
   // calculate total gold dealta of radiant
   const radiantDealta = teamfight.players.slice(0, 5).map(i => i.gold_delta).reduce((cur, total) => cur + total, 0);
   // calculate total gold dealta of dire
@@ -81,9 +87,9 @@ calTeamFightIsRadiantWin(teamfight: any): boolean {
 
   // if total gold dealta of radiant is greater than dire's, then RADIANT team fight win
   if (radiantDealta > direDealta) {
-    return true;
+    return [true, (radiantDealta - direDealta)];
   } else {
-    return false;
+    return [false, (direDealta - radiantDealta)];
   }
   }
 
@@ -112,6 +118,7 @@ calTeamFightIsRadiantWin(teamfight: any): boolean {
 
   // get current team fight data and emit it
   getCurrentTeamFightDataAndEmit(item): void {
+    item = {...item, isRadient: this.calTeamFightIsRadiantWin(item)[0], gold_delta_total: this.calTeamFightIsRadiantWin(item)[1]};
     this.currentTeamFightDataForTable = item;
     console.log('emit', this.currentTeamFightDataForTable);
     this.emitCurrentTeamFightData.emit(this.currentTeamFightDataForTable);

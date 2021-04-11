@@ -763,53 +763,81 @@
         [data]="matchData"
       ></app-time-line-teamfight>
 
-      <div class="team-box">
-        <div class="team-row">
-          <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Teamfights' : 'Radiant - Teamfights'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+      <div class="team-fight-detail">
+        <!-- team fight map -->
+        <div class="team-fight-detail-map" *ngIf="currentTeamFightDataForMap">
+          <div class="team-fight-detail-duration">{{currentTeamFightDataForMap.start | durationFormat}} - {{currentTeamFightDataForMap.end | durationFormat}}</div>
+          <div class="team-fight-detail-deaths">
+            Total
+            <img
+            width="24"
+            height="24"
+            onError="this.src='./assets/images/Dota2Logo.svg'"
+            src="./assets/images/player_death.png" />: {{currentTeamFightDataForMap.deaths}}
+          </div>
+          <div class="team-fight-detail-winner">
+            <app-radient class="sides-icon" *ngIf="currentTeamFightDataForMap.isRadient"></app-radient>
+            <app-dire class="sides-icon" *ngIf="!currentTeamFightDataForMap.isRadient"></app-dire>
+            <span class="gold-num">
+              {{currentTeamFightDataForMap.gold_delta_total}}
+            </span>
+          </div>
         </div>
-        <!-- team-row -->
-        <app-table-match-detail-teamfights
-          [playerColorLocal]="playerColorLocal"
-          [heroesLocal]="heroesLocal"
-          [currentTeamFightDataForTable]="currentTeamFightDataForTable | slice: 0:5"
-          [data]="matchData?.players | slice: 0:5"
+        <!-- team-fight-detail-map -->
+        <div class="team-fight-detail-table">
+          <div class="team-box">
+            <div class="team-row">
+              <app-radient class="sides-icon"></app-radient>
+              <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Teamfights' : 'Radiant - Teamfights'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+            </div>
+            <!-- team-row -->
+            <app-table-match-detail-teamfights
+              [playerColorLocal]="playerColorLocal"
+              [heroesLocal]="heroesLocal"
+              [currentTeamFightDataForTable]="currentTeamFightDataForTable"
+              [data]="matchData?.players"
+              [dataRange]="[0, 5]"
 
-          [itemsLocal]="itemsLocal"
-          (showItemModalFn)="showItemModalFn($event)"
-          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-          [abilitiesTalentsLocal]="abilitiesTalentsLocal"
-          (showAbilityModalFn)="showAbilityModalFn($event)"
-          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"  
-        >
-        </app-table-match-detail-teamfights>
-        <!-- table -->
-      </div>
-      <!-- team-box -->
+              [itemsLocal]="itemsLocal"
+              (showItemModalFn)="showItemModalFn($event)"
+              (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
+              [abilitiesTalentsLocal]="abilitiesTalentsLocal"
+              (showAbilityModalFn)="showAbilityModalFn($event)"
+              (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"  
+            >
+            </app-table-match-detail-teamfights>
+            <!-- table -->
+          </div>
+          <!-- team-box -->
 
-      <div class="team-box">
-        <div class="team-row">
-          <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Teamfights' : 'Dire - Teamfights'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <div class="team-box">
+            <div class="team-row">
+              <app-dire class="sides-icon"></app-dire>
+              <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Teamfights' : 'Dire - Teamfights'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+            </div>
+            <!-- team-row -->
+            <app-table-match-detail-teamfights
+              [playerColorLocal]="playerColorLocal"
+              [heroesLocal]="heroesLocal"
+              [currentTeamFightDataForTable]="currentTeamFightDataForTable"
+              [data]="matchData?.players"
+              [dataRange]="[5, 10]"
+              
+              [itemsLocal]="itemsLocal"
+              (showItemModalFn)="showItemModalFn($event)"
+              (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
+              [abilitiesTalentsLocal]="abilitiesTalentsLocal"
+              (showAbilityModalFn)="showAbilityModalFn($event)"
+              (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null" 
+            >
+            </app-table-match-detail-teamfights>
+            <!-- table -->
+          </div>
+          <!-- team-box -->
+          </div>
+          <!-- team fight detail table -->
         </div>
-        <!-- team-row -->
-        <app-table-match-detail-teamfights
-          [playerColorLocal]="playerColorLocal"
-          [heroesLocal]="heroesLocal"
-          [currentTeamFightDataForTable]="currentTeamFightDataForTable | slice: 5:10"
-          [data]="matchData?.players | slice: 5:10"
-          
-          [itemsLocal]="itemsLocal"
-          (showItemModalFn)="showItemModalFn($event)"
-          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-          [abilitiesTalentsLocal]="abilitiesTalentsLocal"
-          (showAbilityModalFn)="showAbilityModalFn($event)"
-          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null" 
-        >
-        </app-table-match-detail-teamfights>
-        <!-- table -->
-      </div>
-      <!-- team-box -->
+      <!-- team fight detail -->
     </div>
 
     <!-- Cosmetics -->

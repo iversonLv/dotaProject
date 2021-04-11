@@ -41,6 +41,7 @@ export class MatchDetailComponent implements OnInit {
   currentMouseOverAghs: any = null;
 
   currentTeamFightDataForTable = null;
+  currentTeamFightDataForMap = null;
 
 
   // User for hero modal to mapping
@@ -144,7 +145,7 @@ export class MatchDetailComponent implements OnInit {
         const singleMatchData = [ ...data.match ];
         this.isLoading = data.isLoading;
         this.matchData = singleMatchData[0];
-        this.currentTeamFightDataForTable = singleMatchData[0].teamfights[0].players;
+        // this.currentTeamFightDataForTable = singleMatchData[0].teamfights[0].players;
         this.getShowHideVisionPlayersData(singleMatchData[0]?.players);
         return this.matchData;
       }
@@ -320,8 +321,9 @@ export class MatchDetailComponent implements OnInit {
   }
 
   emitCurrentTeamFightData(e): void {
-    console.log('emit teamfight', this.currentTeamFightDataForTable);
+    this.currentTeamFightDataForMap = e;
     this.currentTeamFightDataForTable = e.players;
+    console.log('emit teamfight', this.currentTeamFightDataForTable);
   }
 
   emitShowHideVisionPlayersData(e: any): any {
