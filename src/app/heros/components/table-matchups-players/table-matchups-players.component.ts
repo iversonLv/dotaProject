@@ -8,10 +8,12 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 // model
 import { IMatchupsDurationPlayer, IMatchupsDurationPlayerData } from '../../model/matchup-duration-player';
+import { IPro, IProData } from 'src/app/players/model/pro';
 
 // ngrx
 import { Store } from '@ngrx/store';
 import * as herosActions from '../../store/heros.actions';
+import * as playersActions from '../../../players/store/players.actions';
 
 // service
 import { HerosService } from '../../services/heros.service';
@@ -53,13 +55,14 @@ export class TableMatchupsPlayersComponent implements OnInit {
     games_played: null,
     win_pecentage: null,
   };
-
+  proPlayersData;
   constructor(
     private router: Router,
     private herosService: HerosService,
     private store: Store<{
       herosMatchups: IMatchupsDurationPlayerData,
       herosPlayers: IMatchupsDurationPlayerData,
+      proPlayers: IProData,
     }>
   ) { }
 
@@ -67,6 +70,19 @@ export class TableMatchupsPlayersComponent implements OnInit {
     const currentUrl = this.router.url;
     const heroId = +currentUrl.split('/')[2];
     const currentPage = currentUrl.split('/')[3];
+
+    this.store.dispatch(new playersActions.LoadProPlayers());
+    this.store.select('proPlayers').subscribe(data => {
+      this.isLoading = data.isLoading;
+      if (!data.isLoading) {
+        this.isLoading = data.isLoading;
+        const proPlayers = [...data.pros];
+        return this.proPlayersData = this.extractProplayerData(proPlayers);
+      }
+    }, err => {
+      console.log(err);
+    });
+
     if (currentPage === 'matchups')  {
       this.store.dispatch(new herosActions.LoadHerosMatchups(heroId));
       this.store.select('herosMatchups').subscribe(data => {
@@ -158,5 +174,14 @@ export class TableMatchupsPlayersComponent implements OnInit {
     this.pageXY = [e.pageX + 50, e.pageY - 120];
     this.showHeroModal = true;
     this.currentMouseOverHero = this.heroesLocal[id];
+  }
+
+  extractProplayerData(data: IPro[]): any {
+    const accountIdList = data.map(i => i.account_id);
+    const finalData = {};
+    accountIdList.forEach(i => {
+      finalData[i] = data.find(x => x.account_id === i);
+    });
+    return finalData;
   }
 }

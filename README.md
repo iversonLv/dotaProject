@@ -112,15 +112,15 @@ environment.pro.ts
       - [99%] Heros list professional page (2021.3.1)(2021.3.2)
       - [99%] Heros list public page: (2021.3.1)(2021.3.2)
       - [99%] Heros list turbo page: (2021.3.1)(2021.3.2)
-    - [98%] Hero detail page
+    - [99%] Hero detail page
       - [x] Heros detail top hero part (2021.2.8)(2021.2.14) TODO: attack speed is different, magic resistence current is static 25%
       - [100%] Heros detail rankings page (2021.2.15)(2021.2.18)(2021.2.27 fixed table setTimeout())
       - [100%] Heros detail benchmarks page(2021.2.18): Charts (2021.2.20)(2021.2.27 fixed table setTimeout())
-      - [99%] Heros detail recent page: (2021.2.15)TODO: the account_id should bind with playerGeneralData to show account_id related name
+      - [x] Heros detail recent page: (2021.2.15, 4.12)
       - [100%] Heros detail matchups page: (2021.2.16)(2021.2.18)
 
       - [100%] Heros detail durations page (2021.2.20-21)
-      - [99%] Heros detail players page: (2021.2.16)TODO: the account_id should bind with playerGeneralData to show account_id related name
+      - [x] Heros detail players page: (2021.2.16, 4.12)
   - [] Players page  
     - [99%] Players overview page:land_role don't know how to definde roaming (2021.1)(2021.3.10) TODO: include turbo seems contary with official website
     - [x] Players matches page (2021.1)
