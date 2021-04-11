@@ -8,11 +8,13 @@
       <ng-container matColumnDef="account_id" *ngIf="displayedColumns.includes('account_id')">
         <th mat-header-cell *matHeaderCellDef>ACCOUNT ID</th>
         <td mat-cell *matCellDef="let element">
-          <div class="ver-align">
+          <div class="ver-align"  *ngIf="proPlayersData">
+            <img
+            onError="this.src='./assets/images/portrait.png'"
+            class="hero-img" width="32" src="https://steamcdn-a.akamaihd.net/{{proPlayersData[element?.account_id]?.avatar}}"
+            />
             <div class="account-date">
-              <a class="account_link" [routerLink]="['/players', element.account_id]">
-                {{element.account_id}}>
-              </a>
+              <a class="account_link" [routerLink]="['/players', element.account_id]">{{proPlayersData[element?.account_id] ? proPlayersData[element?.account_id]?.name : element?.account_id}}></a>
             </div>
           </div>
         </td>
