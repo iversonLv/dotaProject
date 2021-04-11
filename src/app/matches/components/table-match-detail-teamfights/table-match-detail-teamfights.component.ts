@@ -49,7 +49,8 @@ export class TableMatchDetailTeamfightsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.dataSource.data = this.extractData(this.data, changes.currentTeamFightDataForTable.currentValue).slice(this.dataRange[0], this.dataRange[1]);
+    this.dataSource.data = this.extractData(this.data,
+      changes.currentTeamFightDataForTable.currentValue).slice(this.dataRange[0], this.dataRange[1]);
     // const change = changes.currentTeamFightDataForTable;
     // console.log(changes)
     // if (change.firstChange === true ) {
