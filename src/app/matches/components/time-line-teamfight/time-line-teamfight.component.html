@@ -25,11 +25,11 @@
       (mouseover)="showTeamFightModalFn($event, item)"
       (mouseout)="showTeamFightModal=false; currentTeamFightData = null"
       (click)="getCurrentTeamFightDataAndEmit(item)"
-      [class]="currentTeamFightDataForTable === item ? 'current-team-fight' : ''"
+      [class]="currentTeamFightDataForTable.players === item.players ? 'current-team-fight' : ''"
       *ngFor="let item of data?.teamfights" class="team-fights-point"
       [style]="'left:' + ((item?.start + 90) / (data.duration + 90) * 100) + '%'">
       <mat-icon
-        [class]="calTeamFightIsRadiantWin(item) ? 'is-radiant-win-team-fight' : ''"
+        [class]="calTeamFightIsRadiantWin(item)[0] ? 'is-radiant-win-team-fight' : ''"
         class="team-fights-icon"
       >clear</mat-icon>
     </span>
