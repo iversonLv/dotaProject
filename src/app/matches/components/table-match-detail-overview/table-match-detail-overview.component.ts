@@ -66,7 +66,7 @@ export class TableMatchDetailOverviewComponent implements OnInit {
   extractData(data): any[] {
     data.forEach(z => {
       const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
-        level, hero_kills, deaths, assists, last_hits, denies, net_worth,
+        level, hero_kills, kills, deaths, assists, last_hits, denies, net_worth,
         gold_per_min, xp_per_min, hero_damage, tower_damage, hero_healing, item_neutral, permanent_buffs,
         item_0, item_1, item_2, item_3, item_4, item_5,
         backpack_0, backpack_1, backpack_2, backpack_3,
@@ -83,6 +83,7 @@ export class TableMatchDetailOverviewComponent implements OnInit {
         // above is common data for player
         level,
         hero_kills,
+        kills,
         deaths,
         assists,
         last_hits,
@@ -112,8 +113,9 @@ export class TableMatchDetailOverviewComponent implements OnInit {
   }
 
   calTotal(data: any, field: string): any {
-    if (data.filter(i => i[field] !== '-').length !== 0) {
-      const totalNum =  data.filter(i => i[field] !== '-').map(i => i[field]).reduce((cur, total) => cur + total, 0);
+    data = data.filter(i => i[field] !== '-' && i[field] !== null);
+    if (data.length !== 0) {
+      const totalNum =  data.map(i => i[field]).reduce((cur, total) => cur + total, 0);
       return totalNum === 0 ? '-' : totalNum;
     } else {
       return '-';

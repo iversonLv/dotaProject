@@ -14,20 +14,20 @@
   </div>
   <div class="durationg-score">
       <div class="radiant-txt">
-        {{data.radiant_score}}
+        {{data.radiant_score ? data.radiant_score : calScore(data.players.slice(0, 5))}}
       </div>
-      <div class="game-mode-duration-time" *ngIf="gameModeLocal && data?.game_mode">
-        <p class="game-mode">{{gameModeLocal[data.game_mode].name | nameDestruct: '_' : 2 :'upperCase'}}</p>
-        <h2 class="game-duration">{{data.duration | durationFormat}}</h2>
+      <div class="game-mode-duration-time" *ngIf="gameModeLocal && data?.game_mode >= 0">
+        <p class="game-mode">{{gameModeLocal[data?.game_mode]?.name | nameDestruct: '_' : 2 :'upperCase'}}</p>
+        <h2 class="game-duration">{{data?.duration | durationFormat}}</h2>
         <div class="game-time" [matTooltip]="data.start_time * 1000 | date: 'mediumDate'">END {{data.start_time * 1000 | dateTillToday}}</div>
         <!-- parse button -->
-        <button mat-button class="match-re-parse" (click)="parseMatch(data.match_id)">
+        <!-- <button mat-button class="match-re-parse" (click)="parseMatch(data.match_id)">
           <mat-icon>refresh</mat-icon>
           RE-PARSE
-        </button>
+        </button> -->
       </div>
       <div class="dire-txt">
-        {{data.dire_score}}
+        {{data.dire_score ? data.dire_score  : calScore(data.players.slice(5, 10))}}
       </div>
   </div>
   <div class="sub-info">
@@ -35,11 +35,6 @@
     <div *ngIf="data.league" class="sub-info-block">
       <div class="sub-info-title">LEAGUE</div>
       <span>{{data.league.name}}</span>
-    </div>
-    <!-- match id -->
-    <div *ngIf="data.match_id" class="sub-info-block">
-      <div class="sub-info-title">MATCH ID</div>
-      <span>{{data.match_id}}</span>
     </div>
     <!-- region, not all match will have region info -->
     <div *ngIf="regionLocal && data.region" class="sub-info-block">
