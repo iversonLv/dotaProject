@@ -41,6 +41,9 @@ import { RoshanKilledModalComponent } from './components/roshan-killed-modal/ros
 import { TeamFightModalComponent } from './components/team-fight-modal/team-fight-modal.component';
 import { ObsSenModalComponent } from './components/obs-sen-modal/obs-sen-modal.component';
 
+// dialogs
+import { DialogPlayerListComponent } from './components/dialog-player-list/dialog-player-list.component';
+
 // pipes
 import { OrderByPipe } from './utils/order-by.pipe';
 import { RankTierPipe } from './utils/rank-tier.pipe';
@@ -83,6 +86,9 @@ import { WinComponent } from './components/icons/win/win.component';
     RoshanKilledModalComponent,
     TeamFightModalComponent,
     ObsSenModalComponent,
+
+    // dialogs
+    DialogPlayerListComponent,
 
     // charts
     CountChartComponent,
@@ -141,6 +147,9 @@ import { WinComponent } from './components/icons/win/win.component';
     RoshanKilledModalComponent,
     TeamFightModalComponent,
     ObsSenModalComponent,
+
+    // dialogs
+    DialogPlayerListComponent,
 
     // charts
     CountChartComponent,
