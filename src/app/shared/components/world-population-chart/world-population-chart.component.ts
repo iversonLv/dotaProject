@@ -26,8 +26,8 @@ export class WorldPopulationChartComponent implements OnInit {
   min = Infinity;
   mapData;
 
-  ngOnInit(): void {
-    echarts.registerMap('world', this.worldLocal);
+  async ngOnInit(): Promise<void> {
+    await echarts.registerMap('world', this.worldLocal);
     const hasCountryCode = this.extracthasCountryData(this.data);
     const contryCodeList = this.extractCountryCodeList(hasCountryCode);
     this.mapData = this.extractData(hasCountryCode, contryCodeList, this.countryDataLocal, this.latlongLocal);
