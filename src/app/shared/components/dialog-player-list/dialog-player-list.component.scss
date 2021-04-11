@@ -1,6 +1,19 @@
 @import '../../../../styles.scss';
 
 ::ng-deep {
+  .mat-dialog-container {
+    min-width: 500px!important;
+    border-radius: 0!important;
+    background-color: $darken!important;
+    border: 1px solid rgba($color: $white, $alpha: .12)!important;
+  }
+
+  .mat-typography h2 {
+    margin: 0!important;
+    padding-bottom: 15px!important;
+    border-bottom: 1px solid rgba($color: $white, $alpha: .12)!important;
+  }
+
   .mat-list-item-content {
     justify-content: space-between!important;
   }
@@ -13,6 +26,7 @@
     display: flex!important;
     justify-content: space-between!important;
   }
+  
 }
 
 .ver-align {

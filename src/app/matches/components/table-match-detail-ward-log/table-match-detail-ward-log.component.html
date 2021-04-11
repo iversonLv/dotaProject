@@ -1,60 +1,63 @@
-<table mat-table [dataSource]="dataSource">
-  <!-- type -->
-  <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef>TYPE</th>
-    <td mat-cell *matCellDef="let element">
-      <img
-        onError="this.src='./assets/images/Dota2Logo.svg'"
-        width="40"
-        [src]="element.type === 'obs_log' ? './assets/images/ward_observer_lg.png' : './assets/images/ward_sentry_lg.png'"
-      />
-    </td>
-  </ng-container>
+<div *ngIf="dataSource.data.length === 0; else hasData"></div>
+<ng-template #hasData>
+  <table mat-table [dataSource]="dataSource">
+    <!-- type -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef>TYPE</th>
+      <td mat-cell *matCellDef="let element">
+        <img
+          onError="this.src='./assets/images/Dota2Logo.svg'"
+          width="40"
+          [src]="element.type === 'obs_log' ? './assets/images/ward_observer_lg.png' : './assets/images/ward_sentry_lg.png'"
+        />
+      </td>
+    </ng-container>
 
-  
-  <!-- owner -->
-  <ng-container matColumnDef="owner">
-    <th mat-header-cell *matHeaderCellDef>OWNER</th>
-    <td mat-cell *matCellDef="let element">
-      <app-player-box [data]="extractData(data, element.slot)" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
-    </td>
-  </ng-container>
+    
+    <!-- owner -->
+    <ng-container matColumnDef="owner">
+      <th mat-header-cell *matHeaderCellDef>OWNER</th>
+      <td mat-cell *matCellDef="let element">
+        <app-player-box [data]="extractData(data, element.slot)" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+      </td>
+    </ng-container>
 
-  <!-- placed_time -->
-  <ng-container matColumnDef="placed_time">
-    <th mat-header-cell *matHeaderCellDef>PLACED</th>
-    <td mat-cell *matCellDef="let element">
-      {{element.placed_time}}
-    </td>
-  </ng-container>
+    <!-- placed_time -->
+    <ng-container matColumnDef="placed_time">
+      <th mat-header-cell *matHeaderCellDef>PLACED</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.placed_time}}
+      </td>
+    </ng-container>
 
-  <!-- left -->
-  <ng-container matColumnDef="left_time">
-    <th mat-header-cell *matHeaderCellDef>LEFT</th>
-    <td mat-cell *matCellDef="let element">
-      {{element.left_time}}
-    </td>
-  </ng-container>
+    <!-- left -->
+    <ng-container matColumnDef="left_time">
+      <th mat-header-cell *matHeaderCellDef>LEFT</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.left_time}}
+      </td>
+    </ng-container>
 
-  <!-- lifespan -->
-  <ng-container matColumnDef="lifespan">
-    <th mat-header-cell *matHeaderCellDef>LIFESPAN</th>
-    <td mat-cell *matCellDef="let element">
-      {{element.lifespan}}
-    </td>
-  </ng-container>
+    <!-- lifespan -->
+    <ng-container matColumnDef="lifespan">
+      <th mat-header-cell *matHeaderCellDef>LIFESPAN</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.lifespan}}
+      </td>
+    </ng-container>
 
-  
-  <!-- kill_by -->
-  <ng-container matColumnDef="attackername">
-    <th mat-header-cell *matHeaderCellDef>KILL BY</th>
-    <td mat-cell *matCellDef="let element">
-      <app-player-box *ngIf="element?.attackername !== 'npc_dota_observer_wards'" [data]="extractDataFromAttackername(data, element?.attackername)" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
-    </td>
-  </ng-container>
-  
-  <!-- placement -->
+    
+    <!-- kill_by -->
+    <ng-container matColumnDef="attackername">
+      <th mat-header-cell *matHeaderCellDef>KILL BY</th>
+      <td mat-cell *matCellDef="let element">
+        <app-player-box *ngIf="element?.attackername !== 'npc_dota_observer_wards'" [data]="extractDataFromAttackername(data, element?.attackername)" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+      </td>
+    </ng-container>
+    
+    <!-- placement -->
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</ng-template>

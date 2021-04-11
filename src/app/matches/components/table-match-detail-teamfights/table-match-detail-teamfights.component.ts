@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
@@ -12,6 +12,7 @@ export class TableMatchDetailTeamfightsComponent implements OnInit, OnChanges {
   @Input() data: any;
   @Input() playerColorLocal: any;
   @Input() heroesLocal: IheroLocal;
+  @Input() dataRange: number[];
 
   @Input() currentTeamFightDataForTable: any;
 
@@ -44,11 +45,19 @@ export class TableMatchDetailTeamfightsComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     // extract the data
-    this.dataSource.data = this.extractData(this.data, this.currentTeamFightDataForTable);
+    // this.dataSource.data = this.extractData(this.data, this.currentTeamFightDataForTable);
   }
 
-  ngOnChanges(): void {
-    // this.dataSource.data = this.extractData(this.data, this.currentTeamFightDataForTable);
+  ngOnChanges(changes: SimpleChanges): void {
+    this.dataSource.data = this.extractData(this.data, changes.currentTeamFightDataForTable.currentValue).slice(this.dataRange[0], this.dataRange[1]);
+    // const change = changes.currentTeamFightDataForTable;
+    // console.log(changes)
+    // if (change.firstChange === true ) {
+    //   console.log('changes')
+    //   this.dataSource.data = this.extractData(this.data, changes.currentTeamFightDataForTable.currentValue);
+    // } else {
+    //   return;
+    // }
   }
 
   // extract matches players[] to less data to meet for this page table
