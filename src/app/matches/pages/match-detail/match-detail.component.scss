@@ -69,6 +69,12 @@
   }
 }
 
+.warning {
+  text-align: center;
+  color: $orange;
+  padding-bottom: 15px;
+}
+
 // team fight
 .team-fight-detail {
   display: flex;

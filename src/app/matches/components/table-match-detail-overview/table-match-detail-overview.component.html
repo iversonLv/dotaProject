@@ -132,7 +132,7 @@
               (mouseover)="showItemModalFn.emit([$event, item])"
               (mouseout)="hideItemModalFn.emit($event)"
             />
-            <span class="middle-text" *ngIf="item !== 0 && itemIdsLocal && itemIdsLocal[item] && element?.purchase_time[itemIdsLocal[item]]">
+            <span class="middle-text" *ngIf="item !== 0 && itemIdsLocal && itemIdsLocal[item] && element?.purchase_time && element?.purchase_time[itemIdsLocal[item]]">
               <span>{{element?.purchase_time[itemIdsLocal[item]] | durationFormat}}</span>
             </span>
         </span>
@@ -150,7 +150,7 @@
             (mouseover)="showItemModalFn.emit([$event, item])"
             (mouseout)="hideItemModalFn.emit($event)"
           />
-          <span class="middle-text" *ngIf="item !== 0 && itemIdsLocal && itemIdsLocal[item] && element?.purchase_time[itemIdsLocal[item]]">
+          <span class="middle-text" *ngIf="item !== 0 && itemIdsLocal && itemIdsLocal[item] && element?.purchase_time && element?.purchase_time[itemIdsLocal[item]]">
             <span>{{element?.purchase_time[itemIdsLocal[item]] | durationFormat}}</span>
           </span>
         </span>
