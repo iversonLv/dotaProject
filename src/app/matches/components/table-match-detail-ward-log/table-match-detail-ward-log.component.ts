@@ -60,17 +60,21 @@ export class TableMatchDetailWardLogComponent implements OnInit {
       const heroId = this.heroesNameLocal[attackername]?.id;
       const d = [...data];
       const player = d.filter(i => i.hero_id === heroId);
-      const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname } = player[0];
-      return {
-        hero_id,
-        pred_vict,
-        player_slot,
-        account_id,
-        rank_tier,
-        name,
-        personaname,
-        // above is common data for player
-      };
+      if (player.length > 0) {
+        const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname } = player[0];
+        return {
+          hero_id,
+          pred_vict,
+          player_slot,
+          account_id,
+          rank_tier,
+          name,
+          personaname,
+          // above is common data for player
+        };
+      }
+    } else {
+      return;
     }
   }
 
