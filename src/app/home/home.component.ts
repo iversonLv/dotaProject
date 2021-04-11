@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+// material
+import { MatDialog } from '@angular/material/dialog';
+
+// dialogs
+import { DialogPlayerListComponent } from '../shared/components/dialog-player-list/dialog-player-list.component';
+
 // ngrx
 import { Store } from '@ngrx/store';
 import * as playersActions from 'src/app/players/store/players.actions';
@@ -24,6 +30,7 @@ export class HomeComponent implements OnInit {
   worldLocal: any;
 
   constructor(
+    public dialog: MatDialog,
     private playersService: PlayersService,
     private store: Store<{ proPlayers: IProData }>
   ) { }
@@ -68,6 +75,13 @@ export class HomeComponent implements OnInit {
       this.worldLocal = data;
     }, err => {
       console.log(err);
+    });
+  }
+
+  emitClickSymble(e): any {
+    this.dialog.open(DialogPlayerListComponent, {
+      data: e,
+      autoFocus: false
     });
   }
 
