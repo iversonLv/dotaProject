@@ -1,6 +1,12 @@
 <div *ngIf="isLoading; else hasData">Loading</div>
 <ng-template #hasData>
-  <app-world-population-chart [data]="proPlayersData" [worldLocal]="worldLocal" [latlongLocal]="latlongLocal" [countryDataLocal]="countryDataLocal"></app-world-population-chart>
+  <app-world-population-chart
+  [data]="proPlayersData"
+  [worldLocal]="worldLocal"
+  [latlongLocal]="latlongLocal"
+  [countryDataLocal]="countryDataLocal"
+  (emitClickSymble)="emitClickSymble($event)"
+></app-world-population-chart>
 </ng-template>
 
-<!-- <div class="home"></div> -->
+

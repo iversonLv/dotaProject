@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 // ngx-echart
 import * as echarts from 'echarts';
@@ -15,6 +15,8 @@ export class WorldPopulationChartComponent implements OnInit {
   @Input() countryDataLocal: any;
   @Input() latlongLocal: any;
   @Input() worldLocal: any;
+  // emit the click country symbol
+  @Output() emitClickSymble = new EventEmitter();
   chartOption: echarts.EChartsOption;
 
 
@@ -119,6 +121,8 @@ export class WorldPopulationChartComponent implements OnInit {
               itemOpt.latitude,
               itemOpt.value,
           ],
+          players: itemOpt.players,
+          code: itemOpt.code
       };
     });
   }
@@ -133,6 +137,13 @@ export class WorldPopulationChartComponent implements OnInit {
     data = data.map(i => i.country_code);
     data = [...new Set(data)];
     return data;
+  }
+
+  onChartEvent(event: any, type: string): any {
+    console.log('chart event:', type, event);
+    if (event.data) {
+      this.emitClickSymble.emit(event.data);
+    }
   }
 
 }
