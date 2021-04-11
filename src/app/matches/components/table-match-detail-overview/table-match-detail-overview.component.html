@@ -14,16 +14,16 @@
     <td mat-cell *matCellDef="let element">
       <app-pie-chart [data]="[element.level, 30]"></app-pie-chart>
     </td>
-    <td mat-footer-cell *matFooterCellDef>{{finalData ? calTotal(finalData, 'level') : ''}}</td>
+    <td mat-footer-cell *matFooterCellDef>{{finalData ? calTotal(finalData, 'level') : '-'}}</td>
   </ng-container>
 
   <!-- hero_kills column -->
   <ng-container matColumnDef="hero_kills">
     <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Number of kills by hero" matTooltipPosition="above"><span class="hero_kills-txt">K</span></th>
     <td mat-cell *matCellDef="let element">
-      <span class="hero_kills-txt" [class]="{'max-value': element.hero_kills === calPerfectData(data, 'hero_kills')}">{{element.hero_kills === 0 ? '-' : element.hero_kills}}</span>
+      <span class="hero_kills-txt" [class]="{'max-value': element?.kills === calPerfectData(data, 'kills')}">{{element?.kills === 0 ? '-' : element?.kills}}</span>
     </td>
-    <td mat-footer-cell *matFooterCellDef><span class="hero_kills-txt">{{finalData ? calTotal(finalData, 'hero_kills') : ''}}</span></td>
+    <td mat-footer-cell *matFooterCellDef><span class="hero_kills-txt">{{finalData ? calTotal(finalData, 'kills') : '-'}}</span></td>
   </ng-container>
 
   <!-- deaths column -->
@@ -32,7 +32,7 @@
     <td mat-cell *matCellDef="let element">
       <span class="deaths-txt" [class]="{'max-value': element.deaths === calPerfectData(data,'deaths', 'min')}">{{element.deaths === 0 ? '-' : element.deaths}}</span>
     </td>
-    <td mat-footer-cell *matFooterCellDef><span class="deaths-txt">{{finalData ? calTotal(finalData, 'deaths') : ''}}</span></td>
+    <td mat-footer-cell *matFooterCellDef><span class="deaths-txt">{{finalData ? calTotal(finalData, 'deaths') : '-'}}</span></td>
   </ng-container>
 
   <!-- assists column -->
@@ -41,7 +41,7 @@
     <td mat-cell *matCellDef="let element">
       <span class="assists-txt" [class]="{'max-value': element.assists === calPerfectData(data, 'assists')}">{{element.assists === 0 ? '-' : element.assists}}</span>
     </td>
-    <td mat-footer-cell *matFooterCellDef><span class="assists-txt">{{finalData ? calTotal(finalData, 'assists') : ''}}</span></td>
+    <td mat-footer-cell *matFooterCellDef><span class="assists-txt">{{finalData ? calTotal(finalData, 'assists') : '-'}}</span></td>
   </ng-container>
 
   <!-- last_hits column -->
@@ -50,7 +50,7 @@
     <td mat-cell *matCellDef="let element" class="right-align-col">
       <span [class]="{'max-value': element.last_hits === calPerfectData(data, 'last_hits')}">{{element.last_hits === 0 ? '-' : element.last_hits  | greaterNum: 1000: 'k'}}/ </span>
     </td>
-    <td mat-footer-cell *matFooterCellDef class="right-align-col"><span>{{finalData ? (calTotal(finalData, 'last_hits')  | greaterNum: 1000: 'k') : ''}}/ </span></td>
+    <td mat-footer-cell *matFooterCellDef class="right-align-col"><span>{{finalData ? (calTotal(finalData, 'last_hits')  | greaterNum: 1000: 'k') : '-'}}/ </span></td>
   </ng-container>
 
   <!-- denies column -->
@@ -59,16 +59,16 @@
     <td mat-cell *matCellDef="let element">
       <span [class]="{'max-value': element.denies === calPerfectData(data, 'denies')}"> {{element.denies === 0 ? '-' : element.denies}}</span>
     </td>
-    <td mat-footer-cell *matFooterCellDef><span> {{finalData ? calTotal(finalData, 'denies') : ''}}</span></td>
+    <td mat-footer-cell *matFooterCellDef><span> {{finalData ? calTotal(finalData, 'denies') : '-'}}</span></td>
   </ng-container>
 
   <!-- net_worth column -->
   <ng-container matColumnDef="net_worth">
     <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Hero's new worth" matTooltipPosition="above"><span class="net_worth-txt">NET</span></th>
     <td mat-cell *matCellDef="let element">
-      <span class="net_worth-txt" [class]="{'max-value': element.net_worth === calPerfectData(data, 'net_worth')}">{{element.net_worth === 0 ? '-' : element.net_worth | greaterNum: 1000: 'k'}}</span>
+      <span class="net_worth-txt" [class]="{'max-value': element.net_worth ? element.net_worth === calPerfectData(data, 'net_worth') : ''}">{{element.net_worth === 0 || !element.net_worth ? '-' : element.net_worth | greaterNum: 1000: 'k'}}</span>
     </td>
-    <td mat-footer-cell *matFooterCellDef><span class="net_worth-txt">{{finalData ? (calTotal(finalData, 'net_worth')  | greaterNum: 1000: 'k') : ''}}</span></td>
+    <td mat-footer-cell *matFooterCellDef><span class="net_worth-txt">{{finalData ? (calTotal(finalData, 'net_worth')  | greaterNum: 1000: 'k') : '-'}}</span></td>
   </ng-container>
 
   <!-- gold_per_min column -->
@@ -77,7 +77,7 @@
     <td mat-cell *matCellDef="let element" class="right-align-col">
       <span [class]="{'max-value': element.gold_per_min === calPerfectData(data, 'gold_per_min')}">{{element.gold_per_min === 0 ? '-' : element.gold_per_min  | greaterNum: 1000: 'k'}}/ </span>
     </td>
-    <td mat-footer-cell *matFooterCellDef class="right-align-col"><span>{{finalData ? (calTotal(finalData, 'gold_per_min')   | greaterNum: 1000: 'k') : ''}}/ </span></td>
+    <td mat-footer-cell *matFooterCellDef class="right-align-col"><span>{{finalData ? (calTotal(finalData, 'gold_per_min')   | greaterNum: 1000: 'k') : '-'}}/ </span></td>
   </ng-container>
 
   <!-- xp_per_min column -->
@@ -86,34 +86,34 @@
     <td mat-cell *matCellDef="let element">
       <span [class]="{'max-value': element.xp_per_min === calPerfectData(data, 'xp_per_min')}"> {{element.xp_per_min === 0 ? '-' : element.xp_per_min   | greaterNum: 1000: 'k'}}</span>
     </td>
-    <td mat-footer-cell *matFooterCellDef><span> {{finalData ? (calTotal(finalData, 'xp_per_min')  | greaterNum: 1000: 'k') : ''}}</span></td>
+    <td mat-footer-cell *matFooterCellDef><span> {{finalData ? (calTotal(finalData, 'xp_per_min')  | greaterNum: 1000: 'k') : '-'}}</span></td>
   </ng-container>
 
   <!-- hero_damage column -->
   <ng-container matColumnDef="hero_damage">
     <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Amount of damage dealt to heroes" matTooltipPosition="above"><span> DH</span></th>
     <td mat-cell *matCellDef="let element">
-      <span [class]="{'max-value': element.hero_damage === calPerfectData(data, 'hero_damage')}"> {{element.hero_damage === 0 ? '-' : element.hero_damage   | greaterNum: 1000: 'k'}}</span>
+      <span [class]="{'max-value': element.hero_damage ? element.hero_damage === calPerfectData(data, 'hero_damage') : ''}"> {{element.hero_damage === 0 || !element.hero_hero_damage ? '-' : element.hero_damage   | greaterNum: 1000: 'k'}}</span>
     </td>
-    <td mat-footer-cell *matFooterCellDef><span> {{finalData ? (calTotal(finalData, 'hero_damage')  | greaterNum: 1000: 'k') : ''}}</span></td>
+    <td mat-footer-cell *matFooterCellDef><span> {{finalData ? (calTotal(finalData, 'hero_damage')  | greaterNum: 1000: 'k') : '-'}}</span></td>
   </ng-container>
 
   <!-- tower_damage column -->
   <ng-container matColumnDef="tower_damage">
     <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Amount of damage dealt to towers" matTooltipPosition="above"><span> TD</span></th>
     <td mat-cell *matCellDef="let element">
-      <span [class]="{'max-value': element.tower_damage === calPerfectData(data, 'tower_damage')}"> {{element.tower_damage === 0 ? '-' : element.tower_damage   | greaterNum: 1000: 'k'}}</span>
+      <span [class]="{'max-value': element.tower_damage ? element.tower_damage === calPerfectData(data, 'tower_damage') : ''}"> {{element.tower_damage === 0 || !element.tower_damage ? '-' : element.tower_damage   | greaterNum: 1000: 'k'}}</span>
     </td>
-    <td mat-footer-cell *matFooterCellDef><span> {{finalData ? (calTotal(finalData, 'tower_damage')  | greaterNum: 1000: 'k') : ''}}</span></td>
+    <td mat-footer-cell *matFooterCellDef><span> {{finalData ? (calTotal(finalData, 'tower_damage')  | greaterNum: 1000: 'k') : '-'}}</span></td>
   </ng-container>
   
   <!-- hero_healing column -->
   <ng-container matColumnDef="hero_healing">
     <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Amount of health restored to heroes" matTooltipPosition="above"><span> HH</span></th>
     <td mat-cell *matCellDef="let element">
-      <span [class]="{'max-value': element.hero_healing === calPerfectData(data, 'hero_healing')}"> {{element.hero_healing === 0 ? '-' : element.hero_healing   | greaterNum: 1000: 'k'}}</span>
+      <span [class]="{'max-value': element.hero_healing ? element.hero_healing === calPerfectData(data, 'hero_healing') : ''}"> {{element.hero_healing === 0 || !element.hero_healing ? '-' : element.hero_healing   | greaterNum: 1000: 'k'}}</span>
     </td>
-    <td mat-footer-cell *matFooterCellDef><span> {{finalData ? (calTotal(finalData, 'hero_healing')  | greaterNum: 1000: 'k') : ''}}</span></td>
+    <td mat-footer-cell *matFooterCellDef><span> {{finalData ? (calTotal(finalData, 'hero_healing')  | greaterNum: 1000: 'k') : '-'}}</span></td>
   </ng-container>
   
   <!-- items built column -->
@@ -137,7 +137,7 @@
             </span>
         </span>
       </div>
-      <div class="backpack-list" *ngIf="whetherShowBackPackList(element.backpack)">
+      <div class="backpack-list" *ngIf="element?.backpack && whetherShowBackPackList(element.backpack)">
         <mat-icon class="backpack" matTooltip="Backpack" matTooltipPosition="above">card_travel</mat-icon>
         <span *ngFor="let item of element?.backpack" class="item-list-item">
           <img

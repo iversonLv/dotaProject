@@ -93,14 +93,16 @@ export class TableMatchDetailOverviewAbilityBuildComponent implements OnInit {
   // As dota abilty upgrade array is [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, X, 18, X, 20, X, X, X, X, 25]
   // level 17, 19, 20, 21, 21, 23, 24, for empty, so from response data we need push 0 for placeholder
   addPlaceholderForAbilityUpgradesArr(data: any): number[] {
-    const arr = [...data];
-    arr.splice(16, 0, 0); // for 17
-    arr.splice(18, 0, 0); // for 19
-    arr.splice(20, 0, 0); // for 21
-    arr.splice(21, 0, 0); // for 22
-    arr.splice(22, 0, 0); // for 23
-    arr.splice(23, 0, 0); // for 24
-    return arr;
+    if (data) {
+      const arr = [...data];
+      arr.splice(16, 0, 0); // for 17
+      arr.splice(18, 0, 0); // for 19
+      arr.splice(20, 0, 0); // for 21
+      arr.splice(21, 0, 0); // for 22
+      arr.splice(22, 0, 0); // for 23
+      arr.splice(23, 0, 0); // for 24
+      return arr;
+    }
   }
 
 }

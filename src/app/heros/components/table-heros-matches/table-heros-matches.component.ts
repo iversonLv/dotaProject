@@ -8,13 +8,13 @@ import { MatTableDataSource } from '@angular/material/table';
 
 // model
 import { IMatchData } from '../../model/match';
+import { IPlayerData } from 'src/app/players/model/general';
+import { IPro, IProData } from 'src/app/players/model/pro';
 
 // ngrx
 import { Store } from '@ngrx/store';
 import * as herosActions from '../../store/heros.actions';
 import * as playersActions from '../../../players/store/players.actions';
-import { IPlayerData } from 'src/app/players/model/general';
-import { IPro, IProData } from 'src/app/players/model/pro';
 
 
 @Component({
