@@ -60,5 +60,10 @@ export class MatchHeroComponent implements OnInit {
     console.log(matchId);
   }
 
+  // cal score
+  calScore(data: any): any {
+    return data.map(i => i.kills).reduce((cur, total) => cur + total, 0);
+  }
+
 
 }

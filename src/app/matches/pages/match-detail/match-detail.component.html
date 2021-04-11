@@ -105,7 +105,7 @@
 
       <!-- ability build -->
       <!-- radiant side -->
-      <div class="team-box">
+      <div class="team-box" *ngIf="matchData?.players[0].ability_upgrades_arr">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
           <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Ability Build' : 'Radiant - Ability Build'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
@@ -127,7 +127,7 @@
       <!-- team-box -->
 
       <!-- dire side -->
-      <div class="team-box">
+      <div class="team-box" *ngIf="matchData?.players[0].ability_upgrades_arr">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
           <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Overview' : 'Dire - Overview'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
@@ -151,6 +151,7 @@
           <div class="overview-adv">
             <app-nav-title [title]="'Radiant Advantage'"></app-nav-title>
             <app-chart-stack-line-with-minus
+              *ngIf="matchData.radiant_xp_adv || matchData.radiant_gold_adv"
               [data]="[matchData.radiant_xp_adv, matchData.radiant_gold_adv]"
             ></app-chart-stack-line-with-minus>
           </div>
