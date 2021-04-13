@@ -9,7 +9,7 @@ import * as playersActions from '../../store/players.actions';
 import { GameModeService } from 'src/app/services/game-mode.service';
 import { LaneRoleService } from 'src/app/services/lane-role.service';
 import { LobbyTypeService } from 'src/app/services/lobby-type.service';
-import { PatchService } from 'src/app/services/patch.service';
+import { PatchService } from 'src/app/patches/services/patch.service';
 import { RegionService } from 'src/app/services/region.service';
 import { LeaverStatusService } from 'src/app/services/leaver-status.service';
 import { SideService } from 'src/app/services/side.service';
@@ -30,7 +30,7 @@ export class CountsComponent implements OnInit {
   lobbyTypeLocal: any;
   laneRoleLocal: any;
   regionLocal: any;
-  patchLocal: any;
+  patchesLocal: any;
   sidesLocal: any;
   playersCountsDestructData: any = {};
 
@@ -98,7 +98,7 @@ export class CountsComponent implements OnInit {
     this.getLobbyTypeLocal();
     this.getLaneRoleLocal();
     this.getRegionLocal();
-    this.getPatchLocal();
+    this.getPatchesLocal();
     this.getSidesLocal();
   }
 
@@ -118,9 +118,9 @@ export class CountsComponent implements OnInit {
     });
   }
 
-  getPatchLocal(): any {
-    this.patchService.getPatchLocal().subscribe(data => {
-      this.patchLocal = data;
+  getPatchesLocal(): any {
+    this.patchService.getPatchesLocal().subscribe(data => {
+      this.patchesLocal = data;
     }, err => {
       console.log(err);
     });

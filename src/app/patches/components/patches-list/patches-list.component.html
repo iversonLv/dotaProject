@@ -1,0 +1,10 @@
+<ul *ngIf="overallPatchList" class="patch-list">
+  <li 
+    *ngFor="let item of overallPatchList"
+    (click)="selectCurrentPatch(item)"
+    class="patch-list-item"
+    [class]="item === currentPatch ? 'patch-list-item-actived' : ''"
+  >
+    {{item}}
+  </li>
+</ul>

@@ -1,0 +1,86 @@
+<div *ngIf="patchnote" class="patch-detail">
+  <div class="patch-title">
+    <div class="patch-title-released-date">
+      <span>PATCH: {{currentPatch}}</span>
+      <span class="patch-released-date" *ngIf="currentPatch && patchesLocalData && patchesLocalData[extractCurrentPatch(currentPatch)]">
+        Released on: {{patchesLocalData[extractCurrentPatch(currentPatch)]?.date | slice: 0 : 9}}
+      </span>
+    </div>
+    <div class="nav-wrapper">
+      <nav>
+        <a
+        *ngFor="let item of ['general', 'items', 'heroes']"
+        [class]="currentCat === item ? 'active' : ''"
+        (click)=gotoAnchor(item)
+        >{{item}}</a>
+      </nav>
+    </div>
+  </div>
+  <!-- general -->
+  <div class="patch-content">
+    <div *ngIf="patchnote?.general" class="patch-cat" #general>
+      <h2 class="patch-cat-title">General</h2>
+      <div *ngFor="let item of patchnote?.general" class="item-row">
+        {{item}}
+      </div>
+    </div>
+    <!-- Items -->
+    <div *ngIf="patchnote?.items && itemsLocal && itemColorLocal" class="patch-cat" #items>
+      <h2 class="patch-cat-title">Items</h2>
+      <div *ngFor="let item of extractPatchFieldList(patchnote?.items)" class="item-row">
+        <div class="item-img-name">
+          <img
+            width="64px"
+            class="item-img"
+            [style]="'border: 1px solid ' + itemColorLocal[itemsLocal[item]?.qual]"
+            *ngIf="itemsLocal && itemsLocal[item]?.img"
+            onError="this.src='./assets/images/Dota2Logo.svg'"
+            [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[item]?.img"
+          />
+          
+          <h3 class="item-title" *ngIf="itemsLocal && itemsLocal[item]?.dname">{{itemsLocal[item]?.dname}}</h3>
+        </div>
+        <div
+          class="item-list-row"
+          *ngFor="let update of patchnote?.items[item]">
+          {{update}}
+        </div>
+      </div>
+    </div>
+  
+    <!-- Heroes -->
+    <div *ngIf="patchnote?.heroes && heroesNameLocal"  class="patch-cat" #heroes>
+      <h2 class="patch-cat-title">Heroes</h2>
+      <div *ngFor="let hero of extractPatchFieldList(patchnote?.heroes)" class="item-row">
+        <div class="item-img-name">
+          <img
+            width="64px"
+            class="item-img"
+            [class]="'hero-' + heroesNameLocal['npc_dota_hero_' + hero]?.primary_attr"
+            *ngIf="heroesNameLocal && heroesNameLocal['npc_dota_hero_' + hero]?.img"
+            onError="this.src='./assets/images/Dota2Logo.svg'"
+            [src]="'https://steamcdn-a.akamaihd.net/' + heroesNameLocal['npc_dota_hero_' + hero]?.img"
+          />
+          
+          <a
+            [routerLink]="['/heroes', heroesNameLocal['npc_dota_hero_' + hero]?.id]"
+            class="item-title" *ngIf="heroesNameLocal && heroesNameLocal['npc_dota_hero_' + hero]?.localized_name">{{heroesNameLocal['npc_dota_hero_' + hero]?.localized_name}}</a>
+        </div>
+        <div
+          class="item-list-row"
+          *ngFor="let update of patchnote?.heroes[hero]">
+          <img
+            onError="this.src='./assets/images/Dota2Logo.svg'"
+            src="./assets/images/talent_tree.svg"
+            with="64px"
+            height="64px"
+            class="hero-talent"
+            *ngIf="update.includes('Level')"
+          />
+          {{update}}
+        </div>
+      </div>
+    </div>
+    <!-- hero -->
+  </div>
+</div>

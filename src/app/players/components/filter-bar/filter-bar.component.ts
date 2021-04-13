@@ -19,7 +19,7 @@ import * as playersActions from '../../store/players.actions';
 import { PlayersService } from '../../services/players.service';
 import { HerosService } from 'src/app/heros/services/heros.service';
 import { LaneRoleService } from 'src/app/services/lane-role.service';
-import { PatchService } from 'src/app/services/patch.service';
+import { PatchService } from 'src/app/patches/services/patch.service';
 import { GameModeService } from 'src/app/services/game-mode.service';
 import { LobbyTypeService } from 'src/app/services/lobby-type.service';
 import { RegionService } from 'src/app/services/region.service';
@@ -37,7 +37,7 @@ export class FilterBarComponent implements OnInit {
 
   heroesLocal: IheroLocal;
   laneRoleLocal: any;
-  patchLocal: any;
+  patchesLocal: any;
   gameModeLocal: any;
   regionLocal: any;
   lobbyTypeLocal: any;
@@ -131,7 +131,7 @@ export class FilterBarComponent implements OnInit {
 
     this.getHeroesLocal();
     this.getLaneRoleLocal();
-    this.getPatchLocal();
+    this.getPatchesLocal();
     this.getGameModeLocal();
     this.getLobbyTypeLocal();
     this.getRegionLocal();
@@ -363,8 +363,8 @@ export class FilterBarComponent implements OnInit {
     this.laneRoleService.getLaneRoleLocal().subscribe(data => this.laneRoleLocal = data);
   }
 
-  getPatchLocal(): any {
-    this.patchService.getPatchLocal().subscribe(data => this.patchLocal = data);
+  getPatchesLocal(): any {
+    this.patchService.getPatchesLocal().subscribe(data => this.patchesLocal = data);
   }
 
   getGameModeLocal(): any {

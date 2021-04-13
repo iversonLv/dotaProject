@@ -170,6 +170,7 @@ export class MatchDetailComponent implements OnInit {
     this.getAbilitiesTalentsLocal();
     this.getAbilitiesByIdLocal();
     this.getItemsLocal();
+    this.getItemColorLocal();
     this.getItemIdsLocal();
     this.getAghsDescriptionLocal();
     this.getPermanentBuffsLocal();
@@ -177,7 +178,7 @@ export class MatchDetailComponent implements OnInit {
   }
 
   // get hero local data
-  getHeroesLocal(): any {
+  getHeroesNameLocal(): any {
     this.herosService.getHeroesNameLocal().subscribe(data => {
       this.heroesNameLocal = data;
     }, err => {
@@ -208,7 +209,7 @@ export class MatchDetailComponent implements OnInit {
 
 
   // get hero local data base name
-  getHeroesNameLocal(): any {
+  getHeroesLocal(): any {
     this.herosService.getHeroesLocal().subscribe(data => {
       this.heroesLocal = data;
     }, err => {
