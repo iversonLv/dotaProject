@@ -175,6 +175,7 @@ environment.pro.ts
     - [x] sub pages very similar: duration, kills, deaths, assists, gold per min, xp per min, last hits, denies, hero damage, tower damage, hero healing (2021.2.26)
   - [X] Dota2 pro player world population (2021.4.11)
     - [x] Click the world dot will show modal to show the country pro player list(2021.4.12)
+  - [90%] Patch pages (2021. 4.12, 4.13) Now the patch notes is not readable for heroes, so we don't dispose the page yet.
 [] Improve
   - [] Update ngfor with trackby?
   - [x] Update sub navigation as share component (2021.2.6)

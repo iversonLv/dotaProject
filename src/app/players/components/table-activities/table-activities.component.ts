@@ -2,10 +2,6 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
-import { HerosService } from 'src/app/heros/services/heros.service';
-import { GameModeService } from 'src/app/services/game-mode.service';
-import { LobbyTypeService } from 'src/app/services/lobby-type.service';
-import { SkillService } from 'src/app/services/skill.service';
 
 @Component({
   selector: 'app-table-activities',

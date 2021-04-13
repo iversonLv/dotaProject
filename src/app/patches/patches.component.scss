@@ -1,0 +1,32 @@
+@import '../../styles.scss';
+
+.wrapper {
+  display: flex;
+
+  &.fixed {
+    ::ng-deep {
+
+      .patch-title {
+        top: 0;
+      }
+    }
+  }
+
+  ::ng-deep {
+    .patch-list {
+      position: fixed;
+      height: calc(100% - 135px);
+      overflow-y: auto;
+      width: 300px;
+    }
+
+    .patch-title {
+      position: fixed;
+      top: 61px;
+    }
+
+    .patch-detail {
+      padding-left: 350px;
+    }
+  }
+}

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+
+// service
 import { GeneralService } from '../../services/general.service';
 
 import { Observable } from 'rxjs';
 
 // model
 import { IHero } from '../model/hero';
-import { IHeroStats } from '../model/heroStats';
 import { IheroLocal } from '../model/heroLocal';
 import { IHeroAbility } from '../model/hero-abilities';
 import { IAbility } from '../model/ablities';
