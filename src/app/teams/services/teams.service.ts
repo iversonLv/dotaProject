@@ -3,12 +3,13 @@ import { Observable } from 'rxjs';
 
 // service
 import { GeneralService } from '../../services/general.service';
+
+// model
+import { ITeam } from '../model/team';
 import { IHero } from '../model/hero';
 import { IMatch } from '../model/match';
 import { IPlayer } from '../model/player';
 
-// model
-import { ITeam } from '../model/team';
 @Injectable({
   providedIn: 'root'
 })

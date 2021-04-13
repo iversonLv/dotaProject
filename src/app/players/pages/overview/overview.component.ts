@@ -15,10 +15,8 @@ import { IMatch, IMatchData } from 'src/app/matches/model/match';
 import { IRecentMatch, IRecentMatchData } from 'src/app/matches/model/recent-match';
 
 // service
-import { HerosService } from 'src/app/heros/services/heros.service';
-import { LobbyTypeService } from 'src/app/services/lobby-type.service';
 import { GameModeService } from 'src/app/services/game-mode.service';
-import { PatchService } from 'src/app/services/patch.service';
+import { PatchService } from 'src/app/patches/services/patch.service';
 import { LaneRoleService } from 'src/app/services/lane-role.service';
 import { RegionService } from 'src/app/services/region.service';
 import { SkillService } from 'src/app/services/skill.service';
@@ -67,7 +65,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
   lobbyTypeLocal: any;
   gameModeLocal: any;
   regionLocal: any;
-  patchLocal: any;
+  patchesLocal: any;
   laneRoleLocal: any;
   skillLocal: any;
 
@@ -195,7 +193,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
     // this.getLobbyTypeLocal();
     this.getGameModeLocal();
     this.getRegionLocal();
-    this.getPatchLocal();
+    this.getPatchesLocal();
     this.getLaneRoleLocal();
      // this.getSkillLocal();
   }
@@ -289,10 +287,10 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
     });
   }
 
-  getPatchLocal(): any {
+  getPatchesLocal(): any {
     this.isLoading = false;
-    this.patchService.getPatchLocal().subscribe(data => {
-      this.patchLocal = data;
+    this.patchService.getPatchesLocal().subscribe(data => {
+      this.patchesLocal = data;
       this.isLoading = true;
     }, err => {
       console.log(err);

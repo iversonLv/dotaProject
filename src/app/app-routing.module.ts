@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'medals', loadChildren: () => import('./medals/medals.module').then(m => m.MedalsModule) },
   { path: 'records', loadChildren: () => import('./records/records.module').then(m => m.RecordsModule) },
   { path: 'search', loadChildren: () => import('./search/search.module').then(m => m.SearchModule) },
+  { path: 'patches', loadChildren: () => import('./patches/patches.module').then(m => m.PatchesModule) },
   { path: '**', loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule) },
 
 ];

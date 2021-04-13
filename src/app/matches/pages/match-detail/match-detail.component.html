@@ -843,7 +843,7 @@
     </div>
 
     <!-- Cosmetics -->
-    <div *ngIf="currentPage === 'cosmetics'">
+    <div *ngIf="currentPage === 'cosmetics' && matchData?.cosmetics">
       <app-nav-title [title]="'Cosmetics'"></app-nav-title>
       <app-table-cosmetics
           [playerColorLocal]="playerColorLocal"

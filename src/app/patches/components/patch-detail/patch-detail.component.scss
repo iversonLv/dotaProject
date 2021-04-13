@@ -1,0 +1,97 @@
+@import '../../../../styles.scss';
+
+.patch-title-released-date {
+  display: flex;
+  justify-content: space-between;
+}
+.patch-title {
+  background-color: $darken;
+  border-bottom: 1px solid $black;
+  padding: 15px;
+  width: calc(1200px - 350px - 30px);
+
+  .patch-released-date {
+    font-size: 11px;
+    display: block;
+    padding-bottom: 15px;
+  }
+}
+
+.patch-content {
+  padding-top: 95px;
+}
+
+.patch-cat-title {
+  display: inline-block;
+  padding: 10px;
+  background: $darken;
+  color: $white;
+  margin: 15px;
+}
+
+.item-row {
+  padding: 15px;
+  bottom: 1px solid $darken;
+
+}
+
+.item-img-name {
+  display: flex;
+  padding-bottom: 15px;
+
+  .item-img {
+    border: 1px solid $white;
+
+    &.hero-str {
+      border-color: $hero-str;
+    }
+    
+    &.hero-int {
+      border-color: $hero-int;
+    }
+    
+    &.hero-agi {
+      border-color: $hero-agi;
+    }
+  }
+
+  .item-title {
+    align-self: center;
+    margin: 0;
+    padding-left: 15px;
+    color: rgb(102, 187, 255);
+  }
+}
+
+.item-list-row {
+  display: flex;
+  align-items: center;
+}
+
+
+.nav-wrapper {
+  border-top: 1px solid $gray;
+  border-bottom: 1px solid $gray;
+  margin: 0 -15px -15px;
+}
+nav {
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+a {
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  height: 48px;
+  line-height: 48px;
+  color: $gray;
+  border-bottom: 2px solid transparent;
+
+  &.active,
+  &.active:hover {
+    border-bottom-color: $dark-blue;
+  }
+}

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+// service
 import { GeneralService } from 'src/app/services/general.service';
 
 // model
