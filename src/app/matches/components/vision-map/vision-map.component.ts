@@ -17,7 +17,9 @@ export class VisionMapComponent implements OnInit, OnChanges {
   @Input() data: any;
   @Input() showHideVisionPlayersData: any;
   @Input() playerColorLocal: any;
+  @Input() heroesNameLocal: IheroLocal;
   @Input() heroesLocal: IheroLocal;
+  @Input() visionTimeLine: number;
 
 
   // obsSen modal
@@ -26,7 +28,7 @@ export class VisionMapComponent implements OnInit, OnChanges {
   showObsSenModal = false;
 
   mapData;
-  mapSize = 550;
+  @Input() mapSize = 550; // default map size 900, sen visible r is 40.9, obs visible r is 73.6
   senPadding = [];
   obsPadding = [];
   // senObs icon size width is 18, height is 14
@@ -38,8 +40,8 @@ export class VisionMapComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     // -4 which is border
-    this.senPadding = [25 - this.senObsSize[0] / 2 - 4, 25 - this.senObsSize[1] / 2 - 4];
-    this.obsPadding = [45 - this.senObsSize[0] / 2 - 4, 45 - this.senObsSize[1] / 2 - 4];
+    this.senPadding = [this.mapSize * 40.9 / 900 - this.senObsSize[0] / 2 - 4, this.mapSize * 40.9 / 900 - this.senObsSize[1] / 2 - 4];
+    this.obsPadding = [this.mapSize * 73.6 / 900 - this.senObsSize[0] / 2 - 4, this.mapSize * 73.6 / 900 - this.senObsSize[1] / 2 - 4];
    // this.mapData = this.filterShowHideVisionDataFn(this.showHideVisionPlayersData, this.extractObsSenFinalData(this.data));
 
   }
@@ -84,6 +86,7 @@ extractObsSenFinalData(data: any[]): any[] {
       placed_time: this.durationFormat.transform(placeData[i].time),
       time: placeData[i].time,
       mapPosition: [
+        // 0 -> x -> horizantoal size for left right; 1 -> y -> virtical size for top bottom
         (Number(placeData[i].x) - 64) * mapSize / 128,
         (128 - (Number(placeData[i].y) - 64)) * mapSize / 128,
       ]
@@ -124,14 +127,19 @@ extractObsSenFinalData(data: any[]): any[] {
     for (const i in players) {
       if (players.hasOwnProperty(i)) {
         arr.push(...data.filter(x => {
+            const visionShowHideTimeline = this.visionTimeLine === -90
+            ? true
+            : (x.time <= this.visionTimeLine && x.left_time_num >= this.visionTimeLine);
+
+            // if the wards time and left time cover the vision timeline show it.
             if (players[i].obs_log && players[i].sen_log) {
-              return x.player_slot === players[i].player_slot && (x.type === 'obs_log' || x.type === 'sen_log');
+              return x.player_slot === players[i].player_slot && (x.type === 'obs_log' || x.type === 'sen_log') && visionShowHideTimeline;
             } else if (!players[i].obs_log && players[i].sen_log) {
-              return x.player_slot === players[i].player_slot && (x.type !== 'obs_log' && x.type === 'sen_log');
+              return x.player_slot === players[i].player_slot && (x.type !== 'obs_log' && x.type === 'sen_log') && visionShowHideTimeline;
             } else if (players[i].obs_log && !players[i].sen_log) {
-              return x.player_slot === players[i].player_slot && (x.type === 'obs_log' && x.type !== 'sen_log');
+              return x.player_slot === players[i].player_slot && (x.type === 'obs_log' && x.type !== 'sen_log') && visionShowHideTimeline;
             } else {
-              return x.player_slot === players[i].player_slot && (x.type !== 'obs_log' && x.type !== 'sen_log');
+              return x.player_slot === players[i].player_slot && (x.type !== 'obs_log' && x.type !== 'sen_log') && visionShowHideTimeline;
             }
           })
         );

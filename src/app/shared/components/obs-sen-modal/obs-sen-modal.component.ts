@@ -10,6 +10,8 @@ export class ObsSenModalComponent implements OnInit {
   @Input() heroesLocal: IheroLocal;
   @Input() player: any;
   @Input() playerColorLocal: any;
+  @Input() heroesNameLocal: IheroLocal;
+  @Input() playerData: any[];
 
   @Input() pageXY: number[] = [0, 100];
   @Input() data: any = {
@@ -34,6 +36,29 @@ export class ObsSenModalComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  extractDataFromAttackername(data: any, attackername: string): any {
+    if (attackername !== 'npc_dota_observer_wards') {
+      const heroId = this.heroesNameLocal[attackername]?.id;
+      const d = [...data];
+      const player = d.filter(i => i.hero_id === heroId);
+      if (player.length > 0) {
+        const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname } = player[0];
+        return {
+          hero_id,
+          pred_vict,
+          player_slot,
+          account_id,
+          rank_tier,
+          name,
+          personaname,
+          // above is common data for player
+        };
+      }
+    } else {
+      return;
+    }
   }
 
 }

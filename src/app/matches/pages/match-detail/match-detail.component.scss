@@ -96,3 +96,47 @@
   height: 17px;
   line-height: 17px;
 }
+
+// vision map timeline
+.vision-timeline {
+  padding-bottom: 30px;
+
+  .vision-timeline-current {
+    padding-bottom: 20px;
+  }
+
+  .vision-timeline-per-min-step-row {
+    width: 100%;
+    position: relative;
+    padding-bottom: 20px
+  }
+
+  .vision-time-per-min-step {
+    position: absolute;
+    border-left: 1px solid $gray;
+    padding-bottom: 23px;
+    padding-left: 10px;
+    color: $dark-blue;
+    cursor: pointer;
+  }
+}
+
+// slider
+::ng-deep {
+  .mat-slider-horizontal .mat-slider-thumb-label {
+    right: -20px!important;
+    top: -52px!important;
+    width: 40px!important;
+    height: 40px!important;
+  }
+
+  .mat-slider-horizontal .mat-slider-wrapper {
+    left: 0!important;
+    right: 0!important;
+  }
+  
+  mat-slider {
+    padding: 0!important;
+    width: 100%!important;
+  }
+}

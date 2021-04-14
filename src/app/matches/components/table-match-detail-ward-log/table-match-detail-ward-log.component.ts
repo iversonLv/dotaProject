@@ -22,6 +22,7 @@ export class TableMatchDetailWardLogComponent implements OnInit, OnChanges {
   @Input() heroesLocal: IheroLocal;
   @Input() heroesNameLocal: IheroLocal;
   @Input() showHideVisionPlayersData: any;
+  @Input() visionTimeLine: number;
 
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = [
@@ -30,8 +31,11 @@ export class TableMatchDetailWardLogComponent implements OnInit, OnChanges {
     'placed_time',
     'left_time',
     'lifespan',
-    'attackername'
+    'attackername',
+    'key'
   ];
+
+  currentObsSenSingle;
   finalData = [];
   constructor(
     private durationFormat: DurationFormatPipe
@@ -124,6 +128,7 @@ calDuration(duration: number, left: IObsSenLeftLog[], place: IObsSenLog[]): any[
         ...d,
         lifespan: this.durationFormat.transform(leftData[i].time - placeData[i].time),
         left_time: this.durationFormat.transform(leftData[i].time),
+        left_time_num: leftData[i].time
       });
     } else {
       arr.push({
@@ -131,6 +136,7 @@ calDuration(duration: number, left: IObsSenLeftLog[], place: IObsSenLog[]): any[
         ...d,
         lifespan: this.durationFormat.transform(duration - placeData[i].time),
         left_time: this.durationFormat.transform(duration),
+        left_time_num: duration
       });
     }
   });
@@ -144,14 +150,18 @@ filterShowHideVisionDataFn(players: any, data: any[]): any[] {
   for (const i in players) {
     if (players.hasOwnProperty(i)) {
       arr.push(...data.filter(x => {
+          const visionShowHideTimeline = this.visionTimeLine === -90
+          ? true
+          : (x.time <= this.visionTimeLine && x.left_time_num >= this.visionTimeLine);
+
           if (players[i].obs_log && players[i].sen_log) {
-            return x.player_slot === players[i].player_slot && (x.type === 'obs_log' || x.type === 'sen_log');
+            return x.player_slot === players[i].player_slot && (x.type === 'obs_log' || x.type === 'sen_log') && visionShowHideTimeline;
           } else if (!players[i].obs_log && players[i].sen_log) {
-            return x.player_slot === players[i].player_slot && (x.type !== 'obs_log' && x.type === 'sen_log');
+            return x.player_slot === players[i].player_slot && (x.type !== 'obs_log' && x.type === 'sen_log') && visionShowHideTimeline;
           } else if (players[i].obs_log && !players[i].sen_log) {
-            return x.player_slot === players[i].player_slot && (x.type === 'obs_log' && x.type !== 'sen_log');
+            return x.player_slot === players[i].player_slot && (x.type === 'obs_log' && x.type !== 'sen_log') && visionShowHideTimeline;
           } else {
-            return x.player_slot === players[i].player_slot && (x.type !== 'obs_log' && x.type !== 'sen_log');
+            return x.player_slot === players[i].player_slot && (x.type !== 'obs_log' && x.type !== 'sen_log') && visionShowHideTimeline;
           }
         })
       );
@@ -159,6 +169,10 @@ filterShowHideVisionDataFn(players: any, data: any[]): any[] {
   }
   console.log('filter', arr);
   return arr;
+}
+
+showObsSenSingleModalFn(item): any {
+  this.currentObsSenSingle = item;
 }
 
 }
