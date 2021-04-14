@@ -20,10 +20,14 @@ import { ItemsService } from 'src/app/services/items.service';
 import { PermanentBuffsService } from 'src/app/services/permanent-buffs.service';
 import { LaneRoleService } from 'src/app/services/lane-role.service';
 
+// pipe
+import { DurationFormatPipe } from 'src/app/shared/utils/duration-format.pipe';
+
 @Component({
   selector: 'app-match-detail',
   templateUrl: './match-detail.component.html',
-  styleUrls: ['./match-detail.component.scss']
+  styleUrls: ['./match-detail.component.scss'],
+  providers: [DurationFormatPipe]
 })
 export class MatchDetailComponent implements OnInit {
   isLoading = false;
@@ -60,6 +64,10 @@ export class MatchDetailComponent implements OnInit {
 
 
   showHideVisionPlayersData = {};
+
+  // vision timeline
+  visionTimeLine = -90;
+  visionTimeLinePerMinSteps: number[];
 
   // reason mapping for farm bottom stack bar chart
   xpReasonMapping = {
@@ -124,6 +132,7 @@ export class MatchDetailComponent implements OnInit {
   enableConsumable = false;
 
   constructor(
+    private durationFormat: DurationFormatPipe,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private herosService: HerosService,
@@ -146,7 +155,8 @@ export class MatchDetailComponent implements OnInit {
         this.isLoading = data.isLoading;
         this.matchData = singleMatchData[0];
         // this.currentTeamFightDataForTable = singleMatchData[0].teamfights[0].players;
-        this.getShowHideVisionPlayersData(singleMatchData[0]?.players);
+        this.getShowHideVisionPlayersData(singleMatchData[0]?.players, this.visionTimeLine);
+        this.extractvisionTimeLinelineTickPerMinute(singleMatchData[0]?.duration, 10);
         return this.matchData;
       }
     }, err => {
@@ -335,13 +345,41 @@ export class MatchDetailComponent implements OnInit {
   }
 
   // extract matches players[] to less data to meet for this page table
-  getShowHideVisionPlayersData(data): any {
+  getShowHideVisionPlayersData(data: any[], timeline: number): any {
     data.forEach(i => {
       const { hero_id, player_slot } = i;
-      this.showHideVisionPlayersData[hero_id] = { hero_id, player_slot, obs_log: true, sen_log: true };
+      this.showHideVisionPlayersData[hero_id] = { hero_id, player_slot, obs_log: true, sen_log: true, timeline };
     });
     console.log(this.showHideVisionPlayersData);
     return this.showHideVisionPlayersData;
+  }
+
+  // show duation label on vision slider
+  durationLabel(duration: number): string {
+    let minus = false;
+    duration < 0 ? minus = true : minus = false;
+    const getMin = (Math.abs(Math.floor(duration) / 60)).toString().split('.')[0];
+    let getSec = Math.abs(Math.floor(duration)) % 60 === 0 ? '00' : Math.abs(Math.floor(duration)) % 60;
+    if (getSec < 10 && getSec > 0) {
+      getSec = '0' + getSec + '';
+    }
+    return minus ? `-${getMin}:${getSec}` : `${getMin}:${getSec}`;
+  }
+
+  // vision time slider change
+  updatevisionTimeLine(e): number {
+    return this.visionTimeLine = e.value;
+  }
+
+
+  // dynamic show X perminute step tick, example, duration is 38:01, so tick step will be 0, 1, 2, 3 for 0:00; 10:00; 20:00; 30:00
+  extractvisionTimeLinelineTickPerMinute(duration: number, perMinute: number): number[] {
+    const arr = [];
+    for (let i = 0; i <= Math.floor(duration / (perMinute * 60)); i++) {
+      arr.push(i);
+    }
+    // console.log(visionTimeLineStepPerMinArr);
+    return this.visionTimeLinePerMinSteps = arr;
   }
 
 }

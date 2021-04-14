@@ -17,7 +17,9 @@ export class VisionMapComponent implements OnInit, OnChanges {
   @Input() data: any;
   @Input() showHideVisionPlayersData: any;
   @Input() playerColorLocal: any;
+  @Input() heroesNameLocal: IheroLocal;
   @Input() heroesLocal: IheroLocal;
+  @Input() visionTimeLine: number;
 
 
   // obsSen modal
@@ -125,14 +127,19 @@ extractObsSenFinalData(data: any[]): any[] {
     for (const i in players) {
       if (players.hasOwnProperty(i)) {
         arr.push(...data.filter(x => {
+            const visionShowHideTimeline = this.visionTimeLine === -90
+            ? true
+            : (x.time <= this.visionTimeLine && x.left_time_num >= this.visionTimeLine);
+
+            // if the wards time and left time cover the vision timeline show it.
             if (players[i].obs_log && players[i].sen_log) {
-              return x.player_slot === players[i].player_slot && (x.type === 'obs_log' || x.type === 'sen_log');
+              return x.player_slot === players[i].player_slot && (x.type === 'obs_log' || x.type === 'sen_log') && visionShowHideTimeline;
             } else if (!players[i].obs_log && players[i].sen_log) {
-              return x.player_slot === players[i].player_slot && (x.type !== 'obs_log' && x.type === 'sen_log');
+              return x.player_slot === players[i].player_slot && (x.type !== 'obs_log' && x.type === 'sen_log') && visionShowHideTimeline;
             } else if (players[i].obs_log && !players[i].sen_log) {
-              return x.player_slot === players[i].player_slot && (x.type === 'obs_log' && x.type !== 'sen_log');
+              return x.player_slot === players[i].player_slot && (x.type === 'obs_log' && x.type !== 'sen_log') && visionShowHideTimeline;
             } else {
-              return x.player_slot === players[i].player_slot && (x.type !== 'obs_log' && x.type !== 'sen_log');
+              return x.player_slot === players[i].player_slot && (x.type !== 'obs_log' && x.type !== 'sen_log') && visionShowHideTimeline;
             }
           })
         );

@@ -154,7 +154,7 @@ environment.pro.ts
       - [x] GRAPHS (2021.3.22, 23)
       - [99%] CASTS (2021.3.14, 18) TODO: hover on other image, ability target image will fresh(only happen if open the dev tools), some error in dev tools for undefinded
       - [99%] OBJECTIVES (2021.3.18) TODO: RAXT, RAXM, RAXB chartbar need improve, need calperfect number for plus data, now only for one data
-      - [95%] VISION (2021.3.30,31,4.6, 4.8, 4.9, 4.11, 4.14(single-vision-map)) The vision timeline
+      - [x] VISION (2021.3.30,31,4.6, 4.8, 4.9, 4.11, 4.14(single-vision-map, 4.14))
       - [X] ACTIONS (2021.3.14)
       - [85%] TEAMSFIGHTS (2021.3.27,28) TODO click the fight icon does not update the data, left map
       - [] ANALYSIS onhold

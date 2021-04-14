@@ -23,4 +23,11 @@
   </span>
 </div>
 
-<app-obs-sen-modal [data]="currentObsSen" [heroesLocal]="heroesLocal" [player]="data[currentObsSen?.slot]" [playerColorLocal]="playerColorLocal" [pageXY]="pageXY"></app-obs-sen-modal>
+<app-obs-sen-modal
+[data]="currentObsSen"
+[playerData]="data"
+[heroesLocal]="heroesLocal"
+[player]="data[currentObsSen?.slot]"
+[playerColorLocal]="playerColorLocal"
+[heroesNameLocal]="heroesNameLocal"
+[pageXY]="pageXY"></app-obs-sen-modal>

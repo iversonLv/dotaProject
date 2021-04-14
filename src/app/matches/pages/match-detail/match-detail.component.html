@@ -642,12 +642,36 @@
         <app-vision-map
           [playerColorLocal]="playerColorLocal"
           [heroesLocal]="heroesLocal"
+          [heroesNameLocal]="heroesNameLocal"
           [data]="matchData?.players"
           [showHideVisionPlayersData]="showHideVisionPlayersData"
+          [visionTimeLine]="visionTimeLine"
         >
         ></app-vision-map>
         <div class="vision-timeline-show-hide-col">
           <!-- timeline goes here -->
+          <div class="vision-timeline">
+            <div class="vision-timeline-current">{{visionTimeLine === -90 ? 'All time' : (visionTimeLine | durationFormat)}}</div>
+            <div class="vision-timeline-per-min-step-row">
+              <span
+                (click)="visionTimeLine = (item * 600)"
+                class="vision-time-per-min-step"
+                *ngFor="let item of visionTimeLinePerMinSteps"
+                [style]="'left:' + ((item * 600 + 90) / (matchData?.duration + 90) * 100) + '%'"
+              >
+                {{item * 600 | durationFormat}}
+              </span>
+            </div>
+            <mat-slider
+              [displayWith]="durationLabel"
+              thumbLabel
+              step="5"
+              [value]="visionTimeLine"
+              (change)="updatevisionTimeLine($event)"
+              min="-90"
+              [max]="matchData?.duration"
+            ></mat-slider>
+          </div>
           <div class="team-box">
             <div class="team-row">
               <app-radient class="sides-icon"></app-radient>
@@ -715,6 +739,7 @@
       <app-table-match-detail-ward-log
         [playerColorLocal]="playerColorLocal"
         [heroesLocal]="heroesLocal"
+        [visionTimeLine]="visionTimeLine"
         [heroesNameLocal]="heroesNameLocal"
         [data]="matchData?.players"
         [showHideVisionPlayersData]="showHideVisionPlayersData"

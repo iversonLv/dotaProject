@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DurationFormatPipe implements PipeTransform {
 
-  transform(duration: number): unknown {
+  transform(duration: number): string {
     let minus = false;
     duration < 0 ? minus = true : minus = false;
     const getMin = (Math.abs(Math.floor(duration) / 60)).toString().split('.')[0];
