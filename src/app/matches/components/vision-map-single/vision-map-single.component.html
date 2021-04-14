@@ -1,0 +1,21 @@
+<div class="map" [style]="'width:' + mapSize + 'px; height:' + mapSize + 'px;'">
+  <span *ngIf="mapData" class="obs-sen-item">
+    <img
+      *ngIf="mapData.player_slot < 128"
+      onError="this.src='./assets/images/Dota2Logo.svg'"
+      width="18"
+      class="obs-sen goodguys-obs-sen"
+      [src]="mapData.type === 'obs_log' ? './assets/images/goodguys_observer.png' : './assets/images/goodguys_sentry.png'"
+      [style]="'top:' + (mapData.mapPosition[1] - (mapData.type === 'obs_log' ? obsPadding[1] : senPadding[1])) + 'px; left:' + (mapData.mapPosition[0] - (mapData.type === 'obs_log' ? obsPadding[0] : senPadding[0])) + 'px; padding:' + (mapData.type === 'obs_log' ? obsPadding[1] : senPadding[1]) + 'px ' + (mapData.type === 'obs_log' ? obsPadding[0] : senPadding[0]) + 'px;'"
+    />
+    <img
+      *ngIf="mapData.player_slot > 127"
+      onError="this.src='./assets/images/Dota2Logo.svg'"
+      width="18"
+      class="obs-sen badguys-obs-sen"
+      [class]="mapData.type === 'obs_log'? 'obs-item' : 'sen-item'"
+      [src]="mapData.type === 'obs_log' ? './assets/images/badguys_observer.png' : './assets/images/badguys_sentry.png'"
+      [style]="'top:' + (mapData.mapPosition[1] - (mapData.type === 'obs_log' ? obsPadding[1] : senPadding[1])) + 'px; left:' + (mapData.mapPosition[0] - (mapData.type === 'obs_log' ? obsPadding[0] : senPadding[0])) + 'px; padding:' + (mapData.type === 'obs_log' ? obsPadding[1] : senPadding[1]) + 'px ' + (mapData.type === 'obs_log' ? obsPadding[0] : senPadding[0]) + 'px;'"
+    />
+  </span>
+</div>

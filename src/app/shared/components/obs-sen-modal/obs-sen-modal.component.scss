@@ -29,6 +29,8 @@
 }
 
 .info {
+  display: flex;
+  align-items: baseline;
   margin: 0;
   padding: 5px 0 0;
   font-size: 12px;

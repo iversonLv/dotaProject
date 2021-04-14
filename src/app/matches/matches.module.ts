@@ -76,6 +76,7 @@ import { TableMatchDetailVisionComponent } from './components/table-match-detail
 import { TableMatchDetailWardLogComponent } from './components/table-match-detail-ward-log/table-match-detail-ward-log.component';
 import { VisionMapComponent } from './components/vision-map/vision-map.component';
 import { TableMatchDetailVisionShowhideComponent } from './components/table-match-detail-vision-showhide/table-match-detail-vision-showhide.component';
+import { VisionMapSingleComponent } from './components/vision-map-single/vision-map-single.component';
 
 
 @NgModule({
@@ -137,7 +138,8 @@ import { TableMatchDetailVisionShowhideComponent } from './components/table-matc
     TableMatchDetailVisionComponent,
     TableMatchDetailWardLogComponent,
     VisionMapComponent,
-    TableMatchDetailVisionShowhideComponent
+    TableMatchDetailVisionShowhideComponent,
+    VisionMapSingleComponent
   ],
   imports: [
     CommonModule,
