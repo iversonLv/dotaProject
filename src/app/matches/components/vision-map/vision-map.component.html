@@ -9,7 +9,7 @@
       width="18"
       class="obs-sen goodguys-obs-sen"
       [src]="item.type === 'obs_log' ? './assets/images/goodguys_observer.png' : './assets/images/goodguys_sentry.png'"
-      [style]="'top:' + (item.mapPosition[0] - (item.type === 'obs_log' ? obsPadding[1] : senPadding[1])) + 'px; left:' + (item.mapPosition[1] - (item.type === 'obs_log' ? obsPadding[0] : senPadding[0])) + 'px; padding:' + (item.type === 'obs_log' ? obsPadding[1] : senPadding[1]) + 'px ' + (item.type === 'obs_log' ? obsPadding[0] : senPadding[0]) + 'px;'"
+      [style]="'top:' + (item.mapPosition[1] - (item.type === 'obs_log' ? obsPadding[1] : senPadding[1])) + 'px; left:' + (item.mapPosition[0] - (item.type === 'obs_log' ? obsPadding[0] : senPadding[0])) + 'px; padding:' + (item.type === 'obs_log' ? obsPadding[1] : senPadding[1]) + 'px ' + (item.type === 'obs_log' ? obsPadding[0] : senPadding[0]) + 'px;'"
     />
     <img
       *ngIf="item.player_slot > 127"
@@ -18,7 +18,7 @@
       class="obs-sen badguys-obs-sen"
       [class]="item.type === 'obs_log'? 'obs-item' : 'sen-item'"
       [src]="item.type === 'obs_log' ? './assets/images/badguys_observer.png' : './assets/images/badguys_sentry.png'"
-      [style]="'top:' + (item.mapPosition[0] - (item.type === 'obs_log' ? obsPadding[1] : senPadding[1])) + 'px; left:' + (item.mapPosition[1] - (item.type === 'obs_log' ? obsPadding[0] : senPadding[0])) + 'px; padding:' + (item.type === 'obs_log' ? obsPadding[1] : senPadding[1]) + 'px ' + (item.type === 'obs_log' ? obsPadding[0] : senPadding[0]) + 'px;'"
+      [style]="'top:' + (item.mapPosition[1] - (item.type === 'obs_log' ? obsPadding[1] : senPadding[1])) + 'px; left:' + (item.mapPosition[0] - (item.type === 'obs_log' ? obsPadding[0] : senPadding[0])) + 'px; padding:' + (item.type === 'obs_log' ? obsPadding[1] : senPadding[1]) + 'px ' + (item.type === 'obs_log' ? obsPadding[0] : senPadding[0]) + 'px;'"
     />
   </span>
 </div>
