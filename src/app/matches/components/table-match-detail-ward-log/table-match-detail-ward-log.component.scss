@@ -1,0 +1,10 @@
+.vision-map-single-box {
+  position: relative;
+  cursor: pointer;
+
+  app-vision-map-single {
+    position: absolute;
+    top: -300px;
+    left: -300px;
+  }
+}

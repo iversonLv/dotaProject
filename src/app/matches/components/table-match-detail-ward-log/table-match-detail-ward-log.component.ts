@@ -30,8 +30,11 @@ export class TableMatchDetailWardLogComponent implements OnInit, OnChanges {
     'placed_time',
     'left_time',
     'lifespan',
-    'attackername'
+    'attackername',
+    'key'
   ];
+
+  currentObsSenSingle;
   finalData = [];
   constructor(
     private durationFormat: DurationFormatPipe
@@ -159,6 +162,10 @@ filterShowHideVisionDataFn(players: any, data: any[]): any[] {
   }
   console.log('filter', arr);
   return arr;
+}
+
+showObsSenSingleModalFn(item): any {
+  this.currentObsSenSingle = item;
 }
 
 }

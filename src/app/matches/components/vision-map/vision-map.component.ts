@@ -26,7 +26,7 @@ export class VisionMapComponent implements OnInit, OnChanges {
   showObsSenModal = false;
 
   mapData;
-  mapSize = 550; // default map size 900, sen visible r is 40.9, obs visible r is 73.6
+  @Input() mapSize = 550; // default map size 900, sen visible r is 40.9, obs visible r is 73.6
   senPadding = [];
   obsPadding = [];
   // senObs icon size width is 18, height is 14
