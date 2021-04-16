@@ -77,6 +77,7 @@ import { TableMatchDetailWardLogComponent } from './components/table-match-detai
 import { VisionMapComponent } from './components/vision-map/vision-map.component';
 import { TableMatchDetailVisionShowhideComponent } from './components/table-match-detail-vision-showhide/table-match-detail-vision-showhide.component';
 import { VisionMapSingleComponent } from './components/vision-map-single/vision-map-single.component';
+import { ChatsListComponent } from './components/chats-list/chats-list.component';
 
 
 @NgModule({
@@ -139,7 +140,8 @@ import { VisionMapSingleComponent } from './components/vision-map-single/vision-
     TableMatchDetailWardLogComponent,
     VisionMapComponent,
     TableMatchDetailVisionShowhideComponent,
-    VisionMapSingleComponent
+    VisionMapSingleComponent,
+    ChatsListComponent
   ],
   imports: [
     CommonModule,

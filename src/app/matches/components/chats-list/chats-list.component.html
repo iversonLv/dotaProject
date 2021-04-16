@@ -1,0 +1,65 @@
+<div *ngIf="data && chats && chatWheelLocal">
+  <div class="filter-chart-bar">
+    <div class="filter-chart-bar-col">
+      <p>Sides</p>
+      <div>
+        <mat-checkbox (change)="filter($event)" [checked]="true" [name]="item" *ngFor="let item of chatFilter | slice: 0: 2">{{item}}</mat-checkbox>
+      </div>
+    </div>
+    <div class="filter-chart-bar-col">
+      <p>Chat type</p>
+      <div>
+        <mat-checkbox (change)="filter($event)" [checked]="true" [name]="item" *ngFor="let item of chatFilter | slice: 2: 5">{{item}}</mat-checkbox>
+      </div>
+    </div>
+    <div class="filter-chart-bar-col">
+      <p>Target</p>
+      <div><mat-checkbox (change)="filter($event)" [checked]="true" [name]="item" *ngFor="let item of chatFilter | slice: 5 : 7">{{item}}</mat-checkbox>
+      </div>
+    </div>
+    <div class="filter-chart-bar-col">
+      <p>Other</p>
+      <div><mat-checkbox (change)="filter($event)" [checked]="true" [name]="item" *ngFor="let item of chatFilter | slice: 7">{{item}}</mat-checkbox>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngFor="let item of finalData; let i = index" class="chats-item"
+    [class]="(i >= 1 && (item.time === finalData[i-1].time) && (item.player_slot === finalData[i-1].player_slot) && (item.key === finalData[i-1].key))
+    ? 'chats-item-spam'
+    : ''"
+  >
+    <!-- side icon -->
+    <app-radient class="sides-icon" *ngIf="item.player_slot < 128"></app-radient>
+    <app-dire class="sides-icon" *ngIf="item.player_slot > 127"></app-dire>
+
+    <!-- time -->
+    <span class="chat-time">{{item.time | durationFormat}}</span>
+
+    <!-- player -->
+    <app-hero-icon-player-name
+      class="hero-icon-player-name"
+      [heroesLocal]="heroesLocal"
+      [playerColorLocal]="playerColorLocal"
+      [player]="data[item.slot]"
+    ></app-hero-icon-player-name>
+
+    <!-- chat content -->
+    <!-- chat wheel -->
+    <span class="chat-content" *ngIf="item.type === 'chatwheel'">
+      <!-- normal chat wheel -->
+      <span class="chat-content-type" *ngIf="!chatWheelLocal[item?.key]?.sound_ext">
+        <mat-icon>play_arrow</mat-icon> {{chatWheelLocal[item?.key]?.message | replaceText : '%s1' : 'A hero'}}
+      </span>
+      <!-- audio chat wheel -->
+      <span class="chat-content-type" *ngIf="chatWheelLocal[item?.key]?.sound_ext">
+        <mat-icon (click)="playAudio(item)" class="audio-track">audiotrack</mat-icon>
+        {{chatWheelLocal[item?.key]?.message}}
+      </span>
+    </span>
+    <!-- normal chat -->
+    <span  class="chat-content" *ngIf="item.type === 'chat'">
+      {{item.key}}
+    </span>
+  </div>
+</div>

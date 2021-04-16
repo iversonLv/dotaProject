@@ -948,6 +948,20 @@
       <!-- team-box -->
     </div>
 
+    <!-- chats -->
+    <div *ngIf="currentPage === 'chat' && matchData?.chat">
+      <app-nav-title [title]="'Chat'"></app-nav-title>
+      <!-- filter chat -->
+      <app-chats-list
+        [playerColorLocal]="playerColorLocal"
+        [heroesLocal]="heroesLocal"
+        [chatWheelLocal]="chatWheelLocal"
+        [data]="matchData?.players"
+        [chats]="matchData?.chat"
+      ></app-chats-list>
+    </div>
+
+      
   </ng-template>
 </div>
 

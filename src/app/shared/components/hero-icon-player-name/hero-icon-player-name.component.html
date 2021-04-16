@@ -6,5 +6,6 @@
     src="https://steamcdn-a.akamaihd.net/{{heroesLocal[player?.hero_id]?.icon}}"
   />
   
-  <span [style]="'color:' + playerColorLocal[player?.player_slot]"> {{calPlayerName(player)}}</span>
+  <a *ngIf="player?.account_id" [routerLink]="['/players', player?.account_id]" [style]="'color:' + playerColorLocal[player?.player_slot]"> {{calPlayerName(player)}}</a>
+  <span *ngIf="!player?.account_id" [style]="'color:' + playerColorLocal[player?.player_slot]"> {{calPlayerName(player)}}</span>
 </div>
