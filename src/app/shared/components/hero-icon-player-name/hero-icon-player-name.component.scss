@@ -1,1 +1,10 @@
-@import '../../../../styles.scss';
+.hero-icon-player-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    display: inline-block;
+    margin-right: 5px;
+  }
+}

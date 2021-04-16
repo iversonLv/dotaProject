@@ -29,6 +29,14 @@ export interface ISingleMatchPickBand {
   team: number;
 }
 
+export interface IChat {
+    time: number;
+    type: string;
+    key: number;
+    slot: number;
+    player_slot: number;
+}
+
 export interface ISingleMatchTeam {
   logo_url: string;
   name: string;

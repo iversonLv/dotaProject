@@ -20,6 +20,7 @@ import { HeroAttrIntComponent } from './components/icons/hero-attr-int/hero-attr
 import { IconRoshanComponent } from './components/icons/icon-roshan/icon-roshan.component';
 import { RadientComponent } from './components/icons/radient/radient.component';
 import { DireComponent } from './components/icons/dire/dire.component';
+import { WinComponent } from './components/icons/win/win.component';
 
 // charts
 import { CountChartComponent } from './components/count-chart/count-chart.component';
@@ -55,7 +56,7 @@ import { StringToArrayPipe } from './utils/string-to-array.pipe';
 import { ExcludeTextPipe } from './utils/exclude-text.pipe';
 import { OrdinalNumPipe } from './utils/ordinal-num.pipe';
 import { FieldTooltipPipe } from './utils/field-tooltip.pipe';
-import { WinComponent } from './components/icons/win/win.component';
+import { ReplaceTextPipe } from './utils/replace-text.pipe';
 
 
 
@@ -110,6 +111,7 @@ import { WinComponent } from './components/icons/win/win.component';
     ExcludeTextPipe,
     OrdinalNumPipe,
     FieldTooltipPipe,
+    ReplaceTextPipe,
   ],
   imports: [
     CommonModule,
@@ -170,7 +172,8 @@ import { WinComponent } from './components/icons/win/win.component';
     StringToArrayPipe,
     ExcludeTextPipe,
     OrdinalNumPipe,
-    FieldTooltipPipe
+    FieldTooltipPipe,
+    ReplaceTextPipe,
   ]
 })
 export class SharedModule { }

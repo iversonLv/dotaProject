@@ -19,6 +19,7 @@ import { PlayerColorService } from 'src/app/services/player-color.service';
 import { ItemsService } from 'src/app/services/items.service';
 import { PermanentBuffsService } from 'src/app/services/permanent-buffs.service';
 import { LaneRoleService } from 'src/app/services/lane-role.service';
+import { ChatWheelService } from 'src/app/services/chat-wheel.service';
 
 // pipe
 import { DurationFormatPipe } from 'src/app/shared/utils/duration-format.pipe';
@@ -61,6 +62,7 @@ export class MatchDetailComponent implements OnInit {
   heroesAbilitiesTalentsLocal: IHeroAbility;
   abilitiesTalentsLocal: any;
   permanentBuffsLocal: any;
+  chatWheelLocal: any;
 
 
   showHideVisionPlayersData = {};
@@ -135,6 +137,7 @@ export class MatchDetailComponent implements OnInit {
     private durationFormat: DurationFormatPipe,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private chatWheelService: ChatWheelService,
     private herosService: HerosService,
     private laneRoleService: LaneRoleService,
     private itemsService: ItemsService,
@@ -184,7 +187,17 @@ export class MatchDetailComponent implements OnInit {
     this.getItemIdsLocal();
     this.getAghsDescriptionLocal();
     this.getPermanentBuffsLocal();
+    this.getChatWheelLocal();
 
+  }
+
+  // get chat Wheel mapping data
+  getChatWheelLocal(): any {
+    this.chatWheelService.getChatWheelLocal().subscribe(data => {
+      this.chatWheelLocal = data;
+    }, err => {
+      console.log(err);
+    });
   }
 
   // get hero local data

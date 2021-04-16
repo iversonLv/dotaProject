@@ -161,7 +161,7 @@ environment.pro.ts
       - [x] COSMETICS (2021.3.15)
       - [] LOG
       - [X] FANTASY (2021.3.26) observer column number fomular is odd, current is observer + ser uses
-      - [] CHAT
+      - [x] CHAT (2021.4.15, 16) Filter logic is too long, need rethink how could be more simple
       - [] STORY
   - [99%] Teams page (2021.2.8)
     - [99%] Teams list page : The sort result is different from officaily one (2021.2.5)
