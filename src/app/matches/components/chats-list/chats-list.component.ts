@@ -50,9 +50,11 @@ export class ChatsListComponent implements OnInit {
     };
     console.log(this.chatFilterObj);
     this.finalData = this.extraceData(this.chats, this.chatFilterObj);
+    console.log(this.finalData)
   }
 
   extraceData(data: any[], keys: any): any[] {
+    console.log(data)
     data = data.filter((i, index) => {
       // side
       const radient = i.player_slot < 128;
@@ -81,147 +83,147 @@ export class ChatsListComponent implements OnInit {
           if ((keys.all && keys.allies) || (!keys.all && !keys.allies)) {
             // spam
             if (!keys.spam) {
-              return i.player_slot && i.type && (all || allies) && !spam;
+              return (i.player_slot >= 0) && i.type && (all || allies) && !spam;
             }
-            return i.player_slot && i.type && (all || allies);
+            return (i.player_slot >= 0) && i.type && (all || allies);
           } else if (keys.all && !keys.allies) {
 
             if (!keys.spam) {
-              return i.player_slot && i.type && all && !spam;
+              return (i.player_slot >= 0) && i.type && all && !spam;
             }
-            return i.player_slot && i.type && all;
+            return (i.player_slot >= 0) && i.type && all;
           } else if (!keys.all && keys.allies) {
 
             if (!keys.spam) {
-              return i.player_slot && i.type && allies && !spam;
+              return (i.player_slot >= 0) && i.type && allies && !spam;
             }
-            return i.player_slot && i.type && allies;
+            return (i.player_slot >= 0) && i.type && allies;
           }
         } else if (keys.chat && !keys.pharses && !keys.audio) {
 
           if ((keys.all && keys.allies) || (!keys.all && !keys.allies)) {
 
             if (!keys.spam) {
-              return i.player_slot && chat && (all || allies) && !spam;
+              return (i.player_slot >= 0) && chat && (all || allies) && !spam;
             }
-            return i.player_slot && chat && (all || allies);
+            return (i.player_slot >= 0) && chat && (all || allies);
           } else if (keys.all && !keys.allies) {
 
             if (!keys.spam) {
-              return i.player_slot && chat && all && !spam;
+              return (i.player_slot >= 0) && chat && all && !spam;
             }
-            return i.player_slot && chat && all;
+            return (i.player_slot >= 0) && chat && all;
           } else if (!keys.all && keys.allies) {
 
             if (!keys.spam) {
-              return i.player_slot && chat && allies && !spam;
+              return (i.player_slot >= 0) && chat && allies && !spam;
             }
-            return i.player_slot && chat && allies;
+            return (i.player_slot >= 0) && chat && allies;
           }
         } else if (keys.chat && keys.pharses && !keys.audio) {
 
           if ((keys.all && keys.allies) || (!keys.all && !keys.allies)) {
 
             if (!keys.spam) {
-              return i.player_slot && (chat || pharses) && (all || allies) && !spam;
+              return (i.player_slot >= 0) && (chat || pharses) && (all || allies) && !spam;
             }
-            return i.player_slot && (chat || pharses) && (all || allies);
+            return (i.player_slot >= 0) && (chat || pharses) && (all || allies);
           } else if (keys.all && !keys.allies) {
 
             if (!keys.spam) {
-              return i.player_slot && (chat || pharses) && all && !spam;
+              return (i.player_slot >= 0) && (chat || pharses) && all && !spam;
             }
-            return i.player_slot && (chat || pharses) && all;
+            return (i.player_slot >= 0) && (chat || pharses) && all;
           } else if (!keys.all && keys.allies) {
 
             if (!keys.spam) {
-              return i.player_slot && (chat || pharses) && allies && !spam;
+              return (i.player_slot >= 0) && (chat || pharses) && allies && !spam;
             }
-            return i.player_slot && (chat || pharses) && allies;
+            return (i.player_slot >= 0) && (chat || pharses) && allies;
           }
         } else if (keys.chat && !keys.pharses && keys.audio) {
 
           if ((keys.all && keys.allies) || (!keys.all && !keys.allies)) {
 
             if (!keys.spam) {
-              return i.player_slot && (chat || audio) && (all || allies) && !spam;
+              return (i.player_slot >= 0) && (chat || audio) && (all || allies) && !spam;
             }
-            return i.player_slot && (chat || audio) && (all || allies);
+            return (i.player_slot >= 0) && (chat || audio) && (all || allies);
           } else if (keys.all && !keys.allies) {
 
             if (!keys.spam) {
-              return i.player_slot && (chat || audio) && all && !spam;
+              return (i.player_slot >= 0) && (chat || audio) && all && !spam;
             }
-            return i.player_slot && (chat || audio) && all;
+            return (i.player_slot >= 0) && (chat || audio) && all;
           } else if (!keys.all && keys.allies) {
 
             if (!keys.spam) {
-              return i.player_slot && (chat || audio) && allies && !spam;
+              return (i.player_slot >= 0) && (chat || audio) && allies && !spam;
             }
-            return i.player_slot && (chat || audio) && allies;
+            return (i.player_slot >= 0) && (chat || audio) && allies;
           }
         } else if (!keys.chat && keys.pharses && keys.audio) {
 
           if ((keys.all && keys.allies) || (!keys.all && !keys.allies)) {
 
             if (!keys.spam) {
-              return i.player_slot && (pharses || audio) && (all || allies) && !spam;
+              return (i.player_slot >= 0) && (pharses || audio) && (all || allies) && !spam;
             }
-            return i.player_slot && (pharses || audio) && (all || allies);
+            return (i.player_slot >= 0) && (pharses || audio) && (all || allies);
           } else if (keys.all && !keys.allies) {
 
             if (!keys.spam) {
-              return i.player_slot && (pharses || audio) && all && !spam;
+              return (i.player_slot >= 0) && (pharses || audio) && all && !spam;
             }
-            return i.player_slot && (pharses || audio) && all;
+            return (i.player_slot >= 0) && (pharses || audio) && all;
           } else if (!keys.all && keys.allies) {
 
             if (!keys.spam) {
-              return i.player_slot && (pharses || audio) && allies && !spam;
+              return (i.player_slot >= 0) && (pharses || audio) && allies && !spam;
             }
-            return i.player_slot && (pharses || audio) && allies;
+            return (i.player_slot >= 0) && (pharses || audio) && allies;
           }
         } else if (!keys.chat && keys.pharses && !keys.audio) {
 
           if ((keys.all && keys.allies) || (!keys.all && !keys.allies)) {
 
             if (!keys.spam) {
-              return i.player_slot && pharses && (all || allies) && !spam;
+              return (i.player_slot >= 0) && pharses && (all || allies) && !spam;
             }
-            return i.player_slot && pharses && (all || allies);
+            return (i.player_slot >= 0) && pharses && (all || allies);
           } else if (keys.all && !keys.allies) {
 
             if (!keys.spam) {
-              return i.player_slot && pharses && all && !spam;
+              return (i.player_slot >= 0) && pharses && all && !spam;
             }
-            return i.player_slot && pharses && all;
+            return (i.player_slot >= 0) && pharses && all;
           } else if (!keys.all && keys.allies) {
 
             if (!keys.spam) {
-              return i.player_slot && pharses && allies && !spam;
+              return (i.player_slot >= 0) && pharses && allies && !spam;
             }
-            return i.player_slot && pharses && allies;
+            return (i.player_slot >= 0) && pharses && allies;
           }
         } else if (!keys.chat && !keys.pharses && keys.audio) {
 
           if ((keys.all && keys.allies) || (!keys.all && !keys.allies)) {
 
             if (!keys.spam) {
-              return i.player_slot && audio && (all || allies) && !spam;
+              return (i.player_slot >= 0) && audio && (all || allies) && !spam;
             }
-            return i.player_slot && audio && (all || allies);
+            return (i.player_slot >= 0) && audio && (all || allies);
           } else if (keys.all && !keys.allies) {
 
             if (!keys.spam) {
-              return i.player_slot && audio && all && !spam;
+              return (i.player_slot >= 0) && audio && all && !spam;
             }
-            return i.player_slot && audio && all;
+            return (i.player_slot >= 0) && audio && all;
           } else if (!keys.all && keys.allies) {
 
             if (!keys.spam) {
-              return i.player_slot && audio && allies && !spam;
+              return (i.player_slot >= 0) && audio && allies && !spam;
             }
-            return i.player_slot && audio && allies;
+            return (i.player_slot >= 0) && audio && allies;
           }
         }
       } else if (keys.radient && !keys.dire) {
