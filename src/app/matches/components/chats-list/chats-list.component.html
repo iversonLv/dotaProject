@@ -24,7 +24,11 @@
     </div>
   </div>
   
-  <div *ngFor="let item of finalData; let i = index" class="chats-item" [class]="(i >= 1 && (finalData[i].time === finalData[i-1].time)) ? 'chats-item-spam' : ''">
+  <div *ngFor="let item of finalData; let i = index" class="chats-item"
+    [class]="(i >= 1 && (item.time === finalData[i-1].time) && (item.player_slot === finalData[i-1].player_slot) && (item.key === finalData[i-1].key))
+    ? 'chats-item-spam'
+    : ''"
+  >
     <!-- side icon -->
     <app-radient class="sides-icon" *ngIf="item.player_slot < 128"></app-radient>
     <app-dire class="sides-icon" *ngIf="item.player_slot > 127"></app-dire>

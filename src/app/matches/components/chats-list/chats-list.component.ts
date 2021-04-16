@@ -68,7 +68,10 @@ export class ChatsListComponent implements OnInit {
       const allies = i.type === 'chatwheel' && !this.chatWheelLocal[i?.key].all_chat;
 
       // spam
-      const spam = index >= 1 && data[index].time === data[index - 1].time;
+      const spam = index >= 1
+      && (i.time === data[index - 1].time)
+      && (i.player_slot === data[index - 1].player_slot)
+      && (i.key === data[index - 1].key);
 
       // sides,
       if ((keys.radient && keys.dire) || (!keys.radient && !keys.dire) ) {
