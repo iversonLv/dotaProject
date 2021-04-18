@@ -57,13 +57,17 @@
       padding-right: 0;
     }
 
-    div {
-      justify-content: space-between;
+    .row {
       display: flex;
-
-      span {
-        font-weight: bold;
-
+      flex-direction: column;
+      .col {
+        justify-content: space-between;
+        display: flex;
+  
+        span {
+          font-weight: bold;
+  
+        }
       }
     }
   }

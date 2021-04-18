@@ -23,6 +23,7 @@ import { ChatWheelService } from 'src/app/services/chat-wheel.service';
 
 // pipe
 import { DurationFormatPipe } from 'src/app/shared/utils/duration-format.pipe';
+import { MapItemsService } from 'src/app/services/map-items.service';
 
 @Component({
   selector: 'app-match-detail',
@@ -51,6 +52,7 @@ export class MatchDetailComponent implements OnInit {
 
   // User for hero modal to mapping
   heroesLocal: IheroLocal;
+  mapItemLocal: any;
   heroesNameLocal: IheroLocal;
   laneRoleLocal: any;
   itemIdsLocal: any;
@@ -141,6 +143,7 @@ export class MatchDetailComponent implements OnInit {
     private herosService: HerosService,
     private laneRoleService: LaneRoleService,
     private itemsService: ItemsService,
+    private mapItemsService: MapItemsService,
     private playerColorService: PlayerColorService,
     private permanentBuffsService: PermanentBuffsService,
     private store: Store<{ singleMatch: ISingleMatchData, teamsGeneral: ITeamData, }>
@@ -188,6 +191,7 @@ export class MatchDetailComponent implements OnInit {
     this.getAghsDescriptionLocal();
     this.getPermanentBuffsLocal();
     this.getChatWheelLocal();
+    this.getMapItemsLocal();
 
   }
 
@@ -204,6 +208,13 @@ export class MatchDetailComponent implements OnInit {
   getHeroesNameLocal(): any {
     this.herosService.getHeroesNameLocal().subscribe(data => {
       this.heroesNameLocal = data;
+    }, err => {
+      console.log(err);
+    });
+  }
+  getMapItemsLocal(): any {
+    this.mapItemsService.getMapItemsLocal().subscribe(data => {
+      this.mapItemLocal = data;
     }, err => {
       console.log(err);
     });

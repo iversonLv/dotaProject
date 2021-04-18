@@ -7,6 +7,9 @@ import { MatTableDataSource } from '@angular/material/table';
 // model
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 
+// services
+import { RunesService } from 'src/app/services/runes.service';
+
 @Component({
   selector: 'app-table-match-detail-runes',
   templateUrl: './table-match-detail-runes.component.html',
@@ -31,36 +34,19 @@ export class TableMatchDetailRunesComponent implements OnInit {
     '3',
     '4',
     '5',
-    '6'
+    '6',
+    '7'
   ];
 
-  runsKeyObj: any = {
-    0: {
-      tooltip: 'Double Damage'
-    },
-    1: {
-      tooltip: 'Haste'
-    },
-    2: {
-      tooltip: 'Illusion'
-    },
-    3: {
-      tooltip: 'Invisibility'
-    },
-    4: {
-      tooltip: 'Regeneration'
-    },
-    5: {
-      tooltip: 'Bounty'
-    },
-    6: {
-      tooltip: 'Arcane'
-    }
-  };
+  runesLocal: any;
+
   sort;
-  constructor() { }
+  constructor(
+    private runesService: RunesService,
+  ) { }
 
   ngOnInit(): void {
+    this.getRunesLocal();
     // extract the data
     this.dataSource.data = this.extractData(this.data);
   }
@@ -86,6 +72,7 @@ export class TableMatchDetailRunesComponent implements OnInit {
         4: runes[4],
         5: runes[5],
         6: runes[6],
+        7: runes[7],
       });
     });
 
@@ -110,6 +97,14 @@ export class TableMatchDetailRunesComponent implements OnInit {
       }
       return Math.min(...dataField);
     }
+  }
+
+  getRunesLocal(): any {
+    this.runesService.getRunesLocal().subscribe(data => {
+      this.runesLocal = data;
+    }, err => {
+      console.log(err);
+    });
   }
 
 }
