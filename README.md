@@ -159,7 +159,7 @@ environment.pro.ts
       - [85%] TEAMSFIGHTS (2021.3.27,28) TODO click the fight icon does not update the data, left map
       - [] ANALYSIS onhold
       - [x] COSMETICS (2021.3.15)
-      - [] LOG
+      - [98%] LOG (2021.4.17, 18) Building kill text need update readable
       - [X] FANTASY (2021.3.26) observer column number fomular is odd, current is observer + ser uses
       - [x] CHAT (2021.4.15, 16) Filter logic is too long, need rethink how could be more simple
       - [] STORY

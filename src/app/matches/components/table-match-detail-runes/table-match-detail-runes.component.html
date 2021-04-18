@@ -9,7 +9,7 @@
 
   <!-- runes list column -->
   <ng-container [matColumnDef]="item" *ngFor="let item of displayedColumns | slice: 1">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header [matTooltip]="runsKeyObj[item]?.tooltip" matTooltipPosition="above">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header [matTooltip]="runesLocal['rune_' + item]" matTooltipPosition="above">
       <img
         width="32px"
         height="32px"

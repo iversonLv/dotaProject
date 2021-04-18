@@ -916,6 +916,20 @@
       <!-- team-box -->
     </div>
 
+    <!-- log -->
+    <div *ngIf="currentPage === 'log'">
+      <!-- filter row -->
+      <!-- log table -->
+      <app-table-log
+        [playerColorLocal]="playerColorLocal"
+        [heroesLocal]="heroesLocal"
+        [heroesNameLocal]="heroesNameLocal"
+        [mapItemLocal]="mapItemLocal"
+        [data]="matchData?.players"
+        [objectives]="matchData?.objectives"
+      ></app-table-log>
+    </div>
+
     <!-- Fantasy -->
     <div *ngIf="currentPage === 'fantasy'">
       <div class="team-box">
