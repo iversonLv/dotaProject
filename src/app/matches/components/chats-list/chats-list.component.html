@@ -2,24 +2,46 @@
   <div class="filter-chart-bar">
     <div class="filter-chart-bar-col">
       <p>Sides</p>
-      <div>
-        <mat-checkbox (change)="filter($event)" [checked]="true" [name]="item" *ngFor="let item of chatFilter | slice: 0: 2">{{item}}</mat-checkbox>
+      <div class="row">
+        <div class="col">
+          <mat-checkbox (change)="filter($event)" [checked]="true" [name]="item" *ngFor="let item of chatFilter | slice: 0: 2">{{item}} ({{chatFilterObjFinalabc[item]?.len}})</mat-checkbox>
+        </div>
+        <div class="col">
+          <span *ngFor="let item of chatFilter | slice: 0: 2">Filtered: {{chatFilterObj[item]?.len}}</span>
+        </div>
       </div>
     </div>
     <div class="filter-chart-bar-col">
       <p>Chat type</p>
-      <div>
-        <mat-checkbox (change)="filter($event)" [checked]="true" [name]="item" *ngFor="let item of chatFilter | slice: 2: 5">{{item}}</mat-checkbox>
+      <div class="row">
+        <div class="col">
+          <mat-checkbox (change)="filter($event)" [checked]="true" [name]="item" *ngFor="let item of chatFilter | slice: 2: 5">{{item}} ({{chatFilterObjFinalabc[item]?.len}})</mat-checkbox>
+        </div>
+        <div class="col"> 
+          <span *ngFor="let item of chatFilter | slice: 2: 5">Filtered: {{chatFilterObj[item]?.len}}</span>
+        </div>
       </div>
     </div>
     <div class="filter-chart-bar-col">
       <p>Target</p>
-      <div><mat-checkbox (change)="filter($event)" [checked]="true" [name]="item" *ngFor="let item of chatFilter | slice: 5 : 7">{{item}}</mat-checkbox>
+      <div class="row">
+        <div class="col">
+          <mat-checkbox (change)="filter($event)" [checked]="true" [name]="item" *ngFor="let item of chatFilter | slice: 5 : 7">{{item}} ({{chatFilterObjFinalabc[item]?.len}})</mat-checkbox>
+        </div>
+        <div class="col"> 
+          <span *ngFor="let item of chatFilter  | slice: 5 : 7">Filtered: {{chatFilterObj[item]?.len}}</span>
+        </div>
       </div>
     </div>
     <div class="filter-chart-bar-col">
       <p>Other</p>
-      <div><mat-checkbox (change)="filter($event)" [checked]="true" [name]="item" *ngFor="let item of chatFilter | slice: 7">{{item}}</mat-checkbox>
+      <div class="row">
+        <div class="col">
+          <mat-checkbox (change)="filter($event)" [checked]="true" [name]="item" *ngFor="let item of chatFilter | slice: 7">{{item}} ({{chatFilterObjFinalabc[item]?.len}})</mat-checkbox>
+        </div>
+        <div class="col"> 
+          <span *ngFor="let item of chatFilter  | slice: 7">Filtered: {{chatFilterObj[item]?.len}}</span>
+        </div>
       </div>
     </div>
   </div>

@@ -1,0 +1,36 @@
+@import '../../../../styles.scss';
+
+
+.kills-attack {
+  background: $red;
+  padding: 3px 2px 0;
+  
+  &.is-radiant-kills-attack {
+    background: $green;
+  }
+}
+
+.is-radiant-fb {
+  color: $green;
+}
+.is-dire-fb {
+  color: $red;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.icon-item {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.radiant-kill-roshan {
+  fill: $green;
+}
+
+.dire-kill-roshan {
+  fill: $red;
+}

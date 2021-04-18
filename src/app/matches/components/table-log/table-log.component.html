@@ -1,0 +1,132 @@
+<table mat-table [dataSource]="dataSource" matSort>  
+  <!-- time column -->
+  <ng-container matColumnDef="time">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="true"> TIME </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.time | durationFormat}}
+    </td>
+  </ng-container>
+
+  <!-- side column -->
+  <ng-container matColumnDef="isRadiant">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Side" matTooltipPosition="above"> SIDE </th>
+    <td mat-cell *matCellDef="let element">
+      <app-radient class="sides-icon" *ngIf="element.isRadiant"></app-radient>
+      <app-dire class="sides-icon" *ngIf="!element.isRadiant"></app-dire>
+    </td>
+  </ng-container>
+
+  <!-- name column -->
+  <ng-container matColumnDef="player_slot" *ngIf="displayedColumns.includes('player_slot')">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
+    <td mat-cell *matCellDef="let element">
+      <app-player-box *ngIf="element?.player" [data]="element.player" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+      <div *ngIf="!element?.player">
+        no player
+      </div>
+    </td>
+  </ng-container>
+  
+  <!-- delta column -->
+  <ng-container matColumnDef="delta">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="true"> DELTA </th>
+    <td mat-cell *matCellDef="let element">
+      <!-- for kills_log -->
+      <div *ngIf="element?.log_type === 'kills_log'">
+        <img
+          class="kills-attack"
+          [class]="element.isRadiant ? 'is-radiant-kills-attack': ''"
+          onError="this.src='./assets/images/Dota2Logo.svg'"
+          width="34"
+          src="./assets/images/default_attack.png"
+        />
+        
+        <img
+          width="52px"
+          height="29px"
+          *ngIf="element && element?.key && heroesNameLocal && heroesNameLocal[element?.key]?.img"
+          onError="this.src='./assets/images/Dota2Logo.svg'"
+          [src]="'https://steamcdn-a.akamaihd.net/' + heroesNameLocal[element?.key]?.img"
+        />
+      </div>
+      
+      <!-- for runes_log -->
+      <div *ngIf="element?.log_type === 'runes_log' && runesLocal" class="item">
+        Activated
+        <img
+          class="icon-item"
+          [matTooltip]="runesLocal['rune_' + element?.key]"
+          matTooltipPosition="above"
+          width="32px"
+          height="32px"
+          onError="this.src='./assets/images/Dota2Logo.svg'"
+          [src]="'./assets/images/runes/' + element?.key + '.png'"
+        >
+        {{runesLocal['rune_' + element?.key]}} Rune
+      </div>
+      
+      <!-- for objectives -->
+      <div *ngIf="element?.log_type === 'objectives'">
+        <!-- first blood -->
+        <div *ngIf="element?.type === 'CHAT_MESSAGE_FIRSTBLOOD'" class="item">
+          <mat-icon 
+          class="icon-item"
+          [class]="element.isRadiant ? 'is-radiant-fb' : 'is-dire-fb'">invert_colors</mat-icon>
+          First Blood
+        </div>
+
+        <!-- courier -->
+        <div *ngIf="element?.type === 'CHAT_MESSAGE_COURIER_LOST'" class="item">
+          <img
+            class="icon-item"
+            width="32px"
+            height="32px"
+            onError="this.src='./assets/images/Dota2Logo.svg'"
+            [src]="'./assets/images/direcourier.png'"
+          >
+          Dire's courier was killed
+        </div>
+
+        <!-- "building_kill" -->
+        <div *ngIf="element?.type === 'building_kill' && mapItemLocal" class="item">
+            <img
+              class="kills-attack"
+              [class]="element.isRadiant ? 'is-radiant-kills-attack': ''"
+              onError="this.src='./assets/images/Dota2Logo.svg'"
+              width="34"
+              src="./assets/images/default_attack.png"
+            />
+            <app-radient class="sides-icon icon-item" *ngIf="!element.isRadiant"></app-radient>
+            <app-dire class="sides-icon icon-item" *ngIf="element.isRadiant"></app-dire>
+            {{!element.isRadiant ? 'Radiant' : 'Dire'}} {{element?.key | nameDestruct : '_' : 3}}
+        </div>
+
+        <!-- aegis -->
+        
+        <div *ngIf="element?.type === 'CHAT_MESSAGE_ROSHAN_KILL'" class="item">
+            <app-icon-roshan 
+            class="icon-item"
+            [class]="element?.isRadiant ? 'radiant-kill-roshan' : 'dire-kill-roshan'"
+            ></app-icon-roshan> Roshan
+        </div>
+        
+        <!-- roshan -->
+        <div *ngIf="element?.type === 'CHAT_MESSAGE_AEGIS'" class="item">
+          <img
+            class="icon-item"
+            onError="this.src='./assets/images/Dota2Logo.svg'"
+            width="34"
+            src="./assets/images/aegis_icon.png"
+          /> Picked up the Aegis
+      </div>
+      </div>
+    </td>
+  </ng-container>
+
+
+
+  
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
