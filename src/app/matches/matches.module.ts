@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // shared
 import { SharedModule } from '../shared/shared.module';
@@ -79,6 +80,7 @@ import { TableMatchDetailVisionShowhideComponent } from './components/table-matc
 import { VisionMapSingleComponent } from './components/vision-map-single/vision-map-single.component';
 import { ChatsListComponent } from './components/chats-list/chats-list.component';
 import { TableLogComponent } from './components/table-log/table-log.component';
+import { ChipsComponent } from './components/chips/chips.component';
 
 
 @NgModule({
@@ -143,13 +145,15 @@ import { TableLogComponent } from './components/table-log/table-log.component';
     TableMatchDetailVisionShowhideComponent,
     VisionMapSingleComponent,
     ChatsListComponent,
-    TableLogComponent
+    TableLogComponent,
+    ChipsComponent
   ],
   imports: [
     CommonModule,
     MatchesRoutingModule,
     SharedModule,
     MaterialModule,
+    FormsModule, ReactiveFormsModule,
     StoreModule.forFeature('matches', {
       singleMatch: fromMatchesReducers.singleMatch,
       proMatches: fromMatchesReducers.proMatches,
