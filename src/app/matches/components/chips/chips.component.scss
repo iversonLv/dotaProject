@@ -1,3 +1,15 @@
 .mat-chip {
   margin: 5px;
 }
+
+::ng-deep {
+  .mat-option-text {
+    display: flex!important;
+    align-items: center!important;
+  
+    .hero-img {
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+}
