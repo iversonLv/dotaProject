@@ -1,7 +1,39 @@
+<!-- <mat-checkbox (change)="filter($event.source.name, $event.checked)" [checked]="logFilterObj[item]" [name]="item" *ngFor="let item of logFilterKeyArr">
+  {{item}}
+</mat-checkbox> -->
+
+<div class="filter-bar">
+  <app-chips
+  class="filter-item filter-item-side"
+  [title]="'Sides'"
+  (emitValue)="emitValue($event)"
+  [items]="sideItems"
+  [allitems]="sideAllItems"
+  ></app-chips>
+
+  <app-chips
+  class="filter-item filter-item-types"
+  [title]="'Types'"
+  (emitValue)="emitValue($event)"
+  [items]="typeItems"
+  [allitems]="typeAllItems"
+  ></app-chips>
+
+  <app-chips
+  class="filter-item filter-item-heroes"
+  [title]="'Heroes'"
+  (emitValue)="emitValue($event)"
+  [items]="heroItems"
+  [allitems]="heroAllItems"
+  ></app-chips>
+
+</div>
+
+
 <table mat-table [dataSource]="dataSource" matSort>  
   <!-- time column -->
   <ng-container matColumnDef="time">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="true"> TIME </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> TIME </th>
     <td mat-cell *matCellDef="let element">
       {{element.time | durationFormat}}
     </td>
@@ -31,8 +63,8 @@
   <ng-container matColumnDef="delta">
     <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="true"> DELTA </th>
     <td mat-cell *matCellDef="let element">
-      <!-- for kills_log -->
-      <div *ngIf="element?.log_type === 'kills_log'">
+      <!-- for kills -->
+      <div *ngIf="element?.log_type === 'kills'">
         <img
           class="kills-attack"
           [class]="element.isRadiant ? 'is-radiant-kills-attack': ''"
@@ -50,8 +82,8 @@
         />
       </div>
       
-      <!-- for runes_log -->
-      <div *ngIf="element?.log_type === 'runes_log' && runesLocal" class="item">
+      <!-- for runes -->
+      <div *ngIf="element?.log_type === 'runes' && runesLocal" class="item">
         Activated
         <img
           class="icon-item"
@@ -71,7 +103,7 @@
         <div *ngIf="element?.type === 'CHAT_MESSAGE_FIRSTBLOOD'" class="item">
           <mat-icon 
           class="icon-item"
-          [class]="element.isRadiant ? 'is-radiant-fb' : 'is-dire-fb'">invert_colors</mat-icon>
+          [class]="'is-' + element.side + '-fb'">invert_colors</mat-icon>
           First Blood
         </div>
 
