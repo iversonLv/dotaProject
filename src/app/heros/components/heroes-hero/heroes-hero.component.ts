@@ -21,7 +21,7 @@ export class HeroesHeroComponent implements OnInit {
 
   // User for hero modal to mapping
   heroesLocal: IheroLocal;
-  heroesAbilitiesTalentsLocal: IHeroAbility;
+  heroesAbilitiesTalentsLocal: any;
   abilitiesTalentsLocal: any;
 
   // ablity modal default hidden
