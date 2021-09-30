@@ -31,6 +31,11 @@ export class GeneralService {
   }
 
   // GET local json data
+  getUser(): Observable<any> {
+    return this.httpClient.get('https://steamloginlv.herokuapp.com/').pipe(
+      catchError(this.errorHandle)
+    );
+  }
   // here get filter query params local json static data
   getLocalData(endpoint): Observable<any> {
     return this.httpClient.get<any>(this.BASE_LOCAL_DATA_URL + endpoint)

@@ -7,7 +7,14 @@ export const environment = {
   BASE_API_URL: 'https://api.opendota.com/api',
   BASE_LOCAL_DATA_URL: '/assets/data',
   // BASE_GIT_RAW_DATA_URL: 'https://raw.githubusercontent.com/odota/dotaconstants/master/build'
-  BASE_GIT_RAW_DATA_URL: '/assets/data' || 'https://raw.githubusercontent.com/odota/dotaconstants/master/build'
+  BASE_GIT_RAW_DATA_URL: '/assets/data' || 'https://raw.githubusercontent.com/odota/dotaconstants/master/build',
+  HERO_IMG_URL: 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/',
+  ABILITY_IMG_URL: 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities',
+  ERROR_IMG: 'this.src=\'./assets/images/Dota2Logo.svg\'',
+  STEAMCDN: 'https://steamcdn-a.akamaihd.net'
+  // ex: https://steamcdn-a.akamaihd.net//apps/dota2/images/heroes/furion_full.png?
+  //https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes
+  //https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities
 };
 
 /*

@@ -147,7 +147,7 @@ environment.pro.ts
       - [x] BENCHMARKS (2021.3.13) TODO: table column highlight not implemented yet
       - [X] DRAFT (2021.3.12) now, use picks_bans for data, the draft_timings looked odd and some ban pick are skip
       - [x] PERFORMANCES (2021.3.14, 15)
-      - [] LANING
+      - [70%] LANING (2021. 4.28, 29)
       - [X] COMBAT (2021.3.14, 19) merge kills and damage table together
       - [99%] FARM (2021.3.14, 19, 20, 21) TODO: last_hit sort not work, the finalData does not grab the spread data
       - [x] ITEMS (2021.3.22)

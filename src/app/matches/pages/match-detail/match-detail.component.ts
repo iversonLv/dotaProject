@@ -364,7 +364,7 @@ export class MatchDetailComponent implements OnInit {
   emitShowHideVisionPlayersData(e: any): any {
     console.log('emit show hide player data', e);
     this.showHideVisionPlayersData = { ...this.showHideVisionPlayersData, ...e };
-    console.log(this.showHideVisionPlayersData);
+    // console.log(this.showHideVisionPlayersData);
     return this.showHideVisionPlayersData;
   }
 
@@ -374,7 +374,7 @@ export class MatchDetailComponent implements OnInit {
       const { hero_id, player_slot } = i;
       this.showHideVisionPlayersData[hero_id] = { hero_id, player_slot, obs_log: true, sen_log: true, timeline };
     });
-    console.log(this.showHideVisionPlayersData);
+    // console.log(this.showHideVisionPlayersData);
     return this.showHideVisionPlayersData;
   }
 

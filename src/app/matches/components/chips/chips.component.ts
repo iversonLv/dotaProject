@@ -21,6 +21,7 @@ export class ChipsComponent implements OnInit {
   @Input() title: string;
   @Input() items: string[];
   @Input() allitems: string[];
+  @Input() heroesNameLocal: IheroLocal;
   @Output() emitValue: EventEmitter<[string, boolean]> = new EventEmitter();
 
   visible = true;
@@ -63,7 +64,6 @@ export class ChipsComponent implements OnInit {
     // Reset the input value
     if (input) {
       input.value = '';
-      input.blur();
     }
 
     this.itemCtrl.setValue(null);

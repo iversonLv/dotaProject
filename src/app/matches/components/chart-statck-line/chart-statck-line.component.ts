@@ -17,6 +17,8 @@ export class ChartStatckLineComponent implements OnInit {
   @Input() heroesLocal: IheroLocal;
   @Input() heroesNameLocal: any;
   @Input() field;
+  @Input() fieldTwo;
+  @Input() dataZoom = false;
   chartOption: EChartsOption;
   constructor() { }
 
@@ -56,6 +58,16 @@ export class ChartStatckLineComponent implements OnInit {
 
           // <img src="https://steamcdn-a.akamaihd.net/${i.data.content.heroImg}" />
       },
+      dataZoom: [
+        {
+            show: this.dataZoom,
+            realtime: true,
+            start: 0,
+            end: this.data[0][this.field][this.data[0][this.field].length],
+            xAxisIndex: [0, 1],
+            top: '0%'
+        }
+      ],
       legend: {
         itemWidth: 32,
         itemHeight: 32,
@@ -64,7 +76,7 @@ export class ChartStatckLineComponent implements OnInit {
         inactiveColor: '#b8b6b4'
       },
       yAxis: {},
-      series: this.calSeriesData(this.data, this.field, this.playerColorLocal, this.heroesLocal),
+      series: this.calSeriesData(this.data, this.field, this.fieldTwo, this.playerColorLocal, this.heroesLocal),
     };
   }
 
@@ -100,7 +112,7 @@ export class ChartStatckLineComponent implements OnInit {
     return legendData;
   }
 
-  calSeriesData(data: any[], field: string, playerColorLocal: any, heroesLocal: IheroLocal): any {
+  calSeriesData(data: any[], field: string, fieldTwo: string, playerColorLocal: any, heroesLocal: IheroLocal): any {
     const seriesData = [];
 
     data.forEach(player => {
@@ -125,9 +137,9 @@ export class ChartStatckLineComponent implements OnInit {
       const heroImg = heroesLocal[player.hero_id].icon;
       const hero = heroesLocal[player.hero_id].localized_name;
       const isRadiant = player.isRadiant;
-      player[field].forEach(i => {
+      player[field].forEach((i, index) => {
         seriesItem.data.push({
-          value: i,
+          value: i + (fieldTwo === undefined ? 0 : player[fieldTwo][index]),
           content: {
             heroImg,
             isRadiant,

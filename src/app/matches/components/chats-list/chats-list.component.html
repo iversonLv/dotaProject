@@ -71,7 +71,7 @@
     <span class="chat-content" *ngIf="item.type === 'chatwheel'">
       <!-- normal chat wheel -->
       <span class="chat-content-type" *ngIf="!chatWheelLocal[item?.key]?.sound_ext">
-        <mat-icon>play_arrow</mat-icon> {{chatWheelLocal[item?.key]?.message | replaceText : '%s1' : 'A hero'}}
+        <mat-icon>play_arrow</mat-icon> {{ chatWheelLocal[item?.key] ? (chatWheelLocal[item?.key]?.message | replaceText : '%s1' : 'A hero') : ''}}
       </span>
       <!-- audio chat wheel -->
       <span class="chat-content-type" *ngIf="chatWheelLocal[item?.key]?.sound_ext">
