@@ -5,7 +5,11 @@ import { IHeroAbility } from '../../model/hero-abilities';
 
 // model
 import { IheroLocal } from '../../model/heroLocal';
-import { HerosService } from '../../services/heros.service';
+
+// dotaconstant
+import heroes from 'dotaconstants/build/heroes.json';
+import hero_abilities from 'dotaconstants/build/hero_abilities.json';
+import abilities from 'dotaconstants/build/abilities.json';
 
 @Component({
   selector: 'app-heroes-hero',
@@ -30,7 +34,6 @@ export class HeroesHeroComponent implements OnInit {
   hero: IHero;
 
   constructor(
-    private herosService: HerosService,
     private router: Router,
   ) { }
 
@@ -39,9 +42,12 @@ export class HeroesHeroComponent implements OnInit {
     let heroId = +currentUrl.split('/')[2];
 
     // get all heroes local data
-    this.getHeroesLocal(heroId);
-    this.getAbilitiesTalentsLocal();
-    this.getHeroesAbilitiesTalentsLocal();
+    this.hero = heroes[heroId];
+    this.heroesAbilitiesTalentsLocal = hero_abilities;
+    this.abilitiesTalentsLocal = abilities;
+
+    // this.getAbilitiesTalentsLocal();
+    // this.getHeroesAbilitiesTalentsLocal();
 
     // update the hero after click matchup other hero
     this.router.events
@@ -52,34 +58,10 @@ export class HeroesHeroComponent implements OnInit {
         // if heroId change will dispatch the player data or won't dispatch
         if (heroId !== +event.url.split('/')[2] && currentRoute !== 'rankings') {
           heroId = +event.url.split('/')[2]; // Grab middle id
-          this.getHeroesLocal(heroId); // Rerun the getPlayerData data
+          this.hero = heroes[heroId]; // Rerun the getPlayerData data
         }
       }
     });
-  }
-
-  getHeroesLocal(heroId): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      this.hero = data[heroId];
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getHeroesAbilitiesTalentsLocal(): any {
-    this.herosService.getHeroesAbilitiesTalentsLocal().subscribe(data => {
-      this.heroesAbilitiesTalentsLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getAbilitiesTalentsLocal(): any {
-    this.herosService.getAbilitiesTalentsLocal().subscribe(data => {
-      this.abilitiesTalentsLocal = data;
-      }, err => {
-        console.log(err);
-      });
   }
 
   // show/hide ability modal
@@ -95,5 +77,4 @@ export class HeroesHeroComponent implements OnInit {
     this.showTalentModal = true;
     this.currentMouseOverTalent = talents;
   }
-
 }
