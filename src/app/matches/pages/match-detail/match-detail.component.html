@@ -212,6 +212,43 @@
       </app-draft-list>
     </div>
 
+    <!-- laning tab content -->
+    <div class="single-match-draft" *ngIf="currentPage === 'laning'">
+      <app-nav-title [title]="'Laning'"></app-nav-title>
+      <app-table-laning
+      [heroesLocal]="heroesLocal"
+      [playerColorLocal]="playerColorLocal"
+      [heroesLocal]="heroesLocal"
+      [laneRoleLocal]="laneRoleLocal"
+      [data]="matchData?.players"
+      >
+      </app-table-laning>
+
+      <div class="map-last-hit-denies-row">
+        <!-- map -->
+        <div class="lane-map">
+          <app-nav-title [title]="'Map'"></app-nav-title>
+          abc
+        </div>
+
+        <!-- lh, d -->
+        <div class="lane-lh-dn">
+          <app-nav-title [title]="'Last Hits + Denies'"></app-nav-title>
+          <!-- last_hit graphs -->
+          <app-chart-statck-line
+            [playerColorLocal]="playerColorLocal"
+            [heroesLocal]="heroesLocal"
+            [data]="matchData?.players"
+            [heroesNameLocal]="heroesNameLocal"
+            [field]="'lh_t'"
+            [fieldTwo]="'dn_t'"
+            [dataZoom]="true"
+          >
+          </app-chart-statck-line>
+        </div>
+      </div>
+    </div>
+
     <!-- performances tab content -->
     <div *ngIf="currentPage === 'performances'" class="single-match-performances">
       <div class="team-box">
@@ -434,7 +471,6 @@
           [data]="matchData?.players | slice: 0:5"
           
           [enableConsumable]="enableConsumable"
-          [itemIdsLocal]="itemIdsLocal"
           [itemsLocal]="itemsLocal"
           (showItemModalFn)="showItemModalFn($event)"
           (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
@@ -455,7 +491,6 @@
           [data]="matchData?.players | slice: 5:10"
           
           [enableConsumable]="enableConsumable"
-          [itemIdsLocal]="itemIdsLocal"
           [itemsLocal]="itemsLocal"
           (showItemModalFn)="showItemModalFn($event)"
           (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"

@@ -35,7 +35,6 @@ export class PlayersService {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       // tslint:disable-next-line:object-literal-key-quotes
-      'Authorization': `Bearer 9738300E5F82FF7FC0B7F7DC6AFC605C`
     };
   }
 

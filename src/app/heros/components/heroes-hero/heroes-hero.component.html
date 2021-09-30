@@ -2,7 +2,7 @@
 <div class="heroes-hero" *ngIf="hero">
   <div class="heroes-box">
     <!-- for big bg -->
-    <img class="heroes-bg" [src]="'https://steamcdn-a.akamaihd.net' + hero['img']" onError="this.src='./assets/images/Dota2Logo.svg'" />
+    <app-img [data]="hero['img']" class="heroes-bg" [altData]="hero['localized_name']"></app-img>
     <div class="hero-main">
       <div class="hero-main-left">
         <span class="hero-primary-attr">
@@ -11,7 +11,7 @@
           <app-hero-attr-int class="hero-attr" *ngIf="hero['primary_attr'] === 'int'"></app-hero-attr-int>
         </span>
         <div class="hero-main-left-img-mp-hp">
-          <img class="hero-img" [src]="'https://steamcdn-a.akamaihd.net' + hero['img']" />
+          <app-img [data]="hero['img']" class="hero-img" [altData]="hero['localized_name']"></app-img>
           <!-- hero-img -->
           <div class="hero-hpmp">
             <span class="hero-hp"><label>HP</label>{{hero.base_health + hero.base_str * 20}}</span>

@@ -6,6 +6,8 @@ import { Store } from '@ngrx/store';
 import * as searchActions from '../../../search/store/search.actions';
 import * as playersActions from 'src/app/players/store/players.actions';
 import * as matchesActions from 'src/app/matches/store/matches.actions';
+import { GeneralService } from 'src/app/services/general.service';
+
 
 @Component({
   selector: 'app-main-nav',
@@ -19,15 +21,18 @@ export class MainNavComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store,
+    private generalService: GeneralService
   ) { }
 
   ngOnInit(): void {
+    this.getUser();
     this.activatedRoute.queryParams.subscribe(data => {
       this.searchTerm = data.q;
     }, err => {
       console.log(err);
     });
   }
+
 
   doSearch(e): any {
     // when enter key down
@@ -46,6 +51,12 @@ export class MainNavComponent implements OnInit {
         this.store.dispatch(new matchesActions.LoadMatch(e.target.value.replace(/\b(0+)/gi, '')));
       }
     }
+  }
+
+  getUser(): any {
+    return this.generalService.getUser().subscribe(user => {
+      console.log(user);
+    });
   }
 
 }

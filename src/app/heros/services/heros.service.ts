@@ -29,7 +29,6 @@ export class HerosService {
    return {
      Accept: 'application/json',
      'Content-type': 'application/json',
-     Authorization: `Bearer 9738300E5F82FF7FC0B7F7DC6AFC605C`
    };
   }
 
