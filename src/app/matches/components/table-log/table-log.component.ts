@@ -232,6 +232,7 @@ export class TableLogComponent implements OnInit {
       filterHero = true;
     }
     this.dataSource.data = this.filterData(this.extractData(), this.logFilterObj, filterHero);
+    console.log(this.dataSource.data);
   }
 
 }

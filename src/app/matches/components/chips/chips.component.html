@@ -13,6 +13,10 @@
   </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event);">
     <mat-option *ngFor="let item of filtereditems | async" [value]="item">
+      <img
+        *ngIf="item.includes('npc_dota_hero_')"
+        onError="this.src='./assets/images/Dota2Logo.svg'"
+        class="hero-img" width="29" height="29" src="https://steamcdn-a.akamaihd.net/{{heroesNameLocal[item]['icon']}}"/>
       {{item | nameDestruct: '_' : '3' | titlecase}}
     </mat-option>
   </mat-autocomplete>
@@ -24,6 +28,10 @@
 [removable]="removable"
 (removed)="remove(item)"
 >
+<img
+  *ngIf="item.includes('npc_dota_hero_')"
+  onError="this.src='./assets/images/Dota2Logo.svg'"
+  class="hero-img" width="29" height="29" src="https://steamcdn-a.akamaihd.net/{{heroesNameLocal[item]['icon']}}"/>
 {{item | nameDestruct: '_' : '3' | titlecase}}
 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
 </mat-chip>

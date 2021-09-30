@@ -12,6 +12,7 @@ import { NavTitleComponent } from './components/nav-title/nav-title.component';
 import { SubNavComponent } from './components/sub-nav/sub-nav.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { HeroIconPlayerNameComponent } from './components/hero-icon-player-name/hero-icon-player-name.component';
+import { ImgComponent } from './components/img/img.component';
 
 // icon
 import { HeroAttrStrComponent } from './components/icons/hero-attr-str/hero-attr-str.component';
@@ -112,6 +113,7 @@ import { ReplaceTextPipe } from './utils/replace-text.pipe';
     OrdinalNumPipe,
     FieldTooltipPipe,
     ReplaceTextPipe,
+    ImgComponent,
   ],
   imports: [
     CommonModule,
@@ -129,6 +131,7 @@ import { ReplaceTextPipe } from './utils/replace-text.pipe';
     SubNavComponent,
     MainNavComponent,
     HeroIconPlayerNameComponent,
+    ImgComponent,
 
     // icons
     HeroAttrStrComponent,

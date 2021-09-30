@@ -140,3 +140,25 @@
     width: 100%!important;
   }
 }
+
+
+// laning
+.map-last-hit-denies-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lane-lh-dn {
+  width: 80%;
+
+  ::ng-deep {
+    .chart {
+      width: 100%;
+    }
+  }
+}
+
+.lane-map {
+  width: calc(100% - 80% - 15px);
+  padding-right: 15px;
+}

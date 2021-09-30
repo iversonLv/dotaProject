@@ -81,6 +81,7 @@ import { VisionMapSingleComponent } from './components/vision-map-single/vision-
 import { ChatsListComponent } from './components/chats-list/chats-list.component';
 import { TableLogComponent } from './components/table-log/table-log.component';
 import { ChipsComponent } from './components/chips/chips.component';
+import { TableLaningComponent } from './components/table-laning/table-laning.component';
 
 
 @NgModule({
@@ -146,7 +147,8 @@ import { ChipsComponent } from './components/chips/chips.component';
     VisionMapSingleComponent,
     ChatsListComponent,
     TableLogComponent,
-    ChipsComponent
+    ChipsComponent,
+    TableLaningComponent
   ],
   imports: [
     CommonModule,
