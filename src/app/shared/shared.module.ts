@@ -31,6 +31,7 @@ import { BarColumnChartComponent } from './components/bar-column-chart/bar-colum
 import { CalendarChartComponent } from './components/calendar-chart/calendar-chart.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { WorldPopulationChartComponent } from './components/world-population-chart/world-population-chart.component';
+import { TableGeneralComponent } from './components/table-general/table-general.component';
 
 // modals component
 import { HeroModalComponent } from './components/hero-modal/hero-modal.component';
@@ -88,6 +89,7 @@ import { ReplaceTextPipe } from './utils/replace-text.pipe';
     RoshanKilledModalComponent,
     TeamFightModalComponent,
     ObsSenModalComponent,
+    TableGeneralComponent,
 
     // dialogs
     DialogPlayerListComponent,
@@ -152,6 +154,7 @@ import { ReplaceTextPipe } from './utils/replace-text.pipe';
     RoshanKilledModalComponent,
     TeamFightModalComponent,
     ObsSenModalComponent,
+    TableGeneralComponent,
 
     // dialogs
     DialogPlayerListComponent,

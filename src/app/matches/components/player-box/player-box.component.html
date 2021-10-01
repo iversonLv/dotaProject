@@ -1,12 +1,11 @@
 <div *ngIf="data && heroesLocal && playerColorLocal" class="ver-align">
-  <img
-    onError="this.src='./assets/images/Dota2Logo.svg'"
-    width="52" height="29"
-    class="hero-img"
-    src="https://steamcdn-a.akamaihd.net/{{heroesLocal[data.hero_id]['img']}}"
-    (mouseover)="showHeroModalFn($event, data.hero_id)" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
-    [style]="'border-left: 2px solid ' + playerColorLocal[data.player_slot]"
-  />
+  <app-img
+    [data]="heroesLocal[data['hero_id']]['img']"
+    class="sm-hero-img"
+    [altData]="heroesLocal[data['hero_id']]['localized_name']"
+    (mouseover)="showHeroModalFn($event, data['hero_id'])" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
+    [style]="'border-left: 2px solid ' + playerColorLocal[data['player_slot']]"
+  ></app-img>
   <div class="account-date">
     <div class="account-name">
       <mat-icon class="predict-victory" matTooltip="Predicted Victory" matTooltipPosition="above" *ngIf="data.pred_vict">bookmark_border</mat-icon>

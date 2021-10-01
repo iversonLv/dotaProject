@@ -11,7 +11,7 @@
           <app-hero-attr-int class="hero-attr" *ngIf="hero['primary_attr'] === 'int'"></app-hero-attr-int>
         </span>
         <div class="hero-main-left-img-mp-hp">
-          <app-img [data]="hero['img']" class="hero-img" [altData]="hero['localized_name']"></app-img>
+          <app-img [data]="hero['img']" class="hero-img md-hero-img" [altData]="hero['localized_name']"></app-img>
           <!-- hero-img -->
           <div class="hero-hpmp">
             <span class="hero-hp"><label>HP</label>{{hero.base_health + hero.base_str * 20}}</span>

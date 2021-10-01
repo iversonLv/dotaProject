@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableBenchmarksComponent } from './table-benchmarks.component';
+import { TableGeneralComponent } from './table-general.component';
 
-describe('TableBenchmarksComponent', () => {
-  let component: TableBenchmarksComponent;
-  let fixture: ComponentFixture<TableBenchmarksComponent>;
+describe('TableGeneralComponent', () => {
+  let component: TableGeneralComponent;
+  let fixture: ComponentFixture<TableGeneralComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableBenchmarksComponent ]
+      declarations: [ TableGeneralComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TableBenchmarksComponent);
+    fixture = TestBed.createComponent(TableGeneralComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

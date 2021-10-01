@@ -105,9 +105,11 @@
         </span>
       </ng-template>
       
-      <img
-        onError="this.src='./assets/images/Dota2Logo.svg'"
-        class="hero-img" width="52" height="29" src="https://steamcdn-a.akamaihd.net/{{heroesNameLocal[element?.max_hero_hit?.key]['img']}}"/>
+      <app-img
+        [data]="heroesNameLocal[element['max_hero_hit']['key']]['img']"
+        class="hero-img sm-hero-img"
+        [altData]="element['localized_name']"
+      ></app-img>
     </td>
     <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>

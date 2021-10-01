@@ -2,14 +2,13 @@
   <div *ngFor="let item of data" class="ban-pick-item">
     <div class="hero-img" [routerLink]="['/heroes', item.hero_id]">
       <mat-icon class="banned-icon" *ngIf="!item.is_pick">block</mat-icon>
-      <img
-        onError="this.src='./assets/images/Dota2Logo.svg'"
-        width="52" height="29px"
+      <app-img
+        *ngIf="item['hero_id'] && heroesLocal"
+        [data]="heroesLocal[item['hero_id']]['img']"
         [class]="!item.is_pick ? 'is-banned' : ''"
-        *ngIf="item.hero_id && heroesLocal"
-        onError="this.src='./assets/images/Dota2Logo.svg'"
-        src="https://steamcdn-a.akamaihd.net/{{heroesLocal[item.hero_id]['img']}}"
-      />
+        class="hero-img sm-hero-img"
+        [altData]="heroesLocal[item['hero_id']]['localized_name']"
+      ></app-img>
     </div>
     <span class="middle-text">
       <span [class]="item.is_pick ? 'is-picked-txt' : 'is-banned-txt'">{{(item.is_pick ? 'PICK ' : 'BAN ') + (item.order + 1) }}</span>
