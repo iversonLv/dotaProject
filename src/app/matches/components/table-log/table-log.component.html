@@ -74,13 +74,11 @@
           src="./assets/images/default_attack.png"
         />
         
-        <img
-          width="52px"
-          height="29px"
-          *ngIf="element && element?.key && heroesNameLocal && heroesNameLocal[element?.key]?.img"
-          onError="this.src='./assets/images/Dota2Logo.svg'"
-          [src]="'https://steamcdn-a.akamaihd.net/' + heroesNameLocal[element?.key]?.img"
-        />
+        <app-img
+          [data]="heroesNameLocal[element['key']]['img']"
+          class="hero-img sm-hero-img"
+          [altData]="heroesNameLocal[element['localized_name']]"
+        ></app-img>
       </div>
       
       <!-- for runes -->

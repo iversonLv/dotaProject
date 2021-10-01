@@ -51,14 +51,12 @@
           <div class="teams">
             <app-win *ngIf="element.radiant_win" class="icon-win"></app-win>
             <span *ngFor="let item of element.radiant_team.split(',')">
-              <img
-                onError="this.src='./assets/images/Dota2Logo.svg'"
-                width="52" height="29"
-                class="hero-img"
+              <app-img
+                [data]="heroesLocal[item]['img']"
                 (click)="goPage(item)"
-                *ngIf="item && heroesLocal && heroesLocal[item]['img']"
-                src="https://steamcdn-a.akamaihd.net/{{heroesLocal[item]['img']}}"
-              />
+                class="hero-img sm-hero-img"
+                [altData]="heroesLocal[item]['localized_name']"
+              ></app-img>
             </span>
           </div>
         </td>
@@ -71,14 +69,12 @@
           <div class="teams">
             <app-win *ngIf="!element.radiant_win" class="icon-win"></app-win>
             <span *ngFor="let item of element.dire_team.split(',')">
-              <img
-                onError="this.src='./assets/images/Dota2Logo.svg'"
-                width="52" height="29"
-                class="hero-img"
+              <app-img
+                [data]="heroesLocal[item]['img']"
                 (click)="goPage(item)"
-                *ngIf="item && heroesLocal && heroesLocal[item]['img']"
-                src="https://steamcdn-a.akamaihd.net/{{heroesLocal[item]['img']}}"
-              />
+                class="hero-img sm-hero-img"
+                [altData]="heroesLocal[item]['localized_name']"
+              ></app-img>
             </span>
           </div>
         </td>
