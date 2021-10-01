@@ -1,7 +1,7 @@
-<table mat-table [dataSource]="dataSource">
+<table mat-table [dataSource]="dataSource" matSort>
   <!-- percentile column -->
   <ng-container [matColumnDef]="col" *ngFor="let col of displayedColumns; index as i;">
-    <th mat-header-cell *matHeaderCellDef [matTooltip]="tooltips[i]" matTooltipPosition="above"> {{col | uppercase}} </th>
+    <th mat-header-cell *matHeaderCellDef [matTooltip]="tooltips[i]" matTooltipPosition="above" [disabled]="sortHeader[i] ? false : true" [mat-sort-header]="col"> {{col | uppercase}} </th>
     <td mat-cell *matCellDef="let element">
       {{element[col]}}
     </td>
