@@ -11,13 +11,12 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The hero played" matTooltipPosition="above"> HERO </th>
         <td mat-cell *matCellDef="let element">
           <div *ngIf="element.hero_id && heroesLocal" class="ver-align">
-            <img
-            onError="this.src='./assets/images/Dota2Logo.svg'"
-            width="52" height="29"
-              class="hero-img"
-              src="https://steamcdn-a.akamaihd.net/{{heroesLocal[element.hero_id]['img']}}"
-              (mouseover)="showHeroModalFn($event, element.hero_id)" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
-            />
+            <app-img
+              [data]="heroesLocal[element['hero_id']]['img']"
+              class="hero-img sm-hero-img"
+              [altData]="heroesLocal[element['hero_id']]['localized_name']"
+              (mouseover)="showHeroModalFn($event, element['hero_id'])" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
+            ></app-img>
             <div class="account-date">
               <a class="account_link" [routerLink]="['/matches', element.match_id]" *ngIf="heroesLocal && element.hero_id">{{heroesLocal[element.hero_id]['localized_name']}}></a>
               <span class="date-time">
