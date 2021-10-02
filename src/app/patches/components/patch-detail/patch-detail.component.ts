@@ -8,17 +8,17 @@ import { IItemColorLocal } from 'src/app/shared/model/item_color';
   styleUrls: ['./patch-detail.component.scss']
 })
 export class PatchDetailComponent implements OnInit {
-  @ViewChild('items') items: ElementRef;
+  @ViewChild('item') item: ElementRef;
   @ViewChild('heroes') heroes: ElementRef;
-  @Input() patchnote: any;
-  @Input() currentPatch: any;
+  @Input() patchnote: any; // one patch note
+  @Input() currentPatch: string;
 
   // uses for header patch release date
-  @Input() patchesLocalData: any;
+  @Input() extractPatchData: any;
 
-  @Input() heroesNameLocal: IheroLocal;
-  @Input() itemsLocal: any;
-  @Input() itemColorLocal: IItemColorLocal;
+  @Input() heroNames: IheroLocal;
+  @Input() items: any;
+  @Input() itemColors: IItemColorLocal;
 
   currentCat = 'general';
 
@@ -39,8 +39,8 @@ export class PatchDetailComponent implements OnInit {
   gotoAnchor(cat: string): void {
     this.currentCat = cat;
     let top;
-    if (cat === 'items') {
-      top = this.items.nativeElement.offsetTop - 120;
+    if (cat === 'item') {
+      top = this.item.nativeElement.offsetTop - 120;
     } else if (cat === 'heroes') {
       top = this.heroes.nativeElement.offsetTop - 120;
     } else {

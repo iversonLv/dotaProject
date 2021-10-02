@@ -9,13 +9,13 @@
   </app-patches-list>
   <!-- patch detail -->
   <app-patch-detail
-    *ngIf="currentPatch && patchnoteLocal && patchnoteLocal[currentPatch]"
-    [patchnote]="patchnoteLocal[currentPatch]"
+    *ngIf="currentPatch && patchnotes && patchnotes[currentPatch]"
+    [patchnote]="patchnotes[currentPatch]"
     [currentPatch]="currentPatch"
-    [patchesLocalData]="patchesLocalData"
-    [heroesNameLocal]="heroesNameLocal"
-    [itemsLocal] = "itemsLocal"
-    [itemColorLocal] = "itemColorLocal"
+    [extractPatchData]="extractPatchData"
+    [heroNames]="heroNames"
+    [items] = "items"
+    [itemColors] = "itemColors"
   >
   </app-patch-detail>
 </div>

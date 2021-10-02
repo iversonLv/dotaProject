@@ -4,10 +4,13 @@ import { Component, OnInit } from '@angular/core';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 import { IItemColorLocal } from 'src/app/shared/model/item_color';
 
-// services
-import { HerosService } from 'src/app/heros/services/heros.service';
-import { PatchService } from 'src/app/patches/services/patch.service';
-import { ItemsService } from 'src/app/services/items.service';
+
+// dotaconstans
+import patchnotes from 'dotaconstants/build/patchnotes.json';
+import patch from 'dotaconstants/build/patch.json';
+import items from 'dotaconstants/build/items.json';
+import heroNames from 'dotaconstants/build/hero_names.json';
+import itemColors from 'dotaconstants/build/item_colors.json';
 
 @Component({
   selector: 'app-patches',
@@ -15,11 +18,11 @@ import { ItemsService } from 'src/app/services/items.service';
   styleUrls: ['./patches.component.scss']
 })
 export class PatchesComponent implements OnInit {
-  patchnoteLocal: any;
-  patchesLocalData: any;
-  heroesNameLocal: IheroLocal;
-  itemsLocal: any;
-  itemColorLocal: IItemColorLocal;
+  patchnotes: any;
+  extractPatchData: any;
+  heroNames: any;
+  items: any;
+  itemColors: IItemColorLocal;
 
   overallPatchList: string[];
 
@@ -30,18 +33,14 @@ export class PatchesComponent implements OnInit {
 
   currentPatch;
   constructor(
-    private itemsService: ItemsService,
-    private herosService: HerosService,
-    private patchService: PatchService,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-
+    this.extractPatchData = this.extractPatchDataFn(patch);
+    this.heroNames = heroNames;
+    this.items = items;
+    this.itemColors = itemColors;
     this.getPatchnoteLocal();
-    this.getPatchesLocal();
-    this.getHeroesNameLocal();
-    this.getItemsLocal();
-    this.getItemColorLocal();
 
     window.addEventListener('scroll', this.scroll, true);
   }
@@ -58,49 +57,12 @@ export class PatchesComponent implements OnInit {
   }
 
   getPatchnoteLocal(): any {
-    this.patchService.getPatchnoteLocal().subscribe(data => {
-      this.patchnoteLocal = data;
-      this.overallPatchList = Object.keys(data).reverse();
-      this.currentPatch = Object.keys(data).reverse()[0];
-    }, err => {
-      console.log(err);
-    });
+      this.patchnotes = patchnotes;
+      this.overallPatchList = Object.keys(patchnotes).reverse();
+      this.currentPatch = Object.keys(patchnotes).reverse()[0];
   }
 
-  getPatchesLocal(): any {
-    this.patchService.getPatchesLocal().subscribe(data => {
-      this.patchesLocalData = this.extractPatchData(data);
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getItemsLocal(): any {
-    this.itemsService.getItemsLocal().subscribe(data => {
-    this.itemsLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getItemColorLocal(): any {
-    this.itemsService.getItemColorLocal().subscribe(data => {
-      this.itemColorLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  // get hero local data base name
-  getHeroesNameLocal(): any {
-    this.herosService.getHeroesNameLocal().subscribe(data => {
-      this.heroesNameLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  extractPatchData(data): any {
+  extractPatchDataFn(data): any {
     const nameList = data.map(i => i.name);
     const finalData = {};
     nameList.forEach(i => {
