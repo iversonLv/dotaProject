@@ -1,14 +1,19 @@
 <div class="item-tooltip" *ngIf="item && (!aghs || !aghs['has_' + aghs?.has])" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
   <div class="item-main">
-    <img
-      onError="this.src='./assets/images/Dota2Logo.svg'"
-      height="50px" src="https://www.opendota.com/assets/images/Dota2Logo.svg" [src]="'https://steamcdn-a.akamaihd.net' + item.img" />
+    <app-img
+      [data]="item['img']"
+      *ngIf="item && item['img']"
+      class="md-item-img"
+      [altData]="item['dname']">
+    </app-img>
     <div class="item-main-right">
       <h3>{{item.dname}}</h3>
       <span class="item-cost">
-        <img
-        onError="this.src='./assets/images/Dota2Logo.svg'"
-        width="20px" src="https://steamcdn-a.akamaihd.net/apps/dota2/images/tooltips/gold.png" alt="$" />
+        <app-img
+          [data]="'/apps/dota2/images/tooltips/gold.png'"
+          class="icon-img"
+          [altData]="'$'">
+        </app-img>
         {{item.cost}}
       </span>
     </div>
@@ -34,16 +39,22 @@
     <h6>Components:</h6>
     <div class="components-row">
       <span *ngFor="let component of item.components" class="components-block">
-        <img
-        onError="this.src='./assets/images/Dota2Logo.svg'"
-        width="40px" src="https://www.opendota.com/assets/images/Dota2Logo.svg" [src]="'https://steamcdn-a.akamaihd.net' + itemsLocal[component]['img']" *ngIf="itemsLocal && component && itemsLocal[component]?.img" />
-        <span *ngIf="itemsLocal" class="item-cost">{{itemsLocal[component]['cost']}}</span>
+        <app-img
+          [data]="items[component]['img']"
+          *ngIf="items && component && items[component]?.img"
+          class="sb-item-img"
+          [altData]="items[component]['dname']">
+        </app-img>
+        <span *ngIf="items" class="item-cost">{{items[component]['cost']}}</span>
       </span>
       <span class="components-block">
-        <img
-        onError="this.src='./assets/images/Dota2Logo.svg'"
-        width="40px" src="https://www.opendota.com/assets/images/Dota2Logo.svg" [src]="'https://steamcdn-a.akamaihd.net' + itemsLocal['recipe_' + item.dname.replace(' ', '_').toLowerCase()]?.img" *ngIf="itemsLocal && itemsLocal['recipe_' + item.dname.replace(' ', '_').toLowerCase()]?.img" />
-        <span *ngIf="itemsLocal && itemsLocal['recipe_' + item.dname.replace(' ', '_').toLowerCase()]?.cost" class="item-cost">{{itemsLocal['recipe_' + item.dname.replace(' ', '_').toLowerCase()]['cost']}}</span>
+        <app-img
+          [data]="items['recipe_' + item['dname'].replace(' ', '_').toLowerCase()]['img']"
+          *ngIf="items && items['recipe_' + item['dname'].replace(' ', '_').toLowerCase()]?.img"
+          class="sb-item-img"
+          [altData]="item['dname']">
+        </app-img>
+        <span *ngIf="items && items['recipe_' + item.dname.replace(' ', '_').toLowerCase()]?.cost" class="item-cost">{{items['recipe_' + item.dname.replace(' ', '_').toLowerCase()]['cost']}}</span>
       </span>
     </div>
   </div>
@@ -54,9 +65,12 @@
 
 <div class="item-tooltip" *ngIf="item && aghs && aghs['has_' + aghs.has]" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
   <div class="item-main">
-    <img
-      onError="this.src='./assets/images/Dota2Logo.svg'"
-      height="50px" src="https://www.opendota.com/assets/images/Dota2Logo.svg" [src]="'https://steamcdn-a.akamaihd.net' + item.img" />
+    <app-img
+      [data]="item['img']"
+      class="md-item-img"
+      [altData]="item['dname']">
+    </app-img>
+
     <div class="item-main-right">
       <h3>{{item.dname}}</h3>
     </div>
@@ -65,9 +79,11 @@
   
   <div *ngIf="aghs && aghs['has_' + aghs?.has]" class="aghs-box">
     <div class="item-main">
-      <img
-      onError="this.src='./assets/images/Dota2Logo.svg'"
-      height="50px" [src]="'https://steamcdn-a.akamaihd.net' + aghs[aghs?.has + '_img']" />
+      <app-img
+        [data]="aghs[aghs['has'] + '_img']"
+        class="md-item-img"
+        [altData]="'aghs'">
+      </app-img>
       <div class="item-main-right">
         <h3>{{aghs[aghs?.has + '_skill_name']}}
           <span *ngIf="aghs[aghs?.has + '_new_skill']" class="new-ablility">
