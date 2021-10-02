@@ -159,7 +159,19 @@ a:hover {
 }
 
 // item image
+.sb-item-img {
+  width: 40px;
+}
+.md-item-img {
+  height: 50px;
+}
+
 .me-item-img {
   width: 64px;
   height: 48.67px;
 }
+
+// icon img
+.icon-img {
+  width: 20px;
+} 

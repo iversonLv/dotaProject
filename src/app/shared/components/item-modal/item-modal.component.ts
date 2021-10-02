@@ -12,7 +12,7 @@ export class ItemModalComponent implements OnInit {
   @Input() item: IItemLocal;
   @Input() aghs: any;
 
-  @Input() itemsLocal: any;
+  @Input() items: any;
 
   // @Input() pageXY: number[] = [0, 100];
   // @Input() item: IItemLocal = {
