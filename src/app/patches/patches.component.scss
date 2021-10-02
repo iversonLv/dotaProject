@@ -8,6 +8,12 @@
 
       .patch-title {
         top: 0;
+        left: 0;
+        width: calc(100% - 30px);
+      }
+      .patch-list {
+        top: 135px;
+        height: calc(100% - 135px - 35px);
       }
     }
   }
@@ -15,7 +21,8 @@
   ::ng-deep {
     .patch-list {
       position: fixed;
-      height: calc(100% - 135px);
+      top: 135px;
+      height: calc(100% - 135px - 35px);
       overflow-y: auto;
       width: 300px;
     }

@@ -1,15 +1,15 @@
 <div *ngIf="patchnote" class="patch-detail">
   <div class="patch-title">
     <div class="patch-title-released-date">
-      <span>PATCH: {{currentPatch}}</span>
-      <span class="patch-released-date" *ngIf="currentPatch && patchesLocalData && patchesLocalData[extractCurrentPatch(currentPatch)]">
-        Released on: {{patchesLocalData[extractCurrentPatch(currentPatch)]?.date | slice: 0 : 9}}
+      <span>PATCH: {{currentPatch}} </span>
+      <span class="patch-released-date" *ngIf="currentPatch && extractPatchData && extractPatchData[extractCurrentPatch(currentPatch)]">
+        Released on: {{extractPatchData[extractCurrentPatch(currentPatch)]['date'] | date: 'MMM d yyyy'}}
       </span>
     </div>
     <div class="nav-wrapper">
       <nav>
         <a
-        *ngFor="let item of ['general', 'items', 'heroes']"
+        *ngFor="let item of ['general', 'item', 'heroes']"
         [class]="currentCat === item ? 'active' : ''"
         (click)=gotoAnchor(item)
         >{{item}}</a>
@@ -25,20 +25,19 @@
       </div>
     </div>
     <!-- Items -->
-    <div *ngIf="patchnote?.items && itemsLocal && itemColorLocal" class="patch-cat" #items>
+    <div *ngIf="patchnote?.items && items && itemColors" class="patch-cat" #item>
       <h2 class="patch-cat-title">Items</h2>
       <div *ngFor="let item of extractPatchFieldList(patchnote?.items)" class="item-row">
         <div class="item-img-name">
-          <img
-            width="64px"
-            class="item-img"
-            [style]="'border: 1px solid ' + itemColorLocal[itemsLocal[item]?.qual]"
-            *ngIf="itemsLocal && itemsLocal[item]?.img"
-            onError="this.src='./assets/images/Dota2Logo.svg'"
-            [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[item]?.img"
-          />
+          <app-img
+            [data]="items[item]['img']"
+            *ngIf="items && items[item]['img']"
+            class="item-img me-item-img"
+            [style]="'border: 1px solid ' + itemColors[items[item]['qual']]"
+            [altData]="items[item]?.dname">
+          </app-img>
           
-          <h3 class="item-title" *ngIf="itemsLocal && itemsLocal[item]?.dname">{{itemsLocal[item]?.dname}}</h3>
+          <h3 class="item-title" *ngIf="items && items[item]?.dname">{{items[item]?.dname}}</h3>
         </div>
         <div
           class="item-list-row"
@@ -49,22 +48,21 @@
     </div>
   
     <!-- Heroes -->
-    <div *ngIf="patchnote?.heroes && heroesNameLocal"  class="patch-cat" #heroes>
+    <div *ngIf="patchnote?.heroes && heroNames"  class="patch-cat" #heroes>
       <h2 class="patch-cat-title">Heroes</h2>
       <div *ngFor="let hero of extractPatchFieldList(patchnote?.heroes)" class="item-row">
         <div class="item-img-name">
-          <img
-            width="85px"
-            class="item-img"
-            [class]="'hero-' + heroesNameLocal['npc_dota_hero_' + hero]?.primary_attr"
-            *ngIf="heroesNameLocal && heroesNameLocal['npc_dota_hero_' + hero]?.img"
-            onError="this.src='./assets/images/Dota2Logo.svg'"
-            [src]="'https://steamcdn-a.akamaihd.net/' + heroesNameLocal['npc_dota_hero_' + hero]?.img"
-          />
+          <app-img
+            [data]="heroNames['npc_dota_hero_' + hero]['img']"
+            class="item-img me-hero-img"
+            [class]="'hero-' + heroNames['npc_dota_hero_' + hero]?.primary_attr"
+            *ngIf="heroNames && heroNames['npc_dota_hero_' + hero]['img']"
+            [altData]="heroNames['npc_dota_hero_' + hero]['localized_name']">
+          </app-img>
           
           <a
-            [routerLink]="['/heroes', heroesNameLocal['npc_dota_hero_' + hero]?.id]"
-            class="item-title" *ngIf="heroesNameLocal && heroesNameLocal['npc_dota_hero_' + hero]?.localized_name">{{heroesNameLocal['npc_dota_hero_' + hero]?.localized_name}}</a>
+            [routerLink]="['/heroes', heroNames['npc_dota_hero_' + hero]?.id]"
+            class="item-title" *ngIf="heroNames && heroNames['npc_dota_hero_' + hero]?.localized_name">{{heroNames['npc_dota_hero_' + hero]?.localized_name}}</a>
         </div>
         <div
           class="item-list-row"

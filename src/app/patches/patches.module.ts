@@ -7,10 +7,15 @@ import { PatchDetailComponent } from './components/patch-detail/patch-detail.com
 import { PatchesListComponent } from './components/patches-list/patches-list.component';
 
 
+// shared model
+import { SharedModule } from '../shared/shared.module';
+
+
 @NgModule({
   declarations: [PatchesComponent, PatchDetailComponent, PatchesListComponent],
   imports: [
     CommonModule,
+    SharedModule,
     PatchesRoutingModule
   ]
 })

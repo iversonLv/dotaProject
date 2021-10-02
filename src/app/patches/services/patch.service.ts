@@ -14,8 +14,4 @@ export class PatchService {
   getPatchesLocal(): Observable<any> {
     return this.generalService.getGitRawData('/patch.json');
   }
-
-  getPatchnoteLocal(): Observable<any> {
-    return this.generalService.getGitRawData('/patchnotes.json');
-  }
 }

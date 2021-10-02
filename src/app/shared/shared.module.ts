@@ -69,6 +69,7 @@ import { ReplaceTextPipe } from './utils/replace-text.pipe';
     SubNavComponent,
     MainNavComponent,
     HeroIconPlayerNameComponent,
+    ImgComponent,
 
     // icons
     HeroAttrStrComponent,
@@ -115,7 +116,6 @@ import { ReplaceTextPipe } from './utils/replace-text.pipe';
     OrdinalNumPipe,
     FieldTooltipPipe,
     ReplaceTextPipe,
-    ImgComponent,
   ],
   imports: [
     CommonModule,
