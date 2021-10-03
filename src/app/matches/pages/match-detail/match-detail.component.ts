@@ -61,21 +61,20 @@ export class MatchDetailComponent implements OnInit {
   currentTeamFightDataForMap = null;
 
 
-  // User for hero modal to mapping
-  heroes: any;
-  mapItemLocal: any;
-  heroNames: any;
+  // User for hero modal to mapping from dotaconstant
+  heroes: any = heroes;
+  heroNames: any = heroNames;
+  itemIds: any = itemIds;
+  items: any = items;
+  aghsDesc: any = aghsDesc;
+  itemColors: IItemColorLocal = itemColors;
+  abilityIds: any = abilityIds; // this is for overview page that ability_upgrades_arr[]
+  playerColors: any = playerColors;
+  abilities: any = abilities;
+  permanentBuffs: any = permanentBuffs;
+  chatWheel: any = chatWheel;
   laneRoleLocal: any;
-  itemIds: any;
-  items: any;
-  aghsDesc: any;
-  itemColors: IItemColorLocal;
-  abilityIds: any; // this is for overview page that ability_upgrades_arr[]
-  playerColors: any;
-  abilities: any;
-  permanentBuffs: any;
-  chatWheel: any;
-
+  mapItemLocal: any;
 
   showHideVisionPlayersData = {};
 
@@ -181,20 +180,6 @@ export class MatchDetailComponent implements OnInit {
         this.currentPage = event.url.split('/')[3]; // Grab last route 'overview'
       }
     });
-
-    // get all heroes local data
-    this.heroes = heroes;
-    // this use for some data grab hero data via hero name rather than id
-    this.heroNames = heroNames;
-    this.playerColors = playerColors;
-    this.abilities = abilities;
-    this.abilityIds = abilityIds;
-    this.items = items;
-    this.itemColors = itemColors;
-    this.itemIds = itemIds;
-    this.aghsDesc = aghsDesc;
-    this.permanentBuffs = permanentBuffs;
-    this.chatWheel = chatWheel;
     this.getMapItemsLocal();
     this.getLaneRoleLocal();
   }
