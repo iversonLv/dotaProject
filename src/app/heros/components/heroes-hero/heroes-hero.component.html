@@ -56,23 +56,21 @@
             <ng-container *ngFor="let value of abilities[item].mc | stringToArray | slice: 0:1">
               <span *ngIf="value !== '0'" class="mana-tip">{{value}}</span>
             </ng-container>
-            <img
-              onError="this.src='./assets/images/Dota2Logo.svg'"
-              [src]="'https://steamcdn-a.akamaihd.net//apps/dota2/images/abilities/' + item + '_md.png'"
-              [alt]="item"
-            />
+            <app-img
+              class="md-abilities-img"
+              [data]="'/apps/dota2/images/abilities/' +item + '_md.png'"
+              [altData]="item"
+            >
+            </app-img>
           </span>
-          
-          <img
-            onError="this.src='./assets/images/Dota2Logo.svg'"
-            src="./assets/images/talent_tree.svg"
-            with="64px"
-            height="64px"
-            class="hero-talent"
+          <app-img
+            class="transparent-app-img md-abilities-img"
+            [localUrl]='true'
+            [data]="'./assets/images/talent_tree.svg'"
             *ngIf="heroAbilities[hero['name']]?.talents"
             (mouseover)="showTalentModalFn($event, heroAbilities[hero['name']].talents)"
             (mouseout)="showTalentModal=false; currentMouseOverTalent = null"
-          />
+          ></app-img>
         </div>
         <!-- hero-talent -->
       </div>

@@ -143,6 +143,14 @@ a:hover {
 
 
 // hero image
+app-img {
+  background: url(./assets/images/Dota2Logo.svg) no-repeat center center;
+  background-size: contain;
+
+  &.transparent-app-img {
+    background: transparent;
+  }
+}
 .sm-hero-img {
   width: 52px;
   height: 29px;
@@ -150,7 +158,7 @@ a:hover {
 
 .md-hero-img {
   width: 180px;
-  height: auto;
+  height: 101.25px;
 }
 
 .me-hero-img {
@@ -179,4 +187,11 @@ a:hover {
 .death-icon-img {
   width: 24px;
   height: 24px;
+}
+
+// abilities img
+.md-abilities-img {
+  width: 64px;
+  display: inline-block;
+  height: 64px;
 }

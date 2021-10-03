@@ -47,11 +47,11 @@ export class HeroesHeroComponent implements OnInit {
     this.router.events
     .subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.hero = null;
         // example url is /heroes/86/rankings
         const currentRoute = event.url.split('/')[3]; // Grab last route 'rankings'
         // if heroId change will dispatch the player data or won't dispatch
         if (heroId !== +event.url.split('/')[2] && currentRoute !== 'rankings') {
+          this.hero = null;
           heroId = +event.url.split('/')[2]; // Grab middle id
           this.hero = heroes[heroId]; // Rerun the getPlayerData data
         }
