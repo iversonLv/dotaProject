@@ -8,9 +8,9 @@ import { IChat } from '../../model/onematch';
   styleUrls: ['./chats-list.component.scss']
 })
 export class ChatsListComponent implements OnInit {
-  @Input() playerColorLocal: any;
-  @Input() heroesLocal: IheroLocal;
-  @Input() chatWheelLocal: any;
+  @Input() playerColors: any;
+  @Input() heroes: IheroLocal;
+  @Input() chatWheel: any;
   @Input() data: any[];
   @Input() chats: IChat[];
 
@@ -99,7 +99,7 @@ export class ChatsListComponent implements OnInit {
 
   // play audio
   playAudio(item: any): any {
-    const audio = new Audio(`https://odota.github.io/media/chatwheel/dota_chatwheel_${item?.key}.${this.chatWheelLocal[item?.key]?.sound_ext}`);
+    const audio = new Audio(`https://odota.github.io/media/chatwheel/dota_chatwheel_${item?.key}.${this.chatWheel[item?.key]?.sound_ext}`);
     audio.play();
   }
 
@@ -127,16 +127,16 @@ export class ChatsListComponent implements OnInit {
       return i.type === 'chat' ;
     }).length;
     keys.pharses.len =  data.filter(i => {
-      return i.type === 'chatwheel' && (!this.chatWheelLocal[i?.key]?.sound_ext || !this.chatWheelLocal[i?.key]);
+      return i.type === 'chatwheel' && (!this.chatWheel[i?.key]?.sound_ext || !this.chatWheel[i?.key]);
     }).length;
     keys.audio.len =  data.filter(i => {
-      return i.type === 'chatwheel' && this.chatWheelLocal[i?.key]?.sound_ext ;
+      return i.type === 'chatwheel' && this.chatWheel[i?.key]?.sound_ext ;
     }).length;
     keys.all.len =  data.filter(i => {
-      return i.type === 'chat' || (i.type === 'chatwheel' && this.chatWheelLocal[i?.key]?.all_chat);
+      return i.type === 'chat' || (i.type === 'chatwheel' && this.chatWheel[i?.key]?.all_chat);
     }).length;
     keys.allies.len =  data.filter(i => {
-      return i.type === 'chatwheel' && !this.chatWheelLocal[i?.key]?.all_chat;
+      return i.type === 'chatwheel' && !this.chatWheel[i?.key]?.all_chat;
     }).length;
     keys.spam.len =  data.filter((i, index) => {
       return index >= 1
@@ -175,17 +175,17 @@ export class ChatsListComponent implements OnInit {
       let chatType = '';
       if (i.type === 'chat') {
         chatType = 'chat';
-      } else if (i.type === 'chatwheel' && (!this.chatWheelLocal[i?.key]?.sound_ext || !this.chatWheelLocal[i?.key])) {
+      } else if (i.type === 'chatwheel' && (!this.chatWheel[i?.key]?.sound_ext || !this.chatWheel[i?.key])) {
         chatType = 'pharses';
-      } else if (i.type === 'chatwheel' && this.chatWheelLocal[i?.key]?.sound_ext) {
+      } else if (i.type === 'chatwheel' && this.chatWheel[i?.key]?.sound_ext) {
         chatType = 'audio';
       }
 
       // target
       let targetType = '';
-      if (i.type === 'chat' || (i.type === 'chatwheel' && this.chatWheelLocal[i?.key]?.all_chat)) {
+      if (i.type === 'chat' || (i.type === 'chatwheel' && this.chatWheel[i?.key]?.all_chat)) {
         targetType = 'all';
-      } else if (i.type === 'chatwheel' && !this.chatWheelLocal[i?.key]?.all_chat) {
+      } else if (i.type === 'chatwheel' && !this.chatWheel[i?.key]?.all_chat) {
         targetType = 'allies';
       }
 
@@ -212,26 +212,25 @@ export class ChatsListComponent implements OnInit {
   // filter chat data function
   extraceData(data: any[], keys: any): any[] {
     data = data.filter((i, index) => {
-      console.log(i)
+      console.log(i);
       // // side
       // const radiant = i.player_slot < 128;
       // const dire = i.player_slot > 127;
 
       // // type
       // const chat = i.type === 'chat';
-      // const pharses = i.type === 'chatwheel' && (!this.chatWheelLocal[i?.key]?.sound_ext || !this.chatWheelLocal[i?.key]);
-      // const audio = (i.type === 'chatwheel' && this.chatWheelLocal[i?.key]?.sound_ext);
+      // const pharses = i.type === 'chatwheel' && (!this.chatWheel[i?.key]?.sound_ext || !this.chatWheel[i?.key]);
+      // const audio = (i.type === 'chatwheel' && this.chatWheel[i?.key]?.sound_ext);
 
       // // target
-      // const all = i.type === 'chat' || (i.type === 'chatwheel' && this.chatWheelLocal[i?.key]?.all_chat);
-      // const allies = i.type === 'chatwheel' && !this.chatWheelLocal[i?.key]?.all_chat;
+      // const all = i.type === 'chat' || (i.type === 'chatwheel' && this.chatWheel[i?.key]?.all_chat);
+      // const allies = i.type === 'chatwheel' && !this.chatWheel[i?.key]?.all_chat;
 
       // // spam
       // const spam = index >= 1
       // && (i.time === data[index - 1].time)
       // && (i.player_slot === data[index - 1].player_slot)
       // && (i.key === data[index - 1].key);
-      
       if (!keys?.spam?.isShown) {
         return (i.spam || !i.spam);
       } else if (keys?.spam?.isShown) {

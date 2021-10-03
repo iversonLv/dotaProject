@@ -17,7 +17,6 @@ import { IHeroAbility } from 'src/app/heros/model/hero-abilities';
 import { HerosService } from 'src/app/heros/services/heros.service';
 import { PermanentBuffsService } from 'src/app/services/permanent-buffs.service';
 import { LaneRoleService } from 'src/app/services/lane-role.service';
-import { ChatWheelService } from 'src/app/services/chat-wheel.service';
 
 // pipe
 import { DurationFormatPipe } from 'src/app/shared/utils/duration-format.pipe';
