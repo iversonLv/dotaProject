@@ -46,14 +46,14 @@
         </div>
         <!-- hero-attr-info -->
         <!-- hero-ability -->
-        <div class="hero-ability" *ngIf="heroesAbilitiesTalentsLocal && hero && abilitiesTalentsLocal">
+        <div class="hero-ability" *ngIf="heroAbilities && hero && abilities">
           <span
-            *ngFor="let item of heroesAbilitiesTalentsLocal[hero['name']]?.abilities | excludeText: ['release', 'generic_hidden', 'rubick_hidden']"
+            *ngFor="let item of heroAbilities[hero['name']]?.abilities | excludeText: ['release', 'generic_hidden', 'rubick_hidden']"
             class="ablility-box"
             (mouseover)="showAbilityModalFn($event, item)"
             (mouseout)="showAbilityModal=false; currentMouseOverAbilityName = null"
           >
-            <ng-container *ngFor="let value of abilitiesTalentsLocal[item].mc | stringToArray | slice: 0:1">
+            <ng-container *ngFor="let value of abilities[item].mc | stringToArray | slice: 0:1">
               <span *ngIf="value !== '0'" class="mana-tip">{{value}}</span>
             </ng-container>
             <img
@@ -69,8 +69,8 @@
             with="64px"
             height="64px"
             class="hero-talent"
-            *ngIf="heroesAbilitiesTalentsLocal[hero['name']]?.talents"
-            (mouseover)="showTalentModalFn($event, heroesAbilitiesTalentsLocal[hero['name']].talents)"
+            *ngIf="heroAbilities[hero['name']]?.talents"
+            (mouseover)="showTalentModalFn($event, heroAbilities[hero['name']].talents)"
             (mouseout)="showTalentModal=false; currentMouseOverTalent = null"
           />
         </div>
@@ -161,6 +161,6 @@
 
 </div>
 
-<app-ability-modal [abilitiesTalentsLocal]="abilitiesTalentsLocal" *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName' [pageXY] = 'pageXY'></app-ability-modal>
+<app-ability-modal [abilitiesTalentsLocal]="abilities" *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName' [pageXY] = 'pageXY'></app-ability-modal>
 
-<app-talent-modal [abilitiesTalentsLocal]="abilitiesTalentsLocal" *ngIf="showTalentModal" [talents]='currentMouseOverTalent' [pageXY] = 'pageXY'></app-talent-modal>
+<app-talent-modal [abilitiesTalentsLocal]="abilities" *ngIf="showTalentModal" [talents]='currentMouseOverTalent' [pageXY] = 'pageXY'></app-talent-modal>
