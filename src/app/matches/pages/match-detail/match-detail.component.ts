@@ -15,8 +15,6 @@ import { IHeroAbility } from 'src/app/heros/model/hero-abilities';
 
 // service
 import { HerosService } from 'src/app/heros/services/heros.service';
-import { PlayerColorService } from 'src/app/services/player-color.service';
-import { ItemsService } from 'src/app/services/items.service';
 import { PermanentBuffsService } from 'src/app/services/permanent-buffs.service';
 import { LaneRoleService } from 'src/app/services/lane-role.service';
 import { ChatWheelService } from 'src/app/services/chat-wheel.service';
@@ -24,6 +22,19 @@ import { ChatWheelService } from 'src/app/services/chat-wheel.service';
 // pipe
 import { DurationFormatPipe } from 'src/app/shared/utils/duration-format.pipe';
 import { MapItemsService } from 'src/app/services/map-items.service';
+
+// dotaconstant
+import items from 'dotaconstants/build/items.json';
+import itemColors from 'dotaconstants/build/item_colors.json';
+import itemIds from 'dotaconstants/build/item_ids.json';
+import aghsDesc from 'dotaconstants/build/aghs_desc.json';
+import heroes from 'dotaconstants/build/heroes.json';
+import heroNames from 'dotaconstants/build/hero_names.json';
+import playerColors from 'dotaconstants/build/player_colors.json';
+import abilities from 'dotaconstants/build/abilities.json';
+import abilityIds from 'dotaconstants/build/ability_ids.json';
+import permanentBuffs from 'dotaconstants/build/permanent_buffs.json';
+import chatWheel from 'dotaconstants/build/chat_wheel.json';
 
 @Component({
   selector: 'app-match-detail',
@@ -51,20 +62,19 @@ export class MatchDetailComponent implements OnInit {
 
 
   // User for hero modal to mapping
-  heroesLocal: IheroLocal;
+  heroes: any;
   mapItemLocal: any;
-  heroesNameLocal: IheroLocal;
+  heroNames: any;
   laneRoleLocal: any;
-  itemIdsLocal: any;
-  itemsLocal: any;
-  aghsDescriptionLocal: any;
-  itemColorLocal: IItemColorLocal;
-  abilitiesByIdLocal: any; // this is for overview page that ability_upgrades_arr[]
-  playerColorLocal: any;
-  heroesAbilitiesTalentsLocal: IHeroAbility;
-  abilitiesTalentsLocal: any;
-  permanentBuffsLocal: any;
-  chatWheelLocal: any;
+  itemIds: any;
+  items: any;
+  aghsDesc: any;
+  itemColors: IItemColorLocal;
+  abilityIds: any; // this is for overview page that ability_upgrades_arr[]
+  playerColors: any;
+  abilities: any;
+  permanentBuffs: any;
+  chatWheel: any;
 
 
   showHideVisionPlayersData = {};
@@ -139,13 +149,8 @@ export class MatchDetailComponent implements OnInit {
     private durationFormat: DurationFormatPipe,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private chatWheelService: ChatWheelService,
-    private herosService: HerosService,
     private laneRoleService: LaneRoleService,
-    private itemsService: ItemsService,
     private mapItemsService: MapItemsService,
-    private playerColorService: PlayerColorService,
-    private permanentBuffsService: PermanentBuffsService,
     private store: Store<{ singleMatch: ISingleMatchData, teamsGeneral: ITeamData, }>
   ) { }
 
@@ -178,40 +183,22 @@ export class MatchDetailComponent implements OnInit {
     });
 
     // get all heroes local data
-    this.getHeroesLocal();
-    this.getLaneRoleLocal();
+    this.heroes = heroes;
     // this use for some data grab hero data via hero name rather than id
-    this.getHeroesNameLocal();
-    this.getPlayerColor();
-    this.getAbilitiesTalentsLocal();
-    this.getAbilitiesByIdLocal();
-    this.getItemsLocal();
-    this.getItemColorLocal();
-    this.getItemIdsLocal();
-    this.getAghsDescriptionLocal();
-    this.getPermanentBuffsLocal();
-    this.getChatWheelLocal();
+    this.heroNames = heroNames;
+    this.playerColors = playerColors;
+    this.abilities = abilities;
+    this.abilityIds = abilityIds;
+    this.items = items;
+    this.itemColors = itemColors;
+    this.itemIds = itemIds;
+    this.aghsDesc = aghsDesc;
+    this.permanentBuffs = permanentBuffs;
+    this.chatWheel = chatWheel;
     this.getMapItemsLocal();
-
+    this.getLaneRoleLocal();
   }
 
-  // get chat Wheel mapping data
-  getChatWheelLocal(): any {
-    this.chatWheelService.getChatWheelLocal().subscribe(data => {
-      this.chatWheelLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  // get hero local data
-  getHeroesNameLocal(): any {
-    this.herosService.getHeroesNameLocal().subscribe(data => {
-      this.heroesNameLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
   getMapItemsLocal(): any {
     this.mapItemsService.getMapItemsLocal().subscribe(data => {
       this.mapItemLocal = data;
@@ -222,91 +209,6 @@ export class MatchDetailComponent implements OnInit {
 
   getLaneRoleLocal(): any {
     this.laneRoleService.getLaneRoleLocal().subscribe(data => this.laneRoleLocal = data);
-  }
-
-  // get ablities
-  getHeroesAbilitiesTalentsLocal(): any {
-    this.herosService.getHeroesAbilitiesTalentsLocal().subscribe(data => {
-      this.heroesAbilitiesTalentsLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getAbilitiesTalentsLocal(): any {
-    this.herosService.getAbilitiesTalentsLocal().subscribe(data => {
-      this.abilitiesTalentsLocal = data;
-      }, err => {
-        console.log(err);
-      });
-  }
-
-
-  // get hero local data base name
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      this.heroesLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  // get player color
-  getPlayerColor(): any {
-    this.playerColorService.getPlayerColorLocal().subscribe(data => {
-      this.playerColorLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  // get abilities by id
-  getAbilitiesByIdLocal(): any {
-    this.herosService.getAbilitiesByIdLocal().subscribe(data => {
-      this.abilitiesByIdLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getItemColorLocal(): any {
-    this.itemsService.getItemColorLocal().subscribe(data => {
-      this.itemColorLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getItemIdsLocal(): any {
-    this.itemsService.getItemIdsLocal().subscribe(data => {
-    this.itemIdsLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getAghsDescriptionLocal(): any {
-    this.itemsService.getAghsDescriptionLocal().subscribe(data => {
-    this.aghsDescriptionLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getItemsLocal(): any {
-    this.itemsService.getItemsLocal().subscribe(data => {
-    this.itemsLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getPermanentBuffsLocal(): any {
-    this.permanentBuffsService.getPermanentBuffsLocal().subscribe(data => {
-    this.permanentBuffsLocal = data;
-    }, err => {
-      console.log(err);
-    });
   }
 
   // show/hide ability modal
@@ -328,12 +230,12 @@ export class MatchDetailComponent implements OnInit {
     if (emitObj[2] && emitObj[2] !== '' && emitObj[2] !== undefined) {
       this.currentMouseOverAghs = this.showAghsDescriptionLocal(emitObj[2]);
     }
-    this.currentMouseOverItem = this.itemsLocal[this.itemIdsLocal[itemId]];
+    this.currentMouseOverItem = this.items[this.itemIds[itemId]];
   }
 
   showAghsDescriptionLocal([heroId, hasScepterShard ]): any {
-    const heroAghs = this.aghsDescriptionLocal.filter(i => i.hero_id === heroId)[0];
-    const abilitiesArr = this.extractAblitiesArr(this.abilitiesTalentsLocal);
+    const heroAghs = this.aghsDesc.filter(i => i.hero_id === heroId)[0];
+    const abilitiesArr = this.extractAblitiesArr(this.abilities);
     return {
       has: hasScepterShard,
       ...heroAghs,
