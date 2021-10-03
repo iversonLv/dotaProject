@@ -43,8 +43,9 @@
   <div class="count-box">
     <app-nav-title [title]="'Patch'"></app-nav-title>
     <app-table-counts
-      *ngIf="playersCountsDestructData.patch && patchesLocal"
-      [data]='playersCountsDestructData.patch' [countTypeLocalData]="patchesLocal">
+      *ngIf="playersCountsDestructData['patch'] && patch"
+      [data]="playersCountsDestructData['patch']"
+      [countTypeLocalData]="patch">
     </app-table-counts>
   </div>
   

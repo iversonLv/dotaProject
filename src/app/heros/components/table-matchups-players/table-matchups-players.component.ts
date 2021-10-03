@@ -9,15 +9,16 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 // model
 import { IMatchupsDurationPlayer, IMatchupsDurationPlayerData } from '../../model/matchup-duration-player';
 import { IPro, IProData } from 'src/app/players/model/pro';
+import { IheroLocal } from '../../model/heroLocal';
 
 // ngrx
 import { Store } from '@ngrx/store';
 import * as herosActions from '../../store/heros.actions';
 import * as playersActions from '../../../players/store/players.actions';
 
-// service
-import { HerosService } from '../../services/heros.service';
-import { IheroLocal } from '../../model/heroLocal';
+
+// dotaconstant
+import heroes from 'dotaconstants/build/heroes.json';
 
 @Component({
   selector: 'app-table-matchups-players',
@@ -34,15 +35,17 @@ export class TableMatchupsPlayersComponent implements OnInit {
   // material table bottom paginator
   // officaly, material table only support one paginator
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-    this.paginator = mp;
-    this.setDataSourceAttributes();
+    setTimeout(() => {
+      this.paginator = mp;
+      this.setDataSourceAttributes();
+    });
   }
 
   sort;
   paginator;
 
   currentMouseOverHero: IheroLocal;
-  heroesLocal: IheroLocal;
+  heroes: any = heroes;
   pageXY = [];
 
   dataSource = new MatTableDataSource();
@@ -58,7 +61,6 @@ export class TableMatchupsPlayersComponent implements OnInit {
   proPlayersData;
   constructor(
     private router: Router,
-    private herosService: HerosService,
     private store: Store<{
       herosMatchups: IMatchupsDurationPlayerData,
       herosPlayers: IMatchupsDurationPlayerData,
@@ -127,17 +129,8 @@ export class TableMatchupsPlayersComponent implements OnInit {
           }
       });
     }
-
-    this.getHeroesLocal();
   }
 
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      this.heroesLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
 
   goPage(heroId): any {
     this.router.navigate([`/heroes/${heroId}`])
@@ -173,7 +166,7 @@ export class TableMatchupsPlayersComponent implements OnInit {
   showHeroModalFn(e, id): any {
     this.pageXY = [e.pageX + 50, e.pageY - 120];
     this.showHeroModal = true;
-    this.currentMouseOverHero = this.heroesLocal[id];
+    this.currentMouseOverHero = this.heroes[id];
   }
 
   extractProplayerData(data: IPro[]): any {

@@ -9,13 +9,15 @@ import * as playersActions from '../../store/players.actions';
 import { GameModeService } from 'src/app/services/game-mode.service';
 import { LaneRoleService } from 'src/app/services/lane-role.service';
 import { LobbyTypeService } from 'src/app/services/lobby-type.service';
-import { PatchService } from 'src/app/patches/services/patch.service';
 import { RegionService } from 'src/app/services/region.service';
 import { LeaverStatusService } from 'src/app/services/leaver-status.service';
 import { SideService } from 'src/app/services/side.service';
 
 // model
 import { ICountData } from '../../model/count';
+
+// dotaconstans
+import patch from 'dotaconstants/build/patch.json';
 
 @Component({
   selector: 'app-counts',
@@ -30,7 +32,7 @@ export class CountsComponent implements OnInit {
   lobbyTypeLocal: any;
   laneRoleLocal: any;
   regionLocal: any;
-  patchesLocal: any;
+  patch: any;
   sidesLocal: any;
   playersCountsDestructData: any = {};
 
@@ -40,7 +42,6 @@ export class CountsComponent implements OnInit {
     private lobbyTypeService: LobbyTypeService,
     private laneRoleService: LaneRoleService,
     private regionService: RegionService,
-    private patchService: PatchService,
     private sideService: SideService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -98,7 +99,7 @@ export class CountsComponent implements OnInit {
     this.getLobbyTypeLocal();
     this.getLaneRoleLocal();
     this.getRegionLocal();
-    this.getPatchesLocal();
+    this.patch = patch;
     this.getSidesLocal();
   }
 
@@ -113,14 +114,6 @@ export class CountsComponent implements OnInit {
   getSidesLocal(): any {
     this.sideService.getSidesLocal().subscribe(data => {
       return this.sidesLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getPatchesLocal(): any {
-    this.patchService.getPatchesLocal().subscribe(data => {
-      this.patchesLocal = data;
     }, err => {
       console.log(err);
     });

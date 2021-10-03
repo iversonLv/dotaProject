@@ -19,10 +19,12 @@ import * as playersActions from '../../store/players.actions';
 import { PlayersService } from '../../services/players.service';
 import { HerosService } from 'src/app/heros/services/heros.service';
 import { LaneRoleService } from 'src/app/services/lane-role.service';
-import { PatchService } from 'src/app/patches/services/patch.service';
 import { GameModeService } from 'src/app/services/game-mode.service';
 import { LobbyTypeService } from 'src/app/services/lobby-type.service';
 import { RegionService } from 'src/app/services/region.service';
+
+// dotaconstant
+import patch from 'dotaconstants/build/patch.json';
 
 @Component({
   selector: 'app-filter-bar',
@@ -37,7 +39,7 @@ export class FilterBarComponent implements OnInit {
 
   heroesLocal: IheroLocal;
   laneRoleLocal: any;
-  patchesLocal: any;
+  patch: any;
   gameModeLocal: any;
   regionLocal: any;
   lobbyTypeLocal: any;
@@ -95,7 +97,6 @@ export class FilterBarComponent implements OnInit {
     private laneRoleService: LaneRoleService,
     private lobbyTypeService: LobbyTypeService,
     private regionService: RegionService,
-    private patchService: PatchService,
     private gameModeService: GameModeService,
     private store: Store<{ heroGeneral: IHeroData, playersPeersFilter: IPeerData}>
   ) {
@@ -131,7 +132,7 @@ export class FilterBarComponent implements OnInit {
 
     this.getHeroesLocal();
     this.getLaneRoleLocal();
-    this.getPatchesLocal();
+    this.patch = patch;
     this.getGameModeLocal();
     this.getLobbyTypeLocal();
     this.getRegionLocal();
@@ -361,10 +362,6 @@ export class FilterBarComponent implements OnInit {
 
   getLaneRoleLocal(): any {
     this.laneRoleService.getLaneRoleLocal().subscribe(data => this.laneRoleLocal = data);
-  }
-
-  getPatchesLocal(): any {
-    this.patchService.getPatchesLocal().subscribe(data => this.patchesLocal = data);
   }
 
   getGameModeLocal(): any {

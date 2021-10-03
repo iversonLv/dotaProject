@@ -16,10 +16,12 @@ import { IRecentMatch, IRecentMatchData } from 'src/app/matches/model/recent-mat
 
 // service
 import { GameModeService } from 'src/app/services/game-mode.service';
-import { PatchService } from 'src/app/patches/services/patch.service';
 import { LaneRoleService } from 'src/app/services/lane-role.service';
 import { RegionService } from 'src/app/services/region.service';
 import { SkillService } from 'src/app/services/skill.service';
+
+// dotaconstans
+import patch from 'dotaconstants/build/patch.json';
 
 @Component({
   selector: 'app-overview',
@@ -65,7 +67,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
   lobbyTypeLocal: any;
   gameModeLocal: any;
   regionLocal: any;
-  patchesLocal: any;
+  patch: any;
   laneRoleLocal: any;
   skillLocal: any;
 
@@ -76,7 +78,6 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
     // private herosService: HerosService,
     // private lobbyTypeService: LobbyTypeService,
     private gameModeService: GameModeService,
-    private patchService: PatchService,
     private laneRoleService: LaneRoleService,
     private regionService: RegionService,
     private skillService: SkillService,
@@ -193,7 +194,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
     // this.getLobbyTypeLocal();
     this.getGameModeLocal();
     this.getRegionLocal();
-    this.getPatchesLocal();
+    this.patch = patch;
     this.getLaneRoleLocal();
      // this.getSkillLocal();
   }
@@ -281,16 +282,6 @@ export class OverviewComponent implements OnInit, AfterViewInit {  // table sort
     this.isLoading = false;
     this.regionService.getRegionLocal().subscribe(data => {
       this.regionLocal = data;
-      this.isLoading = true;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getPatchesLocal(): any {
-    this.isLoading = false;
-    this.patchService.getPatchesLocal().subscribe(data => {
-      this.patchesLocal = data;
       this.isLoading = true;
     }, err => {
       console.log(err);

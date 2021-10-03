@@ -61,11 +61,11 @@
 
   <!-- patch dropdown -->
   <app-dropdown
-  [data]="patchesLocal"
-  *ngIf="patchesLocal"
+  [data]="patch"
+  *ngIf="patch"
   [model]="currentSelectedPatch"
   (setEventEmit)="setQueryParams([$event,'patch'])"
-  [defaultValue]="setDropdownDefaultValue(['Patch', 'patch', patchesLocal])"
+  [defaultValue]="setDropdownDefaultValue(['Patch', 'patch', patch])"
   matTooltip="Patch"
   matTooltipPosition="above"
   [sortBy] = "'id'"

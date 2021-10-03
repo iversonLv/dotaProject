@@ -24,8 +24,10 @@ export class TableTeamsPlayersComponent implements OnInit {
   // material table bottom paginator
   // officaly, material table only support one paginator
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-    this.paginator = mp;
-    this.setDataSourceAttributes();
+    setTimeout(() => {
+      this.paginator = mp;
+      this.setDataSourceAttributes();
+    });
   }
   sort;
   paginator;
