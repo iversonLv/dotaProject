@@ -11,7 +11,8 @@ export const environment = {
   HERO_IMG_URL: 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/',
   ABILITY_IMG_URL: 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities',
   ERROR_IMG: 'this.src=\'./assets/images/Dota2Logo.svg\'',
-  STEAMCDN: 'https://steamcdn-a.akamaihd.net'
+  STEAMCDN: 'https://steamcdn-a.akamaihd.net',
+  OPENDOTA: 'https://www.opendota.com/'
   // ex: https://steamcdn-a.akamaihd.net//apps/dota2/images/heroes/furion_full.png?
   //https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes
   //https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities

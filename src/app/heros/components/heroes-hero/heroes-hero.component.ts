@@ -8,7 +8,7 @@ import { IheroLocal } from '../../model/heroLocal';
 
 // dotaconstant
 import heroes from 'dotaconstants/build/heroes.json';
-import hero_abilities from 'dotaconstants/build/hero_abilities.json';
+import heroAbilities from 'dotaconstants/build/hero_abilities.json';
 import abilities from 'dotaconstants/build/abilities.json';
 
 @Component({
@@ -20,9 +20,9 @@ export class HeroesHeroComponent implements OnInit {
   showSubBox = false; // show/hide the sub detail
 
   // User for hero modal to mapping
-  heroesLocal: IheroLocal;
-  heroesAbilitiesTalentsLocal: any;
-  abilitiesTalentsLocal: any;
+  hero: IHero;
+  heroAbilities: any = heroAbilities;
+  abilities: any = abilities;
 
   // ablity modal default hidden
   currentMouseOverAbilityName = null;
@@ -31,7 +31,6 @@ export class HeroesHeroComponent implements OnInit {
   showAbilityModal = false;
   showTalentModal = false;
 
-  hero: IHero;
 
   constructor(
     private router: Router,
@@ -43,11 +42,6 @@ export class HeroesHeroComponent implements OnInit {
 
     // get all heroes local data
     this.hero = heroes[heroId];
-    this.heroesAbilitiesTalentsLocal = hero_abilities;
-    this.abilitiesTalentsLocal = abilities;
-
-    // this.getAbilitiesTalentsLocal();
-    // this.getHeroesAbilitiesTalentsLocal();
 
     // update the hero after click matchup other hero
     this.router.events
@@ -57,6 +51,7 @@ export class HeroesHeroComponent implements OnInit {
         const currentRoute = event.url.split('/')[3]; // Grab last route 'rankings'
         // if heroId change will dispatch the player data or won't dispatch
         if (heroId !== +event.url.split('/')[2] && currentRoute !== 'rankings') {
+          this.hero = null;
           heroId = +event.url.split('/')[2]; // Grab middle id
           this.hero = heroes[heroId]; // Rerun the getPlayerData data
         }
