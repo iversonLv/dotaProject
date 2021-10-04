@@ -18,9 +18,6 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 import { IItemColorLocal } from 'src/app/shared/model/item_color';
 import { IRecentMatch, IRecentMatchData } from 'src/app/matches/model/recent-match';
 
-// service
-import { SkillService } from 'src/app/services/skill.service';
-
 // dotaconstants
 import heroes from 'dotaconstants/build/heroes.json';
 import lobbyType from 'dotaconstants/build/lobby_type.json';
@@ -31,6 +28,7 @@ import items from 'dotaconstants/build/items.json';
 
 // assets json which not exist in dotaconstatns
 import laneRole from '../../../../assets/data/lane_role.json';
+import skills from '../../../../assets/data/skills.json';
 
 @Component({
   selector: 'app-table-matches',
@@ -79,7 +77,7 @@ export class TableMatchesComponent implements OnInit {
   heroes: any = heroes;
   lobbyType: any = lobbyType;
   gameMode: any = gameMode;
-  skillLocal: any;
+  skills: any = skills;
   laneRole: any = laneRole;
   itemIds: any = itemIds;
   items: any = items;
@@ -92,7 +90,6 @@ export class TableMatchesComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private skillService: SkillService,
     private store: Store<{
       playersMatches: IMatchData,
       playersRecentMatches: IRecentMatchData,
@@ -132,8 +129,6 @@ export class TableMatchesComponent implements OnInit {
       });
     }
 
-    // get all heroes local data
-    this.getSkillLocal();
   }
 
   calAgaistOrWith(mySlot: number, heroesData: IHeroes): any {
@@ -166,14 +161,6 @@ export class TableMatchesComponent implements OnInit {
       this.paginator.pageSize = event.pageSize;
       this.paginator.page.emit(event);
     }
-  }
-
-  getSkillLocal(): any {
-    this.skillService.getSkillLocal().subscribe(data => {
-      this.skillLocal = data;
-    }, err => {
-      console.log(err);
-    });
   }
 
   showHeroModalFn(e, id): any {

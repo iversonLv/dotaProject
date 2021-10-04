@@ -12,11 +12,11 @@ import { ISingleMatchData } from 'src/app/matches/model/onematch';
 import * as matchesActions from 'src/app/matches/store/matches.actions';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 
-// service
-import { SkillService } from 'src/app/services/skill.service';
-
 // dotaconstants
 import heroes from 'dotaconstants/build/heroes.json';
+
+// asset does not exists in dotaconstants
+import skills from '../../../../assets/data/skills.json';
 
 @Component({
   selector: 'app-table-match',
@@ -32,11 +32,10 @@ export class TableMatchComponent implements OnInit {
 
   // User for hero modal to mapping
   heroes: any = heroes;
-  skillLocal: any;
+  skills: any = skills;
 
   constructor(
     private router: Router,
-    private skillService: SkillService,
     private activatedRoute: ActivatedRoute,
     private store: Store<{ singleMatch: ISingleMatchData }>
   ) { }
@@ -60,15 +59,6 @@ export class TableMatchComponent implements OnInit {
       console.log(err);
     });
 
-    this.getSkillLocal();
-  }
-
-  getSkillLocal(): any {
-    this.skillService.getSkillLocal().subscribe(data => {
-      this.skillLocal = data;
-    }, err => {
-      console.log(err);
-    });
   }
 
   goPage(heroId): any {

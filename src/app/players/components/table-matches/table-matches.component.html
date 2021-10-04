@@ -59,8 +59,8 @@
                 <span class="party-size-text">x{{element.party_size}}</span>
               </span>
               <mat-icon class="party-size-icon" *ngIf="element.party_size === 1"  [matTooltip]="'Party Size ' + element.party_size" matTooltipPosition="above">person</mat-icon>
-              <span *ngIf="element.skill !== null && skillLocal" class="skill-text">{{skillLocal[element.skill].name | nameDestruct: '_' : 1}}</span>
-              <span *ngIf="element.skill === null && skillLocal" class="skill-text-unknow">Unknow Skill</span>
+              <span *ngIf="element.skill !== null && skills" class="skill-text">{{skills[element.skill].name | nameDestruct: '_' : 1}}</span>
+              <span *ngIf="element.skill === null && skills" class="skill-text-unknow">Unknow Skill</span>
             </div>
           </div>
         </td>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 
 // model
 import { IMatch, IMatchData } from 'src/app/matches/model/match';
@@ -10,13 +9,13 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 import { Store } from '@ngrx/store';
 import * as playersActions from '../../store/players.actions';
 
-// services
-import { SkillService } from 'src/app/services/skill.service';
-
 // dotaconstatns
 import heroes from 'dotaconstants/build/heroes.json';
 import lobbType from 'dotaconstants/build/lobby_type.json';
 import gameMode from 'dotaconstants/build/game_mode.json';
+
+// assets does not exists in dotaconstants
+import skills from '../../../../assets/data/skills.json'
 
 @Component({
   selector: 'app-actvity',
@@ -34,10 +33,9 @@ export class ActvityComponent implements OnInit {
   heroes: any = heroes;
   lobbType: any = lobbType;
   gameMode: any = gameMode;
-  skillLocal: any;
+  skills: any = skills;
 
   constructor(
-    private skillService: SkillService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<{ playersMatches: IMatchData }>
@@ -110,19 +108,10 @@ export class ActvityComponent implements OnInit {
     });
 
     // get all heroes local data
-    this.getSkillLocal();
-  }
-
-  getSkillLocal(): any {
-    this.skillService.getSkillLocal().subscribe(data => {
-      this.skillLocal = data;
-    }, err => {
-      console.log(err);
-    });
   }
 
   emitClickSymble(date): any {
-    console.log(date)
+    console.log(date);
     if (this.currentDate !== date) {
       this.currentDate = date;
     } else if (this.currentDate === date) {

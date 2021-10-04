@@ -11,8 +11,8 @@
           <div class="ver-align">
             <div class="account-date">
               <a class="account_link" [routerLink]="['/matches', element.match_id]">{{element.match_id}} ></a>
-              <span *ngIf="element.skill !== null && skillLocal" class="skill-text">{{skillLocal[element.skill].name | nameDestruct: '_' : 1}}</span>
-              <span *ngIf="element.skill === null && skillLocal" class="skill-text-unknow">Unknow Skill</span>
+              <span *ngIf="element.skill !== null && skills" class="skill-text">{{skills[element.skill].name | nameDestruct: '_' : 1}}</span>
+              <span *ngIf="element.skill === null && skills" class="skill-text-unknow">Unknow Skill</span>
             </div>
           </div>
         </td>

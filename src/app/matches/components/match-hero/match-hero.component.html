@@ -43,9 +43,9 @@
     </div>
 
     <!-- skill, not all match will have skill info -->
-    <div *ngIf="data.skill !== null && skillLocal" class="sub-info-block">
+    <div *ngIf="data.skill !== null && skills" class="sub-info-block">
       <div class="sub-info-title">SKILL</div>
-      <span>{{skillLocal[data.skill].name | nameDestruct: '_' : 1 :'upperCase'}}</span>
+      <span>{{skills[data.skill].name | nameDestruct: '_' : 1 :'upperCase'}}</span>
     </div>
     <div *ngIf="data.skill === null" class="sub-info-block">
       <div class="sub-info-title">SKILL</div>
