@@ -16,7 +16,7 @@
   <div *ngIf="!isLoading">
     <div *ngIf="trends.length === 0; else hasData">No data</div>
     <ng-template #hasData>
-      <app-trends-chart [data]="trends" [field]="field" [fieldDescription]="fieldDescription" [hero]="heroesLocal" [gamemode]="gameModeLocal"></app-trends-chart>
+      <app-trends-chart [data]="trends" [field]="field" [fieldDescription]="fieldDescription" [heroes]="heroes" [gameMode]="gameMode"></app-trends-chart>
     </ng-template>
   </div>
 </div>

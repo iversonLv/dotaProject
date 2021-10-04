@@ -7,12 +7,14 @@ import * as playersActions from '../../store/players.actions';
 
 // model
 import { ITrend, ITrendData } from '../../model/trend';
+import { IheroLocal } from 'src/app/heros/model/heroLocal';
 
 // service
 import { PlayersService } from '../../services/players.service';
-import { HerosService } from 'src/app/heros/services/heros.service';
-import { GameModeService } from 'src/app/services/game-mode.service';
-import { IheroLocal } from 'src/app/heros/model/heroLocal';
+
+// dotaconstants
+import heroes from 'dotaconstants/build/heroes.json';
+import gameMode from 'dotaconstants/build/game_mode.json';
 
 @Component({
   selector: 'app-trends',
@@ -31,14 +33,12 @@ export class TrendsComponent implements OnInit {
   fieldsLocal;
 
   // User for hero modal to mapping
-  heroesLocal: IheroLocal;
-  gameModeLocal: any;
+  heroes: any = heroes;
+  gameMode: any = gameMode;
   constructor(
     private router: Router,
     private playersService: PlayersService,
     private activatedRoute: ActivatedRoute,
-    private herosService: HerosService,
-    private gameModeService: GameModeService,
     private store: Store<{ playersTrends: ITrendData }>
   ) { }
 
@@ -63,9 +63,6 @@ export class TrendsComponent implements OnInit {
     });
     this.getFieldsLocal();
 
-    // get all heroes local data
-    this.getHeroesLocal();
-    this.getGameModeLocal();
   }
 
   getFieldsLocal(): any {
@@ -101,21 +98,5 @@ export class TrendsComponent implements OnInit {
   setDropdownDefaultValue(): any {
     this.field === undefined ? this.field = 'kills' : this.field = this.field;
     return this.field.split('_').map(i => i.charAt(0).toUpperCase() + i.slice(1, i.length)).join(' ');
-  }
-
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      this.heroesLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getGameModeLocal(): any {
-    this.gameModeService.getGameModeLocal().subscribe(data => {
-      this.gameModeLocal = data;
-    }, err => {
-      console.log(err);
-    });
   }
 }
