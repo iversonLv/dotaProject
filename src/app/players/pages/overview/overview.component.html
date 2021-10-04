@@ -31,9 +31,9 @@
       <app-count-chart [data]="playersCountsDestructData.region[1]" *ngIf="playersCountsDestructData.region[1]">{{region[playersCountsDestructData.region[1].id]}}</app-count-chart>
     </div>
     <!-- count-box-group for lane_role -->
-    <div class="count-box-group" *ngIf="laneRoleLocal && playersCountsDestructData?.lane_role?.length > 0">
-      <app-count-chart [data]="playersCountsDestructData.lane_role[0]" *ngIf="playersCountsDestructData.lane_role[0]">{{laneRoleLocal[playersCountsDestructData.lane_role[0].id]['name'] | nameDestruct: '_' : 2}}</app-count-chart>
-      <app-count-chart [data]="playersCountsDestructData.lane_role[1]" *ngIf="playersCountsDestructData.lane_role[1]">{{laneRoleLocal[playersCountsDestructData.lane_role[1].id]['name'] | nameDestruct: '_' : 2}}</app-count-chart>
+    <div class="count-box-group" *ngIf="laneRole && playersCountsDestructData?.lane_role?.length > 0">
+      <app-count-chart [data]="playersCountsDestructData.lane_role[0]" *ngIf="playersCountsDestructData.lane_role[0]">{{laneRole[playersCountsDestructData.lane_role[0].id]['name'] | nameDestruct: '_' : 2}}</app-count-chart>
+      <app-count-chart [data]="playersCountsDestructData.lane_role[1]" *ngIf="playersCountsDestructData.lane_role[1]">{{laneRole[playersCountsDestructData.lane_role[1].id]['name'] | nameDestruct: '_' : 2}}</app-count-chart>
     </div>
     <!-- count-box-group for patch -->
     <div class="count-box-group" *ngIf="patch && playersCountsDestructData?.patch?.length > 0">

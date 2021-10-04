@@ -16,7 +16,7 @@ export class TableLaningComponent implements OnInit {
   @Input() data: any;
   @Input() playerColorLocal: any;
   @Input() heroes: IheroLocal;
-  @Input() laneRoleLocal: any;
+  @Input() laneRole: any;
 
   @ViewChild(MatSort) set matSort(mp: MatSort) {
     this.sort = mp;

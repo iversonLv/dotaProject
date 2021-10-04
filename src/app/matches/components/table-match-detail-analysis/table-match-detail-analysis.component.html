@@ -11,8 +11,8 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header> LANE </th>
     <td mat-cell *matCellDef="let element">
       {{element.lane}}
-      <span *ngIf="laneRoleLocal && element.lane && laneRoleLocal[element.lane]?.name">
-        {{laneRoleLocal[element.lane]?.name  | nameDestruct: '_' : 2 : 'upperCase'}}
+      <span *ngIf="laneRole && element.lane && laneRole[element.lane]?.name">
+        {{laneRole[element.lane]?.name  | nameDestruct: '_' : 2 : 'upperCase'}}
       </span>
     </td>
   </ng-container>
@@ -20,8 +20,8 @@
   <ng-container matColumnDef="lane_role">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> LANE ROLE </th>
     <td mat-cell *matCellDef="let element">
-      <span *ngIf="laneRoleLocal && element.lane_role && laneRoleLocal[element.lane_role]?.name">
-        {{laneRoleLocal[element.lane_role]?.name  | nameDestruct: '_' : 2 : 'upperCase'}}
+      <span *ngIf="laneRole && element.lane_role && laneRole[element.lane_role]?.name">
+        {{laneRole[element.lane_role]?.name  | nameDestruct: '_' : 2 : 'upperCase'}}
       </span>
     </td>
   </ng-container>

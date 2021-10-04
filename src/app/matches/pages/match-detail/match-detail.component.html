@@ -219,7 +219,7 @@
       [heroes]="heroes"
       [playerColorLocal]="playerColors"
       [heroes]="heroes"
-      [laneRoleLocal]="laneRoleLocal"
+      [laneRole]="laneRole"
       [data]="matchData?.players"
       >
       </app-table-laning>
@@ -924,7 +924,7 @@
           [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"
 
-          [laneRoleLocal]="laneRoleLocal"
+          [laneRole]="laneRole"
         >
         </app-table-match-detail-analysis>
         <!-- table -->
@@ -942,7 +942,7 @@
           [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10"
           
-          [laneRoleLocal]="laneRoleLocal"
+          [laneRole]="laneRole"
         >
         </app-table-match-detail-analysis>
         <!-- table -->

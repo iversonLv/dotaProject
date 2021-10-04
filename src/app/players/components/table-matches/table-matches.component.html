@@ -24,7 +24,7 @@
                 <span class="land_role" *ngIf="isRecentMatches">
                   <img
                   onError="this.src='./assets/images/Dota2Logo.svg'"
-                  class="land-role-img" width="14" height="14" *ngIf="element?.lane_role && laneRoleLocal"  matTooltipPosition="above" [matTooltip]="laneRoleLocal[element.lane_role]['name'] | nameDestruct: '_' : 2" [src]="'https://www.opendota.com/assets/images/dota2/lane_' + element?.lane_role + '.svg'"/>
+                  class="land-role-img" width="14" height="14" *ngIf="element?.lane_role && laneRole"  matTooltipPosition="above" [matTooltip]="laneRole[element.lane_role]['name'] | nameDestruct: '_' : 2" [src]="'https://www.opendota.com/assets/images/dota2/lane_' + element?.lane_role + '.svg'"/>
                 </span>
               </span>
             </div>

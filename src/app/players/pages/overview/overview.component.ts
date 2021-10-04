@@ -14,14 +14,13 @@ import { ICount, ICountData } from '../../model/count';
 import { IMatch, IMatchData } from 'src/app/matches/model/match';
 import { IRecentMatch, IRecentMatchData } from 'src/app/matches/model/recent-match';
 
-// service
-import { LaneRoleService } from 'src/app/services/lane-role.service';
-import { SkillService } from 'src/app/services/skill.service';
-
 // dotaconstans
 import patch from 'dotaconstants/build/patch.json';
 import gameMode from 'dotaconstants/build/game_mode.json';
 import region from 'dotaconstants/build/region.json';
+
+// assets json data which do not exist in dotaconstatns
+import laneRole from '../../../../assets/data/lane_role.json';
 
 @Component({
   selector: 'app-overview',
@@ -57,18 +56,14 @@ export class OverviewComponent implements OnInit {  // table sort
   playersHeroesWithGameLargest: any;
 
   // User for hero modal to mapping
-  lobbyTypeLocal: any;
   gameMode: any = gameMode;
   region: any = region;
   patch: any = patch;
-  laneRoleLocal: any;
-  skillLocal: any;
+  laneRole: any = laneRole;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private laneRoleService: LaneRoleService,
-    private skillService: SkillService,
     private store: Store<{
       playersMatches: IMatchData,
       playersRecentMatches: IRecentMatchData,
@@ -121,8 +116,6 @@ export class OverviewComponent implements OnInit {  // table sort
     });
 
     this.checkQueryParams(accountId);
-    // get all heroes local data
-    this.getLaneRoleLocal();
   }
 
   async checkQueryParams(accountId): Promise<any> {
@@ -168,26 +161,6 @@ export class OverviewComponent implements OnInit {  // table sort
     return matches;
     // co op bot = 4
     // turbo = 23
-  }
-
-  getLaneRoleLocal(): any {
-    this.isLoading = false;
-    this.laneRoleService.getLaneRoleLocal().subscribe(data => {
-      this.laneRoleLocal = data;
-      this.isLoading = true;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getSkillLocal(): any {
-    this.isLoading = false;
-    this.skillService.getSkillLocal().subscribe(data => {
-      this.skillLocal = data;
-      this.isLoading = true;
-    }, err => {
-      console.log(err);
-    });
   }
 
 }

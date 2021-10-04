@@ -13,10 +13,6 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 import { IItemColorLocal } from 'src/app/shared/model/item_color';
 import { IHeroAbility } from 'src/app/heros/model/hero-abilities';
 
-// service
-import { HerosService } from 'src/app/heros/services/heros.service';
-import { LaneRoleService } from 'src/app/services/lane-role.service';
-
 // pipe
 import { DurationFormatPipe } from 'src/app/shared/utils/duration-format.pipe';
 import { MapItemsService } from 'src/app/services/map-items.service';
@@ -33,6 +29,9 @@ import abilities from 'dotaconstants/build/abilities.json';
 import abilityIds from 'dotaconstants/build/ability_ids.json';
 import permanentBuffs from 'dotaconstants/build/permanent_buffs.json';
 import chatWheel from 'dotaconstants/build/chat_wheel.json';
+
+// assets json which is not at dotaconstants
+import laneRole from '../../../../assets/data/lane_role.json';
 
 @Component({
   selector: 'app-match-detail',
@@ -71,7 +70,7 @@ export class MatchDetailComponent implements OnInit {
   abilities: any = abilities;
   permanentBuffs: any = permanentBuffs;
   chatWheel: any = chatWheel;
-  laneRoleLocal: any;
+  laneRole: any = laneRole;
   mapItemLocal: any;
 
   showHideVisionPlayersData = {};
@@ -146,7 +145,6 @@ export class MatchDetailComponent implements OnInit {
     private durationFormat: DurationFormatPipe,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private laneRoleService: LaneRoleService,
     private mapItemsService: MapItemsService,
     private store: Store<{ singleMatch: ISingleMatchData, teamsGeneral: ITeamData, }>
   ) { }
@@ -179,7 +177,6 @@ export class MatchDetailComponent implements OnInit {
       }
     });
     this.getMapItemsLocal();
-    this.getLaneRoleLocal();
   }
 
   getMapItemsLocal(): any {
@@ -188,10 +185,6 @@ export class MatchDetailComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-  }
-
-  getLaneRoleLocal(): any {
-    this.laneRoleService.getLaneRoleLocal().subscribe(data => this.laneRoleLocal = data);
   }
 
   // show/hide ability modal
