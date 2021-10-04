@@ -77,11 +77,6 @@ export class HerosService {
     return this.generalService.get(`/heroes/${heroId}/itemPopularity`);
   }
 
-  // get Hero local
-  getHeroesLocal(): Observable<IheroLocal> {
-    return this.generalService.getGitRawData(`/heroes.json`);
-  }
-
   // get Hero name local
   getHeroesNameLocal(): Observable<IheroLocal> {
     return this.generalService.getGitRawData('/hero_names.json');

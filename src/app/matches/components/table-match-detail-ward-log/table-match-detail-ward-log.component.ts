@@ -19,7 +19,7 @@ import { DurationFormatPipe } from 'src/app/shared/utils/duration-format.pipe';
 export class TableMatchDetailWardLogComponent implements OnInit, OnChanges {
   @Input() data: any;
   @Input() playerColorLocal: any;
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   @Input() heroesNameLocal: IheroLocal;
   @Input() showHideVisionPlayersData: any;
   @Input() visionTimeLine: number;

@@ -324,8 +324,8 @@ export class FilterBarComponent implements OnInit {
     // console.log(defaultValue, paramsKey)
     if (
       this.queryParams.params[paramsKey] && // check whether current queryParams.params has such key
-      data && // check whether heroesLocal
-      data[this.queryParams.params[paramsKey]] // Check whether heroesLocal[xxx] has value
+      data && // check whether heroes
+      data[this.queryParams.params[paramsKey]] // Check whether heroes[xxx] has value
     ) {
       if (data[this.queryParams.params[paramsKey]].localized_name) {
         return data[this.queryParams.params[paramsKey]].localized_name; // for hero

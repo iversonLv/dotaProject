@@ -16,7 +16,7 @@ export class TableMatchDetailOverviewComponent implements OnInit {
   @Input() data: any;
   @Input() dataRange: number[]; // because the table need calculate the largest number and show under line style
   @Input() playerColorLocal: any;
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   @Input() itemIdsLocal: any;
   @Input() itemsLocal: any;
   @Input() abilitiesTalentsLocal: any;

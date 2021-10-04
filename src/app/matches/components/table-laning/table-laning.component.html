@@ -12,7 +12,7 @@
   <ng-container matColumnDef="player_slot" *ngIf="displayedColumns.includes('player_slot')">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
     <td mat-cell *matCellDef="let element">
-      <app-player-box [data]="element" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+      <app-player-box [data]="element" [heroes]="heroes" [playerColorLocal]="playerColorLocal"></app-player-box>
     </td>
   </ng-container>
 

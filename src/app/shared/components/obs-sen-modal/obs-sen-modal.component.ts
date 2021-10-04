@@ -7,7 +7,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
   styleUrls: ['./obs-sen-modal.component.scss']
 })
 export class ObsSenModalComponent implements OnInit {
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   @Input() player: any;
   @Input() playerColorLocal: any;
   @Input() heroesNameLocal: IheroLocal;

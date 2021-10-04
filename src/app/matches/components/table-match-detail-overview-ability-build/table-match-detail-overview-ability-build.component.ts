@@ -15,7 +15,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 export class TableMatchDetailOverviewAbilityBuildComponent implements OnInit {
   @Input() data: any;
   @Input() playerColorLocal: any;
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   @Input() abilitiesByIdLocal: any;
   @Input() abilitiesTalentsLocal: any;
   @Output() showAbilityModalFn: any = new EventEmitter();

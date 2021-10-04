@@ -11,7 +11,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 export class FirstBloodModalComponent implements OnInit {
   @Input() pageXY: number[];
   @Input() data: any;
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   @Input() playerColorLocal: any;
   constructor() { }
 

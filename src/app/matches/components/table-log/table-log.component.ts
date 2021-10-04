@@ -21,7 +21,7 @@ import { MapItemsService } from 'src/app/services/map-items.service';
 })
 export class TableLogComponent implements OnInit {
   @Input() playerColorLocal: any;
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   @Input() heroesNameLocal: IheroLocal;
   @Input() data: any[];
   @Input() objectives: any[];
@@ -80,9 +80,9 @@ export class TableLogComponent implements OnInit {
   extractHeroList(data: any): any[] {
     data.forEach(i => {
       const { hero_id } = i;
-      this.heroList.push(this.heroesLocal[hero_id]?.name);
-      this.heroAllItems.push(this.heroesLocal[hero_id]?.name);
-      this.logFilterObj[this.heroesLocal[hero_id]?.name] = false;
+      this.heroList.push(this.heroes[hero_id]?.name);
+      this.heroAllItems.push(this.heroes[hero_id]?.name);
+      this.logFilterObj[this.heroes[hero_id]?.name] = false;
     });
     // console.log(this.heroList);
     return this.heroList;
@@ -118,7 +118,7 @@ export class TableLogComponent implements OnInit {
           side: isRadiant ? 'radiant' : 'dire',
           isRadiant,
           log_type: field,
-          hero: this.heroesLocal[hero_id].name
+          hero: this.heroes[hero_id].name
         });
       } else if (!i.player_slot && i.unit) {
         specificLogData.push({
@@ -164,7 +164,7 @@ export class TableLogComponent implements OnInit {
           isRadiant,
           ...l,
           log_type: field,
-          hero: this.heroesLocal[hero_id].name
+          hero: this.heroes[hero_id].name
         });
       });
       specificLogData.push(...log);

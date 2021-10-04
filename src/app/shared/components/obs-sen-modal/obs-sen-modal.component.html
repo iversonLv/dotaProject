@@ -5,7 +5,7 @@
   [class]="data.player_slot < 127 ? 'goodguys-obs-sen' : 'badguys-obs-sen'">
   <div class="main">
     <app-hero-icon-player-name
-      [heroesLocal]="heroesLocal"
+      [heroes]="heroes"
       [playerColorLocal]="playerColorLocal"
       [player]="player"
     ></app-hero-icon-player-name>
@@ -17,7 +17,7 @@
     Destoryed after {{data.lifespan}}
     By: 
     <app-hero-icon-player-name
-      [heroesLocal]="heroesLocal"
+      [heroes]="heroes"
       [playerColorLocal]="playerColorLocal"
       [player]="extractDataFromAttackername(playerData, data?.attackername)"
     ></app-hero-icon-player-name>

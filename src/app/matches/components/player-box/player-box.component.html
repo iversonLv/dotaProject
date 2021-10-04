@@ -1,8 +1,8 @@
-<div *ngIf="data && heroesLocal && playerColorLocal" class="ver-align">
+<div *ngIf="data && heroes && playerColorLocal" class="ver-align">
   <app-img
-    [data]="heroesLocal[data['hero_id']]['img']"
+    [data]="heroes[data['hero_id']]['img']"
     class="sm-hero-img"
-    [altData]="heroesLocal[data['hero_id']]['localized_name']"
+    [altData]="heroes[data['hero_id']]['localized_name']"
     (mouseover)="showHeroModalFn($event, data['hero_id'])" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
     [style]="'border-left: 2px solid ' + playerColorLocal[data['player_slot']]"
   ></app-img>

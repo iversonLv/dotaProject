@@ -44,7 +44,7 @@
         <!-- overview table -->
         <app-table-match-detail-overview
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [itemIdsLocal]="itemIds"
           [itemsLocal]="items"
           (showItemModalFn)="showItemModalFn($event)"
@@ -61,7 +61,7 @@
         <!-- band pick list -->
         <app-band-pick-list
           *ngIf="matchData?.picks_bans"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="extractBanPickListBaseOnTeam(matchData?.picks_bans, 0)">
         </app-band-pick-list>
 
@@ -79,7 +79,7 @@
         <!-- overview table -->
         <app-table-match-detail-overview
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [itemIdsLocal]="itemIds"
           [itemsLocal]="items"
           (showItemModalFn)="showItemModalFn($event)"
@@ -96,7 +96,7 @@
         <!-- band pick list -->
         <app-band-pick-list
           *ngIf="matchData?.picks_bans"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="extractBanPickListBaseOnTeam(matchData?.picks_bans, 1)">
         </app-band-pick-list>
         
@@ -115,7 +115,7 @@
         <!-- ability build -->
         <app-table-match-detail-overview-ability-build
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [abilitiesByIdLocal]="abilityIds"
           [abilitiesTalentsLocal]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
@@ -137,7 +137,7 @@
         <!-- ability build -->
         <app-table-match-detail-overview-ability-build
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [abilitiesByIdLocal]="abilityIds"
           [abilitiesTalentsLocal]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
@@ -171,7 +171,7 @@
         <!-- team-row -->
         <app-table-match-detail-benchmarks
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"></app-table-match-detail-benchmarks>
         <!-- table -->
       </div>
@@ -185,7 +185,7 @@
         <!-- team-row -->
         <app-table-match-detail-benchmarks
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-benchmarks>
         <!-- table -->
@@ -206,7 +206,7 @@
       <app-draft-list
         *ngIf="matchData?.picks_bans"
         [data]="matchData?.picks_bans"
-        [heroesLocal]="heroes"
+        [heroes]="heroes"
         [radiantTeam]="matchData?.radiant_team"
         [direTeam]="matchData?.dire_team">
       </app-draft-list>
@@ -216,9 +216,9 @@
     <div class="single-match-draft" *ngIf="currentPage === 'laning'">
       <app-nav-title [title]="'Laning'"></app-nav-title>
       <app-table-laning
-      [heroesLocal]="heroes"
+      [heroes]="heroes"
       [playerColorLocal]="playerColors"
-      [heroesLocal]="heroes"
+      [heroes]="heroes"
       [laneRoleLocal]="laneRoleLocal"
       [data]="matchData?.players"
       >
@@ -237,7 +237,7 @@
           <!-- last_hit graphs -->
           <app-chart-statck-line
             [playerColorLocal]="playerColors"
-            [heroesLocal]="heroes"
+            [heroes]="heroes"
             [data]="matchData?.players"
             [heroesNameLocal]="heroNames"
             [field]="'lh_t'"
@@ -259,7 +259,7 @@
         <!-- team-row -->
         <app-table-match-detail-performances
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [heroesNameLocal]="heroNames"
           [abilitiesTalentsLocal]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
@@ -278,7 +278,7 @@
         <!-- team-row -->
         <app-table-match-detail-performances
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [heroesNameLocal]="heroNames"
           [abilitiesTalentsLocal]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
@@ -299,7 +299,7 @@
             <span class="killed-damage-txt">Killed</span><span class="killed-damage-txt">Damage</span><span class="killed-damage-by-txt">Killed by</span><span class="killed-damage-by-txt">Damage taken</span>
           </app-nav-title>
           <app-table-match-detail-combat-kills
-            [heroesLocal]="heroes"
+            [heroes]="heroes"
             [data]="matchData?.players"
           >
           </app-table-match-detail-combat-kills>
@@ -310,7 +310,7 @@
         <!-- <div>
           <app-nav-title [title]="'Damage'"> </app-nav-title>
           <app-table-match-detail-combat-damage
-            [heroesLocal]="heroes"
+            [heroes]="heroes"
             [data]="matchData?.players"
           >
           </app-table-match-detail-combat-damage>
@@ -328,7 +328,7 @@
         <!-- team-row -->
         <app-table-match-detail-combat-damage-detail
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"
 
           [heroesNameLocal]="heroNames"
@@ -353,7 +353,7 @@
         <!-- team-row -->
         <app-table-match-detail-combat-damage-detail
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10"
 
           [heroesNameLocal]="heroNames"
@@ -382,7 +382,7 @@
         <!-- team-row -->
         <app-table-match-detail-unit-kills
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"
         >
         </app-table-match-detail-unit-kills>
@@ -396,7 +396,7 @@
         <!-- team-row -->
         <app-table-match-detail-unit-kills
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10"
         >
       </app-table-match-detail-unit-kills>
@@ -413,7 +413,7 @@
         <!-- team-row -->
         <app-table-match-detail-last-hits
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"
         >
         </app-table-match-detail-last-hits>
@@ -427,7 +427,7 @@
         <!-- team-row -->
         <app-table-match-detail-last-hits
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10"
         >
       </app-table-match-detail-last-hits>
@@ -438,7 +438,7 @@
       <!-- Gold Sources -->
       <app-nav-title [title]="'Gold Sources'"></app-nav-title>
       <app-chart-stack-bar
-        [heroesLocal]="heroes"
+        [heroes]="heroes"
         [data]="matchData?.players"
         [field]="'gold_reasons'"
         [mapping]="goldReasonMapping"
@@ -448,7 +448,7 @@
       <!-- XP Sources -->
       <app-nav-title [title]="'XP Sources'"></app-nav-title>
       <app-chart-stack-bar
-        [heroesLocal]="heroes"
+        [heroes]="heroes"
         [data]="matchData?.players"
         [field]="'xp_reasons'"
         [mapping]="xpReasonMapping"
@@ -467,7 +467,7 @@
         <!-- team-row -->
         <app-table-match-detail-items
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"
           
           [enableConsumable]="enableConsumable"
@@ -487,7 +487,7 @@
         <!-- team-row -->
         <app-table-match-detail-items
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10"
           
           [enableConsumable]="enableConsumable"
@@ -507,7 +507,7 @@
       <!-- team fight time line -->
       <app-time-line-teamfight
         [playerColorLocal]="playerColors"
-        [heroesLocal]="heroes"
+        [heroes]="heroes"
         [heroesNameLocal]="heroNames"
         [data]="matchData"
       ></app-time-line-teamfight>
@@ -522,7 +522,7 @@
       <app-nav-title [title]="'Gold'"></app-nav-title>
       <app-chart-statck-line
         [playerColorLocal]="playerColors"
-        [heroesLocal]="heroes"
+        [heroes]="heroes"
         [data]="matchData?.players"
         [heroesNameLocal]="heroNames"
         [field]="'gold_t'"
@@ -532,7 +532,7 @@
       <app-nav-title [title]="'Experience'"></app-nav-title>
       <app-chart-statck-line
         [playerColorLocal]="playerColors"
-        [heroesLocal]="heroes"
+        [heroes]="heroes"
         [data]="matchData?.players"
         [heroesNameLocal]="heroNames"
         [field]="'xp_t'"
@@ -544,7 +544,7 @@
       <app-nav-title [title]="'Last Hits'"></app-nav-title>
       <app-chart-statck-line
         [playerColorLocal]="playerColors"
-        [heroesLocal]="heroes"
+        [heroes]="heroes"
         [data]="matchData?.players"
         [heroesNameLocal]="heroNames"
         [field]="'lh_t'"
@@ -563,7 +563,7 @@
         <!-- team-row -->
         <app-table-match-detail-casts
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"
           
           [heroesNameLocal]="heroNames"
@@ -587,7 +587,7 @@
         <!-- team-row -->
         <app-table-match-detail-casts
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10"
           
           [heroesNameLocal]="heroNames"
@@ -616,7 +616,7 @@
         <!-- team-row -->
         <app-table-match-detail-objective-damage
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5">
         </app-table-match-detail-objective-damage>
         <!-- table -->
@@ -631,7 +631,7 @@
         <!-- team-row -->
         <app-table-match-detail-objective-damage
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-objective-damage>
         <!-- table -->
@@ -647,7 +647,7 @@
         <!-- team-row -->
         <app-table-match-detail-runes
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5">
         </app-table-match-detail-runes>
         <!-- table -->
@@ -662,7 +662,7 @@
         <!-- team-row -->
         <app-table-match-detail-runes
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-runes>
         <!-- table -->
@@ -676,7 +676,7 @@
       <div class="team-box vision-map-show-hide-timeline-row">
         <app-vision-map
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [heroesNameLocal]="heroNames"
           [data]="matchData?.players"
           [showHideVisionPlayersData]="showHideVisionPlayersData"
@@ -714,7 +714,7 @@
             </div>
             <!-- team-row -->
             <app-table-match-detail-vision-showhide
-              [heroesLocal]="heroes"
+              [heroes]="heroes"
               [data]="matchData?.players | slice: 0:5"
               (emitShowHideVisionPlayersData)="emitShowHideVisionPlayersData($event)"
             >
@@ -730,7 +730,7 @@
             </div>
             <!-- team-row -->
             <app-table-match-detail-vision-showhide
-              [heroesLocal]="heroes"
+              [heroes]="heroes"
               [data]="matchData?.players | slice: 5:10"
               (emitShowHideVisionPlayersData)="emitShowHideVisionPlayersData($event)"
             >
@@ -749,7 +749,7 @@
         <!-- team-row -->
         <app-table-match-detail-vision
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"></app-table-match-detail-vision>
         <!-- table -->
       </div>
@@ -763,7 +763,7 @@
         <!-- team-row -->
         <app-table-match-detail-vision
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-vision>
         <!-- table -->
@@ -773,7 +773,7 @@
       <app-nav-title [title]="'Ward Log'"></app-nav-title>
       <app-table-match-detail-ward-log
         [playerColorLocal]="playerColors"
-        [heroesLocal]="heroes"
+        [heroes]="heroes"
         [visionTimeLine]="visionTimeLine"
         [heroesNameLocal]="heroNames"
         [data]="matchData?.players"
@@ -792,7 +792,7 @@
         <!-- team-row -->
         <app-table-match-detail-actions
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"></app-table-match-detail-actions>
         <!-- table -->
       </div>
@@ -806,7 +806,7 @@
         <!-- team-row -->
         <app-table-match-detail-actions
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-actions>
         <!-- table -->
@@ -820,7 +820,7 @@
       <app-time-line-teamfight
         (emitCurrentTeamFightData)="emitCurrentTeamFightData($event)"
         [playerColorLocal]="playerColors"
-        [heroesLocal]="heroes"
+        [heroes]="heroes"
         [heroesNameLocal]="heroNames"
         [data]="matchData"
       ></app-time-line-teamfight>
@@ -854,7 +854,7 @@
             <!-- team-row -->
             <app-table-match-detail-teamfights
               [playerColorLocal]="playerColors"
-              [heroesLocal]="heroes"
+              [heroes]="heroes"
               [currentTeamFightDataForTable]="currentTeamFightDataForTable"
               [data]="matchData?.players"
               [dataRange]="[0, 5]"
@@ -879,7 +879,7 @@
             <!-- team-row -->
             <app-table-match-detail-teamfights
               [playerColorLocal]="playerColors"
-              [heroesLocal]="heroes"
+              [heroes]="heroes"
               [currentTeamFightDataForTable]="currentTeamFightDataForTable"
               [data]="matchData?.players"
               [dataRange]="[5, 10]"
@@ -906,7 +906,7 @@
       <app-nav-title [title]="'Cosmetics'"></app-nav-title>
       <app-table-cosmetics
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players"
       ></app-table-cosmetics>
     </div>
@@ -921,7 +921,7 @@
         <!-- team-row -->
         <app-table-match-detail-analysis
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"
 
           [laneRoleLocal]="laneRoleLocal"
@@ -939,7 +939,7 @@
         <!-- team-row -->
         <app-table-match-detail-analysis
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10"
           
           [laneRoleLocal]="laneRoleLocal"
@@ -956,7 +956,7 @@
       <!-- log table -->
       <app-table-log
         [playerColorLocal]="playerColors"
-        [heroesLocal]="heroes"
+        [heroes]="heroes"
         [heroesNameLocal]="heroNames"
         [mapItemLocal]="mapItemLocal"
         [data]="matchData?.players"
@@ -974,7 +974,7 @@
         <!-- team-row -->
         <app-table-match-detail-fantasy
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"></app-table-match-detail-fantasy>
         <!-- table -->
       </div>
@@ -988,7 +988,7 @@
         <!-- team-row -->
         <app-table-match-detail-fantasy
           [playerColorLocal]="playerColors"
-          [heroesLocal]="heroes"
+          [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-fantasy>
         <!-- table -->

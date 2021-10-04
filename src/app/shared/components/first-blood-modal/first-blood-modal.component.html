@@ -1,7 +1,7 @@
-<div  class="fist-blood-tooltip" *ngIf="heroesLocal && data" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
+<div  class="fist-blood-tooltip" *ngIf="heroes && data" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
   <app-hero-icon-player-name
     [player]="data?.drewPlayer"
-    [heroesLocal]="heroesLocal"
+    [heroes]="heroes"
     [playerColorLocal]="playerColorLocal"
   ></app-hero-icon-player-name>
   <span class="first-blood-txt">
@@ -9,7 +9,7 @@
   </span>
   <app-hero-icon-player-name
     [player]="data?.takenPlayer"
-    [heroesLocal]="heroesLocal"
+    [heroes]="heroes"
     [playerColorLocal]="playerColorLocal"
   ></app-hero-icon-player-name>
 </div>

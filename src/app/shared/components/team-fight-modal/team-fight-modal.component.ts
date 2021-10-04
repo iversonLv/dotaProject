@@ -244,7 +244,7 @@ export class TeamFightModalComponent implements OnInit {
         }
     ]
 };
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   @Input() playerColorLocal: any;
   constructor() { }
 

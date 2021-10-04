@@ -10,7 +10,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 export class TableMatchDetailVisionShowhideComponent implements OnInit {
   @Input() data: any;
   @Input() playerColorLocal: any;
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
 
   @Output() emitShowHideVisionPlayersData: EventEmitter<any> = new EventEmitter();
 

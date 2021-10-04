@@ -1,4 +1,4 @@
-<div  class="team-fight-tooltip" *ngIf="heroesLocal && data" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
+<div  class="team-fight-tooltip" *ngIf="heroes && data" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
   <header>Deaths & gold delta. {{data.start | durationFormat}} - {{data.end | durationFormat}}</header>
   <div class="team-fight-list"
     *ngFor="let item of data.players; index as i"
@@ -6,7 +6,7 @@
     <div class="player-box">
       <app-hero-icon-player-name
         [player]="playerData[i]"
-        [heroesLocal]="heroesLocal"
+        [heroes]="heroes"
         [playerColorLocal]="playerColorLocal"
       ></app-hero-icon-player-name>
       

@@ -15,7 +15,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 export class TableMatchDetailFantasyComponent implements OnInit {
   @Input() data: any;
   @Input() playerColorLocal: any;
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   // above is common player column
   @ViewChild(MatSort) set matSort(mp: MatSort) {
     this.sort = mp;

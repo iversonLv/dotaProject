@@ -18,7 +18,7 @@ export class VisionMapComponent implements OnInit, OnChanges {
   @Input() showHideVisionPlayersData: any;
   @Input() playerColorLocal: any;
   @Input() heroesNameLocal: IheroLocal;
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   @Input() visionTimeLine: number;
 
 

@@ -53,7 +53,7 @@
   <ng-container matColumnDef="player_slot" *ngIf="displayedColumns.includes('player_slot')">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
     <td mat-cell *matCellDef="let element">
-      <app-player-box *ngIf="element?.player" [data]="element.player" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+      <app-player-box *ngIf="element?.player" [data]="element.player" [heroes]="heroes" [playerColorLocal]="playerColorLocal"></app-player-box>
       <div *ngIf="!element?.player">
         no player
       </div>
