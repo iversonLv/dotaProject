@@ -14,8 +14,8 @@ import * as teamsActions from '../../store/teams.actions';
 import { IHeroData, IHero } from '../../model/hero';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 
-// service
-import { HerosService } from 'src/app/heros/services/heros.service';
+// dotaconstatns
+import heroes from 'dotaconstants/build/heroes.json';
 
 @Component({
   selector: 'app-table-teams-heroes',
@@ -51,12 +51,11 @@ export class TableTeamsHeroesComponent implements OnInit {
   };
 
   // User for hero modal to mapping
-  heroesLocal: IheroLocal;
+  heroes: any = heroes;
 
   // hero modal default hidden
   showHeroModal = false;
   constructor(
-    private herosService: HerosService,
     private router: Router,
     private store: Store<{
       teamsHeroes: IHeroData,
@@ -100,9 +99,6 @@ export class TableTeamsHeroesComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-
-    // get all heroes local data
-    this.getHeroesLocal();
   }
 
   // cal the highest numbers of games, with_games and against_games for pages bar data
@@ -128,18 +124,10 @@ export class TableTeamsHeroesComponent implements OnInit {
     }
   }
 
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      this.heroesLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
   showHeroModalFn(e, id): any {
     this.pageXY = [e.pageX + 50, e.pageY - 120];
     this.showHeroModal = true;
-    this.currentMouseOverHero = this.heroesLocal[id];
+    this.currentMouseOverHero = this.heroes[id];
   }
 
 }
