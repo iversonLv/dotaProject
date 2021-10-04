@@ -11,8 +11,6 @@
   </div>
 </div>
 
-
-
 <app-nav-title [title]="'Counts'" [link]="'counts'" [parentPage]="'playersDetail'"> Win %</app-nav-title>
 <div class="count-box">
   <div *ngIf="isLoading; else countBox">Loading</div>
@@ -23,14 +21,14 @@
       <app-count-chart [data]="playersCountsDestructData.is_radiant[1]" *ngIf="playersCountsDestructData.is_radiant[1]">{{playersCountsDestructData.is_radiant[1].id === '0' ? 'Dire' : 'Radiant'}}</app-count-chart>
     </div>
     <!-- count-box-group for game_mode -->
-    <div class="count-box-group" *ngIf="gameModeLocal && playersCountsDestructData?.game_mode?.length > 0">
-      <app-count-chart [data]="playersCountsDestructData.game_mode[0]" *ngIf="playersCountsDestructData.game_mode[0]">{{gameModeLocal[playersCountsDestructData.game_mode[0].id]['name'] | nameDestruct: '_' : 2}}</app-count-chart>
-      <app-count-chart [data]="playersCountsDestructData.game_mode[1]" *ngIf="playersCountsDestructData.game_mode[1]">{{gameModeLocal[playersCountsDestructData.game_mode[1].id]['name'] | nameDestruct: '_' : 2}}</app-count-chart>
+    <div class="count-box-group" *ngIf="gameMode && playersCountsDestructData?.game_mode?.length > 0">
+      <app-count-chart [data]="playersCountsDestructData.game_mode[0]" *ngIf="playersCountsDestructData.game_mode[0]">{{gameMode[playersCountsDestructData.game_mode[0].id]['name'] | nameDestruct: '_' : 2}}</app-count-chart>
+      <app-count-chart [data]="playersCountsDestructData.game_mode[1]" *ngIf="playersCountsDestructData.game_mode[1]">{{gameMode[playersCountsDestructData.game_mode[1].id]['name'] | nameDestruct: '_' : 2}}</app-count-chart>
     </div>
     <!-- count-box-group for region -->
-    <div class="count-box-group" *ngIf="regionLocal && playersCountsDestructData?.region?.length > 0">
-      <app-count-chart [data]="playersCountsDestructData.region[0]" *ngIf="playersCountsDestructData.region[0]">{{regionLocal[playersCountsDestructData.region[0].id]}}</app-count-chart>
-      <app-count-chart [data]="playersCountsDestructData.region[1]" *ngIf="playersCountsDestructData.region[1]">{{regionLocal[playersCountsDestructData.region[1].id]}}</app-count-chart>
+    <div class="count-box-group" *ngIf="region && playersCountsDestructData?.region?.length > 0">
+      <app-count-chart [data]="playersCountsDestructData.region[0]" *ngIf="playersCountsDestructData.region[0]">{{region[playersCountsDestructData.region[0].id]}}</app-count-chart>
+      <app-count-chart [data]="playersCountsDestructData.region[1]" *ngIf="playersCountsDestructData.region[1]">{{region[playersCountsDestructData.region[1].id]}}</app-count-chart>
     </div>
     <!-- count-box-group for lane_role -->
     <div class="count-box-group" *ngIf="laneRoleLocal && playersCountsDestructData?.lane_role?.length > 0">
