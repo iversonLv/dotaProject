@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
@@ -8,7 +8,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
   templateUrl: './table-activities.component.html',
   styleUrls: ['./table-activities.component.scss']
 })
-export class TableActivitiesComponent implements OnInit {
+export class TableActivitiesComponent implements OnInit, OnChanges {
   @Input() data;
   @ViewChild(MatSort) set matSort(mp: MatSort) {
     this.sort = mp;
@@ -20,9 +20,9 @@ export class TableActivitiesComponent implements OnInit {
   dataSource = new MatTableDataSource();
 
   // User for hero modal to mapping
-  @Input() heroesLocal: IheroLocal;
-  @Input() lobbyTypeLocal: any;
-  @Input() gameModeLocal: any;
+  @Input() heroes: IheroLocal;
+  @Input() lobbyType: any;
+  @Input() gameMode: any;
   @Input() skillLocal: any;
 
   constructor(
@@ -31,6 +31,10 @@ export class TableActivitiesComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource.data = this.data;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.dataSource.data = changes.data.currentValue;
   }
 
   setDataSourceAttributes(): any {

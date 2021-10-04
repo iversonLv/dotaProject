@@ -4,17 +4,19 @@ import { Observable } from 'rxjs';
 
 // model
 import { IMatch, IMatchData } from 'src/app/matches/model/match';
+import { IheroLocal } from 'src/app/heros/model/heroLocal';
 
 // ngrx
 import { Store } from '@ngrx/store';
 import * as playersActions from '../../store/players.actions';
 
 // services
-import { HerosService } from 'src/app/heros/services/heros.service';
-import { LobbyTypeService } from 'src/app/services/lobby-type.service';
-import { GameModeService } from 'src/app/services/game-mode.service';
 import { SkillService } from 'src/app/services/skill.service';
-import { IheroLocal } from 'src/app/heros/model/heroLocal';
+
+// dotaconstatns
+import heroes from 'dotaconstants/build/heroes.json';
+import lobbType from 'dotaconstants/build/lobby_type.json';
+import gameMode from 'dotaconstants/build/game_mode.json';
 
 @Component({
   selector: 'app-actvity',
@@ -29,15 +31,12 @@ export class ActvityComponent implements OnInit {
 
   currentDate;
 
-  heroesLocal: IheroLocal;
-  lobbyTypeLocal: any;
-  gameModeLocal: any;
+  heroes: any = heroes;
+  lobbType: any = lobbType;
+  gameMode: any = gameMode;
   skillLocal: any;
 
   constructor(
-    private herosService: HerosService,
-    private lobbyTypeService: LobbyTypeService,
-    private gameModeService: GameModeService,
     private skillService: SkillService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -111,34 +110,7 @@ export class ActvityComponent implements OnInit {
     });
 
     // get all heroes local data
-    this.getHeroesLocal();
-    this.getLobbyTypeLocal();
-    this.getGameModeLocal();
     this.getSkillLocal();
-  }
-
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      this.heroesLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getLobbyTypeLocal(): any {
-    this.lobbyTypeService.getLobbyTypeLocal().subscribe(data => {
-      this.lobbyTypeLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getGameModeLocal(): any {
-    this.gameModeService.getGameModeLocal().subscribe(data => {
-      this.gameModeLocal = data;
-    }, err => {
-      console.log(err);
-    });
   }
 
   getSkillLocal(): any {
@@ -150,6 +122,7 @@ export class ActvityComponent implements OnInit {
   }
 
   emitClickSymble(date): any {
+    console.log(date)
     if (this.currentDate !== date) {
       this.currentDate = date;
     } else if (this.currentDate === date) {

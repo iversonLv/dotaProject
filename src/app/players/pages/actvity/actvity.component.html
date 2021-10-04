@@ -8,9 +8,9 @@
     <div *ngFor="let item of playersMatchesParseData" class="activities-box">
       <app-calendar-chart [data]="item" (emitClickSymble)="emitClickSymble($event)"></app-calendar-chart>
       <app-table-activities
-        [heroesLocal]="heroesLocal"
-        [lobbyTypeLocal]="lobbyTypeLocal"
-        [gameModeLocal]="gameModeLocal"
+        [heroes]="heroes"
+        [lobbType]="lobbType"
+        [gameMode]="gameMode"
         [skillLocal]="skillLocal"
         [data]="item?.subData[currentDate]"
         *ngIf="currentDate && item?.subData[currentDate]?.length > 0">
