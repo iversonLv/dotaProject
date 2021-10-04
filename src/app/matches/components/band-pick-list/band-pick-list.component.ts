@@ -11,7 +11,7 @@ import { ISingleMatchPickBand } from '../../model/onematch';
 export class BandPickListComponent implements OnInit {
   @Input() data: ISingleMatchPickBand[];
   // User for hero modal to mapping
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   constructor() { }
 
   ngOnInit(): void {

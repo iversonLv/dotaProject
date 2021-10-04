@@ -1,8 +1,8 @@
 <div class="warpper">
   <!-- sides dropdown -->
   <app-dropdown
-    [data]="fieldsLocal"
-    *ngIf="fieldsLocal"
+    [data]="fields"
+    *ngIf="fields"
     [model]="currentSelectedField"
     (setEventEmit)="setQueryParams([$event])"
     [defaultValue]="setDropdownDefaultValue()"

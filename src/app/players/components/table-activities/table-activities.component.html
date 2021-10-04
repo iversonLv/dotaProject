@@ -4,20 +4,20 @@
   <ng-container matColumnDef="hero_id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The hero played" matTooltipPosition="above"> HERO </th>
     <td mat-cell *matCellDef="let element">
-      <div *ngIf="element.hero_id && heroesLocal" class="ver-align">
+      <div *ngIf="element.hero_id && heroes" class="ver-align">
         <app-img
-          [data]="heroesLocal[element['hero_id']]['img']"
+          [data]="heroes[element['hero_id']]['img']"
           class="sm-hero-img"
-          [altData]="heroesLocal[element['hero_id']]['localized_name']"
+          [altData]="heroes[element['hero_id']]['localized_name']"
         ></app-img>
         <div class="account-date">
-          <a class="account_link" [routerLink]="['/matches', element.match_id]" *ngIf="heroesLocal && element.hero_id">{{heroesLocal[element.hero_id]['localized_name']}}></a>
+          <a class="account_link" [routerLink]="['/matches', element.match_id]" *ngIf="heroes && element.hero_id">{{heroes[element.hero_id]['localized_name']}}></a>
           <span class="date-time">
             <span class="date-time-value" [matTooltip]="element.start_time * 1000 | date: 'mediumDate'" matTooltipPosition="above">{{element.start_time * 1000 | dateTillToday }}</span>
             <span class="land_role" *ngIf="isRecentMatches">
               <img
               onError="this.src='./assets/images/Dota2Logo.svg'"
-              class="land-role-img" width="14" height="14" *ngIf="element?.lane_role && laneRoleLocal"  matTooltipPosition="above" [matTooltip]="laneRoleLocal[element.lane_role]['name'] | nameDestruct: '_' : 2" [src]="'https://www.opendota.com/assets/images/dota2/lane_' + element?.lane_role + '.svg'"/>
+              class="land-role-img" width="14" height="14" *ngIf="element?.lane_role && laneRole"  matTooltipPosition="above" [matTooltip]="laneRole[element.lane_role]['name'] | nameDestruct: '_' : 2" [src]="'https://www.opendota.com/assets/images/dota2/lane_' + element?.lane_role + '.svg'"/>
             </span>
           </span>
         </div>
@@ -34,7 +34,7 @@
           <span [class]="(element.player_slot > 120 && !element.radiant_win) || (element.player_slot <= 120 && element.radiant_win) ? 'win-match' : 'lose-match'">{{(element.player_slot > 120 && !element.radiant_win) || (element.player_slot <= 120 && element.radiant_win) ? 'Win Match >' : 'Lose Match >'}}</span>
         </a>
         <br/>
-        <span class="type-name" *ngIf="element?.lobby_type && lobbyTypeLocal">{{lobbyTypeLocal[element?.lobby_type]?.name | nameDestruct: '_' : 2}}</span>
+        <span class="type-name" *ngIf="element?.lobby_type && lobbyType">{{lobbyType[element?.lobby_type]?.name | nameDestruct: '_' : 2}}</span>
         <span class="type-name" *ngIf="element?.heroes">{{calAgaistOrWith(element?.player_slot, element?.heroes)}}</span>
       </div>
     </td>
@@ -45,15 +45,15 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The game mode of the match" matTooltipPosition="above"> GAME MODE </th>
     <td mat-cell *matCellDef="let element">
       <div>
-        <span *ngIf="element.game_mode && gameModeLocal" class="type-name">{{gameModeLocal[element.game_mode].name | nameDestruct: '_' : 2}}</span>
+        <span *ngIf="element.game_mode && gameMode" class="type-name">{{gameMode[element.game_mode].name | nameDestruct: '_' : 2}}</span>
         <div class="party-skill">
           <span class="party-size" *ngIf="element.party_size > 1"  [matTooltip]="'Party Size ' + element.party_size" matTooltipPosition="above">
             <mat-icon class="party-size-icon">people</mat-icon>
             <span class="party-size-text">x{{element.party_size}}</span>
           </span>
           <mat-icon class="party-size-icon" *ngIf="element.party_size === 1"  [matTooltip]="'Party Size ' + element.party_size" matTooltipPosition="above">person</mat-icon>
-          <span *ngIf="element.skill !== null && skillLocal" class="skill-text">{{skillLocal[element.skill].name | nameDestruct: '_' : 1}}</span>
-          <span *ngIf="element.skill === null && skillLocal" class="skill-text-unknow">Unknow Skill</span>
+          <span *ngIf="element.skill !== null && skills" class="skill-text">{{skills[element.skill].name | nameDestruct: '_' : 1}}</span>
+          <span *ngIf="element.skill === null && skills" class="skill-text-unknow">Unknow Skill</span>
         </div>
       </div>
     </td>

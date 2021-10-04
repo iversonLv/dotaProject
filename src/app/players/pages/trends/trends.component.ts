@@ -7,12 +7,17 @@ import * as playersActions from '../../store/players.actions';
 
 // model
 import { ITrend, ITrendData } from '../../model/trend';
-
-// service
-import { PlayersService } from '../../services/players.service';
-import { HerosService } from 'src/app/heros/services/heros.service';
-import { GameModeService } from 'src/app/services/game-mode.service';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
+
+// dotaconstants
+import heroes from 'dotaconstants/build/heroes.json';
+import gameMode from 'dotaconstants/build/game_mode.json';
+
+// assets which does not exist in dotaconstants
+import fields from '../../../../assets/data/fields.json';
+
+// utiles
+import { getFieldsLocal } from '../../../shared/utils/utils';
 
 @Component({
   selector: 'app-trends',
@@ -28,17 +33,14 @@ export class TrendsComponent implements OnInit {
 
   isLoading = false;
   trends: ITrend[] = [];
-  fieldsLocal;
+  fields: any = fields;
 
   // User for hero modal to mapping
-  heroesLocal: IheroLocal;
-  gameModeLocal: any;
+  heroes: any = heroes;
+  gameMode: any = gameMode;
   constructor(
     private router: Router,
-    private playersService: PlayersService,
     private activatedRoute: ActivatedRoute,
-    private herosService: HerosService,
-    private gameModeService: GameModeService,
     private store: Store<{ playersTrends: ITrendData }>
   ) { }
 
@@ -61,33 +63,14 @@ export class TrendsComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-    this.getFieldsLocal();
 
-    // get all heroes local data
-    this.getHeroesLocal();
-    this.getGameModeLocal();
-  }
-
-  getFieldsLocal(): any {
-    this.playersService.getFields().subscribe(data => {
-      let grabDataValuesAsArry = [{
-        name: '',
-        description: '',
-        id: ''
-      }];
-      grabDataValuesAsArry = Object.values(data);
-      const descriptionMatchedArr = grabDataValuesAsArry.filter(i => i.name.slice(11) === this.field);
-      this.fieldDescription = descriptionMatchedArr[0].description;
-      return this.fieldsLocal = data;
-    }, err => {
-      console.log(err);
-    });
+    getFieldsLocal(fields, this.field, this.fieldDescription);
   }
 
   // set Hero id to update players win lose data
   async setQueryParams(value): Promise<void> {
-    this.field = this.fieldsLocal[value].name.slice(11);
-    this.fieldDescription = this.fieldsLocal[value].description;
+    this.field = this.fields[value].name.slice(11);
+    this.fieldDescription = this.fields[value].description;
     // update url
     await this.router.navigate([`${this.field}`], {
       relativeTo: this.activatedRoute,
@@ -101,21 +84,5 @@ export class TrendsComponent implements OnInit {
   setDropdownDefaultValue(): any {
     this.field === undefined ? this.field = 'kills' : this.field = this.field;
     return this.field.split('_').map(i => i.charAt(0).toUpperCase() + i.slice(1, i.length)).join(' ');
-  }
-
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      this.heroesLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getGameModeLocal(): any {
-    this.gameModeService.getGameModeLocal().subscribe(data => {
-      this.gameModeLocal = data;
-    }, err => {
-      console.log(err);
-    });
   }
 }

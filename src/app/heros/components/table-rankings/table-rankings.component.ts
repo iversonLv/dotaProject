@@ -13,17 +13,12 @@ import { Store } from '@ngrx/store';
 // model
 import { IRankingData, IRankings } from '../../model/ranking';
 
-// service
-import { HerosService } from '../../services/heros.service';
-
-
 @Component({
   selector: 'app-table-rankings',
   templateUrl: './table-rankings.component.html',
   styleUrls: ['./table-rankings.component.scss']
 })
 export class TableRankingsComponent implements OnInit {
-
   // mat table
   displayedColumns: string[] = ['rank', 'name', 'score'];
   dataSource = new MatTableDataSource();

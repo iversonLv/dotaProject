@@ -7,10 +7,10 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
   styleUrls: ['./obs-sen-modal.component.scss']
 })
 export class ObsSenModalComponent implements OnInit {
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   @Input() player: any;
-  @Input() playerColorLocal: any;
-  @Input() heroesNameLocal: IheroLocal;
+  @Input() playerColors: any;
+  @Input() heroNames: IheroLocal;
   @Input() playerData: any[];
 
   @Input() pageXY: number[] = [0, 100];
@@ -40,7 +40,7 @@ export class ObsSenModalComponent implements OnInit {
 
   extractDataFromAttackername(data: any, attackername: string): any {
     if (attackername !== 'npc_dota_observer_wards') {
-      const heroId = this.heroesNameLocal[attackername]?.id;
+      const heroId = this.heroNames[attackername]?.id;
       const d = [...data];
       const player = d.filter(i => i.hero_id === heroId);
       if (player.length > 0) {

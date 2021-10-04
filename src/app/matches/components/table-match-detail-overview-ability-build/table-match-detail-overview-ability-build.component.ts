@@ -14,10 +14,10 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 })
 export class TableMatchDetailOverviewAbilityBuildComponent implements OnInit {
   @Input() data: any;
-  @Input() playerColorLocal: any;
-  @Input() heroesLocal: IheroLocal;
-  @Input() abilitiesByIdLocal: any;
-  @Input() abilitiesTalentsLocal: any;
+  @Input() playerColors: any;
+  @Input() heroes: IheroLocal;
+  @Input() abilityIds: any;
+  @Input() abilities: any;
   @Output() showAbilityModalFn: any = new EventEmitter();
   @Output() hideAbilityModalFn: any = new EventEmitter();
   @ViewChild(MatSort) set matSort(mp: MatSort) {

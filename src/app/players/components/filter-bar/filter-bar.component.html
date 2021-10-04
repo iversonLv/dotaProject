@@ -12,7 +12,7 @@
     *ngIf="heroGeneral$ | async as herosData"
     [model]="currentSelectedHero"
     (setEventEmit)="setQueryParams([$event,'hero_id'])"
-    [defaultValue]="setDropdownDefaultValue(['Hero', 'hero_id', heroesLocal])"
+    [defaultValue]="setDropdownDefaultValue(['Hero', 'hero_id', heroes])"
     matTooltip="Hero"
     matTooltipPosition="above"
     [sortBy] = "'localized_name'"
@@ -49,11 +49,11 @@
 
   <!-- Land role dropdown -->
   <app-dropdown
-    [data]="laneRoleLocal"
-    *ngIf="laneRoleLocal"
+    [data]="laneRole"
+    *ngIf="laneRole"
     [model]="currentSelectedLand"
     (setEventEmit)="setQueryParams([$event,'lane_role'])"
-    [defaultValue]="setDropdownDefaultValue(['Land', 'lane_role', laneRoleLocal]) | nameDestruct: '_' : 2"
+    [defaultValue]="setDropdownDefaultValue(['Land', 'lane_role', laneRole]) | nameDestruct: '_' : 2"
     matTooltip="Land"
     matTooltipPosition="above"
   >
@@ -75,11 +75,11 @@
 
   <!-- game mode -->
   <app-dropdown
-  [data]="gameModeLocal"
-  *ngIf="gameModeLocal"
+  [data]="gameMode"
+  *ngIf="gameMode"
   [model]="currentSelectedGameMode"
   (setEventEmit)="setQueryParams([$event,'game_mode'])"
-  [defaultValue]="setDropdownDefaultValue(['Game Mode', 'game_mode', gameModeLocal]) | nameDestruct: '_' : 2"
+  [defaultValue]="setDropdownDefaultValue(['Game Mode', 'game_mode', gameMode]) | nameDestruct: '_' : 2"
   matTooltip="Game Mode"
   matTooltipPosition="above"
   >
@@ -87,11 +87,11 @@
 
   <!-- Lobby Type -->
   <app-dropdown
-  [data]="lobbyTypeLocal"
-  *ngIf="lobbyTypeLocal"
+  [data]="lobbyType"
+  *ngIf="lobbyType"
   [model]="currentSelectedLobbyType"
   (setEventEmit)="setQueryParams([$event,'lobby_type'])"
-  [defaultValue]="setDropdownDefaultValue(['Lobby Type', 'lobby_type', lobbyTypeLocal])"
+  [defaultValue]="setDropdownDefaultValue(['Lobby Type', 'lobby_type', lobbyType])"
   matTooltip="Lobby Type"
   matTooltipPosition="above"
   >
@@ -112,11 +112,11 @@
 
   <!-- Region data -->
   <app-dropdown
-  [data]="regionLocal"
-  *ngIf="regionLocal"
+  [data]="region"
+  *ngIf="region"
   [model]="currentSelectedRegion"
   (setEventEmit)="setQueryParams([$event,'region'])"
-  [defaultValue]="setDropdownDefaultValue(['Region', 'region', regionLocal])"
+  [defaultValue]="setDropdownDefaultValue(['Region', 'region', region])"
   matTooltip="Region"
   matTooltipPosition="above"
   >
@@ -128,7 +128,7 @@
   *ngIf="heroGeneral$ | async as herosData"
   [model]="currentSelectedAlliedHero"
   (setEventEmit)="setQueryParams([$event,'with_hero_id'])"
-  [defaultValue]="setDropdownDefaultValue(['Allied Heroes', 'with_hero_id', heroesLocal])"
+  [defaultValue]="setDropdownDefaultValue(['Allied Heroes', 'with_hero_id', heroes])"
   matTooltip="Allied Heroes"
   matTooltipPosition="above"
   [sortBy] = "'localized_name'"
@@ -141,7 +141,7 @@
   *ngIf="heroGeneral$ | async as herosData"
   [model]="currentSelectedOpposingHero"
   (setEventEmit)="setQueryParams([$event,'against_hero_id'])"
-  [defaultValue]="setDropdownDefaultValue(['Opposing Heroes', 'against_hero_id', heroesLocal])"
+  [defaultValue]="setDropdownDefaultValue(['Opposing Heroes', 'against_hero_id', heroes])"
   matTooltip="Opposing Heroes"
   matTooltipPosition="above"
   [sortBy] = "'localized_name'"

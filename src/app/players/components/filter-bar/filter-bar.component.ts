@@ -8,7 +8,6 @@ import { IOption } from '../../../shared/model/option';
 import { IPeerData } from '../../model/peer';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 
-
 // ngrx
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -17,14 +16,18 @@ import * as playersActions from '../../store/players.actions';
 
 // service
 import { PlayersService } from '../../services/players.service';
-import { HerosService } from 'src/app/heros/services/heros.service';
-import { LaneRoleService } from 'src/app/services/lane-role.service';
-import { GameModeService } from 'src/app/services/game-mode.service';
-import { LobbyTypeService } from 'src/app/services/lobby-type.service';
-import { RegionService } from 'src/app/services/region.service';
 
 // dotaconstant
 import patch from 'dotaconstants/build/patch.json';
+import heroes from 'dotaconstants/build/heroes.json';
+import gameMode from 'dotaconstants/build/game_mode.json';
+import region from 'dotaconstants/build/region.json';
+import lobbyType from 'dotaconstants/build/lobby_type.json';
+
+// local assets json which is not from dotaconstant
+import laneRole from '../../../../assets/data/lane_role.json';
+import queryParamsData from '../../../../assets/data/queryParams.json';
+
 
 @Component({
   selector: 'app-filter-bar',
@@ -37,12 +40,19 @@ export class FilterBarComponent implements OnInit {
   playersPeersFilterDataDe: any;
   // for filter bar, load all peers without queryParams
 
-  heroesLocal: IheroLocal;
-  laneRoleLocal: any;
-  patch: any;
-  gameModeLocal: any;
-  regionLocal: any;
-  lobbyTypeLocal: any;
+  heroes: any = heroes;
+  laneRole: any = laneRole;
+  patch: any = patch;
+  gameMode: any = gameMode;
+  region: any; // need refactor the data structure
+  lobbyType: any = lobbyType;
+
+  sidesData: any = queryParamsData.sidesData;
+  datesData: any = queryParamsData.datesData;
+  resultsData: any = queryParamsData.resultsData;
+  partySizeData: any = queryParamsData.partySizeData;
+  havingData: any = queryParamsData.havingData;
+  insignificantData: any = queryParamsData.insignificantData;
 
   queryParams;
   queryParamsHasValue = false;
@@ -64,40 +74,9 @@ export class FilterBarComponent implements OnInit {
   currentSelectedPatch = '';
   currentSelectedInsignification = '';
 
-
-  filterQueryParams;
-  // Date data
-  datesData: IOption[] = [];
-  // Side data
-  sidesData: IOption[] = [];
-  // Win lost data
-  resultsData: IOption[] = [];
-  // Land role data
-  landsData: IOption[] = [];
-  // Party size
-  partySizeData: IOption[] = [];
-  // Having data
-  havingData: IOption[] = [];
-  // Lobby type data
-  lobbyTypeData: IOption[] = [];
-  // Region data
-  regionData: IOption[] = [];
-  // Game mode data
-  gameModeData: IOption[] = [];
-  // patches data
-  patchesData: IOption[] = [];
-  // insignificant data
-  insignificantData: IOption[] = [];
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private playersServices: PlayersService,
-    private herosService: HerosService,
-    private laneRoleService: LaneRoleService,
-    private lobbyTypeService: LobbyTypeService,
-    private regionService: RegionService,
-    private gameModeService: GameModeService,
     private store: Store<{ heroGeneral: IHeroData, playersPeersFilter: IPeerData}>
   ) {
     this.heroGeneral$ = store.select('heroGeneral');
@@ -110,8 +89,6 @@ export class FilterBarComponent implements OnInit {
 
 
     const accountId = +this.activatedRoute.snapshot.paramMap.get('id');
-    // get local static queryParams json data
-    this.getFilterQueryParams();
     // get heroes list
     this.store.dispatch(new herosActions.LoadHerosGeneral());
     // get player peers
@@ -127,16 +104,8 @@ export class FilterBarComponent implements OnInit {
       return this.playersPeersFilterDataDe;
     });
 
-
     this.checkQueryParams();
-
-    this.getHeroesLocal();
-    this.getLaneRoleLocal();
-    this.patch = patch;
-    this.getGameModeLocal();
-    this.getLobbyTypeLocal();
     this.getRegionLocal();
-
   }
 
   checkQueryParams(): boolean {
@@ -145,24 +114,6 @@ export class FilterBarComponent implements OnInit {
     } else {
       return this.queryParamsHasValue = false;
     }
-  }
-  // GET local json static data for filter queryparams
-  getFilterQueryParams(): any {
-    this.playersServices.getFilterQueryParams().subscribe(data => {
-      this.sidesData = data.sidesData;
-      this.datesData = data.datesData;
-      this.resultsData = data.resultsData;
-      // this.landsData = data.landsData;
-      this.partySizeData = data.partySizeData;
-      this.havingData = data.havingData;
-      // this.lobbyTypeData = data.lobbyTypeData;
-      // this.regionData = data.regionData;
-      // this.gameModeData = data.gameModeData;
-      // this.patchesData = data.patchesData;
-      this.insignificantData = data.insignificantData;
-    }, err => {
-      console.log(err);
-    });
   }
 
   async clearQueryParams(): Promise<void> {
@@ -355,44 +306,25 @@ export class FilterBarComponent implements OnInit {
     // TODO: if heroId === '' should remove the hero_id queryParams
   }
 
-  // grab heros to map with dropdown hero
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => this.heroesLocal = data);
-  }
-
-  getLaneRoleLocal(): any {
-    this.laneRoleService.getLaneRoleLocal().subscribe(data => this.laneRoleLocal = data);
-  }
-
-  getGameModeLocal(): any {
-    this.gameModeService.getGameModeLocal().subscribe(data => this.gameModeLocal = data);
-  }
-
   getRegionLocal(): any {
-    this.regionService.getRegionLocal().subscribe(data => {
       const newData = {};
-      for (const key in data) {
-        if (data.hasOwnProperty(key)) {
+      for (const key in region) {
+        if (region.hasOwnProperty(key)) {
           newData[key] = {
-            name: data[key],
+            name: region[key],
             id: key
           };
         }
       }
-      return this.regionLocal = newData;
-    });
-  }
-
-  getLobbyTypeLocal(): any {
-    this.lobbyTypeService.getLobbyTypeLocal().subscribe(data => this.lobbyTypeLocal = data);
+      return this.region = newData;
   }
 
   setDropdownDefaultValue([defaultValue, paramsKey, data]): any {
     // console.log(defaultValue, paramsKey)
     if (
       this.queryParams.params[paramsKey] && // check whether current queryParams.params has such key
-      data && // check whether heroesLocal
-      data[this.queryParams.params[paramsKey]] // Check whether heroesLocal[xxx] has value
+      data && // check whether heroes
+      data[this.queryParams.params[paramsKey]] // Check whether heroes[xxx] has value
     ) {
       if (data[this.queryParams.params[paramsKey]].localized_name) {
         return data[this.queryParams.params[paramsKey]].localized_name; // for hero

@@ -1,4 +1,4 @@
-<div class="item-tooltip" *ngIf="abilitiesTalentsLocal && talents" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
+<div class="item-tooltip" *ngIf="abilities && talents" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
   <!-- 25 level -->
   <span class="talent-bg-img"></span>
   <div
@@ -6,7 +6,7 @@
     class="talent-row"
     [class]="'item' + item.level"
   >
-    {{abilitiesTalentsLocal[item['name']]?.dname}}
+    {{abilities[item['name']]?.dname}}
   </div>
   <!-- 20 level -->
 

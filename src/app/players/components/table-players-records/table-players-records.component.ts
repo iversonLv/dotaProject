@@ -8,10 +8,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 import { IRecord } from '../../model/record';
 
-// service
-import { HerosService } from 'src/app/heros/services/heros.service';
-import { LobbyTypeService } from 'src/app/services/lobby-type.service';
-import { Router } from '@angular/router';
+
+// dotaconstants
+import heroes from 'dotaconstants/build/heroes.json';
+import lobbyType from 'dotaconstants/build/lobby_type.json';
 
 @Component({
   selector: 'app-table-players-records',
@@ -34,16 +34,13 @@ export class TablePlayersRecordsComponent implements OnInit {
   pageXY = [];
 
   // User for hero modal to mapping
-  heroesLocal: IheroLocal;
-  lobbyTypeLocal: any;
+  heroes: any = heroes;
+  lobbyType: any = lobbyType;
 
   largestData;
 
   sort;
   constructor(
-    private router: Router,
-    private herosService: HerosService,
-    private lobbyTypeService: LobbyTypeService,
   ) { }
 
   ngOnInit(): void {
@@ -51,35 +48,16 @@ export class TablePlayersRecordsComponent implements OnInit {
     // this.getLargestData(this.data, this.field);
     // get all heroes local data
     this.largestData = Math.max(...this.data.map(item => item[this.field]));
-    this.getHeroesLocal();
-    this.getLobbyTypeLocal();
   }
-
 
   setDataSourceAttributes(): any {
     this.dataSource.sort = this.sort;
   }
 
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      this.heroesLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getLobbyTypeLocal(): any {
-    this.lobbyTypeService.getLobbyTypeLocal().subscribe(data => {
-      this.lobbyTypeLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
   showHeroModalFn(e, id): any {
     this.pageXY = [e.pageX + 50, e.pageY - 120];
     this.showHeroModal = true;
-    this.currentMouseOverHero = this.heroesLocal[id];
+    this.currentMouseOverHero = this.heroes[id];
   }
 
 }

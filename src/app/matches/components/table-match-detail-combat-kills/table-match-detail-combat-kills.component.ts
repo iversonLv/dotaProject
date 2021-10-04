@@ -9,7 +9,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 })
 export class TableMatchDetailCombatKillsComponent implements OnInit {
   @Input() data: any;
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   dataSource = new MatTableDataSource();
 
   direData: string[];

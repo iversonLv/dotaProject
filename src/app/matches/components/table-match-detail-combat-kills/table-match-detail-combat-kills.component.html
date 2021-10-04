@@ -5,13 +5,13 @@
     <td mat-cell *matCellDef="let element">
       <!-- for hero -->
       <img
-        [matTooltip]="heroesLocal[element?.hero_id]?.localized_name"
+        [matTooltip]="heroes[element?.hero_id]?.localized_name"
         matTooltipPosition="above"
         width="24px"
         class="item"
-        *ngIf="element?.hero_id && heroesLocal && heroesLocal[element?.hero_id]?.icon"
+        *ngIf="element?.hero_id && heroes && heroes[element?.hero_id]?.icon"
         onError="this.src='./assets/images/Dota2Logo.svg'"
-        src="https://steamcdn-a.akamaihd.net/{{heroesLocal[element?.hero_id]?.icon}}"
+        src="https://steamcdn-a.akamaihd.net/{{heroes[element?.hero_id]?.icon}}"
       />
     </td>
     <td mat-footer-cell *matFooterCellDef>
@@ -23,55 +23,55 @@
   <ng-container [matColumnDef]="item" *ngFor="let item of displayedColumns | slice : 1 : 6">
     <th mat-header-cell *matHeaderCellDef>
       <img
-        [matTooltip]="heroesLocal[item]?.localized_name"
+        [matTooltip]="heroes[item]?.localized_name"
         matTooltipPosition="above"
         width="24px"
         class="item"
-        *ngIf="item && heroesLocal && heroesLocal[item]?.icon"
+        *ngIf="item && heroes && heroes[item]?.icon"
         onError="this.src='./assets/images/Dota2Logo.svg'"
-        src="https://steamcdn-a.akamaihd.net/{{heroesLocal[item]?.icon}}"
+        src="https://steamcdn-a.akamaihd.net/{{heroes[item]?.icon}}"
       />
     </th>
     <td mat-cell *matCellDef="let element">
       <!-- killed specific hero -->
-      <span class="killed-damage-txt" matTooltipPosition="above" [matTooltip]="heroesLocal[element?.hero_id]?.localized_name + ' -> ' + heroesLocal[item]?.localized_name + ': ' + (element?.killed[heroesLocal[item]?.name] ? element?.killed[heroesLocal[item]?.name] : '-')">
-        {{element?.killed[heroesLocal[item]?.name] ? element?.killed[heroesLocal[item]?.name] : '-'}}
+      <span class="killed-damage-txt" matTooltipPosition="above" [matTooltip]="heroes[element?.hero_id]?.localized_name + ' -> ' + heroes[item]?.localized_name + ': ' + (element?.killed[heroes[item]?.name] ? element?.killed[heroes[item]?.name] : '-')">
+        {{element?.killed[heroes[item]?.name] ? element?.killed[heroes[item]?.name] : '-'}}
       </span>
 
       <!-- damage specific hero -->
-      <span class="killed-damage-txt" matTooltipPosition="above" [matTooltip]="heroesLocal[item]?.localized_name + ' -> ' + heroesLocal[element?.hero_id]?.localized_name + ': ' + (element?.damage[heroesLocal[item]?.name] ? (element?.damage[heroesLocal[item]?.name]) : '-')">
-        {{element?.damage[heroesLocal[item]?.name] ? (element?.damage[heroesLocal[item]?.name] | greaterNum: 1000 : 'k') : '-'}}
+      <span class="killed-damage-txt" matTooltipPosition="above" [matTooltip]="heroes[item]?.localized_name + ' -> ' + heroes[element?.hero_id]?.localized_name + ': ' + (element?.damage[heroes[item]?.name] ? (element?.damage[heroes[item]?.name]) : '-')">
+        {{element?.damage[heroes[item]?.name] ? (element?.damage[heroes[item]?.name] | greaterNum: 1000 : 'k') : '-'}}
       </span>
 
       <!-- killed by specific hero -->
-      <span class="killed-damage-by-txt" matTooltipPosition="above" [matTooltip]="heroesLocal[item]?.localized_name + ' -> ' + heroesLocal[element?.hero_id]?.localized_name + ': ' + (element?.killed_by[heroesLocal[item]?.name] ? element?.killed_by[heroesLocal[item]?.name] : '-')">
-        {{element?.killed_by[heroesLocal[item]?.name] ? element?.killed_by[heroesLocal[item]?.name] : '-'}}
+      <span class="killed-damage-by-txt" matTooltipPosition="above" [matTooltip]="heroes[item]?.localized_name + ' -> ' + heroes[element?.hero_id]?.localized_name + ': ' + (element?.killed_by[heroes[item]?.name] ? element?.killed_by[heroes[item]?.name] : '-')">
+        {{element?.killed_by[heroes[item]?.name] ? element?.killed_by[heroes[item]?.name] : '-'}}
       </span>
 
       <!-- damage taken specific hero -->
-      <span class="killed-damage-by-txt" matTooltipPosition="above" [matTooltip]="heroesLocal[item]?.localized_name + ' -> ' + heroesLocal[element?.hero_id]?.localized_name + ': ' + (element?.damage_taken[heroesLocal[item]?.name] ? (element?.damage_taken[heroesLocal[item]?.name]) : '-')">
-        {{element?.damage_taken[heroesLocal[item]?.name] ? (element?.damage_taken[heroesLocal[item]?.name] | greaterNum: 1000 : 'k') : '-'}}
+      <span class="killed-damage-by-txt" matTooltipPosition="above" [matTooltip]="heroes[item]?.localized_name + ' -> ' + heroes[element?.hero_id]?.localized_name + ': ' + (element?.damage_taken[heroes[item]?.name] ? (element?.damage_taken[heroes[item]?.name]) : '-')">
+        {{element?.damage_taken[heroes[item]?.name] ? (element?.damage_taken[heroes[item]?.name] | greaterNum: 1000 : 'k') : '-'}}
       </span>
     </td>
     <td mat-footer-cell *matFooterCellDef>
       <!-- Radiant total killed to specific hero -->
-      <span class="killed-damage-txt" matTooltipPosition="above" [matTooltip]="'Radiant -> ' + heroesLocal[item]?.localized_name + ': ' + (calTotalBy(data, 'killed', heroesLocal[item]?.name))">
-        {{calTotalBy(data, 'killed', heroesLocal[item]?.name)}}
+      <span class="killed-damage-txt" matTooltipPosition="above" [matTooltip]="'Radiant -> ' + heroes[item]?.localized_name + ': ' + (calTotalBy(data, 'killed', heroes[item]?.name))">
+        {{calTotalBy(data, 'killed', heroes[item]?.name)}}
       </span>
       
       <!-- Radiant total damage to specific hero -->
-      <span class="killed-damage-txt" matTooltipPosition="above" [matTooltip]="'Radiant -> ' + heroesLocal[item]?.localized_name + ': ' + (calTotalBy(data, 'damage', heroesLocal[item]?.name))">
-        {{calTotalBy(data, 'damage', heroesLocal[item]?.name) | greaterNum: 1000 : 'k'}}
+      <span class="killed-damage-txt" matTooltipPosition="above" [matTooltip]="'Radiant -> ' + heroes[item]?.localized_name + ': ' + (calTotalBy(data, 'damage', heroes[item]?.name))">
+        {{calTotalBy(data, 'damage', heroes[item]?.name) | greaterNum: 1000 : 'k'}}
       </span>
 
       <!-- total kill by specific hero to Radiant -->
-      <span class="killed-damage-by-txt" matTooltipPosition="above" [matTooltip]="heroesLocal[item]?.localized_name + ' -> Radiant: ' + (calTotalBy(data, 'killed_by', heroesLocal[item]?.name))">
-        {{calTotalBy(data, 'killed_by', heroesLocal[item]?.name)}}
+      <span class="killed-damage-by-txt" matTooltipPosition="above" [matTooltip]="heroes[item]?.localized_name + ' -> Radiant: ' + (calTotalBy(data, 'killed_by', heroes[item]?.name))">
+        {{calTotalBy(data, 'killed_by', heroes[item]?.name)}}
       </span>
       
       <!-- total damage taken specific hero to Radiant -->
-      <span class="killed-damage-by-txt" matTooltipPosition="above" [matTooltip]="heroesLocal[item]?.localized_name + ' -> Radiant: ' + (calTotalBy(data, 'damage_taken', heroesLocal[item]?.name))">
-        {{calTotalBy(data, 'damage_taken', heroesLocal[item]?.name) | greaterNum: 1000 : 'k'}}
+      <span class="killed-damage-by-txt" matTooltipPosition="above" [matTooltip]="heroes[item]?.localized_name + ' -> Radiant: ' + (calTotalBy(data, 'damage_taken', heroes[item]?.name))">
+        {{calTotalBy(data, 'damage_taken', heroes[item]?.name) | greaterNum: 1000 : 'k'}}
       </span>
     </td>
   </ng-container>
@@ -83,21 +83,21 @@
     </th>
     <td mat-cell *matCellDef="let element">
       <!-- specific hero total all killed to dire -->
-      <span class="killed-damage-txt" matTooltipPosition="above" [matTooltip]="heroesLocal[element?.hero_id]?.localized_name + '-> Dire: ' + (calTotalDamageTaken(element?.killed, 'npc_dota_hero_') ? calTotalDamageTaken(element?.killed, 'npc_dota_hero_') : '-')">
+      <span class="killed-damage-txt" matTooltipPosition="above" [matTooltip]="heroes[element?.hero_id]?.localized_name + '-> Dire: ' + (calTotalDamageTaken(element?.killed, 'npc_dota_hero_') ? calTotalDamageTaken(element?.killed, 'npc_dota_hero_') : '-')">
         {{calTotalDamageTaken(element?.killed, 'npc_dota_hero_') ? calTotalDamageTaken(element?.killed, 'npc_dota_hero_') : '-'}}
       </span>
 
       <!-- specific hero total all damage to dire -->
-      <span class="killed-damage-txt" matTooltipPosition="above" [matTooltip]="heroesLocal[element?.hero_id]?.localized_name + '-> Dire: ' + (calTotalDamageTaken(element?.damage, 'npc_dota_hero_' , 'damage') ? calTotalDamageTaken(element?.damage, 'npc_dota_hero_', 'damage') : '-')">
+      <span class="killed-damage-txt" matTooltipPosition="above" [matTooltip]="heroes[element?.hero_id]?.localized_name + '-> Dire: ' + (calTotalDamageTaken(element?.damage, 'npc_dota_hero_' , 'damage') ? calTotalDamageTaken(element?.damage, 'npc_dota_hero_', 'damage') : '-')">
         {{calTotalDamageTaken(element?.damage, 'npc_dota_hero_', 'damage') ? (calTotalDamageTaken(element?.damage, 'npc_dota_hero_', 'damage')  | greaterNum: 1000 : 'k'): '-'}}
       </span>
 
       <!-- total all killed by specifi hero from dire -->
-      <span class="killed-damage-by-txt" matTooltipPosition="above" [matTooltip]="'Dire -> ' + heroesLocal[element?.hero_id]?.localized_name + ': ' + (calTotal(element?.killed_by) ? calTotal(element?.killed_by) : '-')">
+      <span class="killed-damage-by-txt" matTooltipPosition="above" [matTooltip]="'Dire -> ' + heroes[element?.hero_id]?.localized_name + ': ' + (calTotal(element?.killed_by) ? calTotal(element?.killed_by) : '-')">
         {{calTotal(element?.killed_by) ? calTotal(element?.killed_by) : '-'}}
       </span>
       <!-- total all damage taken specific hero from dire -->
-      <span class="killed-damage-by-txt" matTooltipPosition="above" [matTooltip]="'Dire -> ' + heroesLocal[element?.hero_id]?.localized_name + ': ' + (calTotalDamageTaken(element?.damage_taken, 'npc_dota_hero_') ? calTotalDamageTaken(element?.damage_taken, 'npc_dota_hero_') : '-')">
+      <span class="killed-damage-by-txt" matTooltipPosition="above" [matTooltip]="'Dire -> ' + heroes[element?.hero_id]?.localized_name + ': ' + (calTotalDamageTaken(element?.damage_taken, 'npc_dota_hero_') ? calTotalDamageTaken(element?.damage_taken, 'npc_dota_hero_') : '-')">
         {{calTotalDamageTaken(element?.damage_taken, 'npc_dota_hero_') ? (calTotalDamageTaken(element?.damage_taken, 'npc_dota_hero_') | greaterNum: 1000 : 'k') : '-'}}
       </span>
     </td>

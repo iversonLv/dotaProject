@@ -3,7 +3,7 @@
   <ng-container matColumnDef="player_slot">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
     <td mat-cell *matCellDef="let element">
-      <app-player-box [data]="element" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+      <app-player-box [data]="element" [heroes]="heroes" [playerColors]="playerColors"></app-player-box>
     </td>
   </ng-container>
 
@@ -17,15 +17,15 @@
       <div class="item-list">
         <div *ngFor="let item of element[item]?.data" class="item-list-item">
             <!-- for item -->
-            <span *ngIf="!enableConsumable ? itemsLocal[item?.key]?.qual !== 'consumable' : itemsLocal[item?.key]">
+            <span *ngIf="!enableConsumable ? items[item?.key]?.qual !== 'consumable' : items[item?.key]">
               <img
                 width="35px"
-                [class]="'item-color item-color-' + itemsLocal[item?.key]?.qual"
+                [class]="'item-color item-color-' + items[item?.key]?.qual"
                 class="item"
-                *ngIf="item && itemsLocal && itemsLocal[item?.key]?.img"
+                *ngIf="item && items && items[item?.key]?.img"
                 onError="this.src='./assets/images/Dota2Logo.svg'"
-                [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[item?.key]?.img"
-                (mouseover)="showItemModalFn.emit([$event, itemsLocal[item?.key]?.id])"
+                [src]="'https://steamcdn-a.akamaihd.net/' + items[item?.key]?.img"
+                (mouseover)="showItemModalFn.emit([$event, items[item?.key]?.id])"
                 (mouseout)="hideItemModalFn.emit($event)"
               />
               <span class="middle-text">{{item?.time | durationFormat}}</span>

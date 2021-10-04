@@ -12,9 +12,9 @@ import * as echarts from 'echarts';
 })
 export class WorldPopulationChartComponent implements OnInit {
   @Input() data: any;
-  @Input() countryDataLocal: any;
-  @Input() latlongLocal: any;
-  @Input() worldLocal: any;
+  @Input() countries: any;
+  @Input() latlong: any;
+  @Input() world: any;
   // emit the click country symbol
   @Output() emitClickSymble = new EventEmitter();
   chartOption: echarts.EChartsOption;
@@ -27,10 +27,10 @@ export class WorldPopulationChartComponent implements OnInit {
   mapData;
 
   async ngOnInit(): Promise<void> {
-    await echarts.registerMap('world', this.worldLocal);
+    await echarts.registerMap('world', this.world);
     const hasCountryCode = this.extracthasCountryData(this.data);
     const contryCodeList = this.extractCountryCodeList(hasCountryCode);
-    this.mapData = this.extractData(hasCountryCode, contryCodeList, this.countryDataLocal, this.latlongLocal);
+    this.mapData = this.extractData(hasCountryCode, contryCodeList, this.countries, this.latlong);
     this.calPerfectData(this.mapData);
     this.chartOption = {
       backgroundColor: '#1a2b3e',
@@ -90,15 +90,15 @@ export class WorldPopulationChartComponent implements OnInit {
     };
   }
 
-  extractData(players: any[], contryCodeList: any, countryDataLocal: any, latlongLocal: any): any[] {
+  extractData(players: any[], contryCodeList: any, countries: any, latlong: any): any[] {
     const arr = [];
     contryCodeList.forEach(code => {
       const newPlayers = players.filter(player => player.country_code === code);
       const c = code.toUpperCase();
       arr.push({
         code,
-        ...latlongLocal[c],
-        name: countryDataLocal[c]?.name?.common,
+        ...latlong[c],
+        name: countries[c]?.name?.common,
         value: newPlayers.length,
         players: newPlayers
       });

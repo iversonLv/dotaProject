@@ -3,40 +3,40 @@
   <div class="count-box">
     <app-nav-title [title]="'Leaver Status'"></app-nav-title>
     <app-table-counts
-      *ngIf="playersCountsDestructData.leaver_status && leaverStatusLocal"
-      [data]='playersCountsDestructData.leaver_status' [countTypeLocalData]="leaverStatusLocal">
+      *ngIf="playersCountsDestructData.leaver_status && leaverStatus"
+      [data]='playersCountsDestructData.leaver_status' [countTypeLocalData]="leaverStatus">
     </app-table-counts>
   </div>
   
   <div class="count-box">
     <app-nav-title [title]="'Game Mode'"></app-nav-title>
     <app-table-counts
-      *ngIf="playersCountsDestructData.game_mode && gameModeLocal"
-      [data]='playersCountsDestructData.game_mode' [countTypeLocalData]="gameModeLocal">
+      *ngIf="playersCountsDestructData.game_mode && gameMode"
+      [data]='playersCountsDestructData.game_mode' [countTypeLocalData]="gameMode">
     </app-table-counts>
   </div>
   
   <div class="count-box">
     <app-nav-title [title]="'Lobby Type'"></app-nav-title>
     <app-table-counts
-      *ngIf="playersCountsDestructData.lobby_type && lobbyTypeLocal"
-      [data]='playersCountsDestructData.lobby_type' [countTypeLocalData]="lobbyTypeLocal">
+      *ngIf="playersCountsDestructData.lobby_type && lobbyType"
+      [data]='playersCountsDestructData.lobby_type' [countTypeLocalData]="lobbyType">
     </app-table-counts>
   </div>
   
   <div class="count-box">
     <app-nav-title [title]="'Lane Role'"></app-nav-title>
     <app-table-counts
-      *ngIf="playersCountsDestructData.lane_role && laneRoleLocal"
-      [data]='playersCountsDestructData.lane_role' [countTypeLocalData]="laneRoleLocal">
+      *ngIf="playersCountsDestructData.lane_role && laneRole"
+      [data]='playersCountsDestructData.lane_role' [countTypeLocalData]="laneRole">
     </app-table-counts>
   </div>
   
   <div class="count-box">
     <app-nav-title [title]="'Region'"></app-nav-title>
     <app-table-counts
-      *ngIf="playersCountsDestructData.region && regionLocal"
-      [data]='playersCountsDestructData.region' [countTypeLocalData]="regionLocal" [countType]="'region'">
+      *ngIf="playersCountsDestructData.region && region"
+      [data]='playersCountsDestructData.region' [countTypeLocalData]="region" [countType]="'region'">
     </app-table-counts>
   </div>
   
@@ -52,8 +52,8 @@
   <div class="count-box">
     <app-nav-title [title]="'Side'"></app-nav-title>
     <app-table-counts
-      *ngIf="playersCountsDestructData.is_radiant && sidesLocal"
-      [data]='playersCountsDestructData.is_radiant' [countTypeLocalData]="sidesLocal">
+      *ngIf="playersCountsDestructData.is_radiant && sides"
+      [data]='playersCountsDestructData.is_radiant' [countTypeLocalData]="sides">
     </app-table-counts>
   </div>
 </div>

@@ -222,31 +222,40 @@
   padding: 0 0 10px;
   width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  
-  .heroes-sub-box-col {
-    width: calc(25% - 20px);
+  .heroes-lore {
+    padding: 10px;
     margin: 10px;
+    font-size: 12px;
+    background: rgb(0 0 0 / 50%);
+    color: rgb(184 182 180);
+  }
+  .heroes-sub-box-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+    .heroes-sub-box-col {
+      width: calc(25% - 20px);
+      margin: 10px;
 
-    .heroes-sub-box-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      padding: 5px 10px;
-      background-color: rgba($color: $black, $alpha: .5);
+      .heroes-sub-box-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        padding: 5px 10px;
+        background-color: rgba($color: $black, $alpha: .5);
 
-      &:nth-child(odd) {
-        background-color: rgba($color: $black, $alpha: .3);
-      }
+        &:nth-child(odd) {
+          background-color: rgba($color: $black, $alpha: .3);
+        }
 
-      label {
-        display: inline-block;
-        width: 150px;
+        label {
+          display: inline-block;
+          width: 150px;
+        }
       }
     }
-  }
 }
 
 .hero-str {

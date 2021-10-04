@@ -10,8 +10,8 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 })
 export class PlayerBoxComponent implements OnInit {
   @Input() data;
-  @Input() heroesLocal: IheroLocal;
-  @Input() playerColorLocal: any;
+  @Input() heroes: IheroLocal;
+  @Input() playerColors: any;
   constructor() { }
 
   // hero modal default hidden
@@ -25,7 +25,7 @@ export class PlayerBoxComponent implements OnInit {
   showHeroModalFn(e, id): any {
     this.pageXY = [e.pageX + 50, e.pageY - 120];
     this.showHeroModal = true;
-    this.currentMouseOverHero = this.heroesLocal[id];
+    this.currentMouseOverHero = this.heroes[id];
   }
 
 }

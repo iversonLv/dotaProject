@@ -10,6 +10,7 @@ import { IheroLocal } from '../../model/heroLocal';
 import heroes from 'dotaconstants/build/heroes.json';
 import heroAbilities from 'dotaconstants/build/hero_abilities.json';
 import abilities from 'dotaconstants/build/abilities.json';
+import heroLore from 'dotaconstants/build/hero_lore.json';
 
 @Component({
   selector: 'app-heroes-hero',
@@ -23,6 +24,7 @@ export class HeroesHeroComponent implements OnInit {
   hero: IHero;
   heroAbilities: any = heroAbilities;
   abilities: any = abilities;
+  heroLore: any = heroLore;
 
   // ablity modal default hidden
   currentMouseOverAbilityName = null;

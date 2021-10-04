@@ -10,14 +10,14 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 })
 export class TableMatchDetailTeamfightsComponent implements OnInit, OnChanges {
   @Input() data: any;
-  @Input() playerColorLocal: any;
-  @Input() heroesLocal: IheroLocal;
+  @Input() playerColors: any;
+  @Input() heroes: IheroLocal;
   @Input() dataRange: number[];
 
   @Input() currentTeamFightDataForTable: any;
 
-  @Input() itemsLocal: any;
-  @Input() abilitiesTalentsLocal: any;
+  @Input() items: any;
+  @Input() abilities: any;
   @Output() showItemModalFn: any = new EventEmitter();
   @Output() hideItemModalFn: any = new EventEmitter();
   @Output() showAbilityModalFn: any = new EventEmitter();

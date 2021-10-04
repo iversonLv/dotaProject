@@ -16,6 +16,13 @@ import { IPro, IProData } from '../players/model/pro';
 // service
 import { PlayersService } from '../players/services/players.service';
 
+// dotaconstants
+import countries from 'dotaconstants/build/countries.json';
+
+// assets json does not exist in dotaconstatns
+import latlong from '../../assets/data/latlong.json';
+import world from '../../assets/data/world.json';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -25,9 +32,9 @@ export class HomeComponent implements OnInit {
   isLoading = false;
 
   proPlayersData: IPro[];
-  countryDataLocal: any;
-  latlongLocal: any;
-  worldLocal: any;
+  countries: any = countries;
+  latlong: any = latlong;
+  world: any = world;
 
   constructor(
     public dialog: MatDialog,
@@ -48,34 +55,6 @@ export class HomeComponent implements OnInit {
       console.log(err);
     });
 
-    // get all countries code from json
-    this.getCountriesLocal();
-    this.getLatlongLocal();
-    this.getWorldLocal();
-  }
-
-  getCountriesLocal(): any {
-    this.playersService.getCountriesLocal().subscribe(data => {
-      this.countryDataLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getLatlongLocal(): any {
-    this.playersService.getLatlongLocal().subscribe(data => {
-      this.latlongLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getWorldLocal(): any {
-    this.playersService.getWorldLocal().subscribe(data => {
-      this.worldLocal = data;
-    }, err => {
-      console.log(err);
-    });
   }
 
   emitClickSymble(e): any {

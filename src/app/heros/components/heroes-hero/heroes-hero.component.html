@@ -83,82 +83,85 @@
     <button mat-stroked-button (click)="showSubBox = !showSubBox">{{showSubBox ? 'Hide Detail' : 'Show Detail'}}</button>
   </div>
   <div class="heroes-sub-box" *ngIf="showSubBox">
-    <div class="heroes-sub-box-col">
-      <div class="heroes-sub-box-row">
-        <label>BASE ATTACK:</label>{{hero.base_attack_min + hero.base_agi}} - {{hero.base_attack_max  + hero.base_agi}}
+    <div class="heroes-sub-box-info">
+      <div class="heroes-sub-box-col">
+        <div class="heroes-sub-box-row">
+          <label>BASE ATTACK:</label>{{hero.base_attack_min + hero.base_agi}} - {{hero.base_attack_max  + hero.base_agi}}
+        </div>
+        <!-- heroes-sub-box-row -->
+        <div class="heroes-sub-box-row">
+          <label>ATTACK RANGE:</label>{{hero.attack_range}}
+        </div>
+        <!-- heroes-sub-box-row -->
+        <div class="heroes-sub-box-row">
+          <label>ATTACK SPEED:</label>{{hero.attack_rate}}
+        </div>
+        <!-- heroes-sub-box-row -->
+        <div class="heroes-sub-box-row">
+          <label>PROJECTILE SPEED:</label>{{hero.projectile_speed}}
+        </div>
+        <!-- heroes-sub-box-row -->
       </div>
-      <!-- heroes-sub-box-row -->
-      <div class="heroes-sub-box-row">
-        <label>ATTACK RANGE:</label>{{hero.attack_range}}
+      <!-- heroes-sub-box-col -->
+      <div class="heroes-sub-box-col">
+        <div class="heroes-sub-box-row">
+          <label>HEALTH:</label>{{hero.base_health + hero.base_str * 20}}
+        </div>
+        <!-- heroes-sub-box-row -->
+        <div class="heroes-sub-box-row">
+          <label>HEALTH REGEN:</label>{{hero.base_health_regen}}
+        </div>
+        <!-- heroes-sub-box-row -->
+        <div class="heroes-sub-box-row">
+          <label>MANA:</label>{{hero.base_mana + hero.base_int * 12}}
+        </div>
+        <!-- heroes-sub-box-row -->
+        <div class="heroes-sub-box-row">
+          <label>MANA REGEN:</label>{{hero.base_mana_regen}}
+        </div>
+        <!-- heroes-sub-box-row -->
       </div>
-      <!-- heroes-sub-box-row -->
-      <div class="heroes-sub-box-row">
-        <label>ATTACK SPEED:</label>{{hero.attack_rate}}
+      <!-- heroes-sub-box-col -->
+      
+      <div class="heroes-sub-box-col">
+        <div class="heroes-sub-box-row">
+          <label>BASE ARMOR:</label>{{hero.base_armor + 0.167 * hero.base_agi | number :'1.1-1'}}
+        </div>
+        <!-- heroes-sub-box-row -->
+        <div class="heroes-sub-box-row">
+          <label>MAGIC RESISTANCE:</label>25%
+        </div>
+        <!-- heroes-sub-box-row -->
+        <div class="heroes-sub-box-row">
+          <label>MOVE SPEED:</label>{{hero.move_speed}}
+        </div>
+        <!-- heroes-sub-box-row -->
+        <div class="heroes-sub-box-row">
+          <label>TURN SPEED:</label>{{hero.turn_rate}}
+        </div>
+        <!-- heroes-sub-box-row -->
       </div>
-      <!-- heroes-sub-box-row -->
-      <div class="heroes-sub-box-row">
-        <label>PROJECTILE SPEED:</label>{{hero.projectile_speed}}
-      </div>
-      <!-- heroes-sub-box-row -->
-    </div>
-    <!-- heroes-sub-box-col -->
-    <div class="heroes-sub-box-col">
-      <div class="heroes-sub-box-row">
-        <label>HEALTH:</label>{{hero.base_health + hero.base_str * 20}}
-      </div>
-      <!-- heroes-sub-box-row -->
-      <div class="heroes-sub-box-row">
-        <label>HEALTH REGEN:</label>{{hero.base_health_regen}}
-      </div>
-      <!-- heroes-sub-box-row -->
-      <div class="heroes-sub-box-row">
-        <label>MANA:</label>{{hero.base_mana + hero.base_int * 12}}
-      </div>
-      <!-- heroes-sub-box-row -->
-      <div class="heroes-sub-box-row">
-        <label>MANA REGEN:</label>{{hero.base_mana_regen}}
-      </div>
-      <!-- heroes-sub-box-row -->
-    </div>
-    <!-- heroes-sub-box-col -->
-    
-    <div class="heroes-sub-box-col">
-      <div class="heroes-sub-box-row">
-        <label>BASE ARMOR:</label>{{hero.base_armor + 0.167 * hero.base_agi | number :'1.1-1'}}
-      </div>
-      <!-- heroes-sub-box-row -->
-      <div class="heroes-sub-box-row">
-        <label>MAGIC RESISTANCE:</label>25%
-      </div>
-      <!-- heroes-sub-box-row -->
-      <div class="heroes-sub-box-row">
-        <label>MOVE SPEED:</label>{{hero.move_speed}}
-      </div>
-      <!-- heroes-sub-box-row -->
-      <div class="heroes-sub-box-row">
-        <label>TURN SPEED:</label>{{hero.turn_rate}}
-      </div>
-      <!-- heroes-sub-box-row -->
-    </div>
-    <!-- heroes-sub-box-col -->
+      <!-- heroes-sub-box-col -->
 
-    <div class="heroes-sub-box-col">
-      <div class="heroes-sub-box-row">
-        <label>NUMBER OF LEGS:</label>{{hero.legs}}
+      <div class="heroes-sub-box-col">
+        <div class="heroes-sub-box-row">
+          <label>NUMBER OF LEGS:</label>{{hero.legs}}
+        </div>
+        <!-- heroes-sub-box-row -->
+        <div class="heroes-sub-box-row">
+          <label>CM ENABLED:</label>{{hero.cm_enabled ? 'Yes' : 'No'}}
+        </div>
+        <!-- heroes-sub-box-row -->
       </div>
-      <!-- heroes-sub-box-row -->
-      <div class="heroes-sub-box-row">
-        <label>CM ENABLED:</label>{{hero.cm_enabled ? 'Yes' : 'No'}}
-      </div>
-      <!-- heroes-sub-box-row -->
+      <!-- heroes-sub-box-col -->
     </div>
-    <!-- heroes-sub-box-col -->
-
+    <div class="heroes-lore">{{heroLore[hero['localized_name'] | lowercase]}}</div>
   </div>
   <!-- heroes-sub-box-box -->
 
+
 </div>
 
-<app-ability-modal [abilitiesTalentsLocal]="abilities" *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName' [pageXY] = 'pageXY'></app-ability-modal>
+<app-ability-modal [abilities]="abilities" *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName' [pageXY] = 'pageXY'></app-ability-modal>
 
-<app-talent-modal [abilitiesTalentsLocal]="abilities" *ngIf="showTalentModal" [talents]='currentMouseOverTalent' [pageXY] = 'pageXY'></app-talent-modal>
+<app-talent-modal [abilities]="abilities" *ngIf="showTalentModal" [talents]='currentMouseOverTalent' [pageXY] = 'pageXY'></app-talent-modal>
