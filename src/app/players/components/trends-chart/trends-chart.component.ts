@@ -22,8 +22,8 @@ export class TrendsChartComponent implements OnInit {
   @Input() data: ITrend[];
   @Input() fieldDescription: string;
   @Input() field: string;
-  @Input() hero: IheroLocal;
-  @Input() gamemode: any;
+  @Input() heroes: IheroLocal;
+  @Input() gameMode: any;
   chartOption: EChartsOption;
 
   constructor(
@@ -90,7 +90,7 @@ export class TrendsChartComponent implements OnInit {
       }],
       series: [{
           name: `${this.nameDestruct.transform(this.field, '_', 0, 'upperCase')} ${this.fieldDescription !== '' ? '(' + this.fieldDescription + ')' : ''}`,
-          data: this.calSeriesData(this.data, this.field, this.hero, this.gamemode),
+          data: this.calSeriesData(this.data, this.field, this.heroes, this.gameMode),
           type: 'line',
       }],
     };
@@ -106,8 +106,8 @@ export class TrendsChartComponent implements OnInit {
     return xData;
   }
 
-  calSeriesData(data: ITrend[], field, hero, gamemode): string[] {
-    // console.log(field, hero, gamemode)
+  calSeriesData(data: ITrend[], field, heroes, gameMode): string[] {
+    // console.log(field, hero, gameMode)
     const seriesData = [];
     const d = [...data];
     // d.sort((a, b) => a.duration_bin - b.duration_bin);
@@ -116,8 +116,8 @@ export class TrendsChartComponent implements OnInit {
         const { game_mode, hero_id, duration, start_time } = d[i];
         const value = d[i][field];
         // rgb('+ (255 - 255 * data[1] / data[0]) +', ' + 255 * data[1] / data[0] + ', 0)'
-        const gameModeName = this.nameDestruct.transform(gamemode[game_mode].name, '_', 2);
-        const heroImg = hero[hero_id].img;
+        const gameModeName = this.nameDestruct.transform(gameMode[game_mode].name, '_', 2);
+        const heroImg = heroes[hero_id].img;
         const durationFormat = this.durationFormat.transform(duration);
         const tillToday = this.dateTillToday.transform(start_time * 1000);
         const fieldT = this.nameDestruct.transform(this.field, '_', 0, 'upperCase');

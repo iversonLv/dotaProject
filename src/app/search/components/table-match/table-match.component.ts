@@ -10,11 +10,13 @@ import { Store } from '@ngrx/store';
 // model
 import { ISingleMatchData } from 'src/app/matches/model/onematch';
 import * as matchesActions from 'src/app/matches/store/matches.actions';
-
-// service
-import { HerosService } from 'src/app/heros/services/heros.service';
-import { SkillService } from 'src/app/services/skill.service';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
+
+// dotaconstants
+import heroes from 'dotaconstants/build/heroes.json';
+
+// asset does not exists in dotaconstants
+import skills from '../../../../assets/data/skills.json';
 
 @Component({
   selector: 'app-table-match',
@@ -29,13 +31,11 @@ export class TableMatchComponent implements OnInit {
   dataSource = new MatTableDataSource();
 
   // User for hero modal to mapping
-  heroesLocal: IheroLocal;
-  skillLocal: any;
+  heroes: any = heroes;
+  skills: any = skills;
 
   constructor(
     private router: Router,
-    private herosService: HerosService,
-    private skillService: SkillService,
     private activatedRoute: ActivatedRoute,
     private store: Store<{ singleMatch: ISingleMatchData }>
   ) { }
@@ -59,25 +59,6 @@ export class TableMatchComponent implements OnInit {
       console.log(err);
     });
 
-    // get all heroes local data
-    this.getHeroesLocal();
-    this.getSkillLocal();
-  }
-
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      this.heroesLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getSkillLocal(): any {
-    this.skillService.getSkillLocal().subscribe(data => {
-      this.skillLocal = data;
-    }, err => {
-      console.log(err);
-    });
   }
 
   goPage(heroId): any {

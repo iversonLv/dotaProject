@@ -77,34 +77,4 @@ export class HerosService {
     return this.generalService.get(`/heroes/${heroId}/itemPopularity`);
   }
 
-  // get Hero local
-  getHeroesLocal(): Observable<IheroLocal> {
-    return this.generalService.getGitRawData(`/heroes.json`);
-  }
-
-  // get Hero name local
-  getHeroesNameLocal(): Observable<IheroLocal> {
-    return this.generalService.getGitRawData('/hero_names.json');
-  }
-
-  // get Hero ability local
-  getHeroesAbilitiesTalentsLocal(): Observable<IHeroAbility> {
-    return this.generalService.getGitRawData(`/hero_abilities.json`);
-  }
-
-  // get all abilities local
-  getAbilitiesTalentsLocal(): Observable<IAbility> {
-    return this.generalService.getGitRawData(`/abilities.json`);
-  }
-
-  // get all abilities local by id
-  getAbilitiesByIdLocal(): Observable<any> {
-    return this.generalService.getGitRawData(`/ability_ids.json`);
-  }
-
-  // get all hero lore
-  getHeroesLoreLocal(): Observable<any> {
-    return this.generalService.getGitRawData(`/hero_lore.json`);
-  }
-
 }

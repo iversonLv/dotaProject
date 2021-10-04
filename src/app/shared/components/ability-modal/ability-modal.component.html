@@ -1,31 +1,31 @@
-<div class="item-tooltip" *ngIf="abilitiesTalentsLocal && item && abilitiesTalentsLocal[item].dname && abilitiesTalentsLocal[item].img" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
+<div class="item-tooltip" *ngIf="abilities && item && abilities[item].dname && abilities[item].img" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
   <div class="item-main box">
     <img
     onError="this.src='./assets/images/Dota2Logo.svg'"
-    height="50px" [src]="'https://steamcdn-a.akamaihd.net' + abilitiesTalentsLocal[item].img" />
+    height="50px" [src]="'https://steamcdn-a.akamaihd.net' + abilities[item].img" />
     <div class="item-main-right">
-      <h3>{{abilitiesTalentsLocal[item].dname}}</h3>
+      <h3>{{abilities[item].dname}}</h3>
     </div>
   </div>
   <!-- item-main -->
   <div class="item-sub box">
-    <div class="item-row" *ngIf="abilitiesTalentsLocal[item].behavior">
-      <label>TARGET:</label> {{abilitiesTalentsLocal[item].behavior}}
+    <div class="item-row" *ngIf="abilities[item].behavior">
+      <label>TARGET:</label> {{abilities[item].behavior}}
     </div>
     <!-- item-row -->
-    <div class="item-row" *ngIf="abilitiesTalentsLocal[item].dmg_type">
-      <label>DAMAGE TYPE:</label> {{abilitiesTalentsLocal[item].dmg_type}}
+    <div class="item-row" *ngIf="abilities[item].dmg_type">
+      <label>DAMAGE TYPE:</label> {{abilities[item].dmg_type}}
     </div>
     <!-- item-row -->
-    <div class="item-row" *ngIf="abilitiesTalentsLocal[item].bkbpierce">
-      <label>PIERCES SPELL IMMUNITY:</label> <span [class]="abilitiesTalentsLocal[item].bkbpierce === 'No' ? 'red-txt' : 'green-txt'">{{abilitiesTalentsLocal[item].bkbpierce}}</span>
+    <div class="item-row" *ngIf="abilities[item].bkbpierce">
+      <label>PIERCES SPELL IMMUNITY:</label> <span [class]="abilities[item].bkbpierce === 'No' ? 'red-txt' : 'green-txt'">{{abilities[item].bkbpierce}}</span>
     </div>
   </div>
-  <div class="item-desc box" [innerHTML]="abilitiesTalentsLocal[item].desc">
+  <div class="item-desc box" [innerHTML]="abilities[item].desc">
   </div>
   <div class="item-sub box">
     <div
-    *ngFor="let item of abilitiesTalentsLocal[item].attrib"
+    *ngFor="let item of abilities[item].attrib"
     class="item-row">
       <label>{{item.header}}</label>
       <span *ngFor="let value of item.value | stringToArray" class="item-value">
@@ -40,27 +40,27 @@
       <img
       onError="this.src='./assets/images/Dota2Logo.svg'"
       width="15px" height="15px" src="assets/images/mana.png">
-      <span *ngFor="let value of abilitiesTalentsLocal[item].mc | stringToArray" class="item-value">{{value}}</span>
+      <span *ngFor="let value of abilities[item].mc | stringToArray" class="item-value">{{value}}</span>
     </span>
     <span class="item-cd">
       <img
       onError="this.src='./assets/images/Dota2Logo.svg'"
       width="15px" height="15px" src="assets/images/cooldown.png">
-      <span *ngFor="let value of abilitiesTalentsLocal[item].cd | stringToArray" class="item-value">{{value}}</span>
+      <span *ngFor="let value of abilities[item].cd | stringToArray" class="item-value">{{value}}</span>
     </span>
   </div>
 </div>
 <!-- only for talent ability icon and dname -->
 
 <div
-  *ngIf="abilitiesTalentsLocal && item && abilitiesTalentsLocal[item].dname && !abilitiesTalentsLocal[item].img"
+  *ngIf="abilities && item && abilities[item].dname && !abilities[item].img"
   class="item-tooltip item-tooltip-talent-only" [style]="'left:' + pageXY[0] + 'px; top:' + (pageXY[1] + 250) + 'px'">
   <div class="item-main box">
     <img
     onError="this.src='./assets/images/Dota2Logo.svg'"
     height="50px" src='./assets/images/talent_tree.svg' />
     <div class="item-main-right">
-      <h3>{{abilitiesTalentsLocal[item].dname}}</h3>
+      <h3>{{abilities[item].dname}}</h3>
     </div>
   </div>
   <!-- item-main -->

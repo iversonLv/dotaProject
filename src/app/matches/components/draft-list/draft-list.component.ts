@@ -14,7 +14,7 @@ export class DraftListComponent implements OnInit {
   @Input() radiantTeam: ISingleMatchTeam;
   @Input() direTeam: ISingleMatchTeam;
   // User for hero modal to mapping
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   constructor() { }
 
   ngOnInit(): void {

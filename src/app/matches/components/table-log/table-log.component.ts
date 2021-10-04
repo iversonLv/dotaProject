@@ -7,11 +7,8 @@ import { MatTableDataSource } from '@angular/material/table';
 // model
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 
-// service
-import { RunesService } from 'src/app/services/runes.service';
-import { MapItemsService } from 'src/app/services/map-items.service';
-
-
+// assets does not exist in dotaconstants
+import runes from '../../../../assets/data/runes.json';
 
 
 @Component({
@@ -20,19 +17,19 @@ import { MapItemsService } from 'src/app/services/map-items.service';
   styleUrls: ['./table-log.component.scss']
 })
 export class TableLogComponent implements OnInit {
-  @Input() playerColorLocal: any;
-  @Input() heroesLocal: IheroLocal;
-  @Input() heroesNameLocal: IheroLocal;
+  @Input() playerColors: any;
+  @Input() heroes: IheroLocal;
+  @Input() heroNames: IheroLocal;
   @Input() data: any[];
   @Input() objectives: any[];
-  @Input() mapItemLocal: any;
+  @Input() mapItem: any;
   @ViewChild(MatSort) set matSort(mp: MatSort) {
     this.sort = mp;
     this.setDataSourceAttributes();
   }
   dataSource = new MatTableDataSource();
 
-  runesLocal: any;
+  runes: any = runes;
 
   sort;
   displayedColumns: string[] = ['time', 'isRadiant', 'player_slot', 'delta'];
@@ -60,11 +57,9 @@ export class TableLogComponent implements OnInit {
   heroAllItems = [];
 
   constructor(
-    private runesService: RunesService,
   ) {}
 
   ngOnInit(): void {
-    this.getRunesLocal();
     // extract the data
     this.dataSource.data = this.extractData();
     // this.filterData(this.extractData(), this.logFilterObj);
@@ -80,9 +75,9 @@ export class TableLogComponent implements OnInit {
   extractHeroList(data: any): any[] {
     data.forEach(i => {
       const { hero_id } = i;
-      this.heroList.push(this.heroesLocal[hero_id]?.name);
-      this.heroAllItems.push(this.heroesLocal[hero_id]?.name);
-      this.logFilterObj[this.heroesLocal[hero_id]?.name] = false;
+      this.heroList.push(this.heroes[hero_id]?.name);
+      this.heroAllItems.push(this.heroes[hero_id]?.name);
+      this.logFilterObj[this.heroes[hero_id]?.name] = false;
     });
     // console.log(this.heroList);
     return this.heroList;
@@ -118,7 +113,7 @@ export class TableLogComponent implements OnInit {
           side: isRadiant ? 'radiant' : 'dire',
           isRadiant,
           log_type: field,
-          hero: this.heroesLocal[hero_id].name
+          hero: this.heroes[hero_id].name
         });
       } else if (!i.player_slot && i.unit) {
         specificLogData.push({
@@ -164,7 +159,7 @@ export class TableLogComponent implements OnInit {
           isRadiant,
           ...l,
           log_type: field,
-          hero: this.heroesLocal[hero_id].name
+          hero: this.heroes[hero_id].name
         });
       });
       specificLogData.push(...log);
@@ -174,14 +169,6 @@ export class TableLogComponent implements OnInit {
 
   setDataSourceAttributes(): any {
     this.dataSource.sort = this.sort;
-  }
-
-  getRunesLocal(): any {
-    this.runesService.getRunesLocal().subscribe(data => {
-      this.runesLocal = data;
-    }, err => {
-      console.log(err);
-    });
   }
 
   filterData(data: any[], keys: any, filterHero: boolean): any[] {

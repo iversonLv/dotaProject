@@ -9,9 +9,9 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
   styleUrls: ['./hero-icon-player-name.component.scss']
 })
 export class HeroIconPlayerNameComponent implements OnInit {
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   @Input() player: any;
-  @Input() playerColorLocal: any;
+  @Input() playerColors: any;
   constructor() { }
 
   ngOnInit(): void {

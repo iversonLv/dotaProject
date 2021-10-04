@@ -1,4 +1,4 @@
-<div *ngIf="data && heroesLocal">
+<div *ngIf="data && heroes">
   <div class="team-row">
     <div class="team-radiant">
       <app-radient></app-radient>
@@ -17,8 +17,8 @@
         onError="this.src='./assets/images/Dota2Logo.svg'"
         width="104" height="58"
         [class]="!item.is_pick ? 'is-banned' : ''"
-        *ngIf="item.hero_id && heroesLocal"
-        src="https://steamcdn-a.akamaihd.net/{{heroesLocal[item.hero_id]['img']}}"
+        *ngIf="item.hero_id && heroes"
+        src="https://steamcdn-a.akamaihd.net/{{heroes[item.hero_id]['img']}}"
       />
     </div>
     <span class="middle-text">

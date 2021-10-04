@@ -18,9 +18,9 @@ import { DurationFormatPipe } from 'src/app/shared/utils/duration-format.pipe';
 })
 export class TableMatchDetailWardLogComponent implements OnInit, OnChanges {
   @Input() data: any;
-  @Input() playerColorLocal: any;
-  @Input() heroesLocal: IheroLocal;
-  @Input() heroesNameLocal: IheroLocal;
+  @Input() playerColors: any;
+  @Input() heroes: IheroLocal;
+  @Input() heroNames: IheroLocal;
   @Input() showHideVisionPlayersData: any;
   @Input() visionTimeLine: number;
 
@@ -67,7 +67,7 @@ export class TableMatchDetailWardLogComponent implements OnInit, OnChanges {
 
   extractDataFromAttackername(data: any, attackername: string): any {
     if (attackername !== 'npc_dota_observer_wards') {
-      const heroId = this.heroesNameLocal[attackername]?.id;
+      const heroId = this.heroNames[attackername]?.id;
       const d = [...data];
       const player = d.filter(i => i.hero_id === heroId);
       if (player.length > 0) {

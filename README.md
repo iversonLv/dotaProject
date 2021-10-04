@@ -89,10 +89,10 @@ environment.pro.ts
     - [x] GET Heroes Players (2021.2.16)
     - [x] GET Heroes ItemPopularity (2021.2.16)
       <!-- local data -->
-    - [x] GET Heroes local (2021.1)
-    - [x] GET Heroes Abilities (2021.2)
-    - [x] GET Ablitities Talents List (2021.2)
-    - [X] GET Heros stas (2021.3.1)(2021.3.2)
+    - [x] GET Heroes local (2021.1) deprecated, load from dotaconstants directly(2021.10.4)
+    - [x] GET Heroes Abilities (2021.2) deprecated, load from dotaconstants directly(2021.10.4)
+    - [x] GET Ablitities Talents List (2021.2) deprecated, load from dotaconstants directly(2021.10.4)
+    - [X] GET Heros stas (2021.3.1)(2021.3.2) deprecated, load from dotaconstants directly(2021.10.4)
   - [x] Records service
     - [x] GET Records list data (2021.2.26)
   - [x] Matches service
@@ -136,7 +136,7 @@ environment.pro.ts
     - [x] Players wordcloud page  (2021.3.8) I used treemap rather than use word cloud as no suite plugin for it currently
     - [x] Players mmr page (2021.3.8)
     - [95%] Players rankings page TODO: rank coulmn, don't know how to cal(2021.1)
-    - [98%] Players Activities page (2021.2.22,23 ) TODO: click same different cell within same calendar won't update, cell style for click
+    - [99%] Players Activities page (2021.2.22,23 ) TODO: cell style for click,
   - [x] Matches page  (2021.3)  SETUP pages and route for all pages, tabs
     - [x] Matches list page (2021.3.2)(2021.3.3)
       - [x] Matches pro TODO: first column the time is start_time + duration, now mine is only start_time
@@ -185,6 +185,7 @@ environment.pro.ts
   - [] Maybe update abliltiy modal and item modal like player box in separated component with img and modal?
   - [] Update all win game player slot 120 as some RPG co op RADIENT player slot from 0-25
   - [X] Update all image onError="this.src='./assets/images/Dota2Logo.svg'"
+  - [] Improve the match page 5K matches load speed, now looked freeze the page
 [] Deploy
   - [x] Setup the repo on github page(2021.2.26)
   - [x] Deploy to github page (2021.2.26)

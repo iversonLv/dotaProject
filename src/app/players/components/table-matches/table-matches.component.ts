@@ -13,19 +13,22 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 // model
-
 import { IHeroes, IMatch, IMatchData } from 'src/app/matches/model/match';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 import { IItemColorLocal } from 'src/app/shared/model/item_color';
-
-// service
-import { HerosService } from 'src/app/heros/services/heros.service';
-import { LobbyTypeService } from 'src/app/services/lobby-type.service';
-import { GameModeService } from 'src/app/services/game-mode.service';
-import { SkillService } from 'src/app/services/skill.service';
-import { ItemsService } from 'src/app/services/items.service';
 import { IRecentMatch, IRecentMatchData } from 'src/app/matches/model/recent-match';
-import { LaneRoleService } from 'src/app/services/lane-role.service';
+
+// dotaconstants
+import heroes from 'dotaconstants/build/heroes.json';
+import lobbyType from 'dotaconstants/build/lobby_type.json';
+import gameMode from 'dotaconstants/build/game_mode.json';
+import itemIds from 'dotaconstants/build/item_ids.json';
+import itemColors from 'dotaconstants/build/item_colors.json';
+import items from 'dotaconstants/build/items.json';
+
+// assets json which not exist in dotaconstatns
+import laneRole from '../../../../assets/data/lane_role.json';
+import skills from '../../../../assets/data/skills.json';
 
 @Component({
   selector: 'app-table-matches',
@@ -58,7 +61,7 @@ export class TableMatchesComponent implements OnInit {
   playersRecentMatches$: Observable<IRecentMatchData>;
 
   queryParams;
-  items: number[];
+  itemsArr: number[];
 
   // hero modal default hidden
   showHeroModal = false;
@@ -71,14 +74,14 @@ export class TableMatchesComponent implements OnInit {
   agaistOrWith;
 
   // User for hero modal to mapping
-  heroesLocal: IheroLocal;
-  lobbyTypeLocal: any;
-  gameModeLocal: any;
-  skillLocal: any;
-  laneRoleLocal: any;
-  itemIdsLocal: any;
-  itemsLocal: any;
-  itemColorLocal: IItemColorLocal;
+  heroes: any = heroes;
+  lobbyType: any = lobbyType;
+  gameMode: any = gameMode;
+  skills: any = skills;
+  laneRole: any = laneRole;
+  itemIds: any = itemIds;
+  items: any = items;
+  itemColors: IItemColorLocal = itemColors;
 
   // table for matches
   // displayedColumnsItems: string[] = ['hero_id', 'result', 'game_mode', 'duration', 'kills', 'deaths', 'assists', 'items'];
@@ -87,12 +90,6 @@ export class TableMatchesComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private herosService: HerosService,
-    private lobbyTypeService: LobbyTypeService,
-    private gameModeService: GameModeService,
-    private itemsService: ItemsService,
-    private skillService: SkillService,
-    private laneRoleService: LaneRoleService,
     private store: Store<{
       playersMatches: IMatchData,
       playersRecentMatches: IRecentMatchData,
@@ -132,22 +129,13 @@ export class TableMatchesComponent implements OnInit {
       });
     }
 
-    // get all heroes local data
-    this.getHeroesLocal();
-    this.getLobbyTypeLocal();
-    this.getGameModeLocal();
-    this.getSkillLocal();
-    this.getLaneRoleLocal();
-    this.getItemIdsLocal();
-    this.getItemsLocal();
-    this.getItemColorLocal();
   }
 
-  calAgaistOrWith(mySlot: number, heroes: IHeroes): any {
+  calAgaistOrWith(mySlot: number, heroesData: IHeroes): any {
     // grab user agaist or width id from queryParams
     const agaistOrWithId = +this.queryParams.params.included_account_id;
     // find user from request data heroes obj to match the id
-    const agaistOrWithHero = Object.values(heroes).find(item => item.account_id === agaistOrWithId);
+    const agaistOrWithHero = Object.values(heroesData).find(item => item.account_id === agaistOrWithId);
     // find this user slot
     const agaistOrWithSlot = agaistOrWithHero?.player_slot;
     // console.log(mySlot, agaistOrWithHero)
@@ -158,7 +146,6 @@ export class TableMatchesComponent implements OnInit {
      return 'Agaist';
     }
   }
-
 
   setDataSourceAttributes(): any {
     this.dataSource.sort = this.sort;
@@ -176,81 +163,16 @@ export class TableMatchesComponent implements OnInit {
     }
   }
 
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      this.heroesLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getLobbyTypeLocal(): any {
-    this.lobbyTypeService.getLobbyTypeLocal().subscribe(data => {
-      this.lobbyTypeLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getGameModeLocal(): any {
-    this.gameModeService.getGameModeLocal().subscribe(data => {
-      this.gameModeLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-
-  getLaneRoleLocal(): any {
-    this.laneRoleService.getLaneRoleLocal().subscribe(data => {
-      this.laneRoleLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getSkillLocal(): any {
-    this.skillService.getSkillLocal().subscribe(data => {
-      this.skillLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getItemIdsLocal(): any {
-    this.itemsService.getItemIdsLocal().subscribe(data => {
-    this.itemIdsLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getItemColorLocal(): any {
-    this.itemsService.getItemColorLocal().subscribe(data => {
-      this.itemColorLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getItemsLocal(): any {
-    this.itemsService.getItemsLocal().subscribe(data => {
-    this.itemsLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
   showHeroModalFn(e, id): any {
     this.pageXY = [e.pageX + 50, e.pageY - 120];
     this.showHeroModal = true;
-    this.currentMouseOverHero = this.heroesLocal[id];
+    this.currentMouseOverHero = this.heroes[id];
   }
 
   showItemModalFn(e, id): any {
     this.pageXY = [e.pageX - 350, e.pageY - 120];
     this.showItemModal = true;
-    this.currentMouseOverItem = this.itemsLocal[this.itemIdsLocal[id]];
+    this.currentMouseOverItem = this.items[this.itemIds[id]];
   }
 
 }

@@ -9,15 +9,15 @@
       <ng-container matColumnDef="hero_id" *ngIf="displayedColumns.includes('hero_id')">
         <th mat-header-cell *matHeaderCellDef mat-sort-header > HERO </th>
         <td mat-cell *matCellDef="let element">
-          <div *ngIf="element.hero_id && heroesLocal" class="ver-align">
+          <div *ngIf="element.hero_id && heroes" class="ver-align">
             <app-img
-                [data]="heroesLocal[element['hero_id']]['img']"
+                [data]="heroes[element['hero_id']]['img']"
                 class="hero-img sm-hero-img"
-                [altData]="heroesLocal[element['hero_id']]['localized_name']"
+                [altData]="heroes[element['hero_id']]['localized_name']"
                 (mouseover)="showHeroModalFn($event, element.hero_id)" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
               ></app-img>
             <div class="account-date">
-              <a class="account_link" [routerLink]="['/heroes', element.hero_id]">{{heroesLocal[element.hero_id]['localized_name']}} ></a>
+              <a class="account_link" [routerLink]="['/heroes', element.hero_id]">{{heroes[element.hero_id]['localized_name']}} ></a>
             </div>
           </div>
         </td>

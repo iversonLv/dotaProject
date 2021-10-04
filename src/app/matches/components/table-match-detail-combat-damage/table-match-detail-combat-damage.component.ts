@@ -8,7 +8,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 })
 export class TableMatchDetailCombatDamageComponent implements OnInit {
   @Input() data: any;
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   constructor() { }
 
   ngOnInit(): void {

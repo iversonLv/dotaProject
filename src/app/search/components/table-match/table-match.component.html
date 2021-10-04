@@ -11,8 +11,8 @@
           <div class="ver-align">
             <div class="account-date">
               <a class="account_link" [routerLink]="['/matches', element.match_id]">{{element.match_id}} ></a>
-              <span *ngIf="element.skill !== null && skillLocal" class="skill-text">{{skillLocal[element.skill].name | nameDestruct: '_' : 1}}</span>
-              <span *ngIf="element.skill === null && skillLocal" class="skill-text-unknow">Unknow Skill</span>
+              <span *ngIf="element.skill !== null && skills" class="skill-text">{{skills[element.skill].name | nameDestruct: '_' : 1}}</span>
+              <span *ngIf="element.skill === null && skills" class="skill-text-unknow">Unknow Skill</span>
             </div>
           </div>
         </td>
@@ -35,10 +35,10 @@
           <div>
             <span *ngFor="let item of element.players | slice: 0:5">
               <app-img
-                [data]="heroesLocal[item['hero_id']]['img']"
+                [data]="heroes[item['hero_id']]['img']"
                 (click)="goPage(item['hero_id'])"
                 class="hero-img sm-hero-img"
-                [altData]="heroesLocal[item['hero_id']]['localized_name']"
+                [altData]="heroes[item['hero_id']]['localized_name']"
               ></app-img>
             </span>
           </div>
@@ -52,10 +52,10 @@
           <div>
             <span *ngFor="let item of element.players | slice: 5:10">
               <app-img
-                [data]="heroesLocal[item['hero_id']]['img']"
+                [data]="heroes[item['hero_id']]['img']"
                 (click)="goPage(item['hero_id'])"
                 class="hero-img sm-hero-img"
-                [altData]="heroesLocal[item['hero_id']]['localized_name']"
+                [altData]="heroes[item['hero_id']]['localized_name']"
               ></app-img>
             </span>
           </div>

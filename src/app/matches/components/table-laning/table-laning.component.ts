@@ -14,9 +14,9 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 })
 export class TableLaningComponent implements OnInit {
   @Input() data: any;
-  @Input() playerColorLocal: any;
-  @Input() heroesLocal: IheroLocal;
-  @Input() laneRoleLocal: any;
+  @Input() playerColors: any;
+  @Input() heroes: IheroLocal;
+  @Input() laneRole: any;
 
   @ViewChild(MatSort) set matSort(mp: MatSort) {
     this.sort = mp;

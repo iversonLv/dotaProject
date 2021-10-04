@@ -15,8 +15,8 @@ import { ICosmetic } from 'src/app/shared/model/cosmetic';
 })
 export class TableCosmeticsComponent implements OnInit {
   @Input() data: any;
-  @Input() playerColorLocal: any;
-  @Input() heroesLocal: IheroLocal;
+  @Input() playerColors: any;
+  @Input() heroes: IheroLocal;
 
   @ViewChild(MatSort) set matSort(mp: MatSort) {
     this.sort = mp;

@@ -17,7 +17,7 @@ import { GreaterNumPipe } from '../../../shared/utils/greater-num.pipe';
 })
 export class ChartStackBarComponent implements OnInit {
   @Input() data: any;
-  @Input() heroesLocal: IheroLocal;
+  @Input() heroes: IheroLocal;
   @Input() field;
   @Input() mapping;
   chartOption: EChartsOption;
@@ -39,7 +39,7 @@ export class ChartStackBarComponent implements OnInit {
               return '{' + value + '| }\n{value|}';
           },
           rich: {
-            ...this.calXDataRich(this.data, this.field, this.heroesLocal)
+            ...this.calXDataRich(this.data, this.field, this.heroes)
           }
         },
       },
@@ -86,10 +86,10 @@ export class ChartStackBarComponent implements OnInit {
   }
 
   // for xAxis hero image
-  calXDataRich(data, field, heroesLocal): any {
+  calXDataRich(data, field, heroes): any {
     const xDataRich = {};
     this.calXData(data, field).forEach(x => {
-      const heroImg = heroesLocal[x].img;
+      const heroImg = heroes[x].img;
       const img = {
         image: null
       };

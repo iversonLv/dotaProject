@@ -52,10 +52,10 @@
             <app-win *ngIf="element.radiant_win" class="icon-win"></app-win>
             <span *ngFor="let item of element.radiant_team.split(',')">
               <app-img
-                [data]="heroesLocal[item]['img']"
+                [data]="heroes[item]['img']"
                 (click)="goPage(item)"
                 class="hero-img sm-hero-img"
-                [altData]="heroesLocal[item]['localized_name']"
+                [altData]="heroes[item]['localized_name']"
               ></app-img>
             </span>
           </div>
@@ -70,10 +70,10 @@
             <app-win *ngIf="!element.radiant_win" class="icon-win"></app-win>
             <span *ngFor="let item of element.dire_team.split(',')">
               <app-img
-                [data]="heroesLocal[item]['img']"
+                [data]="heroes[item]['img']"
                 (click)="goPage(item)"
                 class="hero-img sm-hero-img"
-                [altData]="heroesLocal[item]['localized_name']"
+                [altData]="heroes[item]['localized_name']"
               ></app-img>
             </span>
           </div>

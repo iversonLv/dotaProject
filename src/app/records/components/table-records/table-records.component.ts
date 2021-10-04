@@ -9,12 +9,12 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 import { IHeroesPlayed } from 'src/app/players/model/hero-played';
 import { IRecordData } from '../../model/record';
 
-// service
-import { HerosService } from 'src/app/heros/services/heros.service';
-
 // ngrx
 import { Store } from '@ngrx/store';
 import * as recordsActions from '../../store/records.actions';
+
+// dotaconstatns
+import heroes from 'dotaconstants/build/heroes.json';
 
 
 @Component({
@@ -34,7 +34,7 @@ export class TableRecordsComponent implements OnInit {
   playersHeroesPlayed: IHeroesPlayed[];
 
   // User for hero modal to mapping
-  heroesLocal: IheroLocal;
+  heroes: any = heroes;
 
   // hero modal dafault hidden
   currentMouseOverHero: IheroLocal = null;
@@ -44,7 +44,6 @@ export class TableRecordsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private herosService: HerosService,
     private store: Store<{ recordsList: IRecordData }>,
   ) { }
 
@@ -67,23 +66,12 @@ export class TableRecordsComponent implements OnInit {
       console.log(err);
     });
 
-    // get all heroes local data
-    this.getHeroesLocal();
-
-  }
-
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      this.heroesLocal = data;
-    }, err => {
-      console.log(err);
-    });
   }
 
   showHeroModalFn(e, id): any {
     this.pageXY = [e.pageX + 50, e.pageY - 120];
     this.showHeroModal = true;
-    this.currentMouseOverHero = this.heroesLocal[id];
+    this.currentMouseOverHero = this.heroes[id];
   }
 
 }

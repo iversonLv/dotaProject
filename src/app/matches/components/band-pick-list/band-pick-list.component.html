@@ -1,13 +1,13 @@
-<div *ngIf="data && heroesLocal" class="ban-pick-list">
+<div *ngIf="data && heroes" class="ban-pick-list">
   <div *ngFor="let item of data" class="ban-pick-item">
     <div class="hero-img" [routerLink]="['/heroes', item.hero_id]">
       <mat-icon class="banned-icon" *ngIf="!item.is_pick">block</mat-icon>
       <app-img
-        *ngIf="item['hero_id'] && heroesLocal"
-        [data]="heroesLocal[item['hero_id']]['img']"
+        *ngIf="item['hero_id'] && heroes"
+        [data]="heroes[item['hero_id']]['img']"
         [class]="!item.is_pick ? 'is-banned' : ''"
         class="hero-img sm-hero-img"
-        [altData]="heroesLocal[item['hero_id']]['localized_name']"
+        [altData]="heroes[item['hero_id']]['localized_name']"
       ></app-img>
     </div>
     <span class="middle-text">

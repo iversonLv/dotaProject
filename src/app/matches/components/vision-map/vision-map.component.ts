@@ -16,9 +16,9 @@ import { DurationFormatPipe } from 'src/app/shared/utils/duration-format.pipe';
 export class VisionMapComponent implements OnInit, OnChanges {
   @Input() data: any;
   @Input() showHideVisionPlayersData: any;
-  @Input() playerColorLocal: any;
-  @Input() heroesNameLocal: IheroLocal;
-  @Input() heroesLocal: IheroLocal;
+  @Input() playerColors: any;
+  @Input() heroNames: IheroLocal;
+  @Input() heroes: IheroLocal;
   @Input() visionTimeLine: number;
 
 

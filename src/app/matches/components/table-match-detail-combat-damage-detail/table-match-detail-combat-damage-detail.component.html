@@ -3,7 +3,7 @@
   <ng-container matColumnDef="player_slot" *ngIf="displayedColumns.includes('player_slot')">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
     <td mat-cell *matCellDef="let element">
-      <app-player-box [data]="element" [heroesLocal]="heroesLocal" [playerColorLocal]="playerColorLocal"></app-player-box>
+      <app-player-box [data]="element" [heroes]="heroes" [playerColors]="playerColors"></app-player-box>
     </td>
   </ng-container>
 
@@ -19,10 +19,10 @@
             <img
               width="35px"
               class="item"
-              *ngIf="item && itemsLocal && itemsLocal[item?.key]?.img"
+              *ngIf="item && items && items[item?.key]?.img"
               onError="this.src='./assets/images/Dota2Logo.svg'"
-              [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[item?.key]?.img"
-              (mouseover)="showItemModalFn.emit([$event, itemsLocal[item?.key]?.id])"
+              [src]="'https://steamcdn-a.akamaihd.net/' + items[item?.key]?.img"
+              (mouseover)="showItemModalFn.emit([$event, items[item?.key]?.id])"
               (mouseout)="hideItemModalFn.emit($event)"
             />
           
@@ -30,9 +30,9 @@
             <img
               width="35px"
               class="item"
-              *ngIf="item && abilitiesTalentsLocal && abilitiesTalentsLocal[item?.key]?.img"
+              *ngIf="item && abilities && abilities[item?.key]?.img"
               onError="this.src='./assets/images/Dota2Logo.svg'"
-              [src]="'https://steamcdn-a.akamaihd.net/' + abilitiesTalentsLocal[item?.key]?.img"
+              [src]="'https://steamcdn-a.akamaihd.net/' + abilities[item?.key]?.img"
               (mouseover)="showAbilityModalFn.emit([$event, item?.key])"
               (mouseout)="hideAbilityModalFn.emit($event)"
             />
@@ -57,9 +57,9 @@
                 <img
                   width="32px"
                   class="item"
-                  *ngIf="target && target?.key && heroesNameLocal && heroesNameLocal[target?.key]?.icon"
+                  *ngIf="target && target?.key && heroNames && heroNames[target?.key]?.icon"
                   onError="this.src='./assets/images/Dota2Logo.svg'"
-                  [src]="'https://steamcdn-a.akamaihd.net/' + heroesNameLocal[target?.key]?.icon"
+                  [src]="'https://steamcdn-a.akamaihd.net/' + heroNames[target?.key]?.icon"
                 />
               <span class="middle-text">{{target?.value | greaterNum: 1000 : 'k'}}</span>
             </div>
@@ -82,10 +82,10 @@
             <img
               width="35px"
               class="item"
-              *ngIf="item && itemsLocal && itemsLocal[item?.key]?.img"
+              *ngIf="item && items && items[item?.key]?.img"
               onError="this.src='./assets/images/Dota2Logo.svg'"
-              [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[item?.key]?.img"
-              (mouseover)="showItemModalFn.emit([$event, itemsLocal[item?.key]?.id])"
+              [src]="'https://steamcdn-a.akamaihd.net/' + items[item?.key]?.img"
+              (mouseover)="showItemModalFn.emit([$event, items[item?.key]?.id])"
               (mouseout)="hideItemModalFn.emit($event)"
             />
           
@@ -93,9 +93,9 @@
             <img
               width="35px"
               class="item"
-              *ngIf="item && abilitiesTalentsLocal && abilitiesTalentsLocal[item?.key]?.img"
+              *ngIf="item && abilities && abilities[item?.key]?.img"
               onError="this.src='./assets/images/Dota2Logo.svg'"
-              [src]="'https://steamcdn-a.akamaihd.net/' + abilitiesTalentsLocal[item?.key]?.img"
+              [src]="'https://steamcdn-a.akamaihd.net/' + abilities[item?.key]?.img"
               (mouseover)="showAbilityModalFn.emit([$event, item?.key])"
               (mouseout)="hideAbilityModalFn.emit($event)"
             />

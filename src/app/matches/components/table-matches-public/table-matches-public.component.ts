@@ -13,8 +13,10 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 import { IPublicMatchData } from '../../model/public-match';
 
 // service
-import { HerosService } from 'src/app/heros/services/heros.service';
 import { Router } from '@angular/router';
+
+// dotaconstants
+import heroes from 'dotaconstants/build/heroes.json';
 
 @Component({
   selector: 'app-table-matches-public',
@@ -31,12 +33,11 @@ export class TableMatchesPublicComponent implements OnInit {
 
   sort;
   // User for hero modal to mapping
-  heroesLocal: IheroLocal;
+  heroes: any = heroes;
 
   isLoading = true;
   constructor(
     private router: Router,
-    private herosService: HerosService,
     private store: Store<{ publicMatches: IPublicMatchData }>
   ) { }
 
@@ -49,17 +50,6 @@ export class TableMatchesPublicComponent implements OnInit {
         this.isLoading = data.isLoading;
         return this.dataSource.data = publicMatchesData;
       }
-    }, err => {
-      console.log(err);
-    });
-
-    // get all heroes local data
-    this.getHeroesLocal();
-  }
-
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      this.heroesLocal = data;
     }, err => {
       console.log(err);
     });

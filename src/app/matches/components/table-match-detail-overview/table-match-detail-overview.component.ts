@@ -15,11 +15,11 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 export class TableMatchDetailOverviewComponent implements OnInit {
   @Input() data: any;
   @Input() dataRange: number[]; // because the table need calculate the largest number and show under line style
-  @Input() playerColorLocal: any;
-  @Input() heroesLocal: IheroLocal;
-  @Input() itemIdsLocal: any;
-  @Input() itemsLocal: any;
-  @Input() abilitiesTalentsLocal: any;
+  @Input() playerColors: any;
+  @Input() heroes: IheroLocal;
+  @Input() itemIds: any;
+  @Input() items: any;
+  @Input() abilities: any;
   @Input() permanentBuffsLocal: any;
   @Output() showItemModalFn: any = new EventEmitter();
   @Output() hideItemModalFn: any = new EventEmitter();

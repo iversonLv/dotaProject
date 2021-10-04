@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ItemsService } from 'src/app/services/items.service';
 import { IItemLocal } from '../../model/item';
 
 @Component({
@@ -51,12 +50,12 @@ export class ItemModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.getItemsLocal();
+    // this.getitems();
   }
 
-  // getItemsLocal(): any {
-  //   this.itemsService.getItemsLocal().subscribe(data => {
-  //   this.itemsLocal = data;
+  // getitems(): any {
+  //   this.itemsService.getitems().subscribe(data => {
+  //   this.items = data;
   //   }, err => {
   //     console.log(err);
   //   });

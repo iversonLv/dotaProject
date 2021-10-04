@@ -5,19 +5,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as playersActions from '../../store/players.actions';
 
-// service
-import { GameModeService } from 'src/app/services/game-mode.service';
-import { LaneRoleService } from 'src/app/services/lane-role.service';
-import { LobbyTypeService } from 'src/app/services/lobby-type.service';
-import { RegionService } from 'src/app/services/region.service';
-import { LeaverStatusService } from 'src/app/services/leaver-status.service';
-import { SideService } from 'src/app/services/side.service';
-
 // model
 import { ICountData } from '../../model/count';
 
 // dotaconstans
 import patch from 'dotaconstants/build/patch.json';
+import gameMode from 'dotaconstants/build/game_mode.json';
+import lobbyType from 'dotaconstants/build/lobby_type.json';
+import region from 'dotaconstants/build/region.json';
+
+// assets which do not exist in dotaconstants
+import laneRole from '../../../../assets/data/lane_role.json';
+import sides from '../../../../assets/data/sides.json';
+import leaverStatus from '../../../../assets/data/leaver_status.json';
 
 @Component({
   selector: 'app-counts',
@@ -27,22 +27,16 @@ import patch from 'dotaconstants/build/patch.json';
 export class CountsComponent implements OnInit {
   isLoading = false;
   queryParams;
-  leaverStatusLocal: any;
-  gameModeLocal: any;
-  lobbyTypeLocal: any;
-  laneRoleLocal: any;
-  regionLocal: any;
-  patch: any;
-  sidesLocal: any;
+  leaverStatus: any = leaverStatus;
+  gameMode: any = gameMode;
+  lobbyType: any = lobbyType;
+  laneRole: any = laneRole;
+  region: any = region;
+  patch: any = patch;
+  sides: any = sides;
   playersCountsDestructData: any = {};
 
   constructor(
-    private leaverStatusService: LeaverStatusService,
-    private gameModeService: GameModeService,
-    private lobbyTypeService: LobbyTypeService,
-    private laneRoleService: LaneRoleService,
-    private regionService: RegionService,
-    private sideService: SideService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<{ playersCounts: ICountData }>
@@ -92,63 +86,6 @@ export class CountsComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-
-    // get all heroes local data
-    this.getLeaverStatusLocal();
-    this.getGameModeLocal();
-    this.getLobbyTypeLocal();
-    this.getLaneRoleLocal();
-    this.getRegionLocal();
-    this.patch = patch;
-    this.getSidesLocal();
   }
 
-  getLeaverStatusLocal(): any {
-    this.leaverStatusService.getLeaverStatusLocal().subscribe(data => {
-      return this.leaverStatusLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getSidesLocal(): any {
-    this.sideService.getSidesLocal().subscribe(data => {
-      return this.sidesLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getRegionLocal(): any {
-    this.regionService.getRegionLocal().subscribe(data => {
-      this.regionLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getLobbyTypeLocal(): any {
-    this.lobbyTypeService.getLobbyTypeLocal().subscribe(data => {
-      this.lobbyTypeLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-  getGameModeLocal(): any {
-    this.gameModeService.getGameModeLocal().subscribe(data => {
-      this.gameModeLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-
-  getLaneRoleLocal(): any {
-    this.laneRoleService.getLaneRoleLocal().subscribe(data => {
-      this.laneRoleLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
 }

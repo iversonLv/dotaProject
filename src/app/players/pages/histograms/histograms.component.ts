@@ -8,8 +8,11 @@ import * as playersActions from '../../store/players.actions';
 // model
 import { IHistogram, IHistogramData } from '../../model/histogram';
 
-// service
-import { PlayersService } from '../../services/players.service';
+// assets which does not exist in dotaconstants
+import fields from '../../../../assets/data/fields.json';
+
+// utiles
+import { getFieldsLocal } from '../../../shared/utils/utils';
 
 
 @Component({
@@ -29,11 +32,9 @@ export class HistogramsComponent implements OnInit {
   histogramMedian = 0;
   histograms: IHistogram[] = [];
 
-
-  fieldsLocal;
+  fields: any = fields;
   constructor(
     private router: Router,
-    private playersService: PlayersService,
     private activatedRoute: ActivatedRoute,
     private store: Store<{ playersHistograms: IHistogramData}>
   ) { }
@@ -58,31 +59,13 @@ export class HistogramsComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-
-    this.getFieldsLocal();
-  }
-
-
-  getFieldsLocal(): any {
-    this.playersService.getFields().subscribe(data => {
-      let grabDataValuesAsArry = [{
-        name: '',
-        description: '',
-        id: ''
-      }];
-      grabDataValuesAsArry = Object.values(data);
-      const descriptionMatchedArr = grabDataValuesAsArry.filter(i => i.name.slice(11) === this.field);
-      this.fieldDescription = descriptionMatchedArr[0].description;
-      return this.fieldsLocal = data;
-    }, err => {
-      console.log(err);
-    });
+    getFieldsLocal(fields, this.field, this.fieldDescription);
   }
 
   // set Hero id to update players win lose data
   async setQueryParams(value): Promise<void> {
-    this.field = this.fieldsLocal[value].name.slice(11);
-    this.fieldDescription = this.fieldsLocal[value].description;
+    this.field = this.fields[value].name.slice(11);
+    this.fieldDescription = this.fields[value].description;
     // update url
     await this.router.navigate([`${this.field}`], {
       relativeTo: this.activatedRoute,
