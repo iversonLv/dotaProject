@@ -13,7 +13,9 @@ import * as herosActions from '../../store/heros.actions';
 // model
 import { IHeroStatsData } from '../../model/heroStats';
 import { IheroLocal } from '../../model/heroLocal';
-import { HerosService } from '../../services/heros.service';
+
+// dotacontants
+import heroes from 'dotaconstants/build/heroes.json';
 
 @Component({
   selector: 'app-table-pro',
@@ -35,14 +37,13 @@ export class TableProComponent implements OnInit {
   // hero modal dafault hidden
   currentMouseOverHero: IheroLocal = null;
   // User for hero modal to mapping
-  heroesLocal: IheroLocal;
+  heroes: any = heroes;
   pageXY = [];
 
   // hero modal default hidden
   showHeroModal = false;
 
   constructor(
-    private herosService: HerosService,
     private store: Store<{ heroStats: IHeroStatsData }>
   ) { }
 
@@ -77,27 +78,16 @@ export class TableProComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-
-    // get all heroes local data
-    this.getHeroesLocal();
   }
 
   setDataSourceAttributes(): any {
     this.dataSource.sort = this.sort;
   }
 
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      this.heroesLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
   showHeroModalFn(e, id): any {
     this.pageXY = [e.pageX + 50, e.pageY - 120];
     this.showHeroModal = true;
-    this.currentMouseOverHero = this.heroesLocal[id];
+    this.currentMouseOverHero = this.heroes[id];
   }
 
 }
