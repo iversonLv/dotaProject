@@ -13,7 +13,6 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 import { IPublicMatchData } from '../../model/public-match';
 
 // service
-import { HerosService } from 'src/app/heros/services/heros.service';
 import { Router } from '@angular/router';
 
 // dotaconstants
@@ -39,7 +38,6 @@ export class TableMatchesPublicComponent implements OnInit {
   isLoading = true;
   constructor(
     private router: Router,
-    private herosService: HerosService,
     private store: Store<{ publicMatches: IPublicMatchData }>
   ) { }
 
