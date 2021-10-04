@@ -8,12 +8,14 @@ import { MatSort } from '@angular/material/sort';
 // ngrx
 import { Store } from '@ngrx/store';
 import * as playerActions from '../../store/players.actions';
-// service
-import { HerosService } from 'src/app/heros/services/heros.service';
+
 // model
 import { IRanking, IRankingData } from '../../model/ranking';
 import { Router } from '@angular/router';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
+
+// dotaconstants
+import heroes from 'dotaconstants/build/heroes.json';
 
 @Component({
   selector: 'app-rankings',
@@ -45,7 +47,7 @@ export class RankingsComponent implements OnInit, AfterViewInit {
   isLoading = true;
 
   // User for hero modal to mapping
-  heroesLocal: IheroLocal;
+  heroes: any = heroes;
 
   // Table for rankings
   displayedColumnsRankings: string[] = ['hero_id', 'score', 'percent_rank'];
@@ -53,7 +55,6 @@ export class RankingsComponent implements OnInit, AfterViewInit {
 
   constructor(
     private router: Router,
-    private herosService: HerosService,
     private store: Store<{ playersRankings: IRankingData }>
   ) {
     // this.playerRankings$ = this.store.select('playerRankings');
@@ -65,7 +66,6 @@ export class RankingsComponent implements OnInit, AfterViewInit {
     const currentUrl = this.router.url;
     const accountId = +currentUrl.split('/')[2];
 
-    this.getHeroesLocal();
     this.getPlayerRankings(accountId);
 
   }
@@ -94,18 +94,10 @@ export class RankingsComponent implements OnInit, AfterViewInit {
 
   }
 
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      return this.heroesLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
   showHeroModalFn(e, id): any {
     this.pageXY = [e.pageX + 50, e.pageY - 120];
     this.showHeroModal = true;
-    this.currentMouseOverHero = this.heroesLocal[id];
+    this.currentMouseOverHero = this.heroes[id];
   }
 
 }
