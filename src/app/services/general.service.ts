@@ -32,10 +32,11 @@ export class GeneralService {
 
   // GET local json data
   getUser(): Observable<any> {
-    return this.httpClient.get('https://steamloginlv.herokuapp.com/', {
+    return this.httpClient.get<any>('https://steamloginlv.herokuapp.com/', {
       headers: {
         'content-type': 'text/html'
-      }
+      },
+      withCredentials: true
     }).pipe(
       catchError(this.errorHandle)
     );
