@@ -24,8 +24,6 @@ import { IRating } from '../model/rating';
   providedIn: 'root'
 })
 export class PlayersService {
-
-
   constructor(
     private generalService: GeneralService,
   ) { }
@@ -118,48 +116,19 @@ export class PlayersService {
     return this.generalService.get(`/players/${accountId}/ratings`);
   }
 
-
   // GET player ranking
   getPlayerRankings(accountId: number): Observable<IRanking[]> {
     return this.generalService.get(`/players/${accountId}/rankings`);
   }
-
 
   // POST Refresh player match history
   refreshAccount(accountId: number): any {
     return this.generalService.post(`/players/${accountId}/refresh`, {}, this.httpOptions());
   }
 
-
-  // GET filter query params from local json
-  getFilterQueryParams(): Observable<any> {
-    return this.generalService.getLocalData(`/queryParams.json`);
-  }
-
   // GET pro players
   getProPlayers(): Observable<IPro[]> {
     return this.generalService.get(`/proPlayers`);
-  }
-
-
-  // GET fields
-  getFields(): Observable<any> {
-    return this.generalService.getLocalData(`/fields.json`);
-  }
-
-  // GET Countries
-  getCountriesLocal(): Observable<any> {
-    return this.generalService.getLocalData(`/countries.json`);
-  }
-
-  // GET latlong
-  getLatlongLocal(): Observable<any> {
-    return this.generalService.getLocalData(`/latlong.json`);
-  }
-
-  // GET world
-  getWorldLocal(): Observable<any> {
-    return this.generalService.getLocalData('/world.json');
   }
 
 }

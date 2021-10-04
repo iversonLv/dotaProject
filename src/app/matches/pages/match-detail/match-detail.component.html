@@ -43,15 +43,15 @@
 
         <!-- overview table -->
         <app-table-match-detail-overview
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
-          [itemIdsLocal]="itemIds"
-          [itemsLocal]="items"
+          [itemIds]="itemIds"
+          [items]="items"
           (showItemModalFn)="showItemModalFn($event)"
           (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null; currentMouseOverAghs = null"
           [data]="matchData?.players"
           [dataRange]="[0, 5]"
-          [abilitiesTalentsLocal]="abilities"
+          [abilities]="abilities"
           [permanentBuffsLocal]="permanentBuffs"
           (showAbilityModalFn)="showAbilityModalFn($event)"
           (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
@@ -78,15 +78,15 @@
 
         <!-- overview table -->
         <app-table-match-detail-overview
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
-          [itemIdsLocal]="itemIds"
-          [itemsLocal]="items"
+          [itemIds]="itemIds"
+          [items]="items"
           (showItemModalFn)="showItemModalFn($event)"
           (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null; currentMouseOverAghs = null;"
           [data]="matchData?.players"
           [dataRange]="[5, 10]"
-          [abilitiesTalentsLocal]="abilities"
+          [abilities]="abilities"
           [permanentBuffsLocal]="permanentBuffs"
           (showAbilityModalFn)="showAbilityModalFn($event)"
           (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
@@ -114,10 +114,10 @@
 
         <!-- ability build -->
         <app-table-match-detail-overview-ability-build
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
-          [abilitiesByIdLocal]="abilityIds"
-          [abilitiesTalentsLocal]="abilities"
+          [abilityIds]="abilityIds"
+          [abilities]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
           (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
           [data]="matchData?.players | slice: 0:5">
@@ -136,10 +136,10 @@
 
         <!-- ability build -->
         <app-table-match-detail-overview-ability-build
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
-          [abilitiesByIdLocal]="abilityIds"
-          [abilitiesTalentsLocal]="abilities"
+          [abilityIds]="abilityIds"
+          [abilities]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
           (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
           [data]="matchData?.players | slice: 5:10"
@@ -170,7 +170,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-benchmarks
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"></app-table-match-detail-benchmarks>
         <!-- table -->
@@ -184,7 +184,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-benchmarks
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-benchmarks>
@@ -217,7 +217,7 @@
       <app-nav-title [title]="'Laning'"></app-nav-title>
       <app-table-laning
       [heroes]="heroes"
-      [playerColorLocal]="playerColors"
+      [playerColors]="playerColors"
       [heroes]="heroes"
       [laneRole]="laneRole"
       [data]="matchData?.players"
@@ -236,10 +236,10 @@
           <app-nav-title [title]="'Last Hits + Denies'"></app-nav-title>
           <!-- last_hit graphs -->
           <app-chart-statck-line
-            [playerColorLocal]="playerColors"
+            [playerColors]="playerColors"
             [heroes]="heroes"
             [data]="matchData?.players"
-            [heroesNameLocal]="heroNames"
+            [heroNames]="heroNames"
             [field]="'lh_t'"
             [fieldTwo]="'dn_t'"
             [dataZoom]="true"
@@ -258,10 +258,10 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-performances
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
-          [heroesNameLocal]="heroNames"
-          [abilitiesTalentsLocal]="abilities"
+          [heroNames]="heroNames"
+          [abilities]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
           (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
           [data]="matchData?.players | slice: 0:5">
@@ -277,10 +277,10 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-performances
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
-          [heroesNameLocal]="heroNames"
-          [abilitiesTalentsLocal]="abilities"
+          [heroNames]="heroNames"
+          [abilities]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
           (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
           [data]="matchData?.players | slice: 5:10">
@@ -327,16 +327,16 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-combat-damage-detail
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"
 
-          [heroesNameLocal]="heroNames"
-          [itemIdsLocal]="itemIds"
-          [itemsLocal]="items"
+          [heroNames]="heroNames"
+          [itemIds]="itemIds"
+          [items]="items"
           (showItemModalFn)="showItemModalFn($event)"
           (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-          [abilitiesTalentsLocal]="abilities"
+          [abilities]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
           (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
         >
@@ -352,16 +352,16 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-combat-damage-detail
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10"
 
-          [heroesNameLocal]="heroNames"
-          [itemIdsLocal]="itemIds"
-          [itemsLocal]="items"
+          [heroNames]="heroNames"
+          [itemIds]="itemIds"
+          [items]="items"
           (showItemModalFn)="showItemModalFn($event)"
           (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-          [abilitiesTalentsLocal]="abilities"
+          [abilities]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
           (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
         >
@@ -381,7 +381,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-unit-kills
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"
         >
@@ -395,7 +395,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-unit-kills
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10"
         >
@@ -412,7 +412,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-last-hits
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"
         >
@@ -426,7 +426,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-last-hits
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10"
         >
@@ -466,12 +466,12 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-items
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"
           
           [enableConsumable]="enableConsumable"
-          [itemsLocal]="items"
+          [items]="items"
           (showItemModalFn)="showItemModalFn($event)"
           (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
         >
@@ -486,12 +486,12 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-items
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10"
           
           [enableConsumable]="enableConsumable"
-          [itemsLocal]="items"
+          [items]="items"
           (showItemModalFn)="showItemModalFn($event)"
           (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
         >
@@ -506,9 +506,9 @@
 
       <!-- team fight time line -->
       <app-time-line-teamfight
-        [playerColorLocal]="playerColors"
+        [playerColors]="playerColors"
         [heroes]="heroes"
-        [heroesNameLocal]="heroNames"
+        [heroNames]="heroNames"
         [data]="matchData"
       ></app-time-line-teamfight>
 
@@ -521,20 +521,20 @@
       <!-- gold graphs -->
       <app-nav-title [title]="'Gold'"></app-nav-title>
       <app-chart-statck-line
-        [playerColorLocal]="playerColors"
+        [playerColors]="playerColors"
         [heroes]="heroes"
         [data]="matchData?.players"
-        [heroesNameLocal]="heroNames"
+        [heroNames]="heroNames"
         [field]="'gold_t'"
       >
       </app-chart-statck-line>
       <!-- experience graphs -->
       <app-nav-title [title]="'Experience'"></app-nav-title>
       <app-chart-statck-line
-        [playerColorLocal]="playerColors"
+        [playerColors]="playerColors"
         [heroes]="heroes"
         [data]="matchData?.players"
-        [heroesNameLocal]="heroNames"
+        [heroNames]="heroNames"
         [field]="'xp_t'"
       >
       </app-chart-statck-line>
@@ -543,10 +543,10 @@
       <!-- last_hit graphs -->
       <app-nav-title [title]="'Last Hits'"></app-nav-title>
       <app-chart-statck-line
-        [playerColorLocal]="playerColors"
+        [playerColors]="playerColors"
         [heroes]="heroes"
         [data]="matchData?.players"
-        [heroesNameLocal]="heroNames"
+        [heroNames]="heroNames"
         [field]="'lh_t'"
       >
       </app-chart-statck-line>
@@ -562,16 +562,16 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-casts
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"
           
-          [heroesNameLocal]="heroNames"
-          [itemIdsLocal]="itemIds"
-          [itemsLocal]="items"
+          [heroNames]="heroNames"
+          [itemIds]="itemIds"
+          [items]="items"
           (showItemModalFn)="showItemModalFn($event)"
           (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-          [abilitiesTalentsLocal]="abilities"
+          [abilities]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
           (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
         >
@@ -586,16 +586,16 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-casts
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10"
           
-          [heroesNameLocal]="heroNames"
-          [itemIdsLocal]="itemIds"
-          [itemsLocal]="items"
+          [heroNames]="heroNames"
+          [itemIds]="itemIds"
+          [items]="items"
           (showItemModalFn)="showItemModalFn($event)"
           (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-          [abilitiesTalentsLocal]="abilities"
+          [abilities]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
           (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
         >
@@ -615,7 +615,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-objective-damage
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5">
         </app-table-match-detail-objective-damage>
@@ -630,7 +630,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-objective-damage
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-objective-damage>
@@ -646,7 +646,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-runes
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5">
         </app-table-match-detail-runes>
@@ -661,7 +661,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-runes
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-runes>
@@ -675,9 +675,9 @@
     <div *ngIf="currentPage === 'vision'">
       <div class="team-box vision-map-show-hide-timeline-row">
         <app-vision-map
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
-          [heroesNameLocal]="heroNames"
+          [heroNames]="heroNames"
           [data]="matchData?.players"
           [showHideVisionPlayersData]="showHideVisionPlayersData"
           [visionTimeLine]="visionTimeLine"
@@ -748,7 +748,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-vision
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"></app-table-match-detail-vision>
         <!-- table -->
@@ -762,7 +762,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-vision
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-vision>
@@ -772,10 +772,10 @@
 
       <app-nav-title [title]="'Ward Log'"></app-nav-title>
       <app-table-match-detail-ward-log
-        [playerColorLocal]="playerColors"
+        [playerColors]="playerColors"
         [heroes]="heroes"
         [visionTimeLine]="visionTimeLine"
-        [heroesNameLocal]="heroNames"
+        [heroNames]="heroNames"
         [data]="matchData?.players"
         [showHideVisionPlayersData]="showHideVisionPlayersData"
       >
@@ -791,7 +791,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-actions
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"></app-table-match-detail-actions>
         <!-- table -->
@@ -805,7 +805,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-actions
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-actions>
@@ -819,9 +819,9 @@
       <!-- team fight time line -->
       <app-time-line-teamfight
         (emitCurrentTeamFightData)="emitCurrentTeamFightData($event)"
-        [playerColorLocal]="playerColors"
+        [playerColors]="playerColors"
         [heroes]="heroes"
-        [heroesNameLocal]="heroNames"
+        [heroNames]="heroNames"
         [data]="matchData"
       ></app-time-line-teamfight>
 
@@ -853,16 +853,16 @@
             </div>
             <!-- team-row -->
             <app-table-match-detail-teamfights
-              [playerColorLocal]="playerColors"
+              [playerColors]="playerColors"
               [heroes]="heroes"
               [currentTeamFightDataForTable]="currentTeamFightDataForTable"
               [data]="matchData?.players"
               [dataRange]="[0, 5]"
 
-              [itemsLocal]="items"
+              [items]="items"
               (showItemModalFn)="showItemModalFn($event)"
               (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-              [abilitiesTalentsLocal]="abilities"
+              [abilities]="abilities"
               (showAbilityModalFn)="showAbilityModalFn($event)"
               (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"  
             >
@@ -878,16 +878,16 @@
             </div>
             <!-- team-row -->
             <app-table-match-detail-teamfights
-              [playerColorLocal]="playerColors"
+              [playerColors]="playerColors"
               [heroes]="heroes"
               [currentTeamFightDataForTable]="currentTeamFightDataForTable"
               [data]="matchData?.players"
               [dataRange]="[5, 10]"
               
-              [itemsLocal]="items"
+              [items]="items"
               (showItemModalFn)="showItemModalFn($event)"
               (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-              [abilitiesTalentsLocal]="abilities"
+              [abilities]="abilities"
               (showAbilityModalFn)="showAbilityModalFn($event)"
               (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null" 
             >
@@ -905,7 +905,7 @@
     <div *ngIf="currentPage === 'cosmetics' && matchData?.cosmetics">
       <app-nav-title [title]="'Cosmetics'"></app-nav-title>
       <app-table-cosmetics
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players"
       ></app-table-cosmetics>
@@ -920,7 +920,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-analysis
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"
 
@@ -938,7 +938,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-analysis
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10"
           
@@ -955,10 +955,10 @@
       <!-- filter row -->
       <!-- log table -->
       <app-table-log
-        [playerColorLocal]="playerColors"
+        [playerColors]="playerColors"
         [heroes]="heroes"
-        [heroesNameLocal]="heroNames"
-        [mapItemLocal]="mapItemLocal"
+        [heroNames]="heroNames"
+        [mapItem]="mapItem"
         [data]="matchData?.players"
         [objectives]="matchData?.objectives"
       ></app-table-log>
@@ -973,7 +973,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-fantasy
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"></app-table-match-detail-fantasy>
         <!-- table -->
@@ -987,7 +987,7 @@
         </div>
         <!-- team-row -->
         <app-table-match-detail-fantasy
-          [playerColorLocal]="playerColors"
+          [playerColors]="playerColors"
           [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-fantasy>
@@ -1013,5 +1013,5 @@
   </ng-template>
 </div>
 
-<app-ability-modal [abilitiesTalentsLocal]="abilities" *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName' [pageXY] = 'pageXY'></app-ability-modal>
+<app-ability-modal [abilities]="abilities" *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName' [pageXY] = 'pageXY'></app-ability-modal>
 <app-item-modal [items]="items" *ngIf="showItemModal" [aghs]="currentMouseOverAghs" [item]='currentMouseOverItem' [pageXY] = 'pageXY' class="item-modal"></app-item-modal>

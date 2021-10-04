@@ -21,7 +21,7 @@ export class ChipsComponent implements OnInit {
   @Input() title: string;
   @Input() items: string[];
   @Input() allitems: string[];
-  @Input() heroesNameLocal: IheroLocal;
+  @Input() heroNames: IheroLocal;
   @Output() emitValue: EventEmitter<[string, boolean]> = new EventEmitter();
 
   visible = true;

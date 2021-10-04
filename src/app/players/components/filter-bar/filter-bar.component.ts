@@ -47,7 +47,6 @@ export class FilterBarComponent implements OnInit {
   region: any; // need refactor the data structure
   lobbyType: any = lobbyType;
 
-  filterQueryParams;
   sidesData: any = queryParamsData.sidesData;
   datesData: any = queryParamsData.datesData;
   resultsData: any = queryParamsData.resultsData;

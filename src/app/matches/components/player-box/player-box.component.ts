@@ -11,7 +11,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 export class PlayerBoxComponent implements OnInit {
   @Input() data;
   @Input() heroes: IheroLocal;
-  @Input() playerColorLocal: any;
+  @Input() playerColors: any;
   constructor() { }
 
   // hero modal default hidden

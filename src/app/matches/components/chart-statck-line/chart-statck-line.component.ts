@@ -13,9 +13,9 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 })
 export class ChartStatckLineComponent implements OnInit {
   @Input() data: any;
-  @Input() playerColorLocal: any;
+  @Input() playerColors: any;
   @Input() heroes: IheroLocal;
-  @Input() heroesNameLocal: any;
+  @Input() heroNames: any;
   @Input() field;
   @Input() fieldTwo;
   @Input() dataZoom = false;
@@ -71,12 +71,12 @@ export class ChartStatckLineComponent implements OnInit {
       legend: {
         itemWidth: 32,
         itemHeight: 32,
-        data: this.calLegendData(this.data, this.playerColorLocal, this.heroes),
+        data: this.calLegendData(this.data, this.playerColors, this.heroes),
         bottom: '0%',
         inactiveColor: '#b8b6b4'
       },
       yAxis: {},
-      series: this.calSeriesData(this.data, this.field, this.fieldTwo, this.playerColorLocal, this.heroes),
+      series: this.calSeriesData(this.data, this.field, this.fieldTwo, this.playerColors, this.heroes),
     };
   }
 
@@ -91,7 +91,7 @@ export class ChartStatckLineComponent implements OnInit {
   }
 
   // cal ledgen
-  calLegendData(data: any, playerColorLocal: any, heroes: IheroLocal): string[] {
+  calLegendData(data: any, playerColors: any, heroes: IheroLocal): string[] {
     const legendData = [];
     data.map(i => {
       const legend = {
@@ -105,14 +105,14 @@ export class ChartStatckLineComponent implements OnInit {
       const playerName = this.calPlayerName(i);
       legend.name = playerName;
       legend.icon = `image://https://steamcdn-a.akamaihd.net/${heroes[i.hero_id].icon}`;
-      legend.textStyle.color = playerColorLocal[i.player_slot];
+      legend.textStyle.color = playerColors[i.player_slot];
 
       legendData.push(legend);
     });
     return legendData;
   }
 
-  calSeriesData(data: any[], field: string, fieldTwo: string, playerColorLocal: any, heroes: IheroLocal): any {
+  calSeriesData(data: any[], field: string, fieldTwo: string, playerColors: any, heroes: IheroLocal): any {
     const seriesData = [];
 
     data.forEach(player => {
@@ -131,7 +131,7 @@ export class ChartStatckLineComponent implements OnInit {
         legendHoverLink: true
       };
       const playerName = this.calPlayerName(player);
-      seriesItem.color = playerColorLocal[player?.player_slot];
+      seriesItem.color = playerColors[player?.player_slot];
       seriesItem.name = playerName;
 
       const heroImg = heroes[player.hero_id].icon;

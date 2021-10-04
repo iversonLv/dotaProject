@@ -16,8 +16,8 @@
       <div class="radiant-txt">
         {{data.radiant_score ? data.radiant_score : calScore(data.players.slice(0, 5))}}
       </div>
-      <div class="game-mode-duration-time" *ngIf="gameModeLocal && data?.game_mode >= 0">
-        <p class="game-mode">{{gameModeLocal[data?.game_mode]?.name | nameDestruct: '_' : 2 :'upperCase'}}</p>
+      <div class="game-mode-duration-time" *ngIf="gameMode && data?.game_mode >= 0">
+        <p class="game-mode">{{gameMode[data?.game_mode]?.name | nameDestruct: '_' : 2 :'upperCase'}}</p>
         <h2 class="game-duration">{{data?.duration | durationFormat}}</h2>
         <div class="game-time" [matTooltip]="data.start_time * 1000 | date: 'mediumDate'">END {{data.start_time * 1000 | dateTillToday}}</div>
         <!-- parse button -->
@@ -37,9 +37,9 @@
       <span>{{data.league.name}}</span>
     </div>
     <!-- region, not all match will have region info -->
-    <div *ngIf="regionLocal && data.region" class="sub-info-block">
+    <div *ngIf="region && data.region" class="sub-info-block">
       <div class="sub-info-title">REGION</div>
-      <span>{{regionLocal[data.region] | nameDestruct: '_' : 0 :'upperCase'}}</span>
+      <span>{{region[data.region] | nameDestruct: '_' : 0 :'upperCase'}}</span>
     </div>
 
     <!-- skill, not all match will have skill info -->

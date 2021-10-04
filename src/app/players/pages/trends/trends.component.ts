@@ -9,12 +9,15 @@ import * as playersActions from '../../store/players.actions';
 import { ITrend, ITrendData } from '../../model/trend';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 
-// service
-import { PlayersService } from '../../services/players.service';
-
 // dotaconstants
 import heroes from 'dotaconstants/build/heroes.json';
 import gameMode from 'dotaconstants/build/game_mode.json';
+
+// assets which does not exist in dotaconstants
+import fields from '../../../../assets/data/fields.json';
+
+// utiles
+import { getFieldsLocal } from '../../../shared/utils/utils';
 
 @Component({
   selector: 'app-trends',
@@ -30,14 +33,13 @@ export class TrendsComponent implements OnInit {
 
   isLoading = false;
   trends: ITrend[] = [];
-  fieldsLocal;
+  fields: any = fields;
 
   // User for hero modal to mapping
   heroes: any = heroes;
   gameMode: any = gameMode;
   constructor(
     private router: Router,
-    private playersService: PlayersService,
     private activatedRoute: ActivatedRoute,
     private store: Store<{ playersTrends: ITrendData }>
   ) { }
@@ -61,30 +63,14 @@ export class TrendsComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-    this.getFieldsLocal();
 
-  }
-
-  getFieldsLocal(): any {
-    this.playersService.getFields().subscribe(data => {
-      let grabDataValuesAsArry = [{
-        name: '',
-        description: '',
-        id: ''
-      }];
-      grabDataValuesAsArry = Object.values(data);
-      const descriptionMatchedArr = grabDataValuesAsArry.filter(i => i.name.slice(11) === this.field);
-      this.fieldDescription = descriptionMatchedArr[0].description;
-      return this.fieldsLocal = data;
-    }, err => {
-      console.log(err);
-    });
+    getFieldsLocal(fields, this.field, this.fieldDescription);
   }
 
   // set Hero id to update players win lose data
   async setQueryParams(value): Promise<void> {
-    this.field = this.fieldsLocal[value].name.slice(11);
-    this.fieldDescription = this.fieldsLocal[value].description;
+    this.field = this.fields[value].name.slice(11);
+    this.fieldDescription = this.fields[value].description;
     // update url
     await this.router.navigate([`${this.field}`], {
       relativeTo: this.activatedRoute,

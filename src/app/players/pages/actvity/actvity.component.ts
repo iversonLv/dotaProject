@@ -15,7 +15,7 @@ import lobbType from 'dotaconstants/build/lobby_type.json';
 import gameMode from 'dotaconstants/build/game_mode.json';
 
 // assets does not exists in dotaconstants
-import skills from '../../../../assets/data/skills.json'
+import skills from '../../../../assets/data/skills.json';
 
 @Component({
   selector: 'app-actvity',

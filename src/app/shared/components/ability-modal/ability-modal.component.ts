@@ -10,24 +10,12 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AbilityModalComponent implements OnInit {
   @Input() pageXY: number[] = [0, 100];
   @Input() item: any;
-  @Input() abilitiesTalentsLocal: any;
-
-  // abilitiesTalentsLocal: any;
+  @Input() abilities: any;
 
   constructor(
-    // private herosService: HerosService,
   ) { }
 
   ngOnInit(): void {
-    // this.getAbilitiesTalentsLocal();
   }
-
-  // getAbilitiesTalentsLocal(): any {
-  //   this.herosService.getAbilitiesTalentsLocal().subscribe(data => {
-  //     this.abilitiesTalentsLocal = data;
-  //     }, err => {
-  //       console.log(err);
-  //     });
-  // }
 
 }

@@ -16,7 +16,7 @@ import { IObsSenLeftLog, IObsSenLog } from '../../model/match';
 })
 export class TableMatchDetailVisionComponent implements OnInit {
   @Input() data: any;
-  @Input() playerColorLocal: any;
+  @Input() playerColors: any;
   @Input() heroes: IheroLocal;
   // above is common player column
   @ViewChild(MatSort) set matSort(mp: MatSort) {

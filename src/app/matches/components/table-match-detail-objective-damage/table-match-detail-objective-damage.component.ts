@@ -14,7 +14,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 })
 export class TableMatchDetailObjectiveDamageComponent implements OnInit {
   @Input() data: any;
-  @Input() playerColorLocal: any;
+  @Input() playerColors: any;
   @Input() heroes: IheroLocal;
   // above is common player column
   @ViewChild(MatSort) set matSort(mp: MatSort) {

@@ -12,7 +12,7 @@ export class FirstBloodModalComponent implements OnInit {
   @Input() pageXY: number[];
   @Input() data: any;
   @Input() heroes: IheroLocal;
-  @Input() playerColorLocal: any;
+  @Input() playerColors: any;
   constructor() { }
 
   ngOnInit(): void {

@@ -2,9 +2,9 @@
 <ng-template #hasData>
   <app-world-population-chart
   [data]="proPlayersData"
-  [worldLocal]="worldLocal"
-  [latlongLocal]="latlongLocal"
-  [countryDataLocal]="countryDataLocal"
+  [world]="world"
+  [latlong]="latlong"
+  [countries]="countries"
   (emitClickSymble)="emitClickSymble($event)"
 ></app-world-population-chart>
 </ng-template>

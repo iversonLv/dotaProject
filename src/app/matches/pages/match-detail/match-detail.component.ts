@@ -15,7 +15,6 @@ import { IHeroAbility } from 'src/app/heros/model/hero-abilities';
 
 // pipe
 import { DurationFormatPipe } from 'src/app/shared/utils/duration-format.pipe';
-import { MapItemsService } from 'src/app/services/map-items.service';
 
 // dotaconstant
 import items from 'dotaconstants/build/items.json';
@@ -32,6 +31,7 @@ import chatWheel from 'dotaconstants/build/chat_wheel.json';
 
 // assets json which is not at dotaconstants
 import laneRole from '../../../../assets/data/lane_role.json';
+import mapItem from '../../../../assets/data/map_item.json';
 
 @Component({
   selector: 'app-match-detail',
@@ -71,7 +71,7 @@ export class MatchDetailComponent implements OnInit {
   permanentBuffs: any = permanentBuffs;
   chatWheel: any = chatWheel;
   laneRole: any = laneRole;
-  mapItemLocal: any;
+  mapItem: any = mapItem;
 
   showHideVisionPlayersData = {};
 
@@ -145,7 +145,6 @@ export class MatchDetailComponent implements OnInit {
     private durationFormat: DurationFormatPipe,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private mapItemsService: MapItemsService,
     private store: Store<{ singleMatch: ISingleMatchData, teamsGeneral: ITeamData, }>
   ) { }
 
@@ -169,21 +168,11 @@ export class MatchDetailComponent implements OnInit {
       console.log(err);
     });
 
-
     this.router.events
     .subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentPage = event.url.split('/')[3]; // Grab last route 'overview'
       }
-    });
-    this.getMapItemsLocal();
-  }
-
-  getMapItemsLocal(): any {
-    this.mapItemsService.getMapItemsLocal().subscribe(data => {
-      this.mapItemLocal = data;
-    }, err => {
-      console.log(err);
     });
   }
 

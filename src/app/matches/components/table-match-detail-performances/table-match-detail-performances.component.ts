@@ -10,10 +10,10 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 })
 export class TableMatchDetailPerformancesComponent implements OnInit {
   @Input() data: any;
-  @Input() playerColorLocal: any;
+  @Input() playerColors: any;
   @Input() heroes: IheroLocal;
-  @Input() heroesNameLocal: IheroLocal;
-  @Input() abilitiesTalentsLocal: any;
+  @Input() heroNames: IheroLocal;
+  @Input() abilities: any;
   @Output() showAbilityModalFn: any = new EventEmitter();
   @Output() hideAbilityModalFn: any = new EventEmitter();
 

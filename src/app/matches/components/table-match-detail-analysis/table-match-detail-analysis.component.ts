@@ -10,7 +10,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 })
 export class TableMatchDetailAnalysisComponent implements OnInit {
   @Input() data: any;
-  @Input() playerColorLocal: any;
+  @Input() playerColors: any;
   @Input() heroes: IheroLocal;
 
   @Input() laneRole: any;

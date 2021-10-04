@@ -245,7 +245,7 @@ export class TeamFightModalComponent implements OnInit {
     ]
 };
   @Input() heroes: IheroLocal;
-  @Input() playerColorLocal: any;
+  @Input() playerColors: any;
   constructor() { }
 
   ngOnInit(): void {

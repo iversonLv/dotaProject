@@ -1,4 +1,4 @@
-<div class="hero-icon-player-name" *ngIf="heroes && player && playerColorLocal">
+<div class="hero-icon-player-name" *ngIf="heroes && player && playerColors">
   <img
     width="24"
     height="24"
@@ -6,6 +6,6 @@
     src="https://steamcdn-a.akamaihd.net/{{heroes[player?.hero_id]?.icon}}"
   />
   
-  <a *ngIf="player?.account_id" [routerLink]="['/players', player?.account_id]" [style]="'color:' + playerColorLocal[player?.player_slot]"> {{calPlayerName(player)}}</a>
-  <span *ngIf="!player?.account_id" [style]="'color:' + playerColorLocal[player?.player_slot]"> {{calPlayerName(player)}}</span>
+  <a *ngIf="player?.account_id" [routerLink]="['/players', player?.account_id]" [style]="'color:' + playerColors[player?.player_slot]"> {{calPlayerName(player)}}</a>
+  <span *ngIf="!player?.account_id" [style]="'color:' + playerColors[player?.player_slot]"> {{calPlayerName(player)}}</span>
 </div>

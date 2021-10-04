@@ -7,8 +7,9 @@ import { MatTableDataSource } from '@angular/material/table';
 // model
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 
-// services
-import { RunesService } from 'src/app/services/runes.service';
+// assets does not exist in dotaconstants
+import runesData from '../../../../assets/data/runes.json';
+
 
 @Component({
   selector: 'app-table-match-detail-runes',
@@ -17,7 +18,7 @@ import { RunesService } from 'src/app/services/runes.service';
 })
 export class TableMatchDetailRunesComponent implements OnInit {
   @Input() data: any;
-  @Input() playerColorLocal: any;
+  @Input() playerColors: any;
   @Input() heroes: IheroLocal;
   // above is common player column
   @ViewChild(MatSort) set matSort(mp: MatSort) {
@@ -38,15 +39,13 @@ export class TableMatchDetailRunesComponent implements OnInit {
     '7'
   ];
 
-  runesLocal: any;
+  runes: any = runesData;
 
   sort;
   constructor(
-    private runesService: RunesService,
   ) { }
 
   ngOnInit(): void {
-    this.getRunesLocal();
     // extract the data
     this.dataSource.data = this.extractData(this.data);
   }
@@ -97,14 +96,6 @@ export class TableMatchDetailRunesComponent implements OnInit {
       }
       return Math.min(...dataField);
     }
-  }
-
-  getRunesLocal(): any {
-    this.runesService.getRunesLocal().subscribe(data => {
-      this.runesLocal = data;
-    }, err => {
-      console.log(err);
-    });
   }
 
 }

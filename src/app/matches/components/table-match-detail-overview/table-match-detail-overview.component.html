@@ -3,7 +3,7 @@
   <ng-container matColumnDef="player_slot">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
     <td mat-cell *matCellDef="let element">
-      <app-player-box [data]="element" [heroes]="heroes" [playerColorLocal]="playerColorLocal"></app-player-box>
+      <app-player-box [data]="element" [heroes]="heroes" [playerColors]="playerColors"></app-player-box>
     </td>
     <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
@@ -124,16 +124,16 @@
         <span *ngFor="let item of element?.items" class="item-list-item">
           <img
               width="40px"
-              [class]="'item-color item-color-' + itemsLocal[itemIdsLocal[item]]?.qual"
+              [class]="'item-color item-color-' + items[itemIds[item]]?.qual"
               class="item"
-              *ngIf="item !== 0 && itemsLocal && itemIdsLocal && itemIdsLocal[item] && itemsLocal[itemIdsLocal[item]]?.img"
+              *ngIf="item !== 0 && items && itemIds && itemIds[item] && items[itemIds[item]]?.img"
               onError="this.src='./assets/images/Dota2Logo.svg'"
-              [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[itemIdsLocal[item]]?.img"
+              [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[item]]?.img"
               (mouseover)="showItemModalFn.emit([$event, item])"
               (mouseout)="hideItemModalFn.emit($event)"
             />
-            <span class="middle-text" *ngIf="item !== 0 && itemIdsLocal && itemIdsLocal[item] && element?.purchase_time && element?.purchase_time[itemIdsLocal[item]]">
-              <span>{{element?.purchase_time[itemIdsLocal[item]] | durationFormat}}</span>
+            <span class="middle-text" *ngIf="item !== 0 && itemIds && itemIds[item] && element?.purchase_time && element?.purchase_time[itemIds[item]]">
+              <span>{{element?.purchase_time[itemIds[item]] | durationFormat}}</span>
             </span>
         </span>
       </div>
@@ -142,16 +142,16 @@
         <span *ngFor="let item of element?.backpack" class="item-list-item">
           <img
             width="30px"
-            [class]="'item-color item-color-' + itemsLocal[itemIdsLocal[item]]?.qual"
+            [class]="'item-color item-color-' + items[itemIds[item]]?.qual"
             class="item"
-            *ngIf="item !== 0 && itemIdsLocal && itemsLocal && itemIdsLocal[item] && itemsLocal[itemIdsLocal[item]]?.img"
+            *ngIf="item !== 0 && itemIds && items && itemIds[item] && items[itemIds[item]]?.img"
             onError="this.src='./assets/images/Dota2Logo.svg'"
-            [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[itemIdsLocal[item]]?.img"
+            [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[item]]?.img"
             (mouseover)="showItemModalFn.emit([$event, item])"
             (mouseout)="hideItemModalFn.emit($event)"
           />
-          <span class="middle-text" *ngIf="item !== 0 && itemIdsLocal && itemIdsLocal[item] && element?.purchase_time && element?.purchase_time[itemIdsLocal[item]]">
-            <span>{{element?.purchase_time[itemIdsLocal[item]] | durationFormat}}</span>
+          <span class="middle-text" *ngIf="item !== 0 && itemIds && itemIds[item] && element?.purchase_time && element?.purchase_time[itemIds[item]]">
+            <span>{{element?.purchase_time[itemIds[item]] | durationFormat}}</span>
           </span>
         </span>
       </div>
@@ -166,9 +166,9 @@
       
       <img
         class="item-neutral"
-        *ngIf="element?.item_neutral !== 0 && itemIdsLocal && itemsLocal && itemsLocal[itemIdsLocal[element?.item_neutral]]?.img"
+        *ngIf="element?.item_neutral !== 0 && itemIds && items && items[itemIds[element?.item_neutral]]?.img"
         onError="this.src='./assets/images/Dota2Logo.svg'"
-        [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[itemIdsLocal[element?.item_neutral]]?.img"
+        [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[element?.item_neutral]]?.img"
         (mouseover)="showItemModalFn.emit([$event, element?.item_neutral])"
         (mouseout)="hideItemModalFn.emit($event)"
       />
@@ -210,10 +210,10 @@
               <img
                 width="40px"
                 class="item"
-                *ngIf="item?.stack_count !== 0 && itemsLocal && permanentBuffsLocal && itemsLocal[permanentBuffsLocal[item?.permanent_buff]]?.img"
+                *ngIf="item?.stack_count !== 0 && items && permanentBuffsLocal && items[permanentBuffsLocal[item?.permanent_buff]]?.img"
                 onError="this.src='./assets/images/Dota2Logo.svg'"
-                [src]="'https://steamcdn-a.akamaihd.net/' + itemsLocal[permanentBuffsLocal[item?.permanent_buff]]?.img"
-                (mouseover)="showItemModalFn.emit([$event, itemsLocal[permanentBuffsLocal[item?.permanent_buff]]?.id])"
+                [src]="'https://steamcdn-a.akamaihd.net/' + items[permanentBuffsLocal[item?.permanent_buff]]?.img"
+                (mouseover)="showItemModalFn.emit([$event, items[permanentBuffsLocal[item?.permanent_buff]]?.id])"
                 (mouseout)="hideItemModalFn.emit($event)"
               />
             
@@ -221,9 +221,9 @@
               <img
                 width="40px"
                 class="item"
-                *ngIf="item?.stack_count !== 0 && abilitiesTalentsLocal && permanentBuffsLocal && abilitiesTalentsLocal[permanentBuffsLocal[item?.permanent_buff]]?.img"
+                *ngIf="item?.stack_count !== 0 && abilities && permanentBuffsLocal && abilities[permanentBuffsLocal[item?.permanent_buff]]?.img"
                 onError="this.src='./assets/images/Dota2Logo.svg'"
-                [src]="'https://steamcdn-a.akamaihd.net/' + abilitiesTalentsLocal[permanentBuffsLocal[item?.permanent_buff]]?.img"
+                [src]="'https://steamcdn-a.akamaihd.net/' + abilities[permanentBuffsLocal[item?.permanent_buff]]?.img"
                 (mouseover)="showAbilityModalFn.emit([$event, permanentBuffsLocal[item?.permanent_buff]])"
                 (mouseout)="hideAbilityModalFn.emit($event)"
               />

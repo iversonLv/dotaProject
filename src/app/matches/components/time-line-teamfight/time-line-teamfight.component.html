@@ -59,7 +59,7 @@
 <app-first-blood-modal
   [data]="firstBloodModalData"
   [heroes]="heroes"
-  [playerColorLocal]="playerColorLocal"
+  [playerColors]="playerColors"
   *ngIf="showFirstBloodModal"
   [pageXY] = 'pageXY' 
 ></app-first-blood-modal>
@@ -67,7 +67,7 @@
 <app-roshan-killed-modal
 [data]="currentRoshanAegisData"
 [heroes]="heroes"
-[playerColorLocal]="playerColorLocal"
+[playerColors]="playerColors"
 *ngIf="showRoshanAegisModal"
 [pageXY] = 'pageXY' 
 >
@@ -77,7 +77,7 @@
 [data]="currentTeamFightData"
 [playerData]="data?.players"
 [heroes]="heroes"
-[playerColorLocal]="playerColorLocal"
+[playerColors]="playerColors"
 *ngIf="showTeamFightModal"
 [pageXY] = 'pageXY' 
 >

@@ -14,7 +14,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 })
 export class TableMatchDetailActionsComponent implements OnInit {
   @Input() data: any;
-  @Input() playerColorLocal: any;
+  @Input() playerColors: any;
   @Input() heroes: IheroLocal;
 
   @ViewChild(MatSort) set matSort(mp: MatSort) {

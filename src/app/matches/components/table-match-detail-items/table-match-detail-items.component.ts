@@ -10,10 +10,10 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 })
 export class TableMatchDetailItemsComponent implements OnInit {
   @Input() data: any;
-  @Input() playerColorLocal: any;
+  @Input() playerColors: any;
   @Input() heroes: IheroLocal;
 
-  @Input() itemsLocal: any;
+  @Input() items: any;
   @Output() showItemModalFn: any = new EventEmitter();
   @Output() hideItemModalFn: any = new EventEmitter();
 
@@ -104,7 +104,7 @@ export class TableMatchDetailItemsComponent implements OnInit {
 
   // calItemTotal
   calItemTotal(data: any): number {
-    return data.filter(i => this.itemsLocal[i?.key]?.qual !== 'consumable').length;
+    return data.filter(i => this.items[i?.key]?.qual !== 'consumable').length;
   }
 
 }

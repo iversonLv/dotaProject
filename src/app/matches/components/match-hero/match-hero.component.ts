@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-// service
-import { GameModeService } from 'src/app/services/game-mode.service';
-import { RegionService } from 'src/app/services/region.service';
-
 // dotaconstatns
+import region from 'dotaconstants/build/region.json';
+import gameMode from 'dotaconstants/build/game_mode.json';
 
 // assets json does not exist in dotaconstatns
 import skills from '../../../../assets/data/skills.json';
@@ -17,37 +15,14 @@ import skills from '../../../../assets/data/skills.json';
 export class MatchHeroComponent implements OnInit {
   @Input() data: any;
 
-  gameModeLocal;
+  gameMode: any = gameMode;
   skills: any = skills;
-  regionLocal;
+  region: any = region;
 
   constructor(
-    private gameModeService: GameModeService,
-    private regionService: RegionService,
   ) { }
 
   ngOnInit(): void {
-
-    this.getGameModeLocal();
-    this.getRegionLocal();
-  }
-
-  getGameModeLocal(): any {
-    this.gameModeService.getGameModeLocal().subscribe(data => {
-      this.gameModeLocal = data;
-    }, err => {
-      console.log(err);
-    });
-  }
-
-
-  getRegionLocal(): any {
-    this.regionService.getRegionLocal().subscribe(data => {
-      this.regionLocal = data;
-    }, err => {
-      console.log(err);
-    });
-
   }
 
   // reparse match

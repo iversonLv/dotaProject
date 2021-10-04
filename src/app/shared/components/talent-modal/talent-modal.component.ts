@@ -10,22 +10,12 @@ import { ITalent } from 'src/app/heros/model/hero-abilities';
 export class TalentModalComponent implements OnInit {
   @Input() talents: ITalent[] = [];
   @Input() pageXY: number[] = [0, 100];
-  @Input() abilitiesTalentsLocal: any;
+  @Input() abilities: any;
 
   constructor(
-    // private herosService: HerosService,
   ) { }
 
   ngOnInit(): void {
-    // this.getAbilitiesTalentsLocal();
   }
-
-  // getAbilitiesTalentsLocal(): any  {
-  //   this.herosService.getAbilitiesTalentsLocal().subscribe(data => {
-  //     this.abilitiesTalentsLocal = data;
-  //   }, err => {
-  //     console.log(err);
-  //   });
-  // }
 
 }

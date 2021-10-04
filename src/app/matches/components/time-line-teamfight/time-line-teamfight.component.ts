@@ -10,9 +10,9 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 })
 export class TimeLineTeamfightComponent implements OnInit {
   @Input() data: any;
-  @Input() playerColorLocal: any;
+  @Input() playerColors: any;
   @Input() heroes: IheroLocal;
-  @Input() heroesNameLocal: any;
+  @Input() heroNames: any;
 
   @Output() emitCurrentTeamFightData: EventEmitter<any> = new EventEmitter();
 

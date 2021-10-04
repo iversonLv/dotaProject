@@ -4,7 +4,7 @@
   <ng-container matColumnDef="player_slot" *ngIf="displayedColumns.includes('player_slot')">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> PLAYER </th>
     <td mat-cell *matCellDef="let element">
-      <app-player-box [data]="element" [heroes]="heroes" [playerColorLocal]="playerColorLocal"></app-player-box>
+      <app-player-box [data]="element" [heroes]="heroes" [playerColors]="playerColors"></app-player-box>
     </td>
     <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
@@ -91,8 +91,8 @@
         <img
           onError="this.src='./assets/images/Dota2Logo.svg'"
           class="hero-img" width="29" height="29"
-          src="https://steamcdn-a.akamaihd.net/{{abilitiesTalentsLocal[element?.max_hero_hit?.inflictor]?.img}}"
-          *ngIf="abilitiesTalentsLocal"
+          src="https://steamcdn-a.akamaihd.net/{{abilities[element?.max_hero_hit?.inflictor]?.img}}"
+          *ngIf="abilities"
         />
         <span class="max-hero-hit-value">{{element?.max_hero_hit?.value}}</span>
       </span>
@@ -106,7 +106,7 @@
       </ng-template>
       
       <app-img
-        [data]="heroesNameLocal[element['max_hero_hit']['key']]['img']"
+        [data]="heroNames[element['max_hero_hit']['key']]['img']"
         class="hero-img sm-hero-img"
         [altData]="element['localized_name']"
       ></app-img>
