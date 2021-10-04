@@ -5,13 +5,13 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 import { IMatch } from 'src/app/matches/model/match';
 import { IRecentMatch } from 'src/app/matches/model/recent-match';
 
-// service
-import { HerosService } from 'src/app/heros/services/heros.service';
-
 // pipe
 import { GreaterNumPipe } from '../../../shared/utils/greater-num.pipe';
 import { DurationFormatPipe } from '../../../shared/utils/duration-format.pipe';
 import { ActivatedRoute } from '@angular/router';
+
+// dotaconstants
+import heroes from 'dotaconstants/build/heroes.json';
 
 @Component({
   selector: 'app-average-maximun-overview',
@@ -566,7 +566,7 @@ export class AverageMaximunOverviewComponent implements OnInit {
   // ];
   queryParams;
 
-  heroesLocal: IheroLocal;
+  heroes: any = heroes;
   finalData = {
     winRate: 0,
     length: 0,
@@ -586,14 +586,12 @@ export class AverageMaximunOverviewComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private durationFormat: DurationFormatPipe,
-    private herosService: HerosService,
     private greaterNum: GreaterNumPipe,
   ) { }
 
   ngOnInit(): void {
     this.activatedRoute.queryParamMap.subscribe(data => this.queryParams = data);
     this.checkQueryParams();
-    this.getHeroesLocal();
   }
 
   // parse/extra recent matches or matches
@@ -654,18 +652,6 @@ export class AverageMaximunOverviewComponent implements OnInit {
     }
     filterData.maximums = maximums;
     return filterData;
-  }
-
-  // grab hero data to map the hero_id to show the hero icon
-
-  // getHeroesLocal[hero_id].icon
-  // https://steamcdn-a.akamaihd.net /apps/dota2/images/heroes/antimage_icon.png
-  getHeroesLocal(): any {
-    this.herosService.getHeroesLocal().subscribe(data => {
-      this.heroesLocal = data;
-    }, err => {
-      console.log(err);
-    });
   }
 
   checkQueryParams(): string[] {
