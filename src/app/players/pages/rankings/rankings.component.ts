@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 
 // material
@@ -22,7 +22,7 @@ import heroes from 'dotaconstants/build/heroes.json';
   templateUrl: './rankings.component.html',
   styleUrls: ['./rankings.component.scss']
 })
-export class RankingsComponent implements OnInit, AfterViewInit {
+export class RankingsComponent implements OnInit {
   @ViewChild(MatSort) set matSort(mp: MatSort) {
     this.sort = mp;
     this.setDataSourceAttributes();
@@ -68,9 +68,6 @@ export class RankingsComponent implements OnInit, AfterViewInit {
 
     this.getPlayerRankings(accountId);
 
-  }
-
-  ngAfterViewInit(): void {
   }
 
   setDataSourceAttributes(): any {
