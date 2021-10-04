@@ -77,9 +77,4 @@ export class HerosService {
     return this.generalService.get(`/heroes/${heroId}/itemPopularity`);
   }
 
-  // get all hero lore
-  getHeroesLoreLocal(): Observable<any> {
-    return this.generalService.getGitRawData(`/hero_lore.json`);
-  }
-
 }
