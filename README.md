@@ -89,10 +89,10 @@ environment.pro.ts
     - [x] GET Heroes Players (2021.2.16)
     - [x] GET Heroes ItemPopularity (2021.2.16)
       <!-- local data -->
-    - [x] GET Heroes local (2021.1)
-    - [x] GET Heroes Abilities (2021.2)
-    - [x] GET Ablitities Talents List (2021.2)
-    - [X] GET Heros stas (2021.3.1)(2021.3.2)
+    - [x] GET Heroes local (2021.1) deprecated, load from dotaconstants directly(2021.10.4)
+    - [x] GET Heroes Abilities (2021.2) deprecated, load from dotaconstants directly(2021.10.4)
+    - [x] GET Ablitities Talents List (2021.2) deprecated, load from dotaconstants directly(2021.10.4)
+    - [X] GET Heros stas (2021.3.1)(2021.3.2) deprecated, load from dotaconstants directly(2021.10.4)
   - [x] Records service
     - [x] GET Records list data (2021.2.26)
   - [x] Matches service
@@ -185,6 +185,7 @@ environment.pro.ts
   - [] Maybe update abliltiy modal and item modal like player box in separated component with img and modal?
   - [] Update all win game player slot 120 as some RPG co op RADIENT player slot from 0-25
   - [X] Update all image onError="this.src='./assets/images/Dota2Logo.svg'"
+  - [] Improve the match page 5K matches load speed, now looked freeze the page
 [] Deploy
   - [x] Setup the repo on github page(2021.2.26)
   - [x] Deploy to github page (2021.2.26)
