@@ -56,7 +56,7 @@ export class TableTeamsPlayersComponent implements OnInit {
       if (!data.isLoading) {
         const dataPlayers = [...data.players];
         // this.playersHeroesWithGameLargest = data.heroesPlayed[0];
-        this.getLargestData(dataPlayers);
+        this.getLargestData(dataPlayers, this.isCurrentTeamMember);
         const dataNew = [];
         for (const i in dataPlayers) {
           if (dataPlayers.hasOwnProperty(i)) {
@@ -86,8 +86,13 @@ export class TableTeamsPlayersComponent implements OnInit {
   }
 
   // cal the highest numbers of games, with_games and against_games for pages bar data
-  getLargestData(data: IPlayer[]): any {
+  getLargestData(data: IPlayer[], isCurrentTeamMember: boolean): any {
     let { games_played } = this.playersHeroesWithGameLargest;
+    // there are 2 tables, one for current team member another for former
+    // so the largestData should detect whether current table is current team member or not
+    if (isCurrentTeamMember) {
+      data = data.filter(item => item.is_current_team_member);
+    }
     games_played = Math.max(...data.map(item => item.games_played));
     return this.playersHeroesWithGameLargest = {games_played};
   }
