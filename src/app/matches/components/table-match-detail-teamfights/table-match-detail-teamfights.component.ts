@@ -66,7 +66,7 @@ export class TableMatchDetailTeamfightsComponent implements OnInit, OnChanges {
     const arr = [];
     // console.log('in', currentTeamFightDataForTable);
     data.forEach((d, i) => {
-      const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
+      const { hero_id, player_slot, randomed, pred_vict, account_id, rank_tier, name, personaname,
         } = data[i];
       arr.push({
         hero_id,
@@ -76,6 +76,7 @@ export class TableMatchDetailTeamfightsComponent implements OnInit, OnChanges {
         rank_tier,
         name,
         personaname,
+        randomed,
         // above is common data for player
         ...currentTeamFightDataForTable[i]
       });

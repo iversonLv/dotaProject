@@ -100,11 +100,11 @@ export class TableLogComponent implements OnInit {
       if (i.player_slot && i.player_slot >= 0) {
         const playerOverallData = this.data.find(x => x.player_slot === i.player_slot);
         const {
-          hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
+          hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname, randomed,
           isRadiant,
               } = playerOverallData;
         const player = {
-          hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname
+          hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname, randomed
         };
         specificLogData.push({
           ...i,
@@ -144,12 +144,12 @@ export class TableLogComponent implements OnInit {
     const specificLogData = [];
     data.forEach(i => {
       const {
-        hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
+        hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname, randomed,
         isRadiant,
             } = i;
       const log = [];
       const player = {
-        hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname
+        hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname, randomed
       };
       i[field + '_log'].forEach(l => {
         log.push({

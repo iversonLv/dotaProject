@@ -73,10 +73,11 @@ export class TableMatchDetailUnitKillsComponent implements OnInit {
   extractData(data): any[] {
     data.forEach(z => {
       const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
-        killed, hero_kills, lane_kills, neutral_kills, ancient_kills, tower_kills, roshan_kills, observer_kills, necronomicon_kills  } = z;
+        killed, hero_kills, randomed, lane_kills, neutral_kills, ancient_kills, tower_kills, roshan_kills, observer_kills, necronomicon_kills  } = z;
 
       this.finalData.push({
         hero_id,
+        randomed,
         pred_vict,
         player_slot,
         account_id,

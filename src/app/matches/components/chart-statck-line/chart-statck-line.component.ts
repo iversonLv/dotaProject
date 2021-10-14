@@ -65,7 +65,7 @@ export class ChartStatckLineComponent implements OnInit {
             start: 0,
             end: this.data[0][this.field][this.data[0][this.field].length],
             xAxisIndex: [0, 1],
-            top: '0%'
+            top: '0%',
         }
       ],
       legend: {
@@ -73,7 +73,12 @@ export class ChartStatckLineComponent implements OnInit {
         itemHeight: 32,
         data: this.calLegendData(this.data, this.playerColors, this.heroes),
         bottom: '0%',
-        inactiveColor: '#b8b6b4'
+        inactiveColor: '#b8b6b4',
+        pageIconColor: 'rgb(255 255 255 / 87%)',
+        pageTextStyle: {
+          color: ',rgba(51, 51, 51, 1)',
+        },
+        type: 'scroll'
       },
       yAxis: {},
       series: this.calSeriesData(this.data, this.field, this.fieldTwo, this.playerColors, this.heroes),

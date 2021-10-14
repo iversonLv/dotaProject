@@ -70,7 +70,7 @@ export class TableMatchDetailOverviewComponent implements OnInit {
         gold_per_min, xp_per_min, hero_damage, tower_damage, hero_healing, item_neutral, permanent_buffs,
         item_0, item_1, item_2, item_3, item_4, item_5,
         backpack_0, backpack_1, backpack_2, backpack_3,
-        item_usage, purchase, purchase_time, item_win  } = z;
+        item_usage, purchase, purchase_time, item_win, randomed  } = z;
 
       this.finalData.push({
         hero_id,
@@ -102,6 +102,7 @@ export class TableMatchDetailOverviewComponent implements OnInit {
         purchase,
         purchase_time,
         item_win,
+        randomed
       });
     });
 

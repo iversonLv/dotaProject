@@ -53,7 +53,7 @@ export class TableMatchDetailRunesComponent implements OnInit {
   extractData(data): any[] {
     const finalData = [];
     data.forEach(z => {
-      const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
+      const { hero_id, player_slot, randomed, pred_vict, account_id, rank_tier, name, personaname,
         runes, } = z;
       finalData.push({
         hero_id,
@@ -62,6 +62,7 @@ export class TableMatchDetailRunesComponent implements OnInit {
         account_id,
         rank_tier,
         name,
+        randomed,
         personaname,
         // above is common data for player
         0: runes[0],

@@ -51,13 +51,14 @@ export class TableMatchDetailCastsComponent implements OnInit {
     const finalData = [];
     data.forEach(z => {
       const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
-        hero_hits, item_uses, ability_uses, ability_targets } = z;
+        hero_hits, item_uses, ability_uses, ability_targets, randomed } = z;
       finalData.push({
         hero_id,
         pred_vict,
         player_slot,
         account_id,
         rank_tier,
+        randomed,
         name,
         personaname,
         // above is common data for player

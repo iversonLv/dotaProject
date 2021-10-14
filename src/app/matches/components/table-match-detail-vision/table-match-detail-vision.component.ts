@@ -103,7 +103,7 @@ export class TableMatchDetailVisionComponent implements OnInit {
       const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
         purchase_ward_observer, purchase_ward_sentry,
         obs_placed, sen_placed,
-        purchase_gem, item_uses, purchase, obs_left_log, obs_log, sen_left_log, sen_log, duration } = data[i];
+        purchase_gem, item_uses, randomed, purchase, obs_left_log, obs_log, sen_left_log, sen_log, duration } = data[i];
       this.finalData.push({
         hero_id,
         pred_vict,
@@ -112,6 +112,7 @@ export class TableMatchDetailVisionComponent implements OnInit {
         rank_tier,
         name,
         personaname,
+        randomed,
         // above is common data for player
         purchase_ward_observer,
         obs_placed,

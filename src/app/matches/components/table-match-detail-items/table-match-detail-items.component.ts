@@ -44,7 +44,7 @@ export class TableMatchDetailItemsComponent implements OnInit {
   // extract matches players[] to less data to meet for this page table
   extractData(data): any[] {
     data.forEach(z => {
-      const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
+      const { hero_id, player_slot, pred_vict, randomed, account_id, rank_tier, name, personaname,
         purchase_log  } = z;
 
       this.finalData.push({
@@ -53,6 +53,7 @@ export class TableMatchDetailItemsComponent implements OnInit {
         player_slot,
         account_id,
         rank_tier,
+        randomed,
         name,
         personaname,
         // above is common data for player
@@ -104,7 +105,11 @@ export class TableMatchDetailItemsComponent implements OnInit {
 
   // calItemTotal
   calItemTotal(data: any): number {
-    return data.filter(i => this.items[i?.key]?.qual !== 'consumable').length;
+    if (data) {
+      return data.filter(i => this.items[i?.key]?.qual !== 'consumable').length;
+    } else {
+      return 0;
+    }
   }
 
 }
