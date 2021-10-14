@@ -46,7 +46,7 @@ export class TableCosmeticsComponent implements OnInit {
   extractData(data): any[] {
     data.forEach(z => {
       const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
-        cosmetics
+        cosmetics, randomed
       } = z;
 
       this.finalData.push({
@@ -57,6 +57,7 @@ export class TableCosmeticsComponent implements OnInit {
         rank_tier,
         name,
         personaname,
+        randomed,
         // above is common data for player
         cosmetics
       });

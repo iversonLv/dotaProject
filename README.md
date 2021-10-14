@@ -209,3 +209,20 @@ analize player heroes keep winning?
 
 # QA
 How could we know a hero is roaming or not, current can't be
+
+
+
+video for heror
+<video
+  class="heropage_HeroPortrait_22nJ5"
+  [poster]="'https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/'+ (hero['name'] | nameDestruct: '_' : '3') +'.png'"
+  autoplay=""
+  preload="auto"
+  loop=""
+  playsinline="">
+    <source
+      type="video/webm"
+      [src]="'https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/'+ (hero['name'] | nameDestruct: '_' : '3') +'.webm'"
+    >
+    <img [src]="'https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/'+ (hero['name'] | nameDestruct: '_' : '3') +'.png'">
+</video>

@@ -52,7 +52,7 @@ export class TableMatchDetailWardLogComponent implements OnInit, OnChanges {
   }
   // extract matches players[] to less data to meet for this page table
   extractData(data: any, slot: number): any {
-    const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname } = data[slot];
+    const { hero_id, player_slot, pred_vict, randomed, account_id, rank_tier, name, personaname } = data[slot];
     return {
       hero_id,
       pred_vict,
@@ -61,6 +61,7 @@ export class TableMatchDetailWardLogComponent implements OnInit, OnChanges {
       rank_tier,
       name,
       personaname,
+      randomed,
       // above is common data for player
     };
   }

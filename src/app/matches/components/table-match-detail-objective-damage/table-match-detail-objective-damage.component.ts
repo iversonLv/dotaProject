@@ -129,7 +129,7 @@ export class TableMatchDetailObjectiveDamageComponent implements OnInit {
     const finalData = [];
     data.forEach(z => {
       const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
-        damage, isRadiant } = z;
+        damage, isRadiant, randomed } = z;
       finalData.push({
         hero_id,
         pred_vict,
@@ -137,6 +137,7 @@ export class TableMatchDetailObjectiveDamageComponent implements OnInit {
         account_id,
         rank_tier,
         name,
+        randomed,
         personaname,
         isRadiant,
         // above is common data for player

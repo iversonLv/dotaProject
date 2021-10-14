@@ -37,12 +37,13 @@ export class TableMatchDetailLastHitsComponent implements OnInit {
   // extract matches players[] to less data to meet for this page table
   extractData(data): any[] {
     data.forEach(z => {
-      const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
+      const { hero_id, player_slot, randomed, pred_vict, account_id, rank_tier, name, personaname,
         lh_t  } = z;
 
       this.finalData.push({
         hero_id,
         pred_vict,
+        randomed,
         player_slot,
         account_id,
         rank_tier,

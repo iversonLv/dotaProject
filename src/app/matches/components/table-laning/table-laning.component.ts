@@ -46,7 +46,7 @@ export class TableLaningComponent implements OnInit {
   extractData(data): any[] {
     data.forEach(z => {
       const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
-        isRadiant, is_roaming, lane_role, lh_t, dn_t, lane_efficiency
+        isRadiant, is_roaming, lane_role, lh_t, dn_t, lane_efficiency,randomed
       } = z;
 
       this.finalData.push({
@@ -61,6 +61,7 @@ export class TableLaningComponent implements OnInit {
         isRadiant,
         is_roaming,
         lane_role,
+        randomed,
         lh: this.getSpecificTimeData(lh_t, 10),
         dn: this.getSpecificTimeData(dn_t, 10),
         lane_efficiency,
