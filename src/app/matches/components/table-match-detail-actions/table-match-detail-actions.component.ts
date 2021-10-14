@@ -109,13 +109,14 @@ export class TableMatchDetailActionsComponent implements OnInit {
     const finalData = [];
     this.getLargestData(data);
     data.forEach(z => {
-      const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname, actions_per_min, actions } = z;
+      const { hero_id, player_slot, randomed, pred_vict, account_id, rank_tier, name, personaname, actions_per_min, actions } = z;
       finalData.push({
         hero_id,
         pred_vict,
         player_slot,
         account_id,
         rank_tier,
+        randomed,
         name,
         personaname,
         // above is common data for player

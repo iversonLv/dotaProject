@@ -111,7 +111,7 @@ export class TableMatchDetailFantasyComponent implements OnInit {
     data.forEach(z => {
       const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
         kills, deaths, denies, last_hits, gold_per_min, towers_killed, roshan_kills, observer_uses,
-        teamfight_participation, camps_stacked, firstblood_claimed, stuns, rune_pickups, sentry_uses} = z;
+        teamfight_participation, randomed, camps_stacked, firstblood_claimed, stuns, rune_pickups, sentry_uses} = z;
       finalData.push({
         hero_id,
         pred_vict,
@@ -119,6 +119,7 @@ export class TableMatchDetailFantasyComponent implements OnInit {
         account_id,
         rank_tier,
         name,
+        randomed,
         personaname,
         // above is common data for player
         kills,

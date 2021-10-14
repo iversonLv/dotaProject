@@ -44,7 +44,7 @@ export class TableMatchDetailCombatDamageDetailComponent implements OnInit {
   extractData(data): any[] {
     const finalData = [];
     data.forEach(z => {
-      const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
+      const { hero_id, player_slot, randomed, pred_vict, account_id, rank_tier, name, personaname,
         damage_inflictor_received, damage_targets, damage_inflictor } = z;
       finalData.push({
         hero_id,
@@ -53,6 +53,7 @@ export class TableMatchDetailCombatDamageDetailComponent implements OnInit {
         account_id,
         rank_tier,
         name,
+        randomed,
         personaname,
         // above is common data for player
         damage_inflictor_received: this.extractObjToArry(damage_inflictor_received),
