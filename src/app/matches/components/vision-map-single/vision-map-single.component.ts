@@ -12,7 +12,7 @@ export class VisionMapSingleComponent implements OnInit {
   @Input() mapSize = 550;
 
   // senObs icon size width is 18, height is 14
-  senObsSize = [18, 14];
+  senObsSize = [18, 13.88];
   senPadding = [];
   obsPadding = [];
   mapData;
@@ -20,8 +20,8 @@ export class VisionMapSingleComponent implements OnInit {
 
   ngOnInit(): void {
     // -4 which is border
-    this.senPadding = [this.mapSize * 40.9 / 900 - this.senObsSize[0] / 2 - 4, this.mapSize * 40.9 / 900 - this.senObsSize[1] / 2 - 4];
-    this.obsPadding = [this.mapSize * 73.6 / 900 - this.senObsSize[0] / 2 - 4, this.mapSize * 73.6 / 900 - this.senObsSize[1] / 2 - 4];
+    this.senPadding = [this.mapSize * 45.9 / 900 - this.senObsSize[0] / 2 - 4, this.mapSize * 45.9 / 900 - this.senObsSize[1] / 2 - 4];
+    this.obsPadding = [this.mapSize * 78.6 / 900 - this.senObsSize[0] / 2 - 4, this.mapSize * 78.6 / 900 - this.senObsSize[1] / 2 - 4];
     this.mapData = this.calObsSenData(this.data, this.mapSize);
   }
 

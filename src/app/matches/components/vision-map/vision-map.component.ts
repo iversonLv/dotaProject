@@ -32,7 +32,7 @@ export class VisionMapComponent implements OnInit, OnChanges {
   senPadding = [];
   obsPadding = [];
   // senObs icon size width is 18, height is 14
-  senObsSize = [18, 14];
+  senObsSize = [18, 13.88];
 
   constructor(
     private durationFormat: DurationFormatPipe
@@ -40,8 +40,8 @@ export class VisionMapComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     // -4 which is border
-    this.senPadding = [this.mapSize * 40.9 / 900 - this.senObsSize[0] / 2 - 4, this.mapSize * 40.9 / 900 - this.senObsSize[1] / 2 - 4];
-    this.obsPadding = [this.mapSize * 73.6 / 900 - this.senObsSize[0] / 2 - 4, this.mapSize * 73.6 / 900 - this.senObsSize[1] / 2 - 4];
+    this.senPadding = [this.mapSize * 45.9 / 900 - this.senObsSize[0] / 2 - 4, this.mapSize * 45.9 / 900 - this.senObsSize[1] / 2 - 4];
+    this.obsPadding = [this.mapSize * 78.6 / 900 - this.senObsSize[0] / 2 - 4, this.mapSize * 78.6 / 900 - this.senObsSize[1] / 2 - 4];
    // this.mapData = this.filterShowHideVisionDataFn(this.showHideVisionPlayersData, this.extractObsSenFinalData(this.data));
 
   }
