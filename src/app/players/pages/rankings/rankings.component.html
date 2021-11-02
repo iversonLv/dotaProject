@@ -9,12 +9,12 @@
       <div *ngIf="element.hero_id && heroes" class="ver-align">
         
         <app-img
-          [data]="heroes[element['hero_id']]['img']"
+          *ngIf="heroes[element['hero_id']]?.img"[data]="heroes[element['hero_id']]?.img"
           class="hero-img sm-hero-img"
-          [altData]="heroes[element['hero_id']]['localized_name']"
+          [altData]="heroes[element['hero_id']]?.localized_name"
           (mouseover)="showHeroModalFn($event, element['hero_id'])" (mouseout)="showHeroModal=false; currentMouseOverHero = null"
         ></app-img>
-        <a class="account_link" [routerLink]="['/heroes', element.hero_id]" *ngIf="heroes && element.hero_id">{{heroes[element.hero_id]['localized_name']}}></a>
+        <a class="account_link" [routerLink]="['/heroes', element.hero_id]" *ngIf="heroes && element.hero_id">{{heroes[element.hero_id]?.localized_name}}></a>
       </div>
     </td>
   </ng-container>
