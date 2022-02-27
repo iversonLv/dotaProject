@@ -15,9 +15,6 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 // dotaconstants
 import heroes from 'dotaconstants/build/heroes.json';
 
-// asset does not exists in dotaconstants
-import skills from '../../../../assets/data/skills.json';
-
 @Component({
   selector: 'app-table-match',
   templateUrl: './table-match.component.html',
@@ -32,7 +29,6 @@ export class TableMatchComponent implements OnInit {
 
   // User for hero modal to mapping
   heroes: any = heroes;
-  skills: any = skills;
 
   constructor(
     private router: Router,

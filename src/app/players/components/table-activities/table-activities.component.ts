@@ -23,7 +23,6 @@ export class TableActivitiesComponent implements OnInit, OnChanges {
   @Input() heroes: IheroLocal;
   @Input() lobbyType: any;
   @Input() gameMode: any;
-  @Input() skills: any;
 
   constructor(
 
