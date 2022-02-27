@@ -48,6 +48,7 @@ import { MmrChartComponent } from './components/mmr-chart/mmr-chart.component';
 import { WordCloudChartComponent } from './components/word-cloud-chart/word-cloud-chart.component';
 import { WardMapChartComponent } from './components/ward-map-chart/ward-map-chart.component';
 import { AverageMaximunOverviewComponent } from './components/average-maximun-overview/average-maximun-overview.component';
+import { ParsedMarkComponent } from './components/parsed-mark/parsed-mark.component';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { AverageMaximunOverviewComponent } from './components/average-maximun-ov
     MmrChartComponent,
     WordCloudChartComponent,
     WardMapChartComponent,
-    AverageMaximunOverviewComponent
+    AverageMaximunOverviewComponent,
+    ParsedMarkComponent
   ],
   imports: [
     CommonModule,
