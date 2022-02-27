@@ -55,7 +55,7 @@ export class TableProComponent implements OnInit {
         const herosStatsData = [...data.heros];
 
         // cal total match for pro_pick
-        this.totalMatch = herosStatsData.map(i => i.pro_pick)
+        this.totalMatch = herosStatsData.map(i => i.pro_pick ?? 0)
         .reduce((cur, total) => {
           return cur + total;
         }, 0);

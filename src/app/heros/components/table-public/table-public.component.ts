@@ -69,7 +69,7 @@ export class TablePublicComponent implements OnInit {
 
         // cal total ppick for every
         for (let k = 1; k < 9; k++) {
-          this.totalMatch[k + '_pick'] = herosStatsData.map(i => i[k + '_pick'])
+          this.totalMatch[k + '_pick'] = herosStatsData.map(i => i[k + '_pick'] ?? 0)
           .reduce((cur, total) => {
             return cur + total;
           }, 0);
