@@ -65,7 +65,10 @@ export class TableProComponent implements OnInit {
             const { pro_pick, pro_ban  } = herosStatsData[i];
             dataNew.push({
                 ...herosStatsData[i],
-                pro_pick_ban: (pro_pick + pro_ban) / this.totalMatch
+                // if there is no such key, we need it be 0, or the cal will be broken and show NaN
+                pro_pick: herosStatsData[i]?.pro_pick ?? 0,
+                pro_ban: herosStatsData[i]?.pro_ban ?? 0,
+                pro_pick_ban: (pro_pick ?? 0 + pro_ban ?? 0) / this.totalMatch
               }
             );
           }
