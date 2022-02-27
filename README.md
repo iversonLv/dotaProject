@@ -32,6 +32,14 @@ https://docs.opendota.com/
 ## Deploy
 This project I deployed on github page, as follow some info for it:  
 
+`git checkout gh-pages` from `dev` branch  
+`git merge dev`  
+`npm run predeploy`  
+Create 404.html copied from index.html if not  
+`git add .`  
+`git commit -am "built base {dev merge to main commit}"`  
+`git push https://github.com/iversonLv/dotaProject.git`  
+
 https://angular.cn/guide/deployment  
 
 `ng build --prod --output-path docs --base-href /dotaProject/`

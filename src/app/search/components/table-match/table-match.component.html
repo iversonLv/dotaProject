@@ -9,10 +9,11 @@
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let element">
           <div class="ver-align">
-            <div class="account-date">
+            <div>
               <a class="account_link" [routerLink]="['/matches', element.match_id]">{{element.match_id}} ></a>
-              <span *ngIf="element.skill !== null && skills" class="skill-text">{{skills[element.skill].name | nameDestruct: '_' : 1}}</span>
-              <span *ngIf="element.skill === null && skills" class="skill-text-unknow">Unknow Skill</span>
+              <span class="date-time">
+                <span class="date-time-value" [matTooltip]="element.start_time * 1000 | date: 'mediumDate'" matTooltipPosition="above">{{element.start_time * 1000 | dateTillToday }}</span>
+              </span>
             </div>
           </div>
         </td>
@@ -32,8 +33,9 @@
       <ng-container matColumnDef="radient" *ngIf="displayedColumns.includes('radient')">
         <th mat-header-cell *matHeaderCellDef> RADIENT </th>
         <td mat-cell *matCellDef="let element">
-          <div>
-            <span *ngFor="let item of element.players | slice: 0:5">
+          <div class="teams">
+            <app-win *ngIf="element.radiant_win" class="icon-win"></app-win>
+            <span *ngFor="let item of element.players | slice: 0:5; trackBy: hero_id">
               <app-img
                 [data]="heroes[item['hero_id']]['img']"
                 (click)="goPage(item['hero_id'])"
@@ -41,6 +43,7 @@
                 [altData]="heroes[item['hero_id']]['localized_name']"
               ></app-img>
             </span>
+            <span class="score">{{element.radiant_score}}</span>
           </div>
         </td>
       </ng-container>
@@ -49,7 +52,9 @@
       <ng-container matColumnDef="dire" *ngIf="displayedColumns.includes('dire')">
         <th mat-header-cell *matHeaderCellDef> DIRE </th>
         <td mat-cell *matCellDef="let element">
-          <div>
+          <div class="teams">
+            <span class="score">{{element.dire_score}}</span>
+            <app-win *ngIf="!element.radiant_win" class="icon-win"></app-win>
             <span *ngFor="let item of element.players | slice: 5:10">
               <app-img
                 [data]="heroes[item['hero_id']]['img']"
