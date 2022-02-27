@@ -8,6 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "concurrently": "concurrently \"git checkout gh-pages\" \"git merge dev\" \"npm run predeploy\" \"git add .\"",
+    "push": "git push https://github.com/iversonLv/dotaProject.git",
     "predeploy": "ng build --prod --output-path docs --base-href /dotaProject/",
     "postinstall": "ng build --prod"
   },
@@ -26,6 +28,7 @@
     "@ngrx/effects": "^10.1.1",
     "@ngrx/store": "^10.1.1",
     "@ngrx/store-devtools": "^10.1.1",
+    "concurrently": "^7.0.0",
     "dotaconstants": "^7.9.0",
     "echarts": "^5.0.2",
     "echarts-wordcloud": "^2.0.0",

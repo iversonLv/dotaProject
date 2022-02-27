@@ -14,9 +14,6 @@ import heroes from 'dotaconstants/build/heroes.json';
 import lobbType from 'dotaconstants/build/lobby_type.json';
 import gameMode from 'dotaconstants/build/game_mode.json';
 
-// assets does not exists in dotaconstants
-import skills from '../../../../assets/data/skills.json';
-
 @Component({
   selector: 'app-actvity',
   templateUrl: './actvity.component.html',
@@ -33,7 +30,6 @@ export class ActvityComponent implements OnInit {
   heroes: any = heroes;
   lobbType: any = lobbType;
   gameMode: any = gameMode;
-  skills: any = skills;
 
   constructor(
     private router: Router,

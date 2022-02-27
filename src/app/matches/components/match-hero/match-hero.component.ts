@@ -4,9 +4,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import region from 'dotaconstants/build/region.json';
 import gameMode from 'dotaconstants/build/game_mode.json';
 
-// assets json does not exist in dotaconstatns
-import skills from '../../../../assets/data/skills.json';
-
 @Component({
   selector: 'app-match-hero',
   templateUrl: './match-hero.component.html',
@@ -16,7 +13,6 @@ export class MatchHeroComponent implements OnInit {
   @Input() data: any;
 
   gameMode: any = gameMode;
-  skills: any = skills;
   region: any = region;
 
   constructor(

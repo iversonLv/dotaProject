@@ -1,4 +1,4 @@
-<app-nav-title [title]="'Heroes in Turbo Matches'"> {{ totalMatch  | greaterNum : '1000' : 'k' }} matches this month</app-nav-title>
+<app-nav-title [title]="'Heroes in Turbo Matches'"> {{ totalMatch  | greaterNum : '10000000' : 'm' }} matches this month</app-nav-title>
 
 <div *ngIf="isLoading">Loading</div>
 <div *ngIf="!isLoading">

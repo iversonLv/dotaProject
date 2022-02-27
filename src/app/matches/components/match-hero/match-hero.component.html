@@ -41,15 +41,5 @@
       <div class="sub-info-title">REGION</div>
       <span>{{region[data.region] | nameDestruct: '_' : 0 :'upperCase'}}</span>
     </div>
-
-    <!-- skill, not all match will have skill info -->
-    <div *ngIf="data.skill !== null && skills" class="sub-info-block">
-      <div class="sub-info-title">SKILL</div>
-      <span>{{skills[data.skill].name | nameDestruct: '_' : 1 :'upperCase'}}</span>
-    </div>
-    <div *ngIf="data.skill === null" class="sub-info-block">
-      <div class="sub-info-title">SKILL</div>
-      <span>Unknown</span>
-    </div>
   </div>
 </div>
