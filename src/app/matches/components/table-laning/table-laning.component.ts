@@ -46,7 +46,7 @@ export class TableLaningComponent implements OnInit {
   extractData(data): any[] {
     data.forEach(z => {
       const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
-        isRadiant, is_roaming, lane_role, lh_t, dn_t, lane_efficiency,randomed
+        isRadiant, is_roaming, lane_role, lh_t, dn_t, lane_efficiency, randomed
       } = z;
 
       this.finalData.push({
