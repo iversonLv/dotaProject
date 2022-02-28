@@ -61,7 +61,7 @@ environment.pro.ts
   - [] DELETE  
   - [x] errorHandle  
 [x] Setup Service/Store/Action/Reducers/Effects
-  - [] constants TODO: now all constants are locally, we should update use api call
+  - [X] constants TODO: now all constants are locally, we should update use api call: Fixed, we now use dotaconstants package
   - [x] Player service
     - [x] GET Player data  
     - [x] GET Player win lose  
@@ -107,10 +107,10 @@ environment.pro.ts
     - [x] GET pro matches list data (2021.3.2)
     - [x] GET public matches list data (2021.3.2)
     - [x] GET matches detail data (2021.3.1)
-    - [] POST parsed matches
+    - [99%] POST parsed matches (2022.2.28) after parse match, reload page, set static 30 second which not flexible
   - [x] Search
-    - [] GET serch (2021.2.28)
-  - [] Find Matches
+    - [x] GET serch (2021.2.28)
+  - [x] Find Matches
 [] Setup/Finish pages
   - [X] Home page (2021.3.27)
   - [99%] Search page: Search matches/Players (2021.2.28) TODO: search term is empty the public table and match tables are odd behavior

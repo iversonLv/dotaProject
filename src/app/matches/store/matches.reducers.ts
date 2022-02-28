@@ -4,6 +4,8 @@ import { MatchesActionTypes, MatchesActions } from './matches.actions';
 import { ISingleMatchData } from '../model/onematch';
 import { IProMatchData } from '../model/pro-match';
 import { IPublicMatchData } from '../model/public-match';
+import { IParseMatchJobData } from '../model/parse-match-job';
+import { IParseMatchData } from '../model/parse-match';
 
 // Pro matches initialState
 export const initialStateProMatches: IProMatchData = {
@@ -22,6 +24,18 @@ export const initialStatePublicMatches: IPublicMatchData = {
 export const initialStateMatch: ISingleMatchData = {
   isLoading: false,
   match: [],
+};
+
+// Parse match jobid initialState
+export const initialStateParseMatchJob: IParseMatchJobData = {
+  isLoading: false,
+  job: {},
+};
+
+// Parse match initialState
+export const initialStateParseMatch: IParseMatchData = {
+  isLoading: false,
+  parseMatchData: {}
 };
 
 
@@ -60,3 +74,28 @@ export function singleMatch(state = initialStateMatch, action: MatchesActions): 
       return state;
   }
 }
+
+// Parse match job
+export function parseMatchJob(state = initialStateParseMatchJob, action: MatchesActions): IParseMatchJobData {
+  switch (action.type) {
+    case MatchesActionTypes.PARSE_MATCH_JOB:
+      return { ...state, isLoading: true };
+    case MatchesActionTypes.PARSE_MATCH_JOB_SUCCESS:
+      return { ...state, isLoading: false, job: {...action.payload.job} };
+    default:
+      return state;
+  }
+}
+
+// Parse match
+export function parseMatch(state = initialStateParseMatch, action: MatchesActions): IParseMatchData {
+  switch (action.type) {
+    case MatchesActionTypes.PARSE_MATCH:
+      return { ...state, isLoading: true };
+    case MatchesActionTypes.PARSE_MATCH_SUCCESS:
+      return { ...state, isLoading: false, parseMatchData: {...action.payload} };
+    default:
+      return state;
+  }
+}
+

@@ -160,6 +160,8 @@ import { TableLaningComponent } from './components/table-laning/table-laning.com
       singleMatch: fromMatchesReducers.singleMatch,
       proMatches: fromMatchesReducers.proMatches,
       publicMatches: fromMatchesReducers.publicMatches,
+      parseMatchJob: fromMatchesReducers.parseMatchJob,
+      parseMatch: fromMatchesReducers.parseMatch,
     }),
     EffectsModule.forFeature([MatchesEffects]),
 
