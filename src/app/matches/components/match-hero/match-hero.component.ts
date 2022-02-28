@@ -4,6 +4,16 @@ import { Component, Input, OnInit } from '@angular/core';
 import region from 'dotaconstants/build/region.json';
 import gameMode from 'dotaconstants/build/game_mode.json';
 
+// ngrx
+import * as matchesActions from '../../store/matches.actions';
+
+// services
+import { Store } from '@ngrx/store';
+
+// model
+import { IParseMatchData } from '../../model/parse-match';
+import { IParseMatchJobData } from '../../model/parse-match-job';
+
 @Component({
   selector: 'app-match-hero',
   templateUrl: './match-hero.component.html',
@@ -16,6 +26,7 @@ export class MatchHeroComponent implements OnInit {
   region: any = region;
 
   constructor(
+    private store: Store<{ parseMatchJob: IParseMatchJobData, parseMatch: IParseMatchData, }>
   ) { }
 
   ngOnInit(): void {
@@ -23,7 +34,23 @@ export class MatchHeroComponent implements OnInit {
 
   // reparse match
   parseMatch(matchId): any {
-    console.log(matchId);
+    this.store.dispatch(new matchesActions.ParseMatchJob(matchId));
+    this.store.select('parseMatchJob').subscribe(jobData => {
+      if (!jobData.isLoading) {
+        if (!!jobData.job.jobId) {
+          this.store.dispatch(new matchesActions.ParseMatch(jobData.job.jobId));
+          this.store.select('parseMatch').subscribe(state => {
+            if (!state.isLoading) {
+              setTimeout(() => {
+                window.location.reload();
+              }, 3000);
+            }
+          });
+        }
+      }
+    }, err => {
+      console.log(err);
+    });
   }
 
   // cal score

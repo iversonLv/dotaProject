@@ -67,6 +67,8 @@
 .teams {
   position: relative;
   padding-left: 15px;
+  display: flex;
+  align-items: center;
 
   .icon-win {
     position: absolute;

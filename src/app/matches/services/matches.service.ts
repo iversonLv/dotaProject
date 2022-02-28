@@ -42,4 +42,14 @@ export class MatchesService {
     return this.generalService.get(`/matches/${matchId}`);
   }
 
+  // parse match get job
+  parseMatchJob(matchId: number): Observable<any> {
+    return this.generalService.post(`/request/${matchId}`);
+  }
+
+  // parse match final
+  parseMatch(jobId: number): Observable<any> {
+    return this.generalService.get(`/request/${jobId}`);
+  }
+
 }

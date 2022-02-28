@@ -12,8 +12,6 @@ import { MatchesService } from '../services/matches.service';
 import * as matchesActions from './matches.actions';
 
 // model
-import { IMatch } from '../model/match';
-import { IRecentMatch } from '../model/recent-match';
 import { IProMatch } from '../model/pro-match';
 import { IPublicMatch } from '../model/public-match';
 
@@ -69,6 +67,42 @@ export class MatchesEffects {
         .pipe(
           map((match: any) =>
             new matchesActions.LoadMatchSuccess(matchId, match)
+          ),
+          catchError(() =>
+            EMPTY
+          )
+        )
+      )
+    )
+  );
+
+  // parse match job
+  parseMatchJob$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(matchesActions.MatchesActionTypes.PARSE_MATCH_JOB),
+      switchMap(({ matchId }) =>
+        this.matchesService.parseMatchJob(matchId)
+        .pipe(
+          map((job: any) =>
+            new matchesActions.ParseMatchJobSuccess(matchId, job)
+          ),
+          catchError(() =>
+            EMPTY
+          )
+        )
+      )
+    )
+  );
+
+  // parse match
+  parseMatch$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(matchesActions.MatchesActionTypes.PARSE_MATCH),
+      switchMap(({ jobId }) =>
+        this.matchesService.parseMatch(jobId)
+        .pipe(
+          map((parseMatchData: any) =>
+            new matchesActions.ParseMatchSuccess(jobId, parseMatchData)
           ),
           catchError(() =>
             EMPTY

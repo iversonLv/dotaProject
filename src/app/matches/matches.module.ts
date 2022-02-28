@@ -156,13 +156,6 @@ import { TableLaningComponent } from './components/table-laning/table-laning.com
     SharedModule,
     MaterialModule,
     FormsModule, ReactiveFormsModule,
-    StoreModule.forFeature('matches', {
-      singleMatch: fromMatchesReducers.singleMatch,
-      proMatches: fromMatchesReducers.proMatches,
-      publicMatches: fromMatchesReducers.publicMatches,
-    }),
-    EffectsModule.forFeature([MatchesEffects]),
-
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     })

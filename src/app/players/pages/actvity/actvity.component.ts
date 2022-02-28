@@ -96,7 +96,6 @@ export class ActvityComponent implements OnInit {
           });
         }
         this.isLoading = data.isLoading;
-        // console.log(newData);
         return this.playersMatchesParseData = newData;
       }
     }, err => {
@@ -107,7 +106,6 @@ export class ActvityComponent implements OnInit {
   }
 
   emitClickSymble(date): any {
-    console.log(date);
     if (this.currentDate !== date) {
       this.currentDate = date;
     } else if (this.currentDate === date) {

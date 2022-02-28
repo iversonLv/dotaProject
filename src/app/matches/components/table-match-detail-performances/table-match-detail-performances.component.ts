@@ -59,7 +59,7 @@ export class TableMatchDetailPerformancesComponent implements OnInit {
     this.getLargestData(data);
     data.forEach(z => {
       const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
-        stuns, life_state_dead, randomed,buyback_count, camps_stacked, pings, performance_others, max_hero_hit } = z;
+        stuns, life_state_dead, randomed, buyback_count, camps_stacked, pings, performance_others, max_hero_hit } = z;
 
       this.finalData.push({
         hero_id,
@@ -190,7 +190,6 @@ export class TableMatchDetailPerformancesComponent implements OnInit {
         };
         arr.push(trackArrA);
       }
-      console.log(arr);
       return arr;
     }
   }

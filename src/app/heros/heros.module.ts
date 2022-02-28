@@ -65,18 +65,6 @@ import { TablePublicColComponent } from './components/table-public-col/table-pub
     HerosRoutingModule,
     MaterialModule,
     SharedModule,
-    StoreModule.forFeature('heros', {
-      heroGeneral: fromHerosReducers.heroGeneral,
-      heroStats: fromHerosReducers.heroStats,
-      herosRankings: fromHerosReducers.herosRankings,
-      herosBenchmarks: fromHerosReducers.herosBenchmarks,
-      herosMatches: fromHerosReducers.herosMatches,
-      herosMatchups: fromHerosReducers.herosMatchups,
-      herosDurations: fromHerosReducers.herosDurations,
-      herosPlayers: fromHerosReducers.herosPlayers,
-      herosItemPopularity: fromHerosReducers.herosItemPopularity,
-    }),
-    EffectsModule.forFeature([HerosEffects]),
   ]
 })
 export class HerosModule { }

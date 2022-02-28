@@ -46,7 +46,7 @@ export class TableLaningComponent implements OnInit {
   extractData(data): any[] {
     data.forEach(z => {
       const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
-        isRadiant, is_roaming, lane_role, lh_t, dn_t, lane_efficiency,randomed
+        isRadiant, is_roaming, lane_role, lh_t, dn_t, lane_efficiency, randomed
       } = z;
 
       this.finalData.push({
@@ -69,7 +69,6 @@ export class TableLaningComponent implements OnInit {
       });
 
     });
-    console.log(this.finalData);
     return this.finalData;
   }
 
@@ -103,7 +102,6 @@ export class TableLaningComponent implements OnInit {
   // extract dn_t and lh_t together
   extractDnLHT(data: any): number[] {
     data = (data.lh_t || []).map((i, index) =>  i + ((data.dn_t || [])[index] || 0));
-    console.log(data);
     return data;
   }
 
