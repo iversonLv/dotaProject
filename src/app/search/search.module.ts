@@ -25,10 +25,6 @@ import { TableMatchComponent } from './components/table-match/table-match.compon
     SearchRoutingModule,
     SharedModule,
     MaterialModule,
-    StoreModule.forFeature('search', {
-      searchList: fromSearchReducers.searchList,
-    }),
-    EffectsModule.forFeature([SearchEffects])
   ]
 })
 export class SearchModule { }

@@ -19,9 +19,13 @@ export enum MatchesActionTypes {
   LOAD_MATCH = '[Matches] Load Match',
   LOAD_MATCH_SUCCESS = '[Matches] Load Match Success',
 
+  // request match job
+  PARSE_MATCH_JOB = '[Matches] Parse Match Job',
+  PARSE_MATCH_JOB_SUCCESS = '[Matches] Parse Match Job Success',
+
   // request match
-  REQUEST_MATCH = '[Matches] Request Match',
-  REQUEST_MATCH_SUCCESS = '[Matches] Request Match Success',
+  PARSE_MATCH = '[Matches] Parse Match',
+  PARSE_MATCH_SUCCESS = '[Matches] Parse Match Success',
 }
 
 // load pro matches
@@ -63,17 +67,30 @@ export class LoadMatchSuccess implements Action {
   constructor(public matchId, public payload?) {}
 }
 
-// request match
-export class RequestMatch implements Action {
-  readonly type = MatchesActionTypes.REQUEST_MATCH;
+// request match job
+export class ParseMatchJob implements Action {
+  readonly type = MatchesActionTypes.PARSE_MATCH_JOB;
 
   constructor(public matchId) {}
 }
 
-export class RequestMatchSuccess implements Action {
-  readonly type = MatchesActionTypes.REQUEST_MATCH_SUCCESS;
+export class ParseMatchJobSuccess implements Action {
+  readonly type = MatchesActionTypes.PARSE_MATCH_JOB_SUCCESS;
 
   constructor(public matchId, public payload?) {}
+}
+
+// request match
+export class ParseMatch implements Action {
+  readonly type = MatchesActionTypes.PARSE_MATCH;
+
+  constructor(public jobId) {}
+}
+
+export class ParseMatchSuccess implements Action {
+  readonly type = MatchesActionTypes.PARSE_MATCH_SUCCESS;
+
+  constructor(public jobId, public payload?) {}
 }
 
 
@@ -81,4 +98,5 @@ export type MatchesActions =
   | LoadMatch | LoadMatchSuccess
   | LoadProMatches | LoadProMatchesSuccess
   | LoadPublicMatches | LoadPublicMatchesSuccess
-  | RequestMatch | RequestMatchSuccess;
+  | ParseMatchJob | ParseMatchJobSuccess
+  | ParseMatch | ParseMatchSuccess;

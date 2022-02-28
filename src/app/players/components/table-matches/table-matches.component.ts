@@ -28,6 +28,7 @@ import items from 'dotaconstants/build/items.json';
 
 // assets json which not exist in dotaconstatns
 import laneRole from '../../../../assets/data/lane_role.json';
+import leaverStatus from '../../../../assets/data/leaver_status.json';
 
 @Component({
   selector: 'app-table-matches',
@@ -77,6 +78,7 @@ export class TableMatchesComponent implements OnInit {
   lobbyType: any = lobbyType;
   gameMode: any = gameMode;
   laneRole: any = laneRole;
+  leaverStatus: any = leaverStatus;
   itemIds: any = itemIds;
   items: any = items;
   itemColors: IItemColorLocal = itemColors;

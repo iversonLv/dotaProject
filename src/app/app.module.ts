@@ -106,6 +106,8 @@ const devToolsOption = { name: 'Dota2 Project API', maxAge: 25, logOnly: environ
       singleMatch: fromMatchesReducers.singleMatch,
       proMatches: fromMatchesReducers.proMatches,
       publicMatches: fromMatchesReducers.publicMatches,
+      parseMatchJob: fromMatchesReducers.parseMatchJob,
+      parseMatch: fromMatchesReducers.parseMatch,
     }),
     EffectsModule.forRoot([
       PlayersEffects,

@@ -48,6 +48,7 @@ import { MmrChartComponent } from './components/mmr-chart/mmr-chart.component';
 import { WordCloudChartComponent } from './components/word-cloud-chart/word-cloud-chart.component';
 import { WardMapChartComponent } from './components/ward-map-chart/ward-map-chart.component';
 import { AverageMaximunOverviewComponent } from './components/average-maximun-overview/average-maximun-overview.component';
+import { ParsedMarkComponent } from './components/parsed-mark/parsed-mark.component';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { AverageMaximunOverviewComponent } from './components/average-maximun-ov
     MmrChartComponent,
     WordCloudChartComponent,
     WardMapChartComponent,
-    AverageMaximunOverviewComponent
+    AverageMaximunOverviewComponent,
+    ParsedMarkComponent
   ],
   imports: [
     CommonModule,
@@ -90,29 +92,6 @@ import { AverageMaximunOverviewComponent } from './components/average-maximun-ov
     MaterialModule,
     SharedModule,
     NgxEchartsModule,
-    StoreModule.forFeature('players', {
-      playersMyRecordWithWinLoseCount: fromPlayersReducers.playersMyRecordWithWinLoseCount,
-      playersWinLoseCount: fromPlayersReducers.playersWinLoseCount,
-      playersGeneral: fromPlayersReducers.playersGeneral,
-      playersPeers: fromPlayersReducers.playersPeers,
-      playersPeersFilter: fromPlayersReducers.playersPeersFilter,
-      playersHeroesPlayed: fromPlayersReducers.playersHeroesPlayed,
-      playersMatches: fromPlayersReducers.playersMatches,
-      playersRecentMatches: fromPlayersReducers.playersRecentMatches,
-      playersCounts: fromPlayersReducers.playersCounts,
-      playersTotals: fromPlayersReducers.playersTotals,
-      playersRankings: fromPlayersReducers.playersRankings,
-      playersPros: fromPlayersReducers.playersPros,
-      proPlayers: fromPlayersReducers.proPlayers,
-      playersHistograms: fromPlayersReducers.playersHistograms,
-      playersRecords: fromPlayersReducers.playersRecords,
-      playersTrends: fromPlayersReducers.playersTrends,
-      playersRatings: fromPlayersReducers.playersRatings,
-      playersWardMaps: fromPlayersReducers.playersWardMaps,
-      playersWordClouds: fromPlayersReducers.playersWordClouds,
-
-    }),
-    EffectsModule.forFeature([PlayersEffects])
   ],
   exports: []
 })

@@ -40,6 +40,8 @@ export class FilterBarComponent implements OnInit {
   playersPeersFilterDataDe: any;
   // for filter bar, load all peers without queryParams
 
+  hideFilter = true;
+
   heroes: any = heroes;
   laneRole: any = laneRole;
   patch: any = patch;
@@ -117,6 +119,7 @@ export class FilterBarComponent implements OnInit {
   }
 
   async clearQueryParams(): Promise<void> {
+    this.hideFilter = true;
     const accountId = +this.activatedRoute.snapshot.paramMap.get('id');
     const field = this.router.url.split('/')[4] === undefined ? 'kills' : this.router.url.split('/')[4].split('?')[0];
     await this.router.navigate([], {

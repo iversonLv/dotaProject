@@ -17,6 +17,7 @@
   td.mat-cell:first-of-type,
   td.mat-footer-cell:first-of-type {
     padding-left: 10px;
+    overflow: hidden;
   }
   
   th.mat-header-cell:last-of-type,
@@ -34,6 +35,7 @@
 .ver-align {
   display: flex;
   align-items: center;
+  position: relative;
 
   .account_link {
     margin-left: 5px;

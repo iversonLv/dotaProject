@@ -21,10 +21,13 @@
         <h2 class="game-duration">{{data?.duration | durationFormat}}</h2>
         <div class="game-time" [matTooltip]="data.start_time * 1000 | date: 'mediumDate'">END {{data.start_time * 1000 | dateTillToday}}</div>
         <!-- parse button -->
-        <!-- <button mat-button class="match-re-parse" (click)="parseMatch(data.match_id)">
+        <button mat-button class="match-re-parse" (click)="parseMatch(data.match_id)" *ngIf="!data?.objectives">
+          PARSE
+        </button>
+        <button mat-button class="match-re-parse" (click)="parseMatch(data.match_id)" *ngIf="data?.objectives">
           <mat-icon>refresh</mat-icon>
           RE-PARSE
-        </button> -->
+        </button>
       </div>
       <div class="dire-txt">
         {{data.dire_score ? data.dire_score  : calScore(data.players.slice(5, 10))}}
