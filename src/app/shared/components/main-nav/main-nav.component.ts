@@ -36,7 +36,7 @@ export class MainNavComponent implements OnInit {
 
   doSearch(e): any {
     // when enter key down
-    if (e.keyCode === 13 ) {
+    if (e.keyCode === 13 && e.target.value !== '') {
       this.router.navigate(['/search'], {
         queryParams: {
           q: e.target.value
