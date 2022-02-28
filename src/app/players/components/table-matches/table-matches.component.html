@@ -11,6 +11,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="The hero played" matTooltipPosition="above"> HERO </th>
         <td mat-cell *matCellDef="let element">
           <div *ngIf="element.hero_id && heroes" class="ver-align">
+            <mat-icon class="leaver-status" *ngIf="element?.leaver_status !== 0 && leaverStatus" [matTooltip]="leaverStatus[element?.leaver_status]?.name | nameDestruct: '_': '1': 'upperCase'" matTooltipPosition="above"> directions_run</mat-icon>
             <app-parsed-mark *ngIf="element.version"></app-parsed-mark>
             <app-img
               *ngIf="heroes[element['hero_id']]?.img"[data]="heroes[element['hero_id']]?.img"
