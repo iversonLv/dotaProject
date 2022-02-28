@@ -40,6 +40,8 @@ export class FilterBarComponent implements OnInit {
   playersPeersFilterDataDe: any;
   // for filter bar, load all peers without queryParams
 
+  hideFilter = true;
+
   heroes: any = heroes;
   laneRole: any = laneRole;
   patch: any = patch;
