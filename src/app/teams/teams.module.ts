@@ -48,14 +48,6 @@ import { HeroesComponent } from './pages/heroes/heroes.component';
     MaterialModule,
     SharedModule,
     TeamsRoutingModule,
-    StoreModule.forFeature('teams', {
-      teamsList: fromTeamsReducers.teamsList,
-      teamsGeneral: fromTeamsReducers.teamsGeneral,
-      teamsPlayers: fromTeamsReducers.teamsPlayers,
-      teamsMatches: fromTeamsReducers.teamsMatches,
-      teamsHeroes: fromTeamsReducers.teamsHeroes,
-    }),
-    EffectsModule.forFeature([TeamsEffects]),
   ]
 })
 export class TeamsModule { }

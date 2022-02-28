@@ -54,10 +54,6 @@ import { TableRecordsComponent } from './components/table-records/table-records.
     RecordsRoutingModule,
     SharedModule,
     MaterialModule,
-    StoreModule.forFeature('records', {
-      recordsList: fromRecordsReducers.recordsList,
-    }),
-    EffectsModule.forFeature([RecordsEffects])
   ]
 })
 export class RecordsModule { }

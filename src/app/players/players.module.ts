@@ -92,29 +92,6 @@ import { ParsedMarkComponent } from './components/parsed-mark/parsed-mark.compon
     MaterialModule,
     SharedModule,
     NgxEchartsModule,
-    StoreModule.forFeature('players', {
-      playersMyRecordWithWinLoseCount: fromPlayersReducers.playersMyRecordWithWinLoseCount,
-      playersWinLoseCount: fromPlayersReducers.playersWinLoseCount,
-      playersGeneral: fromPlayersReducers.playersGeneral,
-      playersPeers: fromPlayersReducers.playersPeers,
-      playersPeersFilter: fromPlayersReducers.playersPeersFilter,
-      playersHeroesPlayed: fromPlayersReducers.playersHeroesPlayed,
-      playersMatches: fromPlayersReducers.playersMatches,
-      playersRecentMatches: fromPlayersReducers.playersRecentMatches,
-      playersCounts: fromPlayersReducers.playersCounts,
-      playersTotals: fromPlayersReducers.playersTotals,
-      playersRankings: fromPlayersReducers.playersRankings,
-      playersPros: fromPlayersReducers.playersPros,
-      proPlayers: fromPlayersReducers.proPlayers,
-      playersHistograms: fromPlayersReducers.playersHistograms,
-      playersRecords: fromPlayersReducers.playersRecords,
-      playersTrends: fromPlayersReducers.playersTrends,
-      playersRatings: fromPlayersReducers.playersRatings,
-      playersWardMaps: fromPlayersReducers.playersWardMaps,
-      playersWordClouds: fromPlayersReducers.playersWordClouds,
-
-    }),
-    EffectsModule.forFeature([PlayersEffects])
   ],
   exports: []
 })
