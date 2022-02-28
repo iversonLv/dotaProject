@@ -120,7 +120,7 @@ calTeamFightIsRadiantWin(teamfight: any): any[] {
   getCurrentTeamFightDataAndEmit(item): void {
     item = {...item, isRadient: this.calTeamFightIsRadiantWin(item)[0], gold_delta_total: this.calTeamFightIsRadiantWin(item)[1]};
     this.currentTeamFightDataForTable = item;
-    console.log('emit', this.currentTeamFightDataForTable);
+    // console.log('emit', this.currentTeamFightDataForTable);
     this.emitCurrentTeamFightData.emit(this.currentTeamFightDataForTable);
   }
 }

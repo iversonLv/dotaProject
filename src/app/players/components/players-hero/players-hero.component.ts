@@ -105,7 +105,6 @@ export class PlayersHeroComponent implements OnInit {
   refreshAccount(): any {
     const accountId = parseInt(this.activatedRoute.snapshot.paramMap.get('id'), 2);
     this.playersService.refreshAccount(accountId).subscribe(data => {
-      console.log(data);
     }, error => {
       console.log(error);
     });

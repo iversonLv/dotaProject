@@ -225,13 +225,10 @@ export class MatchDetailComponent implements OnInit {
   emitCurrentTeamFightData(e): void {
     this.currentTeamFightDataForMap = e;
     this.currentTeamFightDataForTable = e.players;
-    console.log('emit teamfight', this.currentTeamFightDataForTable);
   }
 
   emitShowHideVisionPlayersData(e: any): any {
-    console.log('emit show hide player data', e);
     this.showHideVisionPlayersData = { ...this.showHideVisionPlayersData, ...e };
-    // console.log(this.showHideVisionPlayersData);
     return this.showHideVisionPlayersData;
   }
 
@@ -241,7 +238,6 @@ export class MatchDetailComponent implements OnInit {
       const { hero_id, player_slot } = i;
       this.showHideVisionPlayersData[hero_id] = { hero_id, player_slot, obs_log: true, sen_log: true, timeline };
     });
-    // console.log(this.showHideVisionPlayersData);
     return this.showHideVisionPlayersData;
   }
 
@@ -269,7 +265,6 @@ export class MatchDetailComponent implements OnInit {
     for (let i = 0; i <= Math.floor(duration / (perMinute * 60)); i++) {
       arr.push(i);
     }
-    // console.log(visionTimeLineStepPerMinArr);
     return this.visionTimeLinePerMinSteps = arr;
   }
 

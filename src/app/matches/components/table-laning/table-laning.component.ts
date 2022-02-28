@@ -69,7 +69,6 @@ export class TableLaningComponent implements OnInit {
       });
 
     });
-    console.log(this.finalData);
     return this.finalData;
   }
 
@@ -103,7 +102,6 @@ export class TableLaningComponent implements OnInit {
   // extract dn_t and lh_t together
   extractDnLHT(data: any): number[] {
     data = (data.lh_t || []).map((i, index) =>  i + ((data.dn_t || [])[index] || 0));
-    console.log(data);
     return data;
   }
 

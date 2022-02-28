@@ -81,7 +81,6 @@ export class TableMatchDetailTeamfightsComponent implements OnInit, OnChanges {
         ...currentTeamFightDataForTable[i]
       });
     });
-    console.log('default', arr);
     this.finalData = arr;
     return arr;
   }

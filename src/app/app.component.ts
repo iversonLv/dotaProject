@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
 
 ngOnInit(): void {
   let accountId = +this.activatedRoute.snapshot.paramMap.get('id');
-  console.log(accountId, this.router.url);
   let currentRoute = this.router.url.split('/')[3].split('?')[0];
   currentRoute = currentRoute.charAt(0).toUpperCase() + currentRoute.slice(1);
   const initTitle = this.titleService.getTitle();
@@ -55,8 +54,8 @@ getPlayerData(accountId, currentRoute, initTitle): any {
         this.titleService.setTitle(`${data.player.profile.personaname} - ${currentRoute} - ${initTitle}`);
       }
     }
-  }, error => {
-    console.log(error);
+  }, err => {
+    console.log(err);
   });
 }
 

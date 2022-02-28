@@ -190,7 +190,6 @@ export class TableMatchDetailPerformancesComponent implements OnInit {
         };
         arr.push(trackArrA);
       }
-      console.log(arr);
       return arr;
     }
   }

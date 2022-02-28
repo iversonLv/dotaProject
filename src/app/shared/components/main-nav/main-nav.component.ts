@@ -55,7 +55,6 @@ export class MainNavComponent implements OnInit {
 
   getUser(): any {
     return this.generalService.getUser().subscribe(user => {
-      console.log(user);
     });
   }
 
