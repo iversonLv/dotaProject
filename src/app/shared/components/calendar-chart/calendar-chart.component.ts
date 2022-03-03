@@ -80,7 +80,7 @@ export class CalendarChartComponent implements OnInit {
         coordinateSystem: 'calendar',
         data: this.parseData(this.data.subData),
         calendarIndex: 0,
-        symbolSize: 15
+        symbolSize: 17
         // symbolSize(val): any {
         //   if (val[1] > 10) {
         //     return val[1];
