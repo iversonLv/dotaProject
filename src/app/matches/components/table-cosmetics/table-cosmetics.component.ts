@@ -63,7 +63,6 @@ export class TableCosmeticsComponent implements OnInit {
       });
 
     });
-    console.log(this.finalData);
     return this.finalData;
   }
 
