@@ -79,7 +79,6 @@ export class TableMatchDetailItemsComponent implements OnInit {
         finalPurchaseItemData[i] = {data: data.filter(x =>   (x.time / 60) < +i && (x.time / 60) >= (+i - 5)), key: i};
       }
     });
-    // console.log(finalPurchaseItemData);
     return finalPurchaseItemData;
   }
 

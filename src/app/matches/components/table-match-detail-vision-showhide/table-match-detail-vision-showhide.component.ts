@@ -56,7 +56,6 @@ export class TableMatchDetailVisionShowhideComponent implements OnInit {
       this.displayedColumns.push(hero_id + '');
       this.players[hero_id] = { hero_id, player_slot, obs_log: true, sen_log: true };
     });
-    console.log(this.players);
     // this.emitShowHideVisionPlayersData.emit(this.players);
     return this.players;
   }
@@ -83,7 +82,6 @@ export class TableMatchDetailVisionShowhideComponent implements OnInit {
         }
       }
     }
-    console.log(`all ${e.checked}`, this.players);
     this.emitShowHideVisionPlayersData.emit(this.players);
   }
   // check specific ward show hide
@@ -105,7 +103,6 @@ export class TableMatchDetailVisionShowhideComponent implements OnInit {
     // if both type are true, then all type checkbox will checked, otherwise will unchecked
     this.checkAllType();
 
-    console.log(`all ${type} ${e.checked}`, this.players);
     this.emitShowHideVisionPlayersData.emit(this.players);
   }
 
@@ -123,7 +120,6 @@ export class TableMatchDetailVisionShowhideComponent implements OnInit {
 
     this.checkAllType();
 
-    console.log(`${heroId} ${type} ${e.checked}`, this.players);
     this.emitShowHideVisionPlayersData.emit(this.players);
   }
 

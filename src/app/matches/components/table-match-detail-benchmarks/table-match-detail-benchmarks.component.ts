@@ -98,7 +98,6 @@ export class TableMatchDetailBenchmarksComponent implements OnInit {
         benchmarks
       });
     });
-    console.log(finalData);
     return finalData;
   }
 

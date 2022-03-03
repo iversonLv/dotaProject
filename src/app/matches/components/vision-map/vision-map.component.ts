@@ -61,7 +61,6 @@ extractObsSenFinalData(data: any[]): any[] {
       ...senData
     );
   });
-  console.log('default', arr);
   return arr;
 }
 
@@ -145,7 +144,6 @@ extractObsSenFinalData(data: any[]): any[] {
         );
       }
     }
-    console.log('filter', arr);
     return arr;
   }
 

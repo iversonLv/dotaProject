@@ -130,8 +130,6 @@ export function playersWinLoseCount(state = initialStateWinLose, action: Players
     case PlayersActionTypes.LOAD_PLAYERS_WIN_LOSE_COUNT:
       return { ...state, isLoading: true };
     case PlayersActionTypes.LOAD_PLAYERS_WIN_LOSE_COUNT_SUCCESS:
-      console.log(JSON.stringify(state));
-      console.log(action.payload);
       return { ...state, winlose: { ...action.payload }, isLoading: false };
     default:
       return state;
@@ -144,8 +142,6 @@ export function playersMyRecordWithWinLoseCount(state = initialStateMyRecordWith
     case PlayersActionTypes.LOAD_PLAYERS_MY_RECORD_WITH_WIN_LOSE_COUNT:
       return { ...state, isLoading: true };
     case PlayersActionTypes.LOAD_PLAYERS_MY_RECORD_WITH_WIN_LOSE_COUNT_SUCCESS:
-      console.log(JSON.stringify(state));
-      console.log(action.payload);
       return { ...state, winlose: { ...action.payload }, isLoading: false };
     default:
       return state;
