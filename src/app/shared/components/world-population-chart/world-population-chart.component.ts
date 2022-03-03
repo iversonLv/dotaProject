@@ -140,7 +140,6 @@ export class WorldPopulationChartComponent implements OnInit {
   }
 
   onChartEvent(event: any, type: string): any {
-    console.log('chart event:', type, event);
     if (event.data) {
       this.emitClickSymble.emit(event.data);
     }

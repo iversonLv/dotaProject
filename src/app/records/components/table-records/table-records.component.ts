@@ -51,8 +51,6 @@ export class TableRecordsComponent implements OnInit {
     const currentUrl = this.router.url;
     this.field = currentUrl.split('/')[2];
 
-    console.log(this.field);
-
     // load records data
     this.store.dispatch(new recordsActions.LoadRecords(this.field));
     this.store.select('recordsList').subscribe(data => {

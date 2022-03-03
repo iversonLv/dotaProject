@@ -69,18 +69,27 @@ export class CalendarChartComponent implements OnInit {
       },
       series:  {
         type: 'scatter',
+        selectedMode: 'single',
+        select: {
+          itemStyle: {
+            borderColor: 'rgba(255, 255, 255, 1)',
+            borderWidth: 1
+          },
+        },
+        symbol: 'rect',
         coordinateSystem: 'calendar',
         data: this.parseData(this.data.subData),
         calendarIndex: 0,
-        symbolSize(val): any {
-          if (val[1] > 10) {
-            return val[1];
-          } else if (val[1] < 5) {
-            return val[1] * 4;
-          } else {
-            return val[1] * 2;
-          }
-        }
+        symbolSize: 15
+        // symbolSize(val): any {
+        //   if (val[1] > 10) {
+        //     return val[1];
+        //   } else if (val[1] < 5) {
+        //     return val[1] * 4;
+        //   } else {
+        //     return val[1] * 2;
+        //   }
+        // }
       }
     };
 
@@ -108,7 +117,7 @@ export class CalendarChartComponent implements OnInit {
   }
 
   onChartEvent(event: any, type: string): any {
-    console.log('chart event:', type, event);
+    console.log(event)
     this.emitClickSymble.emit(event.value[0]);
   }
 

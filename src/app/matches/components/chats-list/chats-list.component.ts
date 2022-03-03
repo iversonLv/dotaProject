@@ -112,7 +112,6 @@ export class ChatsListComponent implements OnInit {
     };
     this.finalData = this.extraceData(this.finalData2, this.chatFilterObj);
     this.chatFilterObj = this.calFilterDataLength(this.finalData, this.chatFilterObj);
-    console.log(this.finalData);
   }
 
 
@@ -205,14 +204,12 @@ export class ChatsListComponent implements OnInit {
       });
 
     });
-    console.log(this.finalData2);
     return this.finalData2;
   }
 
   // filter chat data function
   extraceData(data: any[], keys: any): any[] {
     data = data.filter((i, index) => {
-      console.log(i);
       // // side
       // const radiant = i.player_slot < 128;
       // const dire = i.player_slot > 127;

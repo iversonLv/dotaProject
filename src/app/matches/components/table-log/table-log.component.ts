@@ -79,7 +79,6 @@ export class TableLogComponent implements OnInit {
       this.heroAllItems.push(this.heroes[hero_id]?.name);
       this.logFilterObj[this.heroes[hero_id]?.name] = false;
     });
-    // console.log(this.heroList);
     return this.heroList;
   }
 
@@ -90,7 +89,6 @@ export class TableLogComponent implements OnInit {
     const objectivesLogData = this.extractObjectiveLogData(this.objectives, 'objectives');
     const finalData = [];
     finalData.push(...killsLogData, ...runesLogData, ...objectivesLogData);
-    // console.log(finalData.sort((a, b) => a.time - b.time));
     return finalData.sort((a, b) => a.time - b.time);
   }
 
@@ -181,7 +179,6 @@ export class TableLogComponent implements OnInit {
         return keys[i.log_type] && keys[i.side];
       }
     });
-    // console.log(data);
     return data;
   }
 
@@ -196,7 +193,6 @@ export class TableLogComponent implements OnInit {
 
   // chips filter function
   emitValue(e): any {
-    // console.log(e);
     this.filter(e[0], e[1]);
   }
 
@@ -209,7 +205,6 @@ export class TableLogComponent implements OnInit {
       heroListA.push(this.logFilterObj[i]);
       return heroListA;
     });
-    // console.log(heroListA)
     // now if we select one of hero id, will set a flag to filterHero
     // If all or none hero id are selected, filterHero will be flase
     if (heroListA.filter(i => i === false).length === 10 ||
@@ -219,7 +214,6 @@ export class TableLogComponent implements OnInit {
       filterHero = true;
     }
     this.dataSource.data = this.filterData(this.extractData(), this.logFilterObj, filterHero);
-    console.log(this.dataSource.data);
   }
 
 }

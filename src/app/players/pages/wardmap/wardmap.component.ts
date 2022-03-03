@@ -35,7 +35,6 @@ export class WardmapComponent implements OnInit {
         this.wardMaps.push({ ...this.calSeriesData(warmMpasData.obs, 900), title: 'Observer'});
         this.wardMaps.push({ ...this.calSeriesData(warmMpasData.sen, 900), title: 'Sentry'});
         this.isLoading = data.isLoading;
-        console.log(this.wardMaps);
         return this.wardMaps;
       }
     }, err => {

@@ -146,7 +146,6 @@ calDuration(duration: number, left: IObsSenLeftLog[], place: IObsSenLog[]): any[
 }
 
 filterShowHideVisionDataFn(players: any, data: any[]): any[] {
-  // console.log(players, data)
   const arr = [];
   for (const i in players) {
     if (players.hasOwnProperty(i)) {
@@ -168,7 +167,6 @@ filterShowHideVisionDataFn(players: any, data: any[]): any[] {
       );
     }
   }
-  console.log('filter', arr);
   return arr;
 }
 
