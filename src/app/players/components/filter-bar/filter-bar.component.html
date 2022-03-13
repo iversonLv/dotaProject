@@ -1,5 +1,5 @@
 <div class="filter-bar">
-  <button mat-button (click)="hideFilter = !hideFilter" matTooltip="Filter" matTooltipPosition="above"><mat-icon>filter_list</mat-icon></button>
+  <button mat-button (click)="hideFilter = !hideFilter" matTooltip="Filter" *ngIf="!queryParamsHasValue" matTooltipPosition="above"><mat-icon>filter_list</mat-icon></button>
   <button mat-button (click)="clearQueryParams()" *ngIf="queryParamsHasValue" matTooltip="Clear filter" matTooltipPosition="above"><mat-icon>clear</mat-icon></button>
 </div>
 
