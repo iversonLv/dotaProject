@@ -29,7 +29,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## API DOC
 https://docs.opendota.com/
 
-## Deploy
+## Deploy to github page
 This project I deployed on github page, as follow some info for it:  
 
 `git checkout gh-pages` from `dev` branch  
@@ -42,7 +42,11 @@ Create 404.html copied from index.html if not
 
 https://angular.cn/guide/deployment  
 
-`ng build --prod --output-path docs --base-href /dotaProject/`
+`ng build --prod --output-path docs --base-href /dotaProject/`  
+
+## Deploy to netlify
+Same with above Deploy to github page, but need a _redirect page
+
 
 https://docs.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site  
 

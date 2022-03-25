@@ -49,12 +49,12 @@
       </span>
       <span class="components-block">
         <app-img
-          [data]="items['recipe_' + item['dname'].replace(' ', '_').toLowerCase()]['img']"
-          *ngIf="items && items['recipe_' + item['dname'].replace(' ', '_').toLowerCase()]?.img"
+          [data]="items['recipe_' + item?.img.slice(25).split('_lg')[0]]['img']"
+          *ngIf="items && items['recipe_' + item?.img.slice(25).split('_lg')[0]]?.img"
           class="sb-item-img"
           [altData]="item['dname']">
         </app-img>
-        <span *ngIf="items && items['recipe_' + item.dname.replace(' ', '_').toLowerCase()]?.cost" class="item-cost">{{items['recipe_' + item.dname.replace(' ', '_').toLowerCase()]['cost']}}</span>
+        <span *ngIf="items && items['recipe_' + item?.img.slice(25).split('_lg')[0]]?.cost" class="item-cost">{{items['recipe_' + item?.img.slice(25).split('_lg')[0]]['cost']}}</span>
       </span>
     </div>
   </div>
