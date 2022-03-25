@@ -105,10 +105,13 @@ export class ChatsListComponent implements OnInit {
 
   // filter chart
   filter(e): any {
-    this.chatFilterObj[e.source.name].isShown = e.checked;
+    // this.chatFilterObj[e.source.name].isShown = e.checked;
     this.chatFilterObj = {
       ...this.chatFilterObj,
-      ...this.chatFilterObj[e.source.name],
+      [e.source.name]: {
+        ...this.chatFilterObj[e.source.name],
+        isShown: e.checked
+      }
     };
     this.finalData = this.extraceData(this.finalData2, this.chatFilterObj);
     this.chatFilterObj = this.calFilterDataLength(this.finalData, this.chatFilterObj);
@@ -174,10 +177,12 @@ export class ChatsListComponent implements OnInit {
       let chatType = '';
       if (i.type === 'chat') {
         chatType = 'chat';
-      } else if (i.type === 'chatwheel' && (!this.chatWheel[i?.key]?.sound_ext || !this.chatWheel[i?.key])) {
-        chatType = 'pharses';
-      } else if (i.type === 'chatwheel' && this.chatWheel[i?.key]?.sound_ext) {
-        chatType = 'audio';
+      } else {
+          if (i.type === 'chatwheel' && (!this.chatWheel[i?.key]?.sound_ext || !this.chatWheel[i?.key])) {
+          chatType = 'pharses';
+        } else if (i.type === 'chatwheel' && this.chatWheel[i?.key]?.sound_ext) {
+          chatType = 'audio';
+        }
       }
 
       // target
