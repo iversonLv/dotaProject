@@ -45,6 +45,8 @@ export class TablePlayersComponent implements OnInit {
 
   playersPros: IPro[];
 
+  loginedAccountId = 128741677;
+
   playersWithGameLargest: any = {
     games: null,
     with_games: null,
@@ -164,6 +166,8 @@ export class TablePlayersComponent implements OnInit {
     this.store.dispatch(new playersActions.LoadPlayersHeroesPlayed(accountId));
     this.store.dispatch(new playersActions.LoadPlayersRecentMatches(accountId));
     this.store.dispatch(new playersActions.LoadPlayersCounts(accountId));
+    // tslint:disable-next-line:max-line-length
+    this.store.dispatch(new playersActions.LoadPlayersMyRecordWithWinLoseCount(this.loginedAccountId, {params: { included_account_id: accountId } }));
   }
 
     // cal the highest numbers of games, with_games and against_games for pages bar data
