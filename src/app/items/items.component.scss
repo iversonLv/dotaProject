@@ -1,0 +1,114 @@
+@import '../../../src/styles.scss';
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 66px;
+
+  .list-title {
+    text-align: center;
+  }
+
+  .basic-items-list,
+  .neutral-items-list,
+  .components-items-list {
+    width: 30%; 
+  }
+  .basic-items-list,
+  .neutral-items-list,
+  .components-items-list  {
+    border: 2px solid $deep;
+    padding: 10px;
+    background-color: rgba(21, 27, 29, .5);
+    div:not(.list-title) {
+      app-nav-title  {
+        display: flex;
+        align-items: flex-start;
+        .item-icon {
+          display: inline-block;
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+  .list-img {
+    padding-bottom: 10px;
+    display: flex;
+    gap: 5px 18px;
+    flex-wrap: wrap;
+  
+    .item {
+      cursor: pointer;
+    }
+  }
+}
+
+.item-color {
+  border-width: 1px;
+  border-style: solid;
+
+  &.item-color-rare {
+    border-color: $item-rare;
+  }
+  
+  &.item-color-artifact {
+    border-color: $item-artifact;
+  }
+  
+  &.item-color-secret-shop {
+    border-color: $item-secret-shop;
+  }
+  
+  &.item-color-consumable {
+    border-color: $item-consumable;
+  }
+  
+  &.item-color-common {
+    border-color: $item-common;
+  }
+  
+  &.item-color-epic {
+    border-color: $item-epic;
+  }
+  
+  &.item-color-component {
+    border-color: $item-component;
+  }
+}
+
+.tier-time-rate {
+  display: flex;
+  align-items: center;
+}
+.tier-color {
+  font-weight: bold;
+  &.item-color-low {
+    color: $item-low;
+  }
+  
+  &.item-color-artifact {
+    color: $item-artifact;
+  }
+  
+  &.item-color-consumable {
+    color: $item-consumable;
+  }
+  
+  &.item-color-common {
+    color: $item-common;
+  }
+  
+  &.item-color-epic {
+    color: $item-epic;
+  }
+}
+
+.neutral-bar {
+  padding: 5px 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    margin-bottom: 0;
+  }
+}
