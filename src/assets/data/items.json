@@ -138,6 +138,7 @@
     "img": "/apps/dota2/images/dota_react/items/blades_of_attack.png?t=1593393829403",
     "dname": "Blades of Attack",
     "qual": "component",
+    "category": "equipment",
     "cost": 450,
     "notes": "",
     "attrib": [
@@ -160,6 +161,7 @@
     "img": "/apps/dota2/images/dota_react/items/broadsword.png?t=1593393829403",
     "dname": "Broadsword",
     "qual": "component",
+    "category": "equipment",
     "cost": 1000,
     "notes": "",
     "attrib": [
@@ -182,6 +184,7 @@
     "img": "/apps/dota2/images/dota_react/items/chainmail.png?t=1593393829403",
     "dname": "Chainmail",
     "qual": "component",
+    "category": "equipment",
     "cost": 550,
     "notes": "",
     "attrib": [
@@ -204,6 +207,7 @@
     "img": "/apps/dota2/images/dota_react/items/claymore.png?t=1593393829403",
     "dname": "Claymore",
     "qual": "component",
+    "category": "equipment",
     "cost": 1350,
     "notes": "",
     "attrib": [
@@ -226,6 +230,7 @@
     "img": "/apps/dota2/images/dota_react/items/helm_of_iron_will.png?t=1593393829403",
     "dname": "Helm of Iron Will",
     "qual": "component",
+    "category": "equipment",
     "cost": 975,
     "notes": "",
     "attrib": [
@@ -257,6 +262,7 @@
     "img": "/apps/dota2/images/dota_react/items/javelin.png?t=1593393829403",
     "dname": "Javelin",
     "qual": "component",
+    "category": "equipment",
     "cost": 1100,
     "notes": "",
     "attrib": [],
@@ -272,6 +278,7 @@
     "img": "/apps/dota2/images/dota_react/items/mithril_hammer.png?t=1593393829403",
     "dname": "Mithril Hammer",
     "qual": "component",
+    "category": "equipment",
     "cost": 1600,
     "notes": "",
     "attrib": [
@@ -317,6 +324,7 @@
     "img": "/apps/dota2/images/dota_react/items/quarterstaff.png?t=1593393829403",
     "dname": "Quarterstaff",
     "qual": "component",
+    "category": "equipment",
     "cost": 875,
     "notes": "",
     "attrib": [
@@ -349,6 +357,7 @@
     "img": "/apps/dota2/images/dota_react/items/quelling_blade.png?t=1593393829403",
     "dname": "Quelling Blade",
     "qual": "component",
+    "category": "equipment",
     "cost": 100,
     "notes": "Effects of multiple quelling blades do not stack.",
     "attrib": [],
@@ -393,6 +402,7 @@
     "img": "/apps/dota2/images/dota_react/items/infused_raindrop.png?t=1593393829403",
     "dname": "Infused Raindrops",
     "qual": "component",
+    "category": "equipment",
     "cost": 225,
     "notes": "Uses at most one charge per damage instance.",
     "attrib": [
@@ -441,6 +451,7 @@
     "img": "/apps/dota2/images/dota_react/items/ring_of_protection.png?t=1593393829403",
     "dname": "Ring of Protection",
     "qual": "component",
+    "category": "equipment",
     "cost": 175,
     "notes": "",
     "attrib": [
@@ -819,6 +830,7 @@
     "img": "/apps/dota2/images/dota_react/items/gloves.png?t=1593393829403",
     "dname": "Gloves of Haste",
     "qual": "component",
+    "category": "equipment",
     "cost": 450,
     "notes": "",
     "attrib": [
@@ -841,6 +853,7 @@
     "img": "/apps/dota2/images/dota_react/items/blitz_knuckles.png?t=1593393829403",
     "dname": "Blitz Knuckles",
     "qual": "component",
+    "category": "equipment",
     "cost": 1000,
     "notes": "",
     "attrib": [
@@ -5838,6 +5851,7 @@
     "img": "/apps/dota2/images/dota_react/items/orb_of_venom.png?t=1593393829403",
     "dname": "Orb of Venom",
     "qual": "component",
+    "category": "equipment",
     "cost": 275,
     "notes": "Does not stack with its upgrades.",
     "attrib": [],
@@ -5856,6 +5870,7 @@
     "img": "/apps/dota2/images/dota_react/items/blight_stone.png?t=1593393829403",
     "dname": "Blight Stone",
     "qual": "component",
+    "category": "equipment",
     "cost": 300,
     "notes": "Does not stack with its upgrades.",
     "attrib": [],

@@ -1,6 +1,8 @@
 <div class="nav-wrapper">
   <nav>
-    <a [routerLink]="['home']" routerLinkActive="active" class="logo"></a>
+    <a [routerLink]="['home']" routerLinkActive="active" class="logo">
+      {{currentVersion}}
+    </a>
     <a [routerLink]="['heroes']" routerLinkActive="active">Heroes</a>
     <a [routerLink]="['matches']" routerLinkActive="active">Matches</a>
     <a [routerLink]="['teams']" routerLinkActive="active">Teams</a>
