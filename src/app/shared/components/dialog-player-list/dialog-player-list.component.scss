@@ -8,12 +8,6 @@
     border: 1px solid rgba($color: $white, $alpha: .12)!important;
   }
 
-  .mat-typography h2 {
-    margin: 0!important;
-    padding-bottom: 15px!important;
-    border-bottom: 1px solid rgba($color: $white, $alpha: .12);
-  }
-
   .mat-list-item-content {
     justify-content: space-between!important;
   }
@@ -27,6 +21,12 @@
     justify-content: space-between!important;
   }
   
+}
+
+h2 {
+  margin: 0!important;
+  padding-bottom: 15px!important;
+  border-bottom: 1px solid rgba($color: $white, $alpha: .12);
 }
 
 .ver-align {
