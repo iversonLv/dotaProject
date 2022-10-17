@@ -8,6 +8,8 @@ import * as playersActions from 'src/app/players/store/players.actions';
 import * as matchesActions from 'src/app/matches/store/matches.actions';
 import { GeneralService } from 'src/app/services/general.service';
 
+import { environment } from '../../../../environments/environment';
+
 
 @Component({
   selector: 'app-main-nav',
@@ -15,6 +17,7 @@ import { GeneralService } from 'src/app/services/general.service';
   styleUrls: ['./main-nav.component.scss']
 })
 export class MainNavComponent implements OnInit {
+  currentVersion = environment.currentVersion;
   searchTerm = '';
   searchQuery;
   constructor(
