@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'records', loadChildren: () => import('./records/records.module').then(m => m.RecordsModule) },
   { path: 'search', loadChildren: () => import('./search/search.module').then(m => m.SearchModule) },
   { path: 'patches', loadChildren: () => import('./patches/patches.module').then(m => m.PatchesModule) },
+  { path: 'items', loadChildren: () => import('./items/items.module').then(m => m.ItemsModule) },
   { path: '**', loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule) },
 
 ];

@@ -188,6 +188,10 @@ environment.pro.ts
   - [X] Dota2 pro player world population (2021.4.11)
     - [x] Click the world dot will show modal to show the country pro player list(2021.4.12)
   - [90%] Patch pages (2021. 4.12, 4.13) Now the patch notes is not readable for heroes, so we don't dispose the page yet.
+[x] Items pages
+  [x] items list base on client
+  [x] Updated items added category and qual
+[x] Medals pages
 [] Improve
   - [] Update ngfor with trackby?
   - [x] Update sub navigation as share component (2021.2.6)

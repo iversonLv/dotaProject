@@ -8,13 +8,16 @@
     </app-img>
     <div class="item-main-right">
       <h3>{{item.dname}}</h3>
-      <span class="item-cost">
+      <span class="item-cost" *ngIf="!item.tier">
         <app-img
           [data]="'/apps/dota2/images/tooltips/gold.png'"
           class="icon-img"
           [altData]="'$'">
         </app-img>
         {{item.cost}}
+      </span>
+      <span class="item-cost" *ngIf="!!item.tier">
+        Neutral Items
       </span>
     </div>
   </div>
@@ -45,7 +48,7 @@
           class="sb-item-img"
           [altData]="items[component]['dname']">
         </app-img>
-        <span *ngIf="items" class="item-cost">{{items[component]['cost']}}</span>
+        <span *ngIf="items" class="item-cost">{{items[component]?.cost}}</span>
       </span>
       <span class="components-block">
         <app-img
