@@ -126,6 +126,7 @@ environment.pro.ts
       - [99%] Heros list turbo page: (2021.3.1)(2021.3.2)
     - [99%] Hero detail page
       - [x] Heros detail top hero part (2021.2.8)(2021.2.14) TODO: attack speed is different, magic resistence current is static 25%
+            Heros specter and shard(2022.10.19)
       - [100%] Heros detail rankings page (2021.2.15)(2021.2.18)(2021.2.27 fixed table setTimeout())
       - [100%] Heros detail benchmarks page(2021.2.18): Charts (2021.2.20)(2021.2.27 fixed table setTimeout())
       - [x] Heros detail recent page: (2021.2.15, 4.12)
@@ -133,6 +134,7 @@ environment.pro.ts
 
       - [100%] Heros detail durations page (2021.2.20-21)
       - [x] Heros detail players page: (2021.2.16, 4.12)
+      - [X] Heros detail items page: (2022.10.19)
   - [] Players page  
     - [99%] Players overview page:land_role don't know how to definde roaming (2021.1)(2021.3.10) TODO: include turbo seems contary with official website
     - [x] Players matches page (2021.1)
@@ -188,7 +190,7 @@ environment.pro.ts
   - [X] Dota2 pro player world population (2021.4.11)
     - [x] Click the world dot will show modal to show the country pro player list(2021.4.12)
   - [90%] Patch pages (2021. 4.12, 4.13) Now the patch notes is not readable for heroes, so we don't dispose the page yet.
-[x] Items pages
+[x] Items pages (2022.10.17)
   [x] items list base on client
   [x] Updated items added category and qual
 [x] Medals pages
