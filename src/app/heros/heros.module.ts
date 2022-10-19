@@ -35,6 +35,8 @@ import { TableProComponent } from './components/table-pro/table-pro.component';
 import { TableTuboComponent } from './components/table-tubo/table-tubo.component';
 import { TablePublicComponent } from './components/table-public/table-public.component';
 import { TablePublicColComponent } from './components/table-public-col/table-public-col.component';
+import { ItemsComponent } from './pages/items/items.component';
+import { TableItemsComponent } from './components/table-items/table-items.component';
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import { TablePublicColComponent } from './components/table-public-col/table-pub
     TableProComponent,
     TableTuboComponent,
     TablePublicComponent,
-    TablePublicColComponent],
+    TablePublicColComponent,
+    ItemsComponent,
+    TableItemsComponent],
   imports: [
     CommonModule,
     HerosRoutingModule,

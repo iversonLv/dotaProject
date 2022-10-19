@@ -47,6 +47,14 @@
         <!-- hero-attr-info -->
         <!-- hero-ability -->
         <div class="hero-ability" *ngIf="heroAbilities && hero && abilities">
+          <app-img
+            class="transparent-app-img md-abilities-img"
+            [localUrl]='true'
+            [data]="'./assets/images/talent_tree.svg'"
+            *ngIf="heroAbilities[hero['name']]?.talents"
+            (mouseover)="showTalentModalFn($event, heroAbilities[hero['name']].talents)"
+            (mouseout)="showTalentModal=false; currentMouseOverTalent = null"
+          ></app-img>
           <span
             *ngFor="let item of heroAbilities[hero['name']]?.abilities | excludeText: ['release', 'generic_hidden', 'rubick_hidden']"
             class="ablility-box"
@@ -63,14 +71,22 @@
             >
             </app-img>
           </span>
-          <app-img
-            class="transparent-app-img md-abilities-img"
-            [localUrl]='true'
-            [data]="'./assets/images/talent_tree.svg'"
-            *ngIf="heroAbilities[hero['name']]?.talents"
-            (mouseover)="showTalentModalFn($event, heroAbilities[hero['name']].talents)"
-            (mouseout)="showTalentModal=false; currentMouseOverTalent = null"
-          ></app-img>
+          <!-- heroAghsDesc -->
+          <span class="aghshard-wrap"
+            (mouseover)="showHeroAghsDescModalFn($event)"
+            (mouseout)="showHeroAghsDescModal=false;"
+          >
+            <img
+              class="aghanims-scepter"
+              [src]="'./assets/images/scepter_' + (heroAghsDesc.has_scepter ? '1' : '0') + '.png'"
+              onError="this.src='./assets/images/Dota2Logo.svg'"
+            />
+            <img
+              class="aghanims-shard"
+              [src]="'./assets/images/shard_' + (heroAghsDesc.has_shard ? '1' : '0') + '.png'"
+              onError="this.src='./assets/images/Dota2Logo.svg'"
+            />
+          </span>
         </div>
         <!-- hero-talent -->
       </div>
@@ -161,6 +177,8 @@
 
 
 </div>
+
+<app-scepter-shard-modal *ngIf="showHeroAghsDescModal" [heroAghsDesc]="heroAghsDesc" [pageXY] = 'pageXY'></app-scepter-shard-modal>
 
 <app-ability-modal [abilities]="abilities" *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName' [pageXY] = 'pageXY'></app-ability-modal>
 

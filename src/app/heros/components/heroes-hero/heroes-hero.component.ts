@@ -11,6 +11,7 @@ import heroes from 'dotaconstants/build/heroes.json';
 import heroAbilities from 'dotaconstants/build/hero_abilities.json';
 import abilities from 'dotaconstants/build/abilities.json';
 import heroLore from 'dotaconstants/build/hero_lore.json';
+import aghsDesc from 'dotaconstants/build/aghs_desc.json';
 
 @Component({
   selector: 'app-heroes-hero',
@@ -25,6 +26,7 @@ export class HeroesHeroComponent implements OnInit {
   heroAbilities: any = heroAbilities;
   abilities: any = abilities;
   heroLore: any = heroLore;
+  aghsDesc: any = aghsDesc;
 
   // ablity modal default hidden
   currentMouseOverAbilityName = null;
@@ -32,7 +34,10 @@ export class HeroesHeroComponent implements OnInit {
   pageXY = [];
   showAbilityModal = false;
   showTalentModal = false;
+  heroAghsDesc: any = null;
 
+  // showHeroAghsDescModal
+  showHeroAghsDescModal = false;
 
   constructor(
     private router: Router,
@@ -59,11 +64,33 @@ export class HeroesHeroComponent implements OnInit {
         }
       }
     });
+
+    this.showAghsDescriptionLocal(heroId);
+  }
+
+  showAghsDescriptionLocal(heroId): void {
+    const heroAghs = this.aghsDesc.filter(i => i.hero_id === heroId)[0];
+    const abilitiesArr = this.extractAblitiesArr(this.abilities);
+    this.heroAghsDesc =  {
+      ...heroAghs,
+      scepter_img: abilitiesArr.find(i => i.dname === heroAghs.scepter_skill_name).img,
+      shard_img: abilitiesArr.find(i => i.dname === heroAghs.shard_skill_name).img,
+    };
+  }
+
+  // extractAblitiesArr
+  extractAblitiesArr(data: any): any[] {
+    return Object.values(data);
+  }
+
+  showHeroAghsDescModalFn(e): any {
+    this.pageXY = [e.pageX - 380, e.pageY + 20];
+    this.showHeroAghsDescModal = true;
   }
 
   // show/hide ability modal
   showAbilityModalFn(e, abilityName): any {
-    this.pageXY = [e.pageX - 380, e.pageY + 20];
+    this.pageXY = [e.pageX - 480, e.pageY - 100];
     this.showAbilityModal = true;
     this.currentMouseOverAbilityName = abilityName;
   }

@@ -23,7 +23,7 @@
   </div>
   <div class="item-desc box" [innerHTML]="abilities[item].desc">
   </div>
-  <div class="item-sub box">
+  <div class="item-sub box" *ngIf="abilities[item].attrib.length">
     <div
     *ngFor="let item of abilities[item].attrib"
     class="item-row">
@@ -36,13 +36,13 @@
   </div>
   <!-- item-sub -->
   <div class="item-mc-cd">
-    <span class="item-mc">
+    <span class="item-mc" *ngIf="abilities[item].mc">
       <img
       onError="this.src='./assets/images/Dota2Logo.svg'"
       width="15px" height="15px" src="assets/images/mana.png">
       <span *ngFor="let value of abilities[item].mc | stringToArray" class="item-value">{{value}}</span>
     </span>
-    <span class="item-cd">
+    <span class="item-cd" *ngIf="abilities[item].cd">
       <img
       onError="this.src='./assets/images/Dota2Logo.svg'"
       width="15px" height="15px" src="assets/images/cooldown.png">

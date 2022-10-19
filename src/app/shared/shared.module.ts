@@ -59,6 +59,7 @@ import { ExcludeTextPipe } from './utils/exclude-text.pipe';
 import { OrdinalNumPipe } from './utils/ordinal-num.pipe';
 import { FieldTooltipPipe } from './utils/field-tooltip.pipe';
 import { ReplaceTextPipe } from './utils/replace-text.pipe';
+import { ScepterShardModalComponent } from './components/scepter-shard-modal/scepter-shard-modal.component';
 
 
 
@@ -85,6 +86,7 @@ import { ReplaceTextPipe } from './utils/replace-text.pipe';
     ItemModalComponent,
     AbilityModalComponent,
     TalentModalComponent,
+    ScepterShardModalComponent,
     CosmeticModalComponent,
     FirstBloodModalComponent,
     RoshanKilledModalComponent,
@@ -149,6 +151,7 @@ import { ReplaceTextPipe } from './utils/replace-text.pipe';
     ItemModalComponent,
     AbilityModalComponent,
     TalentModalComponent,
+    ScepterShardModalComponent,
     CosmeticModalComponent,
     FirstBloodModalComponent,
     RoshanKilledModalComponent,

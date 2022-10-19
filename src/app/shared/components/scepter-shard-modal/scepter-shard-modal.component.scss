@@ -1,0 +1,125 @@
+@import '../../../../styles.scss';
+
+/* scepter/shard tooltip */
+.tooltip-alt {
+  position: absolute;
+  z-index: 999;
+  width: 300px;
+  flex-direction: column;
+  align-items: center;
+  color: var(--light-white);
+  font-size: 12px;
+  .divided {
+    width: 90%;
+    margin: 0;
+    opacity: 0.9;
+    height: 15px;
+    background-image: url(../../../../assets/images/bg/greyfade.jpg);
+  }
+
+  .item-main {
+    display: flex;
+    align-items: center;
+    margin: -10px -10px 10px;
+    background: var(--dark-surface);
+    padding: 10px;
+
+    img {
+      background: none;
+      width: 12%;
+      box-shadow: none;
+      height: auto;
+    }
+
+    .item-main-right {
+      display: flex;
+      flex-direction: column;
+      width: calc(100% - 10px - 50px - 10px);
+      margin-left: 10px;
+
+      h3 {
+        font-size: 16px;
+        width: 100%;
+        font-weight: 700;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        ::ng-deep {
+          margin-bottom: 0;
+        }
+      }
+    }
+    
+  }
+
+  .scepter-shard-row {
+    border: 2px solid #000;
+    padding: 10px;
+    background-image: url(../../../../assets/images/bg/greyfade.jpg);
+    background-color: var(--dark-surface);
+    box-shadow: var(--basic-shadow-8);
+  }
+  
+  .item-detail {
+    display: flex;
+    flex-direction: row;
+    
+    .ability-img {
+      display: inline-block;
+      margin: 5px 0;
+      width: 40px;
+      height: 40px;
+      background-size: contain;
+      background-image: url(../../../../assets/images/Dota2Logo.svg);
+      box-shadow: var(--basic-shadow-3);
+    }
+  }
+  
+  .item-detail-right {
+    padding-left: 10px;
+
+    h3 {
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      padding-bottom: 5px;
+      ::ng-deep {
+        margin-bottom: 0;
+      }
+
+      span {
+        color: $black;
+        padding: 3px 8px;
+        font-size: 11px;
+        display: inline-block;
+        margin-left: 10px;
+
+        &.new-ablility {
+          background-color: $green;
+        }
+
+        &.enhance-ablility {
+          background-color: $red;
+        }
+      }
+    }
+
+    p {
+      padding-bottom: 10px;
+      color: rgba(184, 182, 180, 1);
+      font-size: 12px;
+      line-height: 16px;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+  }
+  
+  .no-detail {
+    font-size: 14px;
+    text-align: center;
+    color: var(--light-white);
+  }
+}

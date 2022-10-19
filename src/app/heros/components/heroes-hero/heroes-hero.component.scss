@@ -165,6 +165,9 @@
 
 .hero-ability {
   padding-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 
   app-img {
     display: inline-block;
@@ -173,7 +176,6 @@
     &.hero-talent {
       display: inline-block;
       box-shadow: rgba($black, 40%) 0px 0px 15px 2px;
-      margin-left: 10px;
     }
     
     &:hover {
@@ -181,10 +183,39 @@
     }
   }
 
+  .md-abilities-img {
+    border-radius: 10px;
+    box-shadow: rgba($black, 40%) 0px 0px 15px 2px;
+  }
+
+  .aghshard-wrap {
+    width: 64px;
+    box-shadow: rgba($black, 40%) 0px 0px 15px 2px;
+    height: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: .8;
+    }
+
+    .aghanims-scepter {
+      height: 40px;
+      width: 39.3px;
+    }
+
+    .aghanims-shard {
+      height: 24px;
+      width: 45px
+    }
+  }
+
   .ablility-box {
     position: relative;
     display: inline-block;
-    margin-left: 10px;
     border-radius: 10px;
     cursor: pointer;
 
