@@ -1,0 +1,70 @@
+<div class="tooltip-alt" *ngIf="heroAghsDesc" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
+  <div class="scepter scepter-shard-row">
+    <div class="item-main">
+      <img
+        [src]="'./assets/images/scepter_' + (heroAghsDesc.has_scepter ? '1' : '0') + '.png'"
+        alt="scepter img">
+      <div class="item-main-right">
+        <h3>Aghanim's scepter</h3>
+      </div>
+    </div>
+    <div class="no-detail" *ngIf="!heroAghsDesc.has_scepter">Current the hero does not have Aghanim scepter</div>
+    <div class="item-detail" *ngIf="heroAghsDesc.has_scepter">
+      <app-img
+        [data]="heroAghsDesc?.scepter_img"
+        class="md-item-img"
+        class="ability-img"
+        [altData]="heroAghsDesc?.scepter_skill_name">
+      </app-img>
+      <div class="item-detail-right">
+        <h3>{{heroAghsDesc?.scepter_skill_name}}
+          <span *ngIf="heroAghsDesc?.scepter_new_skill" class="new-ablility">
+            New Ability
+          </span>
+          <span *ngIf="!heroAghsDesc.scepter_new_skill" class="enhance-ablility">
+            Enhance Ability
+          </span>
+        </h3>
+        <p>
+          {{heroAghsDesc?.scepter_desc}}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divided"></div>
+
+  <div class="shard scepter-shard-row">
+    <div class="item-main">
+      <img
+        [src]="'./assets/images/shard_' + (heroAghsDesc.has_shard ? '1' : '0') + '.png'"
+        alt="shard img">
+      <div class="item-main-right">
+        <h3>Aghanim's shard</h3>
+      </div>
+    </div>
+    <div class="no-detail" *ngIf="!heroAghsDesc.has_shard">Current the hero does not have Aghanim shard</div>
+    <div class="item-detail" *ngIf="heroAghsDesc.has_shard">
+      <app-img
+        [data]="heroAghsDesc?.shard_img"
+        class="md-item-img"
+        class="ability-img"
+        [altData]="heroAghsDesc?.shard_skill_name">
+      </app-img>
+      <div class="item-detail-right">
+        <h3>{{heroAghsDesc?.shard_skill_name}}
+          <span *ngIf="heroAghsDesc?.shard_new_skill" class="new-ablility">
+            New Ability
+          </span>
+          <span *ngIf="!heroAghsDesc.shard_new_skill" class="enhance-ablility">
+            Enhance Ability
+          </span>
+        </h3>
+        <p>
+          {{heroAghsDesc?.shard_desc}}
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
