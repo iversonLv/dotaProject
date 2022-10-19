@@ -14,6 +14,7 @@ import { RecentComponent } from './pages/recent/recent.component';
 import { MatchupsComponent } from './pages/matchups/matchups.component';
 import { DurationsComponent } from './pages/durations/durations.component';
 import { PlayersComponent } from './pages/players/players.component';
+import { ItemsComponent } from './pages/items/items.component';
 
 const routes: Routes = [
   { path: '', component: HeroListComponent,
@@ -33,6 +34,7 @@ const routes: Routes = [
       { path: 'matchups', component: MatchupsComponent },
       { path: 'durations', component: DurationsComponent },
       { path: 'players', component: PlayersComponent },
+      { path: 'items', component: ItemsComponent },
     ]
   }
 ];
