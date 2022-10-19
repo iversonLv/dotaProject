@@ -77,6 +77,19 @@ $color-herald-alt: rgb(32 74 33 / 45%);
 
 $dropShadow: drop-shadow(rgba($black, 0.3) 2px -2px 2px) drop-shadow(rgba($black, 0.3) 2px -2px 2px);
 
+:root {
+  --bg-surface: #171a21;
+  --primary-bg-surface-color: rgb(102, 192, 244);
+  --dark-surface: rgb(23, 26, 33);
+  --str-color: #ec3d05;
+  --agi-color: #44e030;
+  --int-color: #20b5c7;
+  --gold: gold;
+  --light-white: rgba(255, 255, 255, 0.9);
+  --basic-shadow-8: 0 0 8px #000;
+  --basic-shadow-3: 0 0 3px #000;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: $gray; background: $dark; }
 
@@ -171,6 +184,7 @@ app-img {
 // item image
 .sb-item-img {
   width: 40px;
+  background: none;
 }
 .md-item-img {
   height: 50px;
@@ -183,6 +197,7 @@ app-img {
 
 // icon img
 .icon-img {
+  background: none;
   width: 20px;
 }
 
