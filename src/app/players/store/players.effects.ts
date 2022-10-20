@@ -373,5 +373,22 @@ this.actions$.pipe(
       )
     ),
   );
+  // rank tier distribution
+  getRankTierDistribution$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(playersActions.PlayersActionTypes.LOAD_RANK_TIER_DISTRIBUTION),
+      switchMap(() =>
+        this.playersService.getRankTierDistribution()
+        .pipe(
+          map((data: any) =>
+            // we only need the ranks current
+            new playersActions.LoadRankTierDistributionSuccess(data.ranks)
+          ),
+          catchError(() =>
+            EMPTY
+          )
+        )
+      )
+    ),
+  );
 }
-

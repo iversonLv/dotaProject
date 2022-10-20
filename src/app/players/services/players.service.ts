@@ -131,4 +131,9 @@ export class PlayersService {
     return this.generalService.get(`/proPlayers`);
   }
 
+  // GET rank tier distribution
+  getRankTierDistribution(): Observable<any> {
+    return this.generalService.get(`/distributions`);
+  }
+
 }
