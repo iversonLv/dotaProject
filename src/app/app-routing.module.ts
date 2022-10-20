@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'heroes', loadChildren: () => import('./heros/heros.module').then(m => m.HerosModule) },
   { path: 'matches', loadChildren: () => import('./matches/matches.module').then(m => m.MatchesModule) },
   { path: 'teams', loadChildren: () => import('./teams/teams.module').then(m => m.TeamsModule) },
-  { path: 'medals', loadChildren: () => import('./medals/medals.module').then(m => m.MedalsModule) },
+  { path: 'rank-tier', loadChildren: () => import('./medals/medals.module').then(m => m.MedalsModule) },
   { path: 'records', loadChildren: () => import('./records/records.module').then(m => m.RecordsModule) },
   { path: 'search', loadChildren: () => import('./search/search.module').then(m => m.SearchModule) },
   { path: 'patches', loadChildren: () => import('./patches/patches.module').then(m => m.PatchesModule) },

@@ -91,6 +91,10 @@ export enum PlayersActionTypes {
   // for pro player
   LOAD_PRO_PLAYERS = '[Players] Load Pro Players',
   LOAD_PRO_PLAYERS_SUCCESS = '[Players] Load Pro Players Success',
+
+  // for rank tier distribution
+  LOAD_RANK_TIER_DISTRIBUTION = '[Medals] Load rank tier distribution',
+  LOAD_RANK_TIER_DISTRIBUTION_SUCCESS = '[Medals] Load rank tier distribution Success',
 }
 
 // load player general data
@@ -340,6 +344,19 @@ export class LoadProPlayersSuccess implements Action {
   constructor(public payload?: IPro[]) {}
 }
 
+// Rank tier distribution
+export class LoadRankTierDistribution implements Action {
+  readonly type = PlayersActionTypes.LOAD_RANK_TIER_DISTRIBUTION;
+
+  constructor() {}
+}
+
+export class LoadRankTierDistributionSuccess implements Action {
+  readonly type = PlayersActionTypes.LOAD_RANK_TIER_DISTRIBUTION_SUCCESS;
+
+  constructor(public payload?: any) {}
+}
+
 // TODO: Fail?
 
 
@@ -362,4 +379,5 @@ export type PlayersActions =
   | LoadPlayersRatings | LoadPlayersRatingsSuccess
   | LoadPlayersWardMaps | LoadPlayersWardMapsSuccess
   | LoadPlayersWordClouds | LoadPlayersWordCloudsSuccess
-  | LoadPlayersHistograms | LoadPlayersHistogramsSuccess;
+  | LoadPlayersHistograms | LoadPlayersHistogramsSuccess
+  | LoadRankTierDistribution | LoadRankTierDistributionSuccess;

@@ -27,6 +27,13 @@
     font-weight: bold;
     display: inline-block;
     padding: 0 20px;
+    height: 100%;
+    line-height: 60px;
+    border-bottom: 2px solid transparent;
+    &.active,
+    &.active:hover {
+      border-bottom-color: $dark-blue;
+    }
   }
 
   .search-form {

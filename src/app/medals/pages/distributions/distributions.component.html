@@ -1,0 +1,8 @@
+<app-nav-title [title]="'Rank Tier Distribution'" *ngIf="rankTierDistribution$ | async as rankTierDistributionData"> {{rankTierDistributionData?.ranks?.sum?.count | greaterNum : '1000000' : 'm'}} Players</app-nav-title>
+
+<div *ngIf="rankTierDistribution$ | async as rankTierDistributionData">
+  <div *ngIf="rankTierDistributionData['isLoading']; else rankTierDistributionDataList">Loading</div>
+  <ng-template #rankTierDistributionDataList>
+    <app-distributions-col-chart [data]="rankTierDistributionData?.ranks?.rows"></app-distributions-col-chart>
+  </ng-template>
+</div>
