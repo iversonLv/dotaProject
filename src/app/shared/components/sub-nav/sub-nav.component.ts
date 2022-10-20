@@ -44,6 +44,11 @@ export class SubNavComponent implements OnInit {
       if (currentUrl.split('/')[2] === undefined) {
         this.currentPage = 'duration';
       }
+    } else if (this.parentPage === 'rank-tier') {
+      this.currentPage = currentUrl.split('/')[2].split('_').splice(0).join(' ');
+      if (currentUrl.split('/')[2] === undefined) {
+        this.currentPage = 'distributions';
+      }
     }
     this.activatedRoute.queryParamMap.subscribe(data => this.queryParams = data);
 
@@ -86,6 +91,10 @@ export class SubNavComponent implements OnInit {
           if (event.url.split('/')[2] === undefined ) {
             this.currentPage = 'duration';
           }
+        } else if (this.parentPage === 'rank-tier') {
+          if (event.url.split('/')[2] === undefined ) {
+            this.currentPage = 'distributions';
+          }
         }
       }
     });
@@ -107,6 +116,8 @@ export class SubNavComponent implements OnInit {
     } else if (this.parentPage === 'matchesList') {
       currentUrlParent = currentUrl.split('/').slice(0, 2).join('/');
     } else if (this.parentPage === 'records') {
+      currentUrlParent = currentUrl.split('/').slice(0, 2).join('/');
+    } else if (this.parentPage === 'rank-tier') {
       currentUrlParent = currentUrl.split('/').slice(0, 2).join('/');
     }
     const newPage = `${currentUrlParent}/${page.replace(/\s/g, '_')}`;

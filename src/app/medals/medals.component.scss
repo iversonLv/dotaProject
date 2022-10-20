@@ -1,55 +1,5 @@
-@import '../../styles.scss';
-
 .wrapper {
   padding: 30px 0 150px;
   width: 1200px;
   margin: 0 auto;
-}
-
-.medals {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-  align-items: center;
-
-  label {
-    width: 150px;
-    display: inline-block;
-  }
-}
-
-.medals-row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-// rank tier
-.rank-tier {
-  top: 8px;
-  margin-left: 10px;
-  position: relative;
-  width: 130px;
-  text-align: center;
-  filter: $dropShadow;
-
-  img {
-    width: 100%;
-
-    &.rank-start {
-      position: absolute;
-    }
-  }
-  
-  .leaderboard-rank {
-    position: absolute;
-    display: inline-block;
-    text-align: center;
-    width: 65px;
-    left: 50%;
-    margin-left: -32px;
-    font-size: 16px;
-    top: 100px;
-    color: $golden;
-    text-shadow: black 0px 0px 10px;
-  }
 }

@@ -124,6 +124,12 @@ export const initialStateProPlayers: IProData = {
   pros: []
 };
 
+// init state for rank tier distribution
+export const initialStateRankTierDistribution: any = {
+  isLoading: false,
+  ranks: {}
+};
+
 // players win lose reducer
 export function playersWinLoseCount(state = initialStateWinLose, action: PlayersActions): IWinloseData {
   switch (action.type) {
@@ -347,6 +353,18 @@ export function proPlayers(state = initialStateProPlayers, action: PlayersAction
       return { ...state, isLoading: true };
     case PlayersActionTypes.LOAD_PRO_PLAYERS_SUCCESS:
       return { ...state, isLoading: false, pros: [...(action.payload || [])] };
+    default:
+      return state;
+  }
+}
+
+// Rank tier distribution
+export function rankTierDistribution(state = initialStateRankTierDistribution, action: PlayersActions): IProData {
+  switch (action.type) {
+    case PlayersActionTypes.LOAD_RANK_TIER_DISTRIBUTION:
+      return { ...state, isLoading: true };
+    case PlayersActionTypes.LOAD_RANK_TIER_DISTRIBUTION_SUCCESS:
+      return { ...state, isLoading: false, ranks: {...action.payload} };
     default:
       return state;
   }

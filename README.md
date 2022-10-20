@@ -84,6 +84,7 @@ environment.pro.ts
     - [x] GET Player rankings
     - [x] POST Player refresh 
     - [x] GET pro player data (2021.3.1)
+    - [X] GET duration data (2020.10.20) 
   - [x] Teams service
     - [x] GET Teams list data (2021.2.5)
     - [x] GET Teams general data detail page top hero part (2021.2.6)
@@ -191,9 +192,11 @@ environment.pro.ts
     - [x] Click the world dot will show modal to show the country pro player list(2021.4.12)
   - [90%] Patch pages (2021. 4.12, 4.13) Now the patch notes is not readable for heroes, so we don't dispose the page yet.
 [x] Items pages (2022.10.17)
-  [x] items list base on client
-  [x] Updated items added category and qual
-[x] Medals pages
+  - [x] items list base on client
+  - [x] Updated items added category and qual
+[x] Medals pages (2022.10.20)
+  - [x] Rank tier bar chart (2022.10.20)
+  - [x] Medals icon
 [] Improve
   - [] Update ngfor with trackby?
   - [x] Update sub navigation as share component (2021.2.6)

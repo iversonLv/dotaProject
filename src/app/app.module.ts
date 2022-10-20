@@ -98,6 +98,7 @@ const devToolsOption = { name: 'Dota2 Project API', maxAge: 25, logOnly: environ
       playersRatings: fromPlayersReducers.playersRatings,
       playersWardMaps: fromPlayersReducers.playersWardMaps,
       playersWordClouds: fromPlayersReducers.playersWordClouds,
+      rankTierDistribution: fromPlayersReducers.rankTierDistribution,
 
       // records
       recordsList: fromRecordsReducers.recordsList,
