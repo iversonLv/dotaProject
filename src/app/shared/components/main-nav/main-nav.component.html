@@ -17,7 +17,7 @@
         <input [ngModel]="searchTerm" name="searchTerm" matInput placeholder="Search by player name, match ID" (keydown)="doSearch($event)">
       </mat-form-field>
     </form>
-    <a [routerLink]="['players/128741677/overview']" routerLinkActive="active">My Profile</a>
+    <a (click)="goAccountOverviewPage()">My Profile</a>
     <a href="https://steamloginlv.herokuapp.com/auth/steam">Login</a>
   </nav>
 </div>

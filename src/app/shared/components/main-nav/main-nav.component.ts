@@ -10,6 +10,9 @@ import { GeneralService } from 'src/app/services/general.service';
 
 import { environment } from '../../../../environments/environment';
 
+// model
+import { IPeerData } from 'src/app/players/model/peer';
+import { IProData } from 'src/app/players/model/pro';
 
 @Component({
   selector: 'app-main-nav',
@@ -20,10 +23,12 @@ export class MainNavComponent implements OnInit {
   currentVersion = environment.currentVersion;
   searchTerm = '';
   searchQuery;
+
+  loginedAccountId = 128741677;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private store: Store,
+    private store: Store<{playersPros: IProData, playersPeers: IPeerData}>,
     private generalService: GeneralService
   ) { }
 
@@ -59,6 +64,20 @@ export class MainNavComponent implements OnInit {
   getUser(): any {
     return this.generalService.getUser().subscribe(user => {
     });
+  }
+
+  async goAccountOverviewPage(): Promise<any> {
+    const accountId = 128741677;
+    await this.router.navigate([`/players/${accountId}/overview`]);
+    // TODO: after router navigate, we need dispatch all data again to refetch new data
+    this.store.dispatch(new playersActions.LoadPlayersGeneral(accountId));
+    this.store.dispatch(new playersActions.LoadPlayersPeers(accountId));
+    this.store.dispatch(new playersActions.LoadPlayersWinLoseCount(accountId));
+    this.store.dispatch(new playersActions.LoadPlayersHeroesPlayed(accountId));
+    this.store.dispatch(new playersActions.LoadPlayersRecentMatches(accountId));
+    this.store.dispatch(new playersActions.LoadPlayersCounts(accountId));
+    // tslint:disable-next-line:max-line-length
+    this.store.dispatch(new playersActions.LoadPlayersMyRecordWithWinLoseCount(this.loginedAccountId, {params: { included_account_id: accountId } }));
   }
 
 }
