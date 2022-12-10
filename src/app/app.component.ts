@@ -49,9 +49,9 @@ getPlayerData(accountId, currentRoute, initTitle): any {
   this.store.select('playersGeneral').subscribe(data => {
     if (data.player) {
       if (data?.player?.profile?.name) {
-        this.titleService.setTitle(`${data.player.profile.name} - ${currentRoute} - ${initTitle}`);
+        this.titleService.setTitle(`${data.player?.profile?.name} - ${currentRoute} - ${initTitle}`);
       } else {
-        this.titleService.setTitle(`${data.player.profile.personaname} - ${currentRoute} - ${initTitle}`);
+        this.titleService.setTitle(`${data.player?.profile?.personaname} - ${currentRoute} - ${initTitle}`);
       }
     }
   }, err => {
