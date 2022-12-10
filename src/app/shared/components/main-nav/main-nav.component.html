@@ -1,6 +1,6 @@
 <div class="nav-wrapper">
   <nav>
-    <a [routerLink]="['home']" routerLinkActive="active" class="logo">
+    <a [routerLink]="['home']" class="logo">
       {{currentVersion}}
     </a>
     <a [routerLink]="['heroes']" routerLinkActive="active">Heroes</a>
@@ -17,7 +17,25 @@
         <input [ngModel]="searchTerm" name="searchTerm" matInput placeholder="Search by player name, match ID" (keydown)="doSearch($event)">
       </mat-form-field>
     </form>
-    <a (click)="goAccountOverviewPage()">My Profile</a>
-    <a href="https://steamloginlv.herokuapp.com/auth/steam">Login</a>
+    <a (click)="goAccountOverviewPage()" *ngIf="!!isLogined">My Profile</a>
+    <!-- <a href="https://steamloginlv.herokuapp.com/auth/steam">Login</a> -->
+    <a *ngIf="!isLogined" href="https://steamcommunity.com/openid/login?openid.ns=http://specs.openid.net/auth/2.0&openid.mode=checkid_setup&openid.return_to=http://localhost:4200/login&openid.realm=http://localhost:4200&openid.ns.sreg=https://openid.net/extensions/sreg/1.1&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select">Sign in with Steam</a>
+    <a (click)="logout()" *ngIf="!!isLogined">Logout</a>
+
   </nav>
 </div>
+
+<!-- http://localhost:4200/home
+?openid.ns=http://specs.openid.net/auth/2.
+0&openid.mode=id_res
+&openid.op_endpoint=https://steamcommunity.com/openid/login
+&openid.claimed_id=https://steamcommunity.com/openid/id/76561198089007405
+&openid.identity=https://steamcommunity.com/openid/id/76561198089007405
+&openid.return_to=http://localhost:4200
+&openid.response_nonce=2022-12-09T19:10:06ZkxrQU7RAmv%2BUCU2dwYecT87IKDw%3D
+&openid.assoc_handle=1234567890
+&openid.signed=signed,op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle
+&openid.sig=iupU04/g/jlBDi3OfRmAzvksxRs%3D
+
+const SteamID = require('steamid');
+let sid = new SteamID('76561198089007405').accountid; -->

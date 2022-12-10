@@ -3,20 +3,20 @@
   <ng-template #playerDataPlayer>
     <img
     onError="this.src='./assets/images/Dota2Logo.svg'"
-    class="player-avatar" [src]="playerData.player?.profile.avatarfull"/>
+    class="player-avatar" [src]="playerData.player?.profile?.avatarfull"/>
     <div class="player-info">
       <h1>
-        {{playerData.player?.profile.name !== null ?  playerData.player?.profile.name : playerData.player?.profile.personaname}}
+        {{playerData.player?.profile?.name !== null ?  playerData.player?.profile?.name : playerData.player?.profile?.personaname}}
         <img
         onError="this.src='./assets/images/Dota2Logo.svg'"
-        class="players-country" *ngIf="playerData.player?.profile.loccountrycode" src="https://community.cloudflare.steamstatic.com/public/images/countryflags/{{playerData.player?.profile.loccountrycode.toLowerCase()}}.gif" [matTooltip]="playerData.player?.profile.loccountrycode" matTooltipPosition="above"/>
-        <mat-icon class="players-confirmed" *ngIf="playerData.player?.profile.name" matTooltip="Confirmed by {{playerData.player?.profile.name}}" matTooltipPosition="above" >face</mat-icon>
-        <a [href]="playerData.player?.profile.profileurl" matTooltip="Steam profile" matTooltipPosition="above" target="_blank" class="player-steam-profile-icon">
+        class="players-country" *ngIf="playerData.player?.profile?.loccountrycode" src="https://community.cloudflare.steamstatic.com/public/images/countryflags/{{playerData.player?.profile?.loccountrycode.toLowerCase()}}.gif" [matTooltip]="playerData.player?.profile?.loccountrycode" matTooltipPosition="above"/>
+        <mat-icon class="players-confirmed" *ngIf="playerData.player?.profile?.name" matTooltip="Confirmed by {{playerData.player?.profile?.name}}" matTooltipPosition="above" >face</mat-icon>
+        <a [href]="playerData.player?.profile?.profileurl" matTooltip="Steam profile" matTooltipPosition="above" target="_blank" class="player-steam-profile-icon">
           <img
           onError="this.src='./assets/images/Dota2Logo.svg'"
           src="https://store.cloudflare.steamstatic.com/public/images/v6/icon_platform_linux.png"/>
         </a>
-        <mat-icon class="players-contributor" *ngIf="playerData.player?.profile.is_contributor" matTooltip="Contributor" matTooltipPosition="above" >toys</mat-icon>
+        <mat-icon class="players-contributor" *ngIf="playerData.player?.profile?.is_contributor" matTooltip="Contributor" matTooltipPosition="above" >toys</mat-icon>
       </h1>
       <!-- player-subinfo -->
       <div class="player-win-lose-count" *ngIf="playersWinLoseCount$ | async as playersWinLoseCountData">
@@ -57,7 +57,7 @@
   <div class="players-plus">
     <img
     onError="this.src='./assets/images/Dota2Logo.svg'"
-    *ngIf="playerData.player?.profile.plus" src="https://www.opendota.com/assets/images/dota2/dota_plus_icon.png" matTooltip="Dota Plus subscriber" matTooltipPosition="above"/>
+    *ngIf="playerData.player?.profile?.plus" src="https://www.opendota.com/assets/images/dota2/dota_plus_icon.png" matTooltip="Dota Plus subscriber" matTooltipPosition="above"/>
   </div>
   <div class="rank-tier" [matTooltip]="playerData.player?.rank_tier | rankTier" matTooltipPosition="above">
     <!-- if players in leaderboard rank -->
