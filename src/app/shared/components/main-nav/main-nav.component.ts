@@ -23,17 +23,23 @@ export class MainNavComponent implements OnInit {
   currentVersion = environment.currentVersion;
   searchTerm = '';
   searchQuery;
-
-  loginedAccountId = 128741677;
+  isLogined = false;
+  loginedAccountId;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<{playersPros: IProData, playersPeers: IPeerData}>,
     private generalService: GeneralService
-  ) { }
+  ) {
+    this.generalService.isLogined.subscribe(isLogined => {
+      this.isLogined = isLogined;
+      this.loginedAccountId = localStorage.getItem('loginedAccountId');
+      !!this.loginedAccountId ? this.isLogined = true : this.isLogined = false;
+    });
+  }
 
   ngOnInit(): void {
-    this.getUser();
+    // this.getUser();
     this.activatedRoute.queryParams.subscribe(data => {
       this.searchTerm = data.q;
     }, err => {
@@ -61,23 +67,28 @@ export class MainNavComponent implements OnInit {
     }
   }
 
-  getUser(): any {
-    return this.generalService.getUser().subscribe(user => {
-    });
+  // getUser(): any {
+  //   return this.generalService.getUser().subscribe(user => {
+  //   });
+  // }
+
+  logout(): any {
+    this.generalService.getLogout();
+    this.generalService.isLogined.subscribe(isLogined => this.isLogined = isLogined);
   }
 
   async goAccountOverviewPage(): Promise<any> {
-    const accountId = 128741677;
-    await this.router.navigate([`/players/${accountId}/overview`]);
+    // const accountId = 128741677;
+    await this.router.navigate([`/players/${this.loginedAccountId}/overview`]);
     // TODO: after router navigate, we need dispatch all data again to refetch new data
-    this.store.dispatch(new playersActions.LoadPlayersGeneral(accountId));
-    this.store.dispatch(new playersActions.LoadPlayersPeers(accountId));
-    this.store.dispatch(new playersActions.LoadPlayersWinLoseCount(accountId));
-    this.store.dispatch(new playersActions.LoadPlayersHeroesPlayed(accountId));
-    this.store.dispatch(new playersActions.LoadPlayersRecentMatches(accountId));
-    this.store.dispatch(new playersActions.LoadPlayersCounts(accountId));
+    this.store.dispatch(new playersActions.LoadPlayersGeneral(this.loginedAccountId));
+    this.store.dispatch(new playersActions.LoadPlayersPeers(this.loginedAccountId));
+    this.store.dispatch(new playersActions.LoadPlayersWinLoseCount(this.loginedAccountId));
+    this.store.dispatch(new playersActions.LoadPlayersHeroesPlayed(this.loginedAccountId));
+    this.store.dispatch(new playersActions.LoadPlayersRecentMatches(this.loginedAccountId));
+    this.store.dispatch(new playersActions.LoadPlayersCounts(this.loginedAccountId));
     // tslint:disable-next-line:max-line-length
-    this.store.dispatch(new playersActions.LoadPlayersMyRecordWithWinLoseCount(this.loginedAccountId, {params: { included_account_id: accountId } }));
+    this.store.dispatch(new playersActions.LoadPlayersMyRecordWithWinLoseCount(this.loginedAccountId, {params: { included_account_id: this.loginedAccountId } }));
   }
 
 }

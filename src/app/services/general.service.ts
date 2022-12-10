@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeneralService {
+  isLogined: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   private BASE_API_URL = environment.BASE_API_URL;
 
@@ -40,6 +41,17 @@ export class GeneralService {
     }).pipe(
       catchError(this.errorHandle)
     );
+  }
+
+  getAccountId(): any {
+    if (!!localStorage.getItem('loginedAccountId')) {
+      return this.isLogined.next(true);
+    }
+    return this.isLogined.next(false);
+  }
+  getLogout(): any {
+    localStorage.removeItem('loginedAccountId');
+    return this.isLogined.next(false);
   }
   // here get filter query params local json static data
   getLocalData(endpoint): Observable<any> {
