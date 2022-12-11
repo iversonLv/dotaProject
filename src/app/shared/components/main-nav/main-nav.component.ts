@@ -76,11 +76,6 @@ export class MainNavComponent implements OnInit {
     }
   }
 
-  // getUser(): any {
-  //   return this.generalService.getUser().subscribe(user => {
-  //   });
-  // }
-
   logout(): any {
     this.generalService.getLogout();
     this.generalService.isLogined.subscribe(isLogined => this.isLogined = isLogined);

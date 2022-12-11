@@ -31,28 +31,20 @@ export class GeneralService {
     );
   }
 
-  // GET local json data
-  getUser(): Observable<any> {
-    return this.httpClient.get<any>('https://steamloginlv.herokuapp.com/', {
-      headers: {
-        'content-type': 'text/html'
-      },
-      withCredentials: true
-    }).pipe(
-      catchError(this.errorHandle)
-    );
-  }
-
+  // sign in with steam integrate get accountId from localstore and set isLogined
   getAccountId(): any {
     if (!!localStorage.getItem('loginedAccountId')) {
       return this.isLogined.next(true);
     }
     return this.isLogined.next(false);
   }
+
+  // logout and remove the account Id from localstoreage
   getLogout(): any {
     localStorage.removeItem('loginedAccountId');
     return this.isLogined.next(false);
   }
+
   // here get filter query params local json static data
   getLocalData(endpoint): Observable<any> {
     return this.httpClient.get<any>(this.BASE_LOCAL_DATA_URL + endpoint)
