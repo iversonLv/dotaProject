@@ -60,6 +60,22 @@
                 <mat-icon class="party-size-icon">people</mat-icon>
                 <span class="party-size-text">x{{element.party_size}}</span>
               </span>
+
+              <!-- average rank -->
+              <div class="rank-tier" [matTooltip]="element?.average_rank | rankTier" matTooltipPosition="above">
+                <!-- if players in leaderboard rank then no start -->
+                <img
+                onError="this.src='./assets/images/Dota2Logo.svg'"
+                class="rank-start" *ngIf="element?.average_rank !== null && element?.average_rank?.toString()[1] !== '0' && element?.average_rank?.toString()[0] !== '8'" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_star_{{element?.average_rank?.toString()[1]}}.png' />
+                <!-- 
+                  rank icon if immortal, the icon base on the leaderboar rank
+                  
+                 -->
+                <img
+                onError="this.src='./assets/images/Dota2Logo.svg'"
+                class="rank-icon" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_{{element?.average_rank !== null ? element?.average_rank?.toString()[0] : "0"}}.png' />
+              </div>
+              <!-- rank tier -->
             </div>
           </div>
         </td>

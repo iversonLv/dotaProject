@@ -8,8 +8,8 @@ export class RankTierPipe implements PipeTransform {
 
   transform(value: unknown, ...args: unknown[]): unknown {
     if (value !== null) {
-      const tier = +value.toString()[0] - 1;
-      const star = value.toString()[1];
+      const tier = +value?.toString()[0] - 1;
+      const star = value?.toString()[1];
       if (tier === 7) {
         // If rank tier is Immortal won't have star num
         return `${this.tierMapping[tier]}`;
