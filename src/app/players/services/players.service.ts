@@ -54,7 +54,7 @@ export class PlayersService {
 
   // GET Player matches
   getPlayerMatches(accountId: number, queryParams?: IQuery): Observable<IMatch[]> {
-    return this.generalService.get(`/players/${accountId}/matches?significant=0&project=duration&project=game_mode&project=lobby_type&project=start_time&project=hero_id&project=start_time&project=version&project=kills&project=deaths&project=assists&project=skill&project=leaver_status&project=party_size&project=item_0&project=item_1&project=item_2&project=item_3&project=item_4&project=item_5&project=backpack_0`, queryParams);
+    return this.generalService.get(`/players/${accountId}/matches?significant=0&project=duration&project=game_mode&project=lobby_type&project=start_time&project=hero_id&project=start_time&project=version&project=kills&project=deaths&project=assists&project=skill&project=leaver_status&project=party_size&project=average_rank&project=item_0&project=item_1&project=item_2&project=item_3&project=item_4&project=item_5&project=backpack_0`, queryParams);
   }
 
   // GET player heroes played
