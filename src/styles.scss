@@ -155,6 +155,16 @@ a:hover {
   }
 }
 
+.mat-option-text {
+  display: flex !important;
+  gap: 10px;
+  align-items: center;
+  app-radient,
+  app-dire {
+    width: 24px;
+    height: 24px;
+  }
+}
 
 // hero image
 app-img {

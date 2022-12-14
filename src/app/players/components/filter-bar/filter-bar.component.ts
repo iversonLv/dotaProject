@@ -112,8 +112,10 @@ export class FilterBarComponent implements OnInit {
 
   checkQueryParams(): boolean {
     if (Object.keys(this.queryParams.params).length > 0) {
+      this.hideFilter = false;
       return this.queryParamsHasValue = true;
     } else {
+      this.hideFilter = true;
       return this.queryParamsHasValue = false;
     }
   }

@@ -2,17 +2,23 @@
   <div *ngIf="playerData['isLoading']; else playerDataPlayer">Loading</div>
   <ng-template #playerDataPlayer>
     <img
+    with="124"
+    height="124"
     onError="this.src='./assets/images/Dota2Logo.svg'"
     class="player-avatar" [src]="playerData.player?.profile?.avatarfull"/>
     <div class="player-info">
       <h1>
         {{playerData.player?.profile?.name !== null ?  playerData.player?.profile?.name : playerData.player?.profile?.personaname}}
         <img
+        with="16"
+        height="11"
         onError="this.src='./assets/images/Dota2Logo.svg'"
         class="players-country" *ngIf="playerData.player?.profile?.loccountrycode" src="https://community.cloudflare.steamstatic.com/public/images/countryflags/{{playerData.player?.profile?.loccountrycode.toLowerCase()}}.gif" [matTooltip]="playerData.player?.profile?.loccountrycode" matTooltipPosition="above"/>
         <mat-icon class="players-confirmed" *ngIf="playerData.player?.profile?.name" matTooltip="Confirmed by {{playerData.player?.profile?.name}}" matTooltipPosition="above" >face</mat-icon>
         <a [href]="playerData.player?.profile?.profileurl" matTooltip="Steam profile" matTooltipPosition="above" target="_blank" class="player-steam-profile-icon">
           <img
+          with="20"
+          height="20"
           onError="this.src='./assets/images/Dota2Logo.svg'"
           src="https://store.cloudflare.steamstatic.com/public/images/v6/icon_platform_linux.png"/>
         </a>
@@ -56,6 +62,8 @@
   <!-- person-info -->
   <div class="players-plus">
     <img
+    with="65"
+    height="75.55"
     onError="this.src='./assets/images/Dota2Logo.svg'"
     *ngIf="playerData.player?.profile?.plus" src="https://www.opendota.com/assets/images/dota2/dota_plus_icon.png" matTooltip="Dota Plus subscriber" matTooltipPosition="above"/>
   </div>
@@ -64,6 +72,8 @@
     <span class="leaderboard-rank" *ngIf="playerData.player?.leaderboard_rank">{{playerData.player?.leaderboard_rank}}</span>
     <!-- if players in leaderboard rank then no start -->
     <img
+    with="130"
+    height="130"
     onError="this.src='./assets/images/Dota2Logo.svg'"
     class="rank-start" *ngIf="playerData.player?.rank_tier !== null && playerData.player?.rank_tier.toString()[1] !== '0'" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_star_{{playerData.player?.rank_tier.toString()[1]}}.png' />
     <!-- 
@@ -71,6 +81,8 @@
       
      -->
     <img
+    with="130"
+    height="130"
     onError="this.src='./assets/images/Dota2Logo.svg'"
     class="rank-icon" src='https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_{{playerData.player?.rank_tier !== null ? playerData.player?.rank_tier.toString()[0] : "0"}}{{playerData.player?.leaderboard_rank >= 1  &&  playerData.player?.leaderboard_rank <= 10 ? "c" : (playerData.player?.leaderboard_rank <=100 && playerData.player?.leaderboard_rank > 10 ? "b" : "")}}.png' />
   </div>
