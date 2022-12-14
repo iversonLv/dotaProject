@@ -27,6 +27,7 @@ import lobbyType from 'dotaconstants/build/lobby_type.json';
 // local assets json which is not from dotaconstant
 import laneRole from '../../../../assets/data/lane_role.json';
 import queryParamsData from '../../../../assets/data/queryParams.json';
+import { GeneralService } from 'src/app/services/general.service';
 
 
 @Component({
@@ -79,7 +80,8 @@ export class FilterBarComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private store: Store<{ heroGeneral: IHeroData, playersPeersFilter: IPeerData}>
+    private store: Store<{ heroGeneral: IHeroData, playersPeersFilter: IPeerData}>,
+    private  generalService: GeneralService,
   ) {
     this.heroGeneral$ = store.select('heroGeneral');
     this.playersPeersFilter$ = store.select('playersPeersFilter');
@@ -106,22 +108,53 @@ export class FilterBarComponent implements OnInit {
       return this.playersPeersFilterDataDe;
     });
 
+    // Inital Check queryParams length to determine whether show hide the filter box
+    if (Object.keys(this.queryParams.params).length > 0) {
+      /**
+       * Description: Click filter dropdown, play hero header WITH MY RECORD will show/hide filter box
+       * Args: boolean
+       * Args value: true show filter box and filter toggle icon
+       * Args value: false hide filter box and show clear icon
+       */
+    this.generalService.updatedQueryParmas(true);
+    } else {
+      /**
+       * Description: Click filter dropdown, play hero header WITH MY RECORD will show/hide filter box
+       * Args: boolean
+       * Args value: true show filter box and filter toggle icon
+       * Args value: false hide filter box and show clear icon
+       */
+    this.generalService.updatedQueryParmas(false);
+    }
+
     this.checkQueryParams();
     this.getRegionLocal();
   }
 
-  checkQueryParams(): boolean {
-    if (Object.keys(this.queryParams.params).length > 0) {
-      this.hideFilter = false;
-      return this.queryParamsHasValue = true;
-    } else {
-      this.hideFilter = true;
-      return this.queryParamsHasValue = false;
-    }
+  checkQueryParams(): any {
+    this.generalService.isUpdatedQueryParmas.subscribe(data => {
+      this.hideFilter = !data;
+      this.queryParamsHasValue = data;
+    }, error => {
+      console.log(error);
+    });
+    // if (Object.keys(this.queryParams.params).length > 0) {
+    //   this.hideFilter = false;
+    //   this.queryParamsHasValue = true;
+    // } else {
+    //   this.hideFilter = true;
+    //   this.queryParamsHasValue = false;
+    // }
   }
 
   async clearQueryParams(): Promise<void> {
-    this.hideFilter = true;
+    /**
+     * Description: Click filter dropdown, play hero header WITH MY RECORD will show/hide filter box
+     * Args: boolean
+     * Args value: true show filter box and filter toggle icon
+     * Args value: false hide filter box and show clear icon
+     */
+    this.generalService.updatedQueryParmas(false);
     const accountId = +this.activatedRoute.snapshot.paramMap.get('id');
     const field = this.router.url.split('/')[4] === undefined ? 'kills' : this.router.url.split('/')[4].split('?')[0];
     await this.router.navigate([], {
@@ -217,6 +250,13 @@ export class FilterBarComponent implements OnInit {
 
   // set Hero id to update players win lose data
   async setQueryParams([value, key]): Promise<void> {
+    /**
+     * Description: Click filter dropdown, play hero header WITH MY RECORD will show/hide filter box
+     * Args: boolean
+     * Args value: true show filter box and filter toggle icon
+     * Args value: false hide filter box and show clear icon
+     */
+    this.generalService.updatedQueryParmas(true);
     const params = {};
     params[key] = value;
     // get current players id

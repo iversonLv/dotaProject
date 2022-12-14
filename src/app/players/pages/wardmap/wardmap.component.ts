@@ -29,6 +29,7 @@ export class WardmapComponent implements OnInit {
 
     this.store.dispatch(new playersAction.LoadPlayersWardMaps(this.accountId, this.queryParams));
     this.store.select('playersWardMaps').subscribe(data => {
+      this.wardMaps = [];
       this.isLoading = data.isLoading;
       if (!data.isLoading) {
         const warmMpasData = {...data.wardMaps};

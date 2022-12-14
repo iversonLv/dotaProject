@@ -9,6 +9,7 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class GeneralService {
   isLogined: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isUpdatedQueryParmas: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   private BASE_API_URL = environment.BASE_API_URL;
 
@@ -39,10 +40,14 @@ export class GeneralService {
     return this.isLogined.next(false);
   }
 
-  // logout and remove the account Id from localstoreage
+  // logout and remove the account Id from localstoreage, this is for boardcast the state
   getLogout(): any {
     localStorage.removeItem('loginedAccountId');
     return this.isLogined.next(false);
+  }
+
+  updatedQueryParmas(v: boolean): any {
+    return this.isUpdatedQueryParmas.next(v);
   }
 
   // here get filter query params local json static data
