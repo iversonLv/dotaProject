@@ -24,7 +24,7 @@ export class WardMapChartComponent implements OnInit {
           min: this.data.min,
           max: this.data.max,
           inRange: {
-              color: ['rgba(0,0,255, .2)', 'green', 'red']
+              color: ['rgba(0,0,255, .4)', 'green', 'red']
           }
       },
       xAxis: {
