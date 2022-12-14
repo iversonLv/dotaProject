@@ -43,7 +43,7 @@
           <span>{{(playersWinLoseCountData.winlose?.win !== 0 || playersWinLoseCountData.winlose?.lose !== 0) ? (playersWinLoseCountData.winlose?.win / (playersWinLoseCountData.winlose?.win + playersWinLoseCountData.winlose?.lose) | percent :'2.0-2') : 'N/A'}}</span>
         </div>
         <!-- player-win-rate -->
-        <div class="player-count player-my-record-with" *ngIf="playerData.player?.profile?.account_id !== loginedAccountId">
+        <div class="player-count player-my-record-with" *ngIf="++playerData.player?.profile?.account_id !== ++loginedAccountId">
           <label><a (click)="goPage(playerData.player?.profile?.account_id)" class="my-record-with-link">MY RECORD WITH</a></label>
           <span *ngIf="playersMyRecordWithWinLoseCount$ | async as playersMyRecordWithWinLoseCountData">
             <span class="player-win-count-text">{{playersMyRecordWithWinLoseCountData.winlose?.win}}</span>

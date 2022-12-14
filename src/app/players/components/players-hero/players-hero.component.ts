@@ -12,6 +12,7 @@ import * as playersActions from '../../store/players.actions';
 // model
 import { IWinloseData } from '../../model/winlose';
 import { IPlayerData } from '../../model/general';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
   selector: 'app-players-hero',
@@ -31,8 +32,9 @@ export class PlayersHeroComponent implements OnInit {
     private router: Router,
     private playersService: PlayersService,
     private activatedRoute: ActivatedRoute,
-    private store: Store<{ playersWinLoseCount: IWinloseData, playersGeneral: IPlayerData, playersMyRecordWithWinLoseCount: IWinloseData }>
-  ) {
+    private store: Store<{ playersWinLoseCount: IWinloseData, playersGeneral: IPlayerData, playersMyRecordWithWinLoseCount: IWinloseData }>,
+    private generalService: GeneralService
+    ) {
     this.playersWinLoseCount$ = store.select('playersWinLoseCount');
     this.playersGeneral$ = store.select('playersGeneral');
     this.playersMyRecordWithWinLoseCount$ = store.select('playersMyRecordWithWinLoseCount');
@@ -100,6 +102,13 @@ export class PlayersHeroComponent implements OnInit {
     await this.activatedRoute.queryParamMap.subscribe(data => this.queryParams = data);
     this.store.dispatch(new playersActions.LoadPlayersGeneral(this.loginedAccountId));
     this.store.dispatch(new playersActions.LoadPlayersWinLoseCount(this.loginedAccountId, this.queryParams));
+    /**
+     * Description: Click filter dropdown, play hero header WITH MY RECORD will show/hide filter box
+     * Args: boolean
+     * Args value: true show filter box and filter toggle icon
+     * Args value: false hide filter box and show clear icon
+     */
+    this.generalService.updatedQueryParmas(true);
   }
 
   // POST refresh account
