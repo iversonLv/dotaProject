@@ -45,7 +45,7 @@ export class TablePlayersComponent implements OnInit {
 
   playersPros: IPro[];
 
-  loginedAccountId = 128741677;
+  loginedAccountId;
 
   playersWithGameLargest: any = {
     games: null,
@@ -59,7 +59,9 @@ export class TablePlayersComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<{playersPros: IProData, playersPeers: IPeerData}>
-  ) { }
+  ) {
+    this.loginedAccountId = localStorage.getItem('loginedAccountId');
+  }
 
   ngOnInit(): void {
     const currentUrl = this.router.url;
