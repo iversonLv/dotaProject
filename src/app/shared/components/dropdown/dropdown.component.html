@@ -9,6 +9,25 @@
   <mat-label>{{defaultValue}}</mat-label>
   <mat-select [(value)]="model" (selectionChange)="selectionChange($event)">
     <mat-option *ngIf="hasNone">None</mat-option>
-    <mat-option [value]="item.id" *ngFor="let item of reStructure(data) | orderBy: sortBy : order">{{item.value || item.localized_name || item.personaname || (item.name | nameDestruct: '_' : 2 : 'upperCase')}}</mat-option>
+    <mat-option [value]="item.id" *ngFor="let item of reStructure(data) | orderBy: sortBy : order">
+      <!-- hero img -->
+      <app-img
+        *ngIf="heroes[item.id]?.img && forWhat === 'hero'"
+        [data]="heroes[item.id]?.img"
+        class="hero-img sm-hero-img"
+        [altData]="heroes[item.id]?.localized_name"
+      ></app-img>
+      <!-- peer img -->
+      <img
+        *ngIf="forWhat === 'user'"
+        width="32"
+        height="32"
+        onError="this.src='./assets/images/Dota2Logo.svg'"
+        [src]="item.avatar"/>
+        <!-- side -->
+      <app-dire *ngIf="forWhat === 'side' && item.value === 'Dire'"></app-dire>
+      <app-radient *ngIf="forWhat === 'side' && item.value === 'Radiant'"></app-radient>
+      {{item.value || item.localized_name || item.personaname || (item.name | nameDestruct: '_' : 2 : 'upperCase')}}
+    </mat-option>
   </mat-select>
 </mat-form-field>

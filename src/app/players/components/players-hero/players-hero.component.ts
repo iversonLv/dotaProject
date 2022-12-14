@@ -19,7 +19,7 @@ import { IPlayerData } from '../../model/general';
   styleUrls: ['./players-hero.component.scss'],
 })
 export class PlayersHeroComponent implements OnInit {
-  loginedAccountId = 128741677;
+  loginedAccountId;
   componentActive = true;
   queryParams;
   playersGeneral$: Observable<IPlayerData>;
@@ -36,6 +36,7 @@ export class PlayersHeroComponent implements OnInit {
     this.playersWinLoseCount$ = store.select('playersWinLoseCount');
     this.playersGeneral$ = store.select('playersGeneral');
     this.playersMyRecordWithWinLoseCount$ = store.select('playersMyRecordWithWinLoseCount');
+    this.loginedAccountId = localStorage.getItem('loginedAccountId');
   }
 
   ngOnInit(): void {

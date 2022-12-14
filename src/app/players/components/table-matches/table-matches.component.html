@@ -4,7 +4,7 @@
   <div *ngIf="dataSource.data.length === 0; else hasData">No data</div>
   <ng-template #hasData>
     <mat-paginator  #paginator pageSize="20" hidePageSize showFirstLastButtons *ngIf="!isRecentMatches"></mat-paginator>
-    <table mat-table [dataSource]="dataSource"  matSort>
+    <table mat-table [dataSource]="dataSource"  matSort [trackBy]="trackBy">
 
       <!-- hero_id Column -->
       <ng-container matColumnDef="hero_id" *ngIf="displayedColumns.includes('hero_id')">

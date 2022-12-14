@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+// dotaconstants
+import heroes from 'dotaconstants/build/heroes.json';
+
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
@@ -12,7 +15,11 @@ export class DropdownComponent implements OnInit {
   @Input() sortBy = 'id';
   @Input() model;
   @Input() defaultValue;
+  @Input() forWhat: string | null;
   @Output() setEventEmit = new EventEmitter();
+
+  // User for hero modal to mapping
+  heroes: any = heroes;
 
   constructor() { }
 

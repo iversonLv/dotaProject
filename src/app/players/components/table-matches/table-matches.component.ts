@@ -175,4 +175,8 @@ export class TableMatchesComponent implements OnInit {
     this.currentMouseOverItem = this.items[this.itemIds[id]];
   }
 
+  trackBy = (index: number, item: any) => {
+    return item.match_id;
+  }
+
 }
