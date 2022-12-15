@@ -29,7 +29,7 @@ export class MainNavComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<{playersPros: IProData, playersPeers: IPeerData}>,
-    private generalService: GeneralService
+    public generalService: GeneralService
   ) {
     this.generalService.isLogined.subscribe(isLogined => {
       this.isLogined = isLogined;
