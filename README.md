@@ -209,8 +209,9 @@ environment.pro.ts
   - [] Improve the match page 5K matches load speed, now looked freeze the page
 [] Deploy
   - [x] Setup the repo on github page(2021.2.26)
-  - [x] Deploy to github page (2021.2.26)
-[x] Integrate sign in with steam (2022.12.11)
+  - [x] Deploy to github page (2021.2.26)  
+[x] Integrate sign in with steam (2022.12.11)  
+[x] Added progressbar for http interceptor (2022.12.15)  
 
 # Useful info
 https://dota2.gamepedia.com/Armor
