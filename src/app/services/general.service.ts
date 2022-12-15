@@ -10,6 +10,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class GeneralService {
   isLogined: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isUpdatedQueryParmas: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   private BASE_API_URL = environment.BASE_API_URL;
 

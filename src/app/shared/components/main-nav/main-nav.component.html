@@ -1,4 +1,12 @@
 <div class="nav-wrapper">
+  <div class="loader-container">
+    <mat-progress-bar
+      *ngIf="generalService.isLoading | async"
+      mode="indeterminate"
+      color="warn"
+    >
+    </mat-progress-bar>
+  </div>
   <nav>
     <a [routerLink]="['home']" class="logo">
       {{currentVersion}}
