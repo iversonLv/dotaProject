@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { SharedModule } from './shared/shared.module';
@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 
-
+import { InterceptorService } from './services/interceptor.service';
 // ngrx dev tool
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -41,6 +41,8 @@ import { MatchesEffects } from './matches/store/matches.effects';
 
 // ngrx dev tool
 const devToolsOption = { name: 'Dota2 Project API', maxAge: 25, logOnly: environment.production };
+
+
 
 @NgModule({
   declarations: [
@@ -120,7 +122,13 @@ const devToolsOption = { name: 'Dota2 Project API', maxAge: 25, logOnly: environ
     ]),
     StoreDevtoolsModule.instrument(devToolsOption), // this need below StoreModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
