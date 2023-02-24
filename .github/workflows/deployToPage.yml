@@ -1,0 +1,48 @@
+name: Deploy to gh-pages
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up Git identity
+      run: |
+        git config --global user.name "${{ github.event.head_commit.author.name }}"
+        git config --global user.email "${{ github.event.head_commit.author.email }}"
+      
+    - name: Install Angular CLI
+      run: npm install -g @angular/cli
+
+    - name: Checkout dev branch
+      uses: actions/checkout@v3
+      with:
+        ref: dev
+
+    - name: Checkout gh-pages branch
+      uses: actions/checkout@v3
+      with:
+        ref: gh-pages
+        fetch-depth: 0
+
+    - name: Merge dev branch into gh-pages
+      run: git merge --no-commit --no-ff origin/dev
+      
+    - name: Build Angular app
+      run: ng build --prod --output-path docs --base-href /dotaProject/
+      
+    - name: Copy docs index.html and rename 404.html
+      run: cp docs/index.html docs/404.html
+      
+    - name: Commit
+      run: git commit -m "Merge dev branch into gh-pages"
+
+    - name: Push changes to gh-pages
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages
