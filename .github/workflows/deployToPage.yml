@@ -32,12 +32,16 @@ jobs:
     - name: Merge dev branch into gh-pages
       run: git merge --no-commit --no-ff origin/dev
       
-    - name: Build Angular app
+    - name: Remove node modules folder and clean cache
       run: |
         rm -rf node_modules
         npm cache clean --force
-        npm install --legacy-peer-deps
-        npm run ng-high-memory --prod --output-path docs --base-href /dotaProject/
+        
+    - name: Install dependencies
+      run: npm install --legacy-peer-deps
+    
+    - name: Build Angular app
+      run: ng build --prod --output-path docs --base-href /dotaProject/
       
     - name: Copy docs index.html and rename 404.html
       run: cp docs/index.html docs/404.html
