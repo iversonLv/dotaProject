@@ -35,6 +35,8 @@ jobs:
     - name: Build Angular app
       run: |
         rm -rf node_modules
+        npm install -g npm-check-updates
+        ncu -u
         npm install
         ng build --prod --verbose --output-path docs --base-href /dotaProject/
       
