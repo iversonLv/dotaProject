@@ -37,6 +37,7 @@ jobs:
         rm -rf node_modules
         npm cache clean --force
         npm install --legacy-peer-deps
+        export SET NODE_OPTIONS=--openssl-legacy-provider
         npm run ng-high-memory --prod --output-path docs --base-href /dotaProject/
       
     - name: Copy docs index.html and rename 404.html
