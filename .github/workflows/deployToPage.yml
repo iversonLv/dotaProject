@@ -34,8 +34,9 @@ jobs:
       
     - name: Build Angular app
       run: |
+        rm -rf node_modules
         npm install
-        ng build --prod --output-path docs --base-href /dotaProject/
+        ng build --prod --verbose --output-path docs --base-href /dotaProject/
       
     - name: Copy docs index.html and rename 404.html
       run: cp docs/index.html docs/404.html
