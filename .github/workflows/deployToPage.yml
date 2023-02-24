@@ -39,7 +39,7 @@ jobs:
         npm cache clean --force
         
     - name: Install dependencies
-      run: npm install --legacy-peer-deps
+      run: npm install --force
     
     - name: Build Angular app
       run: ng build --prod --output-path docs --base-href /dotaProject/
