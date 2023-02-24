@@ -37,7 +37,7 @@ jobs:
         rm -rf node_modules
         npm cache clean --force
         npm install --legacy-peer-deps
-        ng build --prod --output-path docs --base-href /dotaProject/
+        npm run ng-high-memory --prod --output-path docs --base-href /dotaProject/
       
     - name: Copy docs index.html and rename 404.html
       run: cp docs/index.html docs/404.html
