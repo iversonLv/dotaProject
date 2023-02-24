@@ -11,6 +11,9 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
+  "angularCompilerOptions": {
+    "disableTypeScriptVersionCheck": true,
+  }
   "references": [
     {
       "path": "./tsconfig.app.json"
