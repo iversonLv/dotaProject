@@ -37,11 +37,9 @@ jobs:
         rm package-lock.json
         rm -rf node_modules
         npm cache clean --force
-        npm install -g npm-check-updates
-        ncu -u
         
     - name: Install dependencies
-      run: npm install --legacy-peer-deps
+      run: npm install --legacy-peer-deps --force
     
     - name: Build Angular app
       run: ng build --prod --output-path docs --base-href /dotaProject/
