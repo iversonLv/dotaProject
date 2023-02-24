@@ -54,8 +54,10 @@ jobs:
     - name: Copy docs index.html and rename 404.html
       run: cp docs/index.html docs/404.html
       
-    - name: Commit
-      run: git commit -m "Merge dev branch into gh-pages"
+    - name: Add and Commit
+      run: |
+        git add .
+        git commit -m "Merge dev branch into gh-pages"
 
     - name: Push changes to gh-pages
       uses: ad-m/github-push-action@master
