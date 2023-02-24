@@ -19,12 +19,12 @@ jobs:
       run: npm install -g @angular/cli@10
 
     - name: Checkout dev branch
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         ref: dev
 
     - name: Checkout gh-pages branch
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         ref: gh-pages
         fetch-depth: 0
@@ -39,7 +39,7 @@ jobs:
         npm cache clean --force
         
     - name: Install dependencies
-      run: npm install
+      run: npm install --legacy-peer-deps
     
     - name: Build Angular app
       run: ng build --prod --output-path docs --base-href /dotaProject/
