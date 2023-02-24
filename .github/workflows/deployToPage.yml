@@ -39,7 +39,6 @@ jobs:
       
     - name: Remove node modules folder and clean cache
       run: |
-        rm package-lock.json
         rm -rf node_modules
         npm cache clean --force
         
@@ -47,7 +46,7 @@ jobs:
       run: npm install --force
     
     - name: Remove existing docs
-      run: rm-rf docs
+      run: rm -rf docs
     
     - name: Build Angular app
       run: ng build --prod --output-path docs --base-href /dotaProject/
