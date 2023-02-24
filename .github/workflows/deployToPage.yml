@@ -33,7 +33,9 @@ jobs:
       run: git merge --no-commit --no-ff origin/dev
       
     - name: Build Angular app
-      run: ng build --prod --output-path docs --base-href /dotaProject/
+      run: |
+        npm install
+        ng build --prod --output-path docs --base-href /dotaProject/
       
     - name: Copy docs index.html and rename 404.html
       run: cp docs/index.html docs/404.html
