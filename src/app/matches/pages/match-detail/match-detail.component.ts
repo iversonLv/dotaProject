@@ -204,8 +204,8 @@ export class MatchDetailComponent implements OnInit {
     return {
       has: hasScepterShard,
       ...heroAghs,
-      scepter_img: abilitiesArr.find(i => i.dname === heroAghs.scepter_skill_name).img,
-      shard_img: abilitiesArr.find(i => i.dname === heroAghs.shard_skill_name).img,
+      scepter_img: abilitiesArr.find(i => i.dname === heroAghs?.scepter_skill_name).img,
+      shard_img: abilitiesArr.find(i => i.dname === heroAghs?.shard_skill_name).img,
     };
   }
 

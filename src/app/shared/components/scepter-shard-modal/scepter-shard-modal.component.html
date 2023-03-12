@@ -2,14 +2,14 @@
   <div class="scepter scepter-shard-row">
     <div class="item-main">
       <img
-        [src]="'./assets/images/scepter_' + (heroAghsDesc.has_scepter ? '1' : '0') + '.png'"
+        [src]="'./assets/images/scepter_' + (heroAghsDesc?.has_scepter ? '1' : '0') + '.png'"
         alt="scepter img">
       <div class="item-main-right">
         <h3>Aghanim's scepter</h3>
       </div>
     </div>
-    <div class="no-detail" *ngIf="!heroAghsDesc.has_scepter">Current the hero does not have Aghanim scepter</div>
-    <div class="item-detail" *ngIf="heroAghsDesc.has_scepter">
+    <div class="no-detail" *ngIf="!heroAghsDesc?.has_scepter">Current the hero does not have Aghanim scepter</div>
+    <div class="item-detail" *ngIf="heroAghsDesc?.has_scepter">
       <app-img
         [data]="heroAghsDesc?.scepter_img"
         class="md-item-img"
@@ -37,14 +37,14 @@
   <div class="shard scepter-shard-row">
     <div class="item-main">
       <img
-        [src]="'./assets/images/shard_' + (heroAghsDesc.has_shard ? '1' : '0') + '.png'"
+        [src]="'./assets/images/shard_' + (heroAghsDesc?.has_shard ? '1' : '0') + '.png'"
         alt="shard img">
       <div class="item-main-right">
         <h3>Aghanim's shard</h3>
       </div>
     </div>
-    <div class="no-detail" *ngIf="!heroAghsDesc.has_shard">Current the hero does not have Aghanim shard</div>
-    <div class="item-detail" *ngIf="heroAghsDesc.has_shard">
+    <div class="no-detail" *ngIf="!heroAghsDesc?.has_shard">Current the hero does not have Aghanim shard</div>
+    <div class="item-detail" *ngIf="heroAghsDesc?.has_shard">
       <app-img
         [data]="heroAghsDesc?.shard_img"
         class="md-item-img"
