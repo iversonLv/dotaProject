@@ -78,12 +78,12 @@
           >
             <img
               class="aghanims-scepter"
-              [src]="'./assets/images/scepter_' + (heroAghsDesc.has_scepter ? '1' : '0') + '.png'"
+              [src]="'./assets/images/scepter_' + (heroAghsDesc?.has_scepter ? '1' : '0') + '.png'"
               onError="this.src='./assets/images/Dota2Logo.svg'"
             />
             <img
               class="aghanims-shard"
-              [src]="'./assets/images/shard_' + (heroAghsDesc.has_shard ? '1' : '0') + '.png'"
+              [src]="'./assets/images/shard_' + (heroAghsDesc?.has_shard ? '1' : '0') + '.png'"
               onError="this.src='./assets/images/Dota2Logo.svg'"
             />
           </span>
