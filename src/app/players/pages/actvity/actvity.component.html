@@ -4,7 +4,6 @@
 <ng-template #playersMatchesDataList>
   <div *ngIf="playersMatchesParseData.length === 0; else hasData">No data</div>
   <ng-template #hasData>
-    {{currentDate}}
     <div *ngFor="let item of playersMatchesParseData" class="activities-box">
       <app-calendar-chart [data]="item" (emitClickSymble)="emitClickSymble($event)"></app-calendar-chart>
       <app-table-activities
