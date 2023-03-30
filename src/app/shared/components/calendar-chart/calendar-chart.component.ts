@@ -100,6 +100,10 @@ export class CalendarChartComponent implements OnInit {
   // how win item for sam data
   parseData(data): any {
     const dataArr = [];
+    // data structure
+    // {
+    //   "2023-01-01": []
+    // }
     for (const i in data) {
       if (data.hasOwnProperty(i)) {
         // tslint:disable-next-line:max-line-length
@@ -117,7 +121,7 @@ export class CalendarChartComponent implements OnInit {
   }
 
   onChartEvent(event: any, type: string): any {
-    console.log(event)
+    // console.log(event)
     this.emitClickSymble.emit(event.value[0]);
   }
 
