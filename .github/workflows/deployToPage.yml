@@ -19,6 +19,13 @@ jobs:
       run: |
         git config --global user.name "${{ github.event.head_commit.author.name }}"
         git config --global user.email "${{ github.event.head_commit.author.email }}"
+    
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          **/node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       
     - name: Install Angular CLI
       run: npm install -g @angular/cli@10

@@ -56,8 +56,8 @@ export class ActvityComponent implements OnInit {
         const playersMatchesData = [...data.matches];
 
         for (const i of playersMatchesData) {
-          const item = new Date(i.start_time *　1000).toISOString().slice(0, 10);
-          const range = new Date(i.start_time *　1000).toISOString().slice(0, 4);
+          const item = new Date(i.start_time * 1000).toISOString().slice(0, 10);
+          const range = new Date(i.start_time * 1000).toISOString().slice(0, 4);
           objTotal[item] = (objTotal[item] + 1) || 1;
           objRange[range] = (objRange[range] + 1) || 1;
         }
