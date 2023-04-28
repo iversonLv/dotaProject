@@ -171,7 +171,7 @@
       </div>
       <!-- heroes-sub-box-col -->
     </div>
-    <div class="heroes-lore">{{heroLore[hero['localized_name'] | lowercase]}}</div>
+    <div class="heroes-lore" *ngIf="heroLore[hero['localized_name']]">{{heroLore[hero['localized_name'] | lowercase]}}</div>
   </div>
   <!-- heroes-sub-box-box -->
 
