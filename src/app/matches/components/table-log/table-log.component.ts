@@ -95,7 +95,7 @@ export class TableLogComponent implements OnInit {
   extractObjectiveLogData(objectives: any[], field: string): any[] {
     const specificLogData = [];
     objectives.forEach(i => {
-      if (i.player_slot && i.player_slot >= 0) {
+      if (i.player_slot >= 0) {
         const playerOverallData = this.data.find(x => x.player_slot === i.player_slot);
         const {
           hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname, randomed,
@@ -106,7 +106,6 @@ export class TableLogComponent implements OnInit {
         };
         specificLogData.push({
           ...i,
-          player_slot,
           player,
           side: isRadiant ? 'radiant' : 'dire',
           isRadiant,
