@@ -40,6 +40,11 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/dotaProject
 
+      
+  copy-index-404:
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Checkout gh-pages branch
         uses: actions/checkout@v2
         with:
