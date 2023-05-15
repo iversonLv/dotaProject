@@ -42,6 +42,7 @@ jobs:
 
       
   copy-index-404:
+    needs: build-and-deploy
     runs-on: ubuntu-latest
 
     steps:
