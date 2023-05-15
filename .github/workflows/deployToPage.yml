@@ -6,61 +6,40 @@ on:
       - dev
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14.x'
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
         
-    - name: Set up Git identity
-      run: |
-        git config --global user.name "${{ github.event.head_commit.author.name }}"
-        git config --global user.email "${{ github.event.head_commit.author.email }}"
-      
-    - name: Install Angular CLI
-      run: npm install -g @angular/cli@10
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli@10
 
-    - name: Checkout dev branch
-      uses: actions/checkout@v2
-      with:
-        ref: dev
+      - name: Install dependencies
+        run: npm install
 
-    - name: Checkout gh-pages branch
-      uses: actions/checkout@v2
-      with:
-        ref: gh-pages
-        fetch-depth: 0
+      - name: Build
+        run: ng build --prod --base-href /dotaProject/
+      
+      - name: Copy index.html to 404.html
+        run: |
+          cp ./dist/dotaProject/index.html ./dist/dotaProject/404.html
 
-    - name: Merge dev branch into gh-pages
-      run: git merge --no-commit --no-ff origin/dev
-      
-    - name: Remove node modules folder and clean cache
-      run: |
-        rm -rf node_modules
-        npm cache clean --force
-        
-    - name: Install dependencies
-      run: npm install --force
-    
-    - name: Remove existing docs
-      run: rm -rf docs
-    
-    - name: Build Angular app
-      run: ng build --prod --output-path docs --base-href /dotaProject/
-      
-    - name: Copy docs index.html and rename 404.html
-      run: cp docs/index.html docs/404.html
-      
-    - name: Add and Commit
-      run: |
-        git add .
-        git commit -m "Merge dev branch into gh-pages"
-
-    - name: Push changes to gh-pages
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: gh-pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/dotaProject

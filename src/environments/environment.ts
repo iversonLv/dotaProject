@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  currentVersion: '7.32e',
+  currentVersion: '7.33c',
   BASE_API_URL: 'https://api.opendota.com/api',
   BASE_LOCAL_DATA_URL: '/assets/data',
   // BASE_GIT_RAW_DATA_URL: 'https://raw.githubusercontent.com/odota/dotaconstants/master/build'

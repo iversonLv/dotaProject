@@ -36,7 +36,9 @@ export class TableMatchDetailRunesComponent implements OnInit {
     '4',
     '5',
     '6',
-    '7'
+    '7',
+    '8',
+    '9'
   ];
 
   runes: any = runesData;
@@ -73,6 +75,8 @@ export class TableMatchDetailRunesComponent implements OnInit {
         5: runes[5],
         6: runes[6],
         7: runes[7],
+        8: runes[8],
+        9: runes[9],
       });
     });
 
