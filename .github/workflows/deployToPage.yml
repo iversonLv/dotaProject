@@ -33,24 +33,13 @@ jobs:
 
       - name: Build
         run: ng build --prod --base-href /dotaProject/
+      
+      - name: Copy index.html to 404.html
+        run: |
+          cp ./dist/dotaProject/index.html ./dist/dotaProject/404.html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/dotaProject
-
-      
-  copy-index-404:
-    needs: build-and-deploy
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout gh-pages branch
-        uses: actions/checkout@v2
-        with:
-          ref: gh-pages
-          fetch-depth: 0
-
-      - name: Copy index.html and rename 404.html
-        run: cp ./index.html ./404.html
