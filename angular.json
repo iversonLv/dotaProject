@@ -40,7 +40,6 @@
             "scripts": []
           },
           "configurations": {
-            "baseHref": "/dotaProject/",
             "production": {
               "fileReplacements": [
                 {
