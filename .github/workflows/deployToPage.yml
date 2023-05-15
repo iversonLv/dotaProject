@@ -18,6 +18,16 @@ jobs:
         with:
           node-version: 14
 
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli@10
+
       - name: Install dependencies
         run: npm install
 
