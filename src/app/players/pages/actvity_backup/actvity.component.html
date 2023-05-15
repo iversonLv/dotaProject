@@ -1,8 +1,0 @@
-<app-nav-title [title]="'Activity'"> Click on a day for detailed information</app-nav-title>
-
-<div *ngIf="playersMatches$ | async as playersMatchesData">
-  <div *ngIf="playersMatchesData['isLoading']; else playersMatchesDataList">Loading</div>
-  <ng-template #playersMatchesDataList>
-    <app-calendar-chart [data]="playersMatchesData['matches']"></app-calendar-chart>
-  </ng-template>
-</div>
