@@ -149,6 +149,7 @@ export class MatchDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('here')
     this.currentPage = this.router.url.split('/')[3];
 
     const matchId = this.activatedRoute.snapshot.paramMap.get('id');

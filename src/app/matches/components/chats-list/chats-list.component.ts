@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
-import { IChat } from '../../model/onematch';
+import { IChat, IShownChat } from '../../model/onematch';
 
 @Component({
   selector: 'app-chats-list',
@@ -16,6 +16,7 @@ export class ChatsListComponent implements OnInit {
 
   finalData;
   finalData2 = [];
+  chatToShow?: IShownChat[] = [];
   chatFilterObj = {
     radiant: {
       isShown: true,
@@ -50,6 +51,8 @@ export class ChatsListComponent implements OnInit {
       len: 0
     },
   };
+
+  
 
   chatFilter = [];
 
@@ -91,7 +94,10 @@ export class ChatsListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.chats)
+    console.log(this.chatWheel)
     this.extractData(this.chats);
+    // this.extractData2()
     this.finalData = this.chats; // matches.chats
     this.chatFilter = Object.keys(this.chatFilterObj);
     this.chatFilterObjFinalabc = this.calFilterDataLength(this.chats, this.chatFilterObjFinalabc);
@@ -113,7 +119,9 @@ export class ChatsListComponent implements OnInit {
         isShown: e.checked
       }
     };
+    console.log(this.chatFilterObj)
     this.finalData = this.extraceData(this.finalData2, this.chatFilterObj);
+    console.log(this.finalData)
     this.chatFilterObj = this.calFilterDataLength(this.finalData, this.chatFilterObj);
   }
 
@@ -210,6 +218,41 @@ export class ChatsListComponent implements OnInit {
 
     });
     return this.finalData2;
+  }
+
+  extractData2(): void {
+    this.chatToShow = []
+    this.chats.forEach((chatEntry: IChat) => {
+      
+      //side
+      const side = (chatEntry.player_slot<=4)?'radiant':'dire';
+
+      //type
+      let chatType: string = ''
+      if (chatEntry.type === 'chat') {
+        chatType = 'chat';
+      } else {
+          if (chatEntry.type === 'chatwheel' && (!this.chatWheel[chatEntry?.key]?.sound_ext || !this.chatWheel[chatEntry?.key])) {
+          chatType = 'pharses';
+        } else if (chatEntry.type === 'chatwheel' && this.chatWheel[chatEntry?.key]?.sound_ext) {
+          chatType = 'audio';
+        }
+      }
+
+      // target
+      let targetType = '';
+      if (chatEntry.type === 'chat' || (chatEntry.type === 'chatwheel' && this.chatWheel[chatEntry?.key]?.all_chat)) {
+        targetType = 'all';
+      } else if (chatEntry.type === 'chatwheel' && !this.chatWheel[chatEntry?.key]?.all_chat) {
+        targetType = 'allies';
+      }
+
+      switch(chatEntry.type) {
+        case 'chatwheel':
+
+      }
+      
+    })
   }
 
   // filter chat data function
