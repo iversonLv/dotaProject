@@ -1,7 +1,8 @@
-@import '../../../../styles.scss';
+@import "../../../../styles.scss";
 
 .map {
-  background: url(https://www.opendota.com/assets/images/dota2/map/detailed_723.jpg) no-repeat 0 0;
+  background-repeat: no-repeat;
+  background-position: 0 0;
   background-size: contain;
   position: relative;
 }
@@ -19,15 +20,15 @@
 
   &.goodguys-obs-sen {
     border-color: $green;
-    background-color: rgba($color: $green, $alpha: .2);
+    background-color: rgba($color: $green, $alpha: 0.2);
 
     &:hover {
-      background-color: rgba($color: $green, $alpha: .4);
+      background-color: rgba($color: $green, $alpha: 0.4);
     }
   }
-  
+
   &.badguys-obs-sen {
     border-color: $red;
-    background-color: rgba($color: $red, $alpha: .2);
+    background-color: rgba($color: $red, $alpha: 0.2);
   }
 }

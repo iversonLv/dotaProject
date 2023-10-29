@@ -133,7 +133,7 @@ export class OverviewComponent implements OnInit {  // table sort
 
         } else {
           this.queryParamsHasValue = true;
-          this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, this.queryParams));
+          this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, 0, 0, this.queryParams));
           this.avgMaxData$ = this.store.select('playersMatches');
           this.enableTurbo = true;
         }
@@ -143,7 +143,7 @@ export class OverviewComponent implements OnInit {  // table sort
     // this is for reload the browser
     if (Object.keys(this.queryParams.params).length > 0) {
       this.queryParamsHasValue = true;
-      this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, this.queryParams));
+      this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, 0, 0, this.queryParams));
       this.avgMaxData$ = this.store.select('playersMatches');
       this.enableTurbo = true;
     } else {

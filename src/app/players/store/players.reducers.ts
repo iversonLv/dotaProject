@@ -49,7 +49,8 @@ export const initialStateHeroesPlayed: IHeroesPlayedData = {
 // init state for player matches
 export const initialStatePlayerMatches: IMatchData = {
   isLoading: false,
-  matches: []
+  matches: [],
+  matchesLength: 0
 };
 
 // init state for player recent matches
@@ -208,7 +209,7 @@ export function playersMatches(state = initialStatePlayerMatches, action: Player
     case PlayersActionTypes.LOAD_PLAYERS_MATCHES:
       return { ...state, isLoading: true };
     case PlayersActionTypes.LOAD_PLAYERS_MATCHES_SUCCESS:
-      return { ...state, isLoading: false, matches: [...(action.payload || [])] };
+      return { ...state, isLoading: false, matches: [...(action.payload.matches || [])], matchesLength: action.payload.matchesLength };
     default:
       return state;
   }

@@ -45,7 +45,7 @@ export class ActvityComponent implements OnInit {
     const accountId = +currentUrl.split('/')[2];
     this.activatedRoute.queryParamMap.subscribe(data => this.queryParams = data);
 
-    this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, this.queryParams));
+    this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, -1, -1, this.queryParams));
     this.store.select('playersMatches').subscribe(data => {
       this.isLoading = data.isLoading;
       if (!data.isLoading) {

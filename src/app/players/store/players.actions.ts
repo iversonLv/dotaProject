@@ -4,7 +4,7 @@ import { IWinlose } from '../model/winlose';
 import { IPlayer } from '../model/general';
 import { IPeer } from '../model/peer';
 import { IHeroesPlayed } from '../model/hero-played';
-import { IMatch } from 'src/app/matches/model/match';
+import { IMatch, IMatchData } from 'src/app/matches/model/match';
 import { IRecentMatch } from 'src/app/matches/model/recent-match';
 import { ICount } from '../model/count';
 import { ITotal } from '../model/total';
@@ -182,13 +182,13 @@ export class LoadPlayersHeroesPlayedSuccess implements Action {
 export class LoadPlayersMatches implements Action {
   readonly type = PlayersActionTypes.LOAD_PLAYERS_MATCHES;
 
-  constructor(public accountId, public queryParams?) {}
+  constructor(public accountId, public pageSize, public pageIndex, public queryParams?) {}
 }
 
 export class LoadPlayersMatchesSuccess implements Action {
   readonly type = PlayersActionTypes.LOAD_PLAYERS_MATCHES_SUCCESS;
 
-  constructor(public accountId, public queryParams?, public payload?: IMatch[]) {}
+  constructor(public accountId, public queryParams?, public payload?: IMatchData) {}
 }
 
 // load player recent matches

@@ -15,7 +15,7 @@ import { IHeroesPlayed } from '../model/hero-played';
 
 // ngrx
 import * as playersActions from './players.actions';
-import { IMatch } from 'src/app/matches/model/match';
+import { IMatch, IMatchData } from 'src/app/matches/model/match';
 import { IRecentMatch } from 'src/app/matches/model/recent-match';
 import { ICount } from '../model/count';
 import { ITotal } from '../model/total';
@@ -146,10 +146,10 @@ export class PlayersEffects {
   getPlayerMatches$: Observable<Action> = createEffect(() =>
   this.actions$.pipe(
     ofType(playersActions.PlayersActionTypes.LOAD_PLAYERS_MATCHES),
-      switchMap(({ accountId, queryParams, fields }) =>
-        this.playersService.getPlayerMatches(accountId, queryParams)
+      switchMap(({ accountId, pageSize, pageIndex, queryParams, fields }) =>
+        this.playersService.getPlayerMatches(accountId, pageSize, pageIndex, queryParams)
           .pipe(
-            map((playersMatches: IMatch[]) =>
+            map((playersMatches: IMatchData) =>
               new playersActions.LoadPlayersMatchesSuccess(accountId, queryParams, playersMatches)
           ),
           catchError(() =>

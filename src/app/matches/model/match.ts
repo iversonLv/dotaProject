@@ -5,8 +5,9 @@ export interface IAppState extends fromRoot.IAppState {
 }
 
 export interface IMatchData {
-  isLoading: boolean;
+  isLoading?: boolean;
   matches: IMatch[];
+  matchesLength: number
 }
 
 export interface IHeroes {

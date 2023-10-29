@@ -1,15 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-ward-map-chart',
   templateUrl: './ward-map-chart.component.html',
-  styleUrls: ['./ward-map-chart.component.scss']
+  styleUrls: ['./ward-map-chart.component.scss'],
 })
 export class WardMapChartComponent implements OnInit {
+  currentMap = environment.currentMap;
   @Input() data: any;
   chartOption: EChartsOption;
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.chartOption = {
@@ -21,36 +23,38 @@ export class WardMapChartComponent implements OnInit {
       },
       visualMap: {
         show: false,
-          min: this.data.min,
-          max: this.data.max,
-          inRange: {
-              color: ['rgba(0,0,255, .4)', 'green', 'red']
-          }
+        min: this.data.min,
+        max: this.data.max,
+        inRange: {
+          color: ['rgba(0,0,255, .4)', 'green', 'red'],
+        },
       },
       xAxis: {
+        show: false,
+        position: 'top',
+        type: 'category',
+        min: 0,
+        data: this.generateXYData()[0],
+        splitArea: {
           show: false,
-          position: 'top',
-          type: 'category',
-          min: 0,
-          data: this.generateXYData()[0],
-          splitArea: {
-              show: false
-          }
+        },
       },
       yAxis: {
+        show: false,
+        min: 0,
+        type: 'category',
+        data: this.generateXYData()[1],
+        inverse: true,
+        splitArea: {
           show: false,
-          min: 0,
-          type: 'category',
-          data: this.generateXYData()[1],
-          inverse: true,
-          splitArea: {
-              show: false
-          }
+        },
       },
-      series: [{
+      series: [
+        {
           type: 'scatter',
           data: this.data.data,
-      }]
+        },
+      ],
     };
   }
 
@@ -63,6 +67,4 @@ export class WardMapChartComponent implements OnInit {
     }
     return [x, y];
   }
-
-
 }

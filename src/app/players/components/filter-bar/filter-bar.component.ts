@@ -177,7 +177,7 @@ export class FilterBarComponent implements OnInit {
       this.store.dispatch(new playersActions.LoadPlayersRecentMatches(accountId));
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'matches') {
-      this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, this.queryParams));
+      this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, 20, 0, this.queryParams));
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'heroes') {
       this.store.dispatch(new playersActions.LoadPlayersHeroesPlayed(accountId, this.queryParams));
@@ -218,7 +218,7 @@ export class FilterBarComponent implements OnInit {
       this.store.dispatch(new playersActions.LoadPlayersRankings(accountId));
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'actvity') {
-      this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, this.queryParams));
+      this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, -1, -1, this.queryParams));
     }
 
     // this.store.dispatch(new playersActions.LoadPlayersWinLoseCount(accountId, this.queryParams));
@@ -294,10 +294,10 @@ export class FilterBarComponent implements OnInit {
       this.store.dispatch(new playersActions.LoadPlayersHeroesPlayed(accountId, this.queryParams));
 
       // if there is queryParams, should load player matches
-      this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, this.queryParams));
+      this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, 20, 0, this.queryParams));
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'matches') {
-      this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, this.queryParams));
+      this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, 20, 0, this.queryParams));
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'heroes') {
       this.store.dispatch(new playersActions.LoadPlayersHeroesPlayed(accountId, this.queryParams));
@@ -338,7 +338,7 @@ export class FilterBarComponent implements OnInit {
       this.store.dispatch(new playersActions.LoadPlayersRankings(accountId));
 
     } else if (this.router.url.split('/')[3].split('?')[0] === 'actvity') {
-      this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, this.queryParams));
+      this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, -1, -1,  this.queryParams));
     }
     // call disapatch
     // use material select does not need validate

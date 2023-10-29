@@ -5,20 +5,18 @@
     <ng-container matColumnDef="type">
       <th mat-header-cell *matHeaderCellDef>TYPE</th>
       <td mat-cell *matCellDef="let element">
-        <img
-          onError="this.src='./assets/images/Dota2Logo.svg'"
-          width="40"
-          [src]="element.type === 'obs_log' ? './assets/images/ward_observer_lg.png' : './assets/images/ward_sentry_lg.png'"
-        />
+        <img onError="this.src='./assets/images/Dota2Logo.svg'" width="40"
+          [src]="element.type === 'obs_log' ? './assets/images/ward_observer_lg.png' : './assets/images/ward_sentry_lg.png'" />
       </td>
     </ng-container>
 
-    
+
     <!-- owner -->
     <ng-container matColumnDef="owner">
       <th mat-header-cell *matHeaderCellDef>OWNER</th>
       <td mat-cell *matCellDef="let element">
-        <app-player-box [data]="extractData(data, element.slot)" [heroes]="heroes" [playerColors]="playerColors"></app-player-box>
+        <app-player-box [data]="extractData(data, element.slot)" [heroes]="heroes"
+          [playerColors]="playerColors"></app-player-box>
       </td>
     </ng-container>
 
@@ -50,23 +48,21 @@
     <ng-container matColumnDef="attackername">
       <th mat-header-cell *matHeaderCellDef>KILL BY</th>
       <td mat-cell *matCellDef="let element">
-        <app-player-box *ngIf="element?.attackername !== 'npc_dota_observer_wards'" [data]="extractDataFromAttackername(data, element?.attackername)" [heroes]="heroes" [playerColors]="playerColors"></app-player-box>
+        <app-player-box *ngIf="element?.attackername !== 'npc_dota_observer_wards'"
+          [data]="extractDataFromAttackername(data, element?.attackername)" [heroes]="heroes"
+          [playerColors]="playerColors"></app-player-box>
       </td>
     </ng-container>
-    
+
     <!-- placement -->
     <ng-container matColumnDef="key">
       <th mat-header-cell *matHeaderCellDef>PLACEMENT</th>
       <td mat-cell *matCellDef="let element">
         <div class="vision-map-single-box">
-          <img
-            (mouseover)="currentObsSenSingle = element"
-            (mouseout)="currentObsSenSingle = null"
-            onError="this.src='./assets/images/Dota2Logo.svg'"
-            width="40"
-            src="https://www.opendota.com/assets/images/dota2/map/detailed_723.jpg"
-          />
-          <app-vision-map-single [data]="currentObsSenSingle" [mapSize]="300" *ngIf="currentObsSenSingle === element"></app-vision-map-single>
+          <img (mouseover)="currentObsSenSingle = element" (mouseout)="currentObsSenSingle = null"
+            onError="this.src='./assets/images/Dota2Logo.svg'" width="40" [src]="currentMap" />
+          <app-vision-map-single [data]="currentObsSenSingle" [mapSize]="300"
+            *ngIf="currentObsSenSingle === element"></app-vision-map-single>
         </div>
       </td>
     </ng-container>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GeneralService } from '../../services/general.service';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 // modal
 import { IWinlose } from '../model/winlose';
@@ -9,7 +9,7 @@ import { IQuery } from '../model/query';
 import { IPlayer } from '../model/general';
 import { IPeer } from '../model/peer';
 import { IHeroesPlayed } from '../model/hero-played';
-import { IMatch } from 'src/app/matches/model/match';
+import { IMatch, IMatchData } from 'src/app/matches/model/match';
 import { IRecentMatch } from 'src/app/matches/model/recent-match';
 import { ICount } from '../model/count';
 import { ITotal } from '../model/total';
@@ -19,6 +19,7 @@ import { IHistogram } from '../model/histogram';
 import { IRecord } from '../model/record';
 import { ITrend } from '../model/trend';
 import { IRating } from '../model/rating';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -53,8 +54,20 @@ export class PlayersService {
   }
 
   // GET Player matches
-  getPlayerMatches(accountId: number, queryParams?: IQuery): Observable<IMatch[]> {
-    return this.generalService.get(`/players/${accountId}/matches?significant=0&project=duration&project=game_mode&project=lobby_type&project=start_time&project=hero_id&project=start_time&project=version&project=kills&project=deaths&project=assists&project=skill&project=leaver_status&project=party_size&project=average_rank&project=item_0&project=item_1&project=item_2&project=item_3&project=item_4&project=item_5&project=backpack_0`, queryParams);
+  getPlayerMatches(accountId: number, pageSize: number, pageIndex: number, queryParams?: IQuery): Observable<IMatchData> {
+    return this.generalService.get(`/players/${accountId}/matches?significant=0&project=duration&project=game_mode&project=lobby_type&project=start_time&project=hero_id&project=start_time&project=version&project=kills&project=deaths&project=assists&project=skill&project=leaver_status&project=party_size&project=average_rank&project=item_0&project=item_1&project=item_2&project=item_3&project=item_4&project=item_5&project=backpack_0`, queryParams).pipe(
+      switchMap((data: IMatch[]) => {
+        let matches = []
+        if(pageIndex >=0 && pageSize >=0) {
+
+          matches = data.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize)
+        } else {
+          matches = data
+        }
+        const matchesLength = data.length
+        return of({ matches, matchesLength })
+      })
+    );
   }
 
   // GET player heroes played

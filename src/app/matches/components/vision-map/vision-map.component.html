@@ -1,33 +1,16 @@
-<div class="map" [style]="'width:' + mapSize + 'px; height:' + mapSize + 'px;'">
-  <span *ngFor="let item of mapData" class="obs-sen-item"
-    (mouseover)="showObsSenModalFn($event, item)"
-    (mouseout)="showObsSenModal=false; currentObsSen = null"
-  >
-    <img
-      *ngIf="item.player_slot < 128"
-      onError="this.src='./assets/images/Dota2Logo.svg'"
-      width="18"
+<div class="map" [style]="'width:' + mapSize + 'px; height:' + mapSize + 'px;background-image:url(' + currentMap+')'">
+  <span *ngFor="let item of mapData" class="obs-sen-item" (mouseover)="showObsSenModalFn($event, item)"
+    (mouseout)="showObsSenModal=false; currentObsSen = null">
+    <img *ngIf="item.player_slot < 128" onError="this.src='./assets/images/Dota2Logo.svg'" width="18"
       class="obs-sen goodguys-obs-sen"
       [src]="item.type === 'obs_log' ? './assets/images/goodguys_observer.png' : './assets/images/goodguys_sentry.png'"
-      [style]="'top:' + (item.mapPosition[1] - (item.type === 'obs_log' ? obsPadding[1] : senPadding[1]) -7) + 'px; left:' + (item.mapPosition[0] - (item.type === 'obs_log' ? obsPadding[0] : senPadding[0]) -7) + 'px; padding:' + (item.type === 'obs_log' ? obsPadding[1] : senPadding[1]) + 'px ' + (item.type === 'obs_log' ? obsPadding[0] : senPadding[0]) + 'px;'"
-    />
-    <img
-      *ngIf="item.player_slot > 127"
-      onError="this.src='./assets/images/Dota2Logo.svg'"
-      width="18"
-      class="obs-sen badguys-obs-sen"
-      [class]="item.type === 'obs_log'? 'obs-item' : 'sen-item'"
+      [style]="'top:' + (item.mapPosition[1] - (item.type === 'obs_log' ? obsPadding[1] : senPadding[1]) -7) + 'px; left:' + (item.mapPosition[0] - (item.type === 'obs_log' ? obsPadding[0] : senPadding[0]) -7) + 'px; padding:' + (item.type === 'obs_log' ? obsPadding[1] : senPadding[1]) + 'px ' + (item.type === 'obs_log' ? obsPadding[0] : senPadding[0]) + 'px;'" />
+    <img *ngIf="item.player_slot > 127" onError="this.src='./assets/images/Dota2Logo.svg'" width="18"
+      class="obs-sen badguys-obs-sen" [class]="item.type === 'obs_log'? 'obs-item' : 'sen-item'"
       [src]="item.type === 'obs_log' ? './assets/images/badguys_observer.png' : './assets/images/badguys_sentry.png'"
-      [style]="'top:' + (item.mapPosition[1] - (item.type === 'obs_log' ? obsPadding[1] : senPadding[1]) -7) + 'px; left:' + (item.mapPosition[0] - (item.type === 'obs_log' ? obsPadding[0] : senPadding[0]) -7) + 'px; padding:' + (item.type === 'obs_log' ? obsPadding[1] : senPadding[1]) + 'px ' + (item.type === 'obs_log' ? obsPadding[0] : senPadding[0]) + 'px;'"
-    />
+      [style]="'top:' + (item.mapPosition[1] - (item.type === 'obs_log' ? obsPadding[1] : senPadding[1]) -7) + 'px; left:' + (item.mapPosition[0] - (item.type === 'obs_log' ? obsPadding[0] : senPadding[0]) -7) + 'px; padding:' + (item.type === 'obs_log' ? obsPadding[1] : senPadding[1]) + 'px ' + (item.type === 'obs_log' ? obsPadding[0] : senPadding[0]) + 'px;'" />
   </span>
 </div>
 
-<app-obs-sen-modal
-[data]="currentObsSen"
-[playerData]="data"
-[heroes]="heroes"
-[player]="data[currentObsSen?.slot]"
-[playerColors]="playerColors"
-[heroNames]="heroNames"
-[pageXY]="pageXY"></app-obs-sen-modal>
+<app-obs-sen-modal [data]="currentObsSen" [playerData]="data" [heroes]="heroes" [player]="data[currentObsSen?.slot]"
+  [playerColors]="playerColors" [heroNames]="heroNames" [pageXY]="pageXY"></app-obs-sen-modal>

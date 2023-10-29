@@ -83,6 +83,12 @@ export class TableMatchesComponent implements OnInit {
   items: any = items;
   itemColors: IItemColorLocal = itemColors;
 
+  matchesLength:number = 0
+  pageSize: number = 20
+  pageIndex: number = 0
+
+  accountId
+
   // table for matches
   // displayedColumnsItems: string[] = ['hero_id', 'result', 'game_mode', 'duration', 'kills', 'deaths', 'assists', 'items'];
   dataSource = new MatTableDataSource();
@@ -98,17 +104,18 @@ export class TableMatchesComponent implements OnInit {
 
   ngOnInit(): void {
     const currentUrl = this.router.url;
-    const accountId = +currentUrl.split('/')[2];
+    this.accountId = +currentUrl.split('/')[2];
     this.activatedRoute.queryParamMap.subscribe(data => this.queryParams = data);
 
     if (!this.isRecentMatches) {
-      this.store.dispatch(new playersActions.LoadPlayersMatches(accountId, this.queryParams));
+      this.store.dispatch(new playersActions.LoadPlayersMatches(this.accountId, this.pageSize, this.pageIndex, this.queryParams));
 
       // load player matches
       this.store.select('playersMatches').subscribe(data => {
         this.isLoading = data.isLoading;
         if (!data.isLoading) {
             const dataMatches = [...data.matches];
+            this.matchesLength = data.matchesLength
             this.isLoading = data.isLoading;
             return this.dataSource.data = dataMatches;
           }
@@ -116,7 +123,7 @@ export class TableMatchesComponent implements OnInit {
         console.log(err);
       });
     } else {
-      this.store.dispatch(new playersActions.LoadPlayersRecentMatches(accountId));
+      this.store.dispatch(new playersActions.LoadPlayersRecentMatches(this.accountId));
       this.store.select('playersRecentMatches').subscribe(data => {
         this.isLoading = data.isLoading;
         if (!data.isLoading) {
@@ -160,8 +167,12 @@ export class TableMatchesComponent implements OnInit {
       this.paginator.pageIndex = event.pageIndex;
       this.paginator.pageSize = event.pageSize;
       this.paginator.page.emit(event);
+
+      this.pageIndex = event.pageIndex;
+      this.store.dispatch(new playersActions.LoadPlayersMatches(this.accountId, event.pageSize, event.pageIndex, this.queryParams));
     }
   }
+  
 
   showHeroModalFn(e, id): any {
     this.pageXY = [e.pageX + 50, e.pageY - 120];
