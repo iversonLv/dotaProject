@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
-import { IChat } from '../../model/onematch';
+import { IChat, IShownChat } from '../../model/onematch';
 
 @Component({
   selector: 'app-chats-list',
@@ -14,8 +14,7 @@ export class ChatsListComponent implements OnInit {
   @Input() data: any[];
   @Input() chats: IChat[];
 
-  finalData;
-  finalData2 = [];
+  chatToShow?: IShownChat[] = [];
   chatFilterObj = {
     radiant: {
       isShown: true,
@@ -29,7 +28,7 @@ export class ChatsListComponent implements OnInit {
       isShown: true,
       len: 0
     },
-    pharses: {
+    phrases: {
       isShown: true,
       len: 0
     },
@@ -53,48 +52,10 @@ export class ChatsListComponent implements OnInit {
 
   chatFilter = [];
 
-  chatFilterObjFinalabc = {
-    radiant: {
-      isShown: true,
-      len: 0
-    },
-    dire: {
-      isShown: true,
-      len: 0
-    },
-    chat: {
-      isShown: true,
-      len: 0
-    },
-    pharses: {
-      isShown: true,
-      len: 0
-    },
-    audio: {
-      isShown: true,
-      len: 0
-    },
-    all: {
-      isShown: true,
-      len: 0
-    },
-    allies: {
-      isShown: true,
-      len: 0
-    },
-    spam: {
-      isShown: true,
-      len: 0
-    },
-  };
-
-  constructor() { }
-
   ngOnInit(): void {
-    this.extractData(this.chats);
-    this.finalData = this.chats; // matches.chats
+    this.extractData()
     this.chatFilter = Object.keys(this.chatFilterObj);
-    this.chatFilterObjFinalabc = this.calFilterDataLength(this.chats, this.chatFilterObjFinalabc);
+    this.calFilterDataLength();
   }
 
   // play audio
@@ -105,7 +66,7 @@ export class ChatsListComponent implements OnInit {
 
   // filter chart
   filter(e): any {
-    // this.chatFilterObj[e.source.name].isShown = e.checked;
+    this.extractData()
     this.chatFilterObj = {
       ...this.chatFilterObj,
       [e.source.name]: {
@@ -113,149 +74,151 @@ export class ChatsListComponent implements OnInit {
         isShown: e.checked
       }
     };
-    this.finalData = this.extraceData(this.finalData2, this.chatFilterObj);
-    this.chatFilterObj = this.calFilterDataLength(this.finalData, this.chatFilterObj);
+    this.extraceData()
   }
 
+  calFilterDataLength() {
+    this.chatFilterObj.radiant.len = this.chats.filter( (chatLine: IChat) => {
+      return chatLine.player_slot < 4;
+    }).length;
 
-  calFilterDataLength(data: any[], keys: any): any {
-    keys.radiant.len = data.filter(i => {
-      return i.player_slot < 128;
-    }).length;
-    keys.dire.len =  data.filter(i => {
-      return i.player_slot > 127 ;
-    }).length;
-    keys.chat.len =  data.filter(i => {
-      return i.type === 'chat' ;
-    }).length;
-    keys.pharses.len =  data.filter(i => {
-      return i.type === 'chatwheel' && (!this.chatWheel[i?.key]?.sound_ext || !this.chatWheel[i?.key]);
-    }).length;
-    keys.audio.len =  data.filter(i => {
-      return i.type === 'chatwheel' && this.chatWheel[i?.key]?.sound_ext ;
-    }).length;
-    keys.all.len =  data.filter(i => {
-      return i.type === 'chat' || (i.type === 'chatwheel' && this.chatWheel[i?.key]?.all_chat);
-    }).length;
-    keys.allies.len =  data.filter(i => {
-      return i.type === 'chatwheel' && !this.chatWheel[i?.key]?.all_chat;
-    }).length;
-    keys.spam.len =  data.filter((i, index) => {
+    this.chatFilterObj.dire.len = this.chats.filter( (chatLine: IChat) => {
+      return chatLine.player_slot > 4;
+    }).length
+
+    this.chatFilterObj.chat.len = this.chats.filter( (chatLine: IChat) => {
+      return chatLine.type === 'chat';
+    }).length
+
+    this.chatFilterObj.phrases.len = this.chats.filter( (chatLine: IChat) => {
+      return chatLine.type === 'chatwheel' && (!this.chatWheel[chatLine?.key]?.sound_ext || !this.chatWheel[chatLine?.key]);
+    }).length
+
+    this.chatFilterObj.audio.len = this.chats.filter( (chatLine: IChat) => {
+      return chatLine.type === 'chatwheel' && this.chatWheel[chatLine?.key]?.sound_ext;
+    }).length
+
+    this.chatFilterObj.all.len = this.chats.filter( (chatLine: IChat) => {
+      return chatLine.type === 'chat' || (chatLine.type === 'chatwheel' && this.chatWheel[chatLine?.key]?.all_chat)
+    }).length
+
+    this.chatFilterObj.allies.len = this.chats.filter( (chatLine: IChat) => {
+      return chatLine.type === 'chatwheel' && !this.chatWheel[chatLine?.key]?.all_chat
+    }).length
+
+    this.chatFilterObj.spam.len = this.chats.filter( (chatLine: IChat, index) => {
       return index >= 1
-      && (i.time === data[index - 1].time)
-      && (i.player_slot === data[index - 1].player_slot)
-      && (i.key === data[index - 1].key);
+      && (chatLine.time === this.chats[index - 1].time)
+      && (chatLine.player_slot === this.chats[index - 1].player_slot)
+      && (chatLine.key === this.chats[index - 1].key)
     }).length;
-    return keys;
   }
 
+  extractData(): void {
+    this.chatToShow = []
+    this.chats.forEach((chatEntry: IChat, index: number) => {
+      
+      //side
+      const side = (chatEntry.player_slot<=4)?'radiant':'dire';
 
-  extractData(data): any[] {
-    // [
-    //   {
-    //     "time": 1710,
-    //     "type": "chat",
-    //     "key": "基地",
-    //     "slot": 6,
-    //     "player_slot": 129
-    //   },
-    //   {
-    //     "time": 1561,
-    //     "type": "chatwheel",
-    //     "key": "71",
-    //     "slot": 4,
-    //     "player_slot": 4
-    //   }
-    // ]
-    data.forEach((i, index) => {
-      const { player_slot } = i;
-
-      // side
-      const side = player_slot < 128 ? 'radiant' : 'dire';
-
-      // type
-      let chatType = '';
-      if (i.type === 'chat') {
+      //type
+      let chatType: string = ''
+      if (chatEntry.type === 'chat') {
         chatType = 'chat';
       } else {
-          if (i.type === 'chatwheel' && (!this.chatWheel[i?.key]?.sound_ext || !this.chatWheel[i?.key])) {
-          chatType = 'pharses';
-        } else if (i.type === 'chatwheel' && this.chatWheel[i?.key]?.sound_ext) {
+          if (chatEntry.type === 'chatwheel' && (!this.chatWheel[chatEntry?.key]?.sound_ext || !this.chatWheel[chatEntry?.key])) {
+          chatType = 'phrases';
+        } else if (chatEntry.type === 'chatwheel' && this.chatWheel[chatEntry?.key]?.sound_ext) {
           chatType = 'audio';
         }
       }
 
       // target
       let targetType = '';
-      if (i.type === 'chat' || (i.type === 'chatwheel' && this.chatWheel[i?.key]?.all_chat)) {
+      if (chatEntry.type === 'chat' || (chatEntry.type === 'chatwheel' && this.chatWheel[chatEntry?.key]?.all_chat)) {
         targetType = 'all';
-      } else if (i.type === 'chatwheel' && !this.chatWheel[i?.key]?.all_chat) {
+      } else if (chatEntry.type === 'chatwheel' && !this.chatWheel[chatEntry?.key]?.all_chat) {
         targetType = 'allies';
       }
 
-      // spam
+      //spam
       const spam = index >= 1
-      && (i.time === data[index - 1].time)
-      && (i.player_slot === data[index - 1].player_slot)
-      && (i.key === data[index - 1].key);
+      && (chatEntry.time === this.chats[index - 1].time)
+      && (chatEntry.player_slot === this.chats[index - 1].player_slot)
+      && (chatEntry.key === this.chats[index - 1].key);
 
-      this.finalData2.push({
-        ...i,
+      this.chatToShow.push({
+        chat: chatEntry,
         side,
-        chat_type: chatType,
-        target_type: targetType,
+        chatType: chatType,
+        targetType: targetType,
         spam
         // above is common data for player
       });
-
-    });
-    return this.finalData2;
+    })
+  }
+  
+  extraceData() {
+    let indexesToRemove: number[] = []
+    this.chatToShow.forEach((chatLine: IShownChat, index: number) => {
+      let removed = false;
+      this.chatFilter.forEach((filter) => {
+        switch (filter) {
+          case 'radiant':
+            if (this.chatFilterObj[filter].isShown == false && chatLine.side == 'radiant') { 
+              removed = true
+            }
+            break;
+          case 'dire':
+            if (this.chatFilterObj[filter].isShown == false && chatLine.side == 'dire') {
+              removed = true
+            }
+            break;
+          case 'chat':
+            if (this.chatFilterObj[filter].isShown == false && chatLine.chatType == 'chat') {
+              removed = true
+            }
+            break;
+          case 'phrases':
+            if (this.chatFilterObj[filter].isShown == false && chatLine.chatType == 'phrases') {
+              removed = true
+            }
+            break;
+          case 'audio':
+            if (this.chatFilterObj[filter].isShown == false && chatLine.chatType == 'audio') {
+              removed = true
+            }
+            break;
+          case 'all':
+            if (this.chatFilterObj[filter].isShown == false && chatLine.targetType == 'all') {
+              removed = true
+            }
+            break;
+          case 'allies':
+            if (this.chatFilterObj[filter].isShown == false && chatLine.targetType == 'allies') {
+              removed = true
+            }
+            break;
+          case 'spam':
+            if (this.chatFilterObj[filter].isShown == false && chatLine.spam == true) {
+              removed = true
+            }
+            break;
+        }
+      })
+      if (removed) {
+        indexesToRemove.push(index)
+      }
+    })
+    this.reformChatToShow(indexesToRemove)
   }
 
-  // filter chat data function
-  extraceData(data: any[], keys: any): any[] {
-    data = data.filter((i, index) => {
-      // // side
-      // const radiant = i.player_slot < 128;
-      // const dire = i.player_slot > 127;
+  reformChatToShow(indexesToRemove: number[]) {
+    //make indexes in descending order to esnure correct removal
+    indexesToRemove.sort((a:number, b:number) => b - a) 
 
-      // // type
-      // const chat = i.type === 'chat';
-      // const pharses = i.type === 'chatwheel' && (!this.chatWheel[i?.key]?.sound_ext || !this.chatWheel[i?.key]);
-      // const audio = (i.type === 'chatwheel' && this.chatWheel[i?.key]?.sound_ext);
-
-      // // target
-      // const all = i.type === 'chat' || (i.type === 'chatwheel' && this.chatWheel[i?.key]?.all_chat);
-      // const allies = i.type === 'chatwheel' && !this.chatWheel[i?.key]?.all_chat;
-
-      // // spam
-      // const spam = index >= 1
-      // && (i.time === data[index - 1].time)
-      // && (i.player_slot === data[index - 1].player_slot)
-      // && (i.key === data[index - 1].key);
-      if (!keys?.spam?.isShown) {
-        return (i.spam || !i.spam);
-      } else if (keys?.spam?.isShown) {
-        return !i.spam;
-      }
-
-      if (keys?.radiant?.isShown && !keys?.dire?.isShown) {
-        return i.side === 'radiant';
-      } else if (!keys?.radiant?.isShown && keys?.dire?.isShown) {
-        return i.side !== 'radiant';
-      } else if ((!keys?.radiant?.isShown && !keys?.dire?.isShown) || (keys?.radiant?.isShown && keys?.dire?.isShown)) {
-        return i.side === 'radiant' || i.side === 'dire';
-      }
-
-      // if ((keys.all.isShown && keys.allies.isShown) || (!keys.all.isShown && !keys.allies.isShown)) {
-      //   return (all || allies);
-      // } else if (keys.all.isShown && !keys.allies.isShown) {
-      //   return all;
-      // } else if (!keys.all.isShown && keys.allies.isShown) {
-      //   return allies;
-      // }
-    });
-    return data;
+    for (let index of indexesToRemove) {
+      this.chatToShow.splice(index,1)
+    }
   }
-
 }
