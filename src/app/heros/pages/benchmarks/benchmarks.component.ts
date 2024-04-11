@@ -63,6 +63,14 @@ export class BenchmarksComponent implements OnInit {
       color: 'rgb(201, 175, 29)',
       title: 'LAST HITS AT 10 MINUTES',
     },
+    stuns_per_min: {
+      color: 'rgb(255, 76, 76)',
+      title: 'SECONDS OF HERO STUNS PER MINUTE',
+    },
+    tower_damage: {
+      color: 'rgb(255, 76, 76)',
+      title: 'AMOUNT OF DAMAGE DEALT TO TOWERS',
+    },
   };
 
   constructor(
