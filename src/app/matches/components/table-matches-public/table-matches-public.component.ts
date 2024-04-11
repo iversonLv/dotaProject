@@ -21,10 +21,15 @@ import heroes from 'dotaconstants/build/heroes.json';
 @Component({
   selector: 'app-table-matches-public',
   templateUrl: './table-matches-public.component.html',
-  styleUrls: ['./table-matches-public.component.scss']
+  styleUrls: ['./table-matches-public.component.scss'],
 })
 export class TableMatchesPublicComponent implements OnInit {
-  displayedColumns: string[] = ['start_time', 'duration', 'radiant_team', 'dire_team'];
+  displayedColumns: string[] = [
+    'start_time',
+    'duration',
+    'radiant_team',
+    'dire_team',
+  ];
   dataSource = new MatTableDataSource();
   @ViewChild(MatSort) set matSort(mp: MatSort) {
     this.sort = mp;
@@ -39,20 +44,25 @@ export class TableMatchesPublicComponent implements OnInit {
   constructor(
     private router: Router,
     private store: Store<{ publicMatches: IPublicMatchData }>
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(new matchesActions.LoadPublicMatches({ params: { mmr_descending : 1 } }));
-    this.store.select('publicMatches').subscribe(data => {
-      this.isLoading = data.isLoading;
-      if (!data.isLoading) {
-        const publicMatchesData = [...data.matches];
+    this.store.dispatch(
+      new matchesActions.LoadPublicMatches({ params: { mmr_descending: 1 } })
+    );
+    this.store.select('publicMatches').subscribe(
+      (data) => {
         this.isLoading = data.isLoading;
-        return this.dataSource.data = publicMatchesData;
+        if (!data.isLoading) {
+          const publicMatchesData = [...data.matches];
+          this.isLoading = data.isLoading;
+          return (this.dataSource.data = publicMatchesData);
+        }
+      },
+      (err) => {
+        console.log(err);
       }
-    }, err => {
-      console.log(err);
-    });
+    );
   }
 
   setDataSourceAttributes(): any {
@@ -62,5 +72,4 @@ export class TableMatchesPublicComponent implements OnInit {
   goPage(heroId): any {
     this.router.navigate([`/heroes/${heroId}`]);
   }
-
 }
