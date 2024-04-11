@@ -60,8 +60,8 @@ import { OrdinalNumPipe } from './utils/ordinal-num.pipe';
 import { FieldTooltipPipe } from './utils/field-tooltip.pipe';
 import { ReplaceTextPipe } from './utils/replace-text.pipe';
 import { ScepterShardModalComponent } from './components/scepter-shard-modal/scepter-shard-modal.component';
-
-
+import { GetHeroPipe } from './utils/get-hero.pipe';
+import { ExtractPlayerDataFromAttackernamePipe } from './utils/extract-player-data-from-attackername.pipe';
 
 @NgModule({
   declarations: [
@@ -118,6 +118,8 @@ import { ScepterShardModalComponent } from './components/scepter-shard-modal/sce
     OrdinalNumPipe,
     FieldTooltipPipe,
     ReplaceTextPipe,
+    GetHeroPipe,
+    ExtractPlayerDataFromAttackernamePipe,
   ],
   imports: [
     CommonModule,
@@ -126,8 +128,8 @@ import { ScepterShardModalComponent } from './components/scepter-shard-modal/sce
     MaterialModule,
     RouterModule,
     NgxEchartsModule.forRoot({
-      echarts: () => import('echarts')
-    })
+      echarts: () => import('echarts'),
+    }),
   ],
   exports: [
     DropdownComponent,
@@ -183,6 +185,8 @@ import { ScepterShardModalComponent } from './components/scepter-shard-modal/sce
     OrdinalNumPipe,
     FieldTooltipPipe,
     ReplaceTextPipe,
-  ]
+    GetHeroPipe,
+    ExtractPlayerDataFromAttackernamePipe,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

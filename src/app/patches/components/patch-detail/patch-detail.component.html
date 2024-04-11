@@ -2,17 +2,15 @@
   <div class="patch-title">
     <div class="patch-title-released-date">
       <span>PATCH: {{currentPatch}} </span>
-      <span class="patch-released-date" *ngIf="currentPatch && extractPatchData && extractPatchData[extractCurrentPatch(currentPatch)]">
+      <span class="patch-released-date"
+        *ngIf="currentPatch && extractPatchData && extractPatchData[extractCurrentPatch(currentPatch)]">
         Released on: {{extractPatchData[extractCurrentPatch(currentPatch)]['date'] | date: 'MMM d yyyy'}}
       </span>
     </div>
     <div class="nav-wrapper">
       <nav>
-        <a
-        *ngFor="let item of ['general', 'item', 'heroes']"
-        [class]="currentCat === item ? 'active' : ''"
-        (click)=gotoAnchor(item)
-        >{{item}}</a>
+        <a *ngFor="let item of ['general', 'item', 'heroes']" [class]="currentCat === item ? 'active' : ''"
+          (click)=gotoAnchor(item)>{{item}}</a>
       </nav>
     </div>
   </div>
@@ -29,54 +27,61 @@
       <h2 class="patch-cat-title">Items</h2>
       <div *ngFor="let item of extractPatchFieldList(patchnote?.items)" class="item-row">
         <div class="item-img-name">
-          <app-img
-            [data]="items[item]['img']"
-            *ngIf="items && items[item]['img']"
-            class="item-img me-item-img"
-            [style]="'border: 1px solid ' + itemColors[items[item]['qual']]"
-            [altData]="items[item]?.dname">
+          <app-img [data]="items[item]['img']" *ngIf="items && items[item]['img']" class="item-img me-item-img"
+            [style]="'border: 1px solid ' + itemColors[items[item]['qual']]" [altData]="items[item]?.dname">
           </app-img>
-          
+
           <h3 class="item-title" *ngIf="items && items[item]?.dname">{{items[item]?.dname}}</h3>
         </div>
-        <div
-          class="item-list-row"
-          *ngFor="let update of patchnote?.items[item]">
+        <div class="item-list-row" *ngFor="let update of patchnote?.items[item]">
           {{update}}
         </div>
       </div>
     </div>
-  
+
     <!-- Heroes -->
-    <div *ngIf="patchnote?.heroes && heroNames"  class="patch-cat" #heroes>
+    <div *ngIf="patchnote?.heroes" class="patch-cat" #heroes>
       <h2 class="patch-cat-title">Heroes</h2>
       <div *ngFor="let hero of extractPatchFieldList(patchnote?.heroes)" class="item-row">
         <div class="item-img-name">
-          <app-img
-            [data]="heroNames['npc_dota_hero_' + hero]['img']"
-            class="item-img me-hero-img"
-            [class]="'hero-' + heroNames['npc_dota_hero_' + hero]?.primary_attr"
-            *ngIf="heroNames && heroNames['npc_dota_hero_' + hero]['img']"
-            [altData]="heroNames['npc_dota_hero_' + hero]['localized_name']">
+          <app-img [data]="('npc_dota_hero_'+hero | getHero)?.img" class="item-img me-hero-img"
+            [class]="'hero-' + ('npc_dota_hero_'+hero | getHero)?.primary_attr"
+            *ngIf="('npc_dota_hero_'+hero | getHero)?.img"
+            [altData]="('npc_dota_hero_'+hero | getHero)['localized_name']">
           </app-img>
-          
-          <a
-            [routerLink]="['/heroes', heroNames['npc_dota_hero_' + hero]?.id]"
-            class="item-title" *ngIf="heroNames && heroNames['npc_dota_hero_' + hero]?.localized_name">{{heroNames['npc_dota_hero_' + hero]?.localized_name}}</a>
+
+          <a [routerLink]="['/heroes', ('npc_dota_hero_'+hero | getHero)?.id]" class="item-title"
+            *ngIf="('npc_dota_hero_'+hero | getHero)?.localized_name">{{('npc_dota_hero_'+hero |
+            getHero)?.localized_name}}</a>
         </div>
-        <div
-          class="item-list-row"
-          *ngFor="let update of patchnote?.heroes[hero]">
-          <img
-            onError="this.src='./assets/images/Dota2Logo.svg'"
-            src="./assets/images/talent_tree.svg"
-            with="64px"
-            height="64px"
-            class="hero-talent"
-            *ngIf="update.includes('Level')"
-          />
+        <h2>General</h2>
+        <div *ngIf="patchnote?.heroes[hero]?.general">
+          <p *ngFor="let item of patchnote?.heroes[hero]?.general">{{item}}</p>
+        </div>
+        {{extractHeroAbilityFromPatch(hero) | json}}
+        <!-- <div *ngFor="let ability of extractHeroAbilityFromPatch(hero)"> -->
+        <!-- <img onError="this.src='./assets/images/Dota2Logo.svg'" class="hero-img" width="58" height="58"
+            src="https://steamcdn-a.akamaihd.net/{{abilities[ability?.name]?.img}}" /> -->
+        <!-- <div class="hero-ability">
+            <h2>
+              {{abilities[ability?.name]?.dname}}
+            </h2>
+            <ul>
+              <li *ngFor="let item of ability?.patches">
+                {{item}}
+              </li>
+            </ul>
+          </div> -->
+        <!-- </div> -->
+        <h2>Talents</h2>
+        <div *ngIf="patchnote?.heroes[hero]?.talents">
+          <p *ngFor="let item of patchnote?.heroes[hero]?.talents">{{item}}</p>
+        </div>
+        <!-- <div class="item-list-row" *ngFor="let update of patchnote?.heroes[hero]">
+          <img onError="this.src='./assets/images/Dota2Logo.svg'" src="./assets/images/talent_tree.svg" with="64px"
+            height="64px" class="hero-talent" *ngIf="update.includes('Level')" />
           {{update}}
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- hero -->

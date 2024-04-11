@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 
-
 @Component({
   selector: 'app-img',
   templateUrl: './img.component.html',
-  styleUrls: ['./img.component.scss']
+  styleUrls: ['./img.component.scss'],
 })
 export class ImgComponent implements OnInit {
   @Input() data;
@@ -13,7 +12,7 @@ export class ImgComponent implements OnInit {
   @Input() opendotaUrl = false;
   @Input() localUrl = false;
   srcUrl;
-  constructor() { }
+  constructor() {}
 
   STEAMCDN = environment.STEAMCDN;
   OPENDOTA = environment.OPENDOTA;
@@ -28,5 +27,4 @@ export class ImgComponent implements OnInit {
       this.srcUrl = this.STEAMCDN;
     }
   }
-
 }

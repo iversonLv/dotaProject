@@ -10,16 +10,14 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 // assets does not exist in dotaconstants
 import runes from '../../../../assets/data/runes.json';
 
-
 @Component({
   selector: 'app-table-log',
   templateUrl: './table-log.component.html',
-  styleUrls: ['./table-log.component.scss']
+  styleUrls: ['./table-log.component.scss'],
 })
 export class TableLogComponent implements OnInit {
   @Input() playerColors: any;
   @Input() heroes: IheroLocal;
-  @Input() heroNames: IheroLocal;
   @Input() data: any[];
   @Input() objectives: any[];
   @Input() mapItem: any;
@@ -37,7 +35,7 @@ export class TableLogComponent implements OnInit {
   logFilterObj = {
     objectives: true,
     kills: true,
-    runes: true
+    runes: true,
   };
 
   logFilterKeyArr = [];
@@ -56,8 +54,7 @@ export class TableLogComponent implements OnInit {
   heroItems = [];
   heroAllItems = [];
 
-  constructor(
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
     // extract the data
@@ -65,7 +62,7 @@ export class TableLogComponent implements OnInit {
     // this.filterData(this.extractData(), this.logFilterObj);
     this.extractHeroList(this.data);
 
-    this.sideItems.forEach(i => {
+    this.sideItems.forEach((i) => {
       this.logFilterObj[i] = true;
     });
 
@@ -73,10 +70,10 @@ export class TableLogComponent implements OnInit {
   }
 
   extractHeroList(data: any): any[] {
-    data.forEach(i => {
+    data.forEach((i) => {
       const { hero_id } = i;
       this.heroList.push(this.heroes[hero_id]?.name);
-      this.heroAllItems.push(this.heroes[hero_id]?.name);
+      this.heroAllItems = Object.values(this.heroes);
       this.logFilterObj[this.heroes[hero_id]?.name] = false;
     });
     return this.heroList;
@@ -86,7 +83,10 @@ export class TableLogComponent implements OnInit {
   extractData(): any[] {
     const killsLogData = this.extractSpecificLogData(this.data, 'kills');
     const runesLogData = this.extractSpecificLogData(this.data, 'runes');
-    const objectivesLogData = this.extractObjectiveLogData(this.objectives, 'objectives');
+    const objectivesLogData = this.extractObjectiveLogData(
+      this.objectives,
+      'objectives'
+    );
     const finalData = [];
     finalData.push(...killsLogData, ...runesLogData, ...objectivesLogData);
     return finalData.sort((a, b) => a.time - b.time);
@@ -94,15 +94,31 @@ export class TableLogComponent implements OnInit {
 
   extractObjectiveLogData(objectives: any[], field: string): any[] {
     const specificLogData = [];
-    objectives.forEach(i => {
+    objectives.forEach((i) => {
       if (i.player_slot >= 0) {
-        const playerOverallData = this.data.find(x => x.player_slot === i.player_slot);
+        const playerOverallData = this.data.find(
+          (x) => x.player_slot === i.player_slot
+        );
         const {
-          hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname, randomed,
+          hero_id,
+          player_slot,
+          pred_vict,
+          account_id,
+          rank_tier,
+          name,
+          personaname,
+          randomed,
           isRadiant,
-              } = playerOverallData;
+        } = playerOverallData;
         const player = {
-          hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname, randomed
+          hero_id,
+          player_slot,
+          pred_vict,
+          account_id,
+          rank_tier,
+          name,
+          personaname,
+          randomed,
         };
         specificLogData.push({
           ...i,
@@ -110,7 +126,7 @@ export class TableLogComponent implements OnInit {
           side: isRadiant ? 'radiant' : 'dire',
           isRadiant,
           log_type: field,
-          hero: this.heroes[hero_id].name
+          hero: this.heroes[hero_id].name,
         });
       } else if (!i.player_slot && i.unit) {
         specificLogData.push({
@@ -120,9 +136,9 @@ export class TableLogComponent implements OnInit {
           side: i.unit?.includes('badguys') ? 'dire' : 'radiant',
           isRadiant: i.unit?.includes('badguys') ? false : true,
           log_type: field,
-          hero: null
+          hero: null,
         });
-      }  else if (!i.player_slot && !i.unit) {
+      } else if (!i.player_slot && !i.unit) {
         specificLogData.push({
           ...i,
           player_slot: -1,
@@ -130,7 +146,7 @@ export class TableLogComponent implements OnInit {
           side: 'radiant',
           isRadiant: true,
           log_type: field,
-          hero: null
+          hero: null,
         });
       }
     });
@@ -139,16 +155,30 @@ export class TableLogComponent implements OnInit {
 
   extractSpecificLogData(data: any[], field: string): any[] {
     const specificLogData = [];
-    data.forEach(i => {
+    data.forEach((i) => {
       const {
-        hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname, randomed,
+        hero_id,
+        player_slot,
+        pred_vict,
+        account_id,
+        rank_tier,
+        name,
+        personaname,
+        randomed,
         isRadiant,
-            } = i;
+      } = i;
       const log = [];
       const player = {
-        hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname, randomed
+        hero_id,
+        player_slot,
+        pred_vict,
+        account_id,
+        rank_tier,
+        name,
+        personaname,
+        randomed,
       };
-      i[field + '_log'].forEach(l => {
+      i[field + '_log'].forEach((l) => {
         log.push({
           player_slot,
           player,
@@ -156,7 +186,7 @@ export class TableLogComponent implements OnInit {
           isRadiant,
           ...l,
           log_type: field,
-          hero: this.heroes[hero_id].name
+          hero: this.heroes[hero_id].name,
         });
       });
       specificLogData.push(...log);
@@ -169,7 +199,7 @@ export class TableLogComponent implements OnInit {
   }
 
   filterData(data: any[], keys: any, filterHero: boolean): any[] {
-    data = data.filter(i => {
+    data = data.filter((i) => {
       // if filterHero, that means we will filter hero
       if (filterHero) {
         return keys[i.log_type] && keys[i.side] && keys[i.hero];
@@ -185,7 +215,7 @@ export class TableLogComponent implements OnInit {
     this.logFilterObj[value] = trueFalse;
     this.logFilterObj = {
       ...this.logFilterObj,
-      ...this.logFilterObj[value]
+      ...this.logFilterObj[value],
     };
     this.filterDataNext();
   }
@@ -197,22 +227,29 @@ export class TableLogComponent implements OnInit {
 
   filterDataNext(): any {
     let filterHero = false;
-    const heroList = Object.keys(this.logFilterObj).filter(i => i.includes('npc_dota_hero_'));
+    const heroList = Object.keys(this.logFilterObj).filter((i) =>
+      i.includes('npc_dota_hero_')
+    );
 
     const heroListA = [];
-    heroList.forEach(i => {
+    heroList.forEach((i) => {
       heroListA.push(this.logFilterObj[i]);
       return heroListA;
     });
     // now if we select one of hero id, will set a flag to filterHero
     // If all or none hero id are selected, filterHero will be flase
-    if (heroListA.filter(i => i === false).length === 10 ||
-    heroListA.filter(i => i === true).length === 10) {
+    if (
+      heroListA.filter((i) => i === false).length === 10 ||
+      heroListA.filter((i) => i === true).length === 10
+    ) {
       filterHero = false;
     } else {
       filterHero = true;
     }
-    this.dataSource.data = this.filterData(this.extractData(), this.logFilterObj, filterHero);
+    this.dataSource.data = this.filterData(
+      this.extractData(),
+      this.logFilterObj,
+      filterHero
+    );
   }
-
 }

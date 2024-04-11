@@ -1,4 +1,4 @@
-@import '../../../../styles.scss';
+@import "../../../../styles.scss";
 
 .patch-title-released-date {
   display: flex;
@@ -32,7 +32,6 @@
 .item-row {
   padding: 15px;
   bottom: 1px solid $darken;
-
 }
 
 .item-img-name {
@@ -45,11 +44,11 @@
     &.hero-str {
       border-color: $hero-str;
     }
-    
+
     &.hero-int {
       border-color: $hero-int;
     }
-    
+
     &.hero-agi {
       border-color: $hero-agi;
     }
@@ -67,7 +66,6 @@
   display: flex;
   align-items: center;
 }
-
 
 .nav-wrapper {
   border-top: 1px solid $gray;
@@ -94,4 +92,9 @@ a {
   &.active:hover {
     border-bottom-color: $dark-blue;
   }
+}
+
+.hero-ability {
+  display: flex;
+  gap: 20px;
 }

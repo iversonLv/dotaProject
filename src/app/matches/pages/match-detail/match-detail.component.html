@@ -1,7 +1,8 @@
 <!-- match top overview section -->
 <div *ngIf="isLoading">Loading</div>
 <app-match-hero [data]="matchData" *ngIf="!isLoading"></app-match-hero>
-<div class="warning" *ngIf="!matchData?.objectives && !isLoading"><mat-icon>warning</mat-icon> The matches is not yet parsed completed! So some data is not visible</div>
+<div class="warning" *ngIf="!matchData?.objectives && !isLoading"><mat-icon>warning</mat-icon> The matches is not yet
+  parsed completed! So some data is not visible</div>
 <!-- teams page navigation -->
 <app-sub-nav *ngIf="!isLoading" [links]="matchData?.objectives ? [
 'overview',
@@ -37,31 +38,23 @@
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Overview' : 'Radiant - Overview'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Overview' : 'Radiant - Overview'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
 
         <!-- overview table -->
-        <app-table-match-detail-overview
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [itemIds]="itemIds"
-          [items]="items"
-          (showItemModalFn)="showItemModalFn($event)"
+        <app-table-match-detail-overview [playerColors]="playerColors" [heroes]="heroes" [itemIds]="itemIds"
+          [items]="items" (showItemModalFn)="showItemModalFn($event)"
           (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null; currentMouseOverAghs = null"
-          [data]="matchData?.players"
-          [dataRange]="[0, 5]"
-          [abilities]="abilities"
-          [permanentBuffsLocal]="permanentBuffs"
-          (showAbilityModalFn)="showAbilityModalFn($event)"
-          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
-        >
+          [data]="matchData?.players" [dataRange]="[0, 5]" [abilities]="abilities"
+          [permanentBuffsLocal]="permanentBuffs" (showAbilityModalFn)="showAbilityModalFn($event)"
+          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null">
         </app-table-match-detail-overview>
 
         <!-- band pick list -->
-        <app-band-pick-list
-          *ngIf="matchData?.picks_bans"
-          [heroes]="heroes"
+        <app-band-pick-list *ngIf="matchData?.picks_bans" [heroes]="heroes"
           [data]="extractBanPickListBaseOnTeam(matchData?.picks_bans, 0)">
         </app-band-pick-list>
 
@@ -72,34 +65,26 @@
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Overview' : 'Dire - Overview'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Overview' : 'Dire - Overview'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
 
         <!-- overview table -->
-        <app-table-match-detail-overview
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [itemIds]="itemIds"
-          [items]="items"
-          (showItemModalFn)="showItemModalFn($event)"
+        <app-table-match-detail-overview [playerColors]="playerColors" [heroes]="heroes" [itemIds]="itemIds"
+          [items]="items" (showItemModalFn)="showItemModalFn($event)"
           (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null; currentMouseOverAghs = null;"
-          [data]="matchData?.players"
-          [dataRange]="[5, 10]"
-          [abilities]="abilities"
-          [permanentBuffsLocal]="permanentBuffs"
-          (showAbilityModalFn)="showAbilityModalFn($event)"
-          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
-        >
+          [data]="matchData?.players" [dataRange]="[5, 10]" [abilities]="abilities"
+          [permanentBuffsLocal]="permanentBuffs" (showAbilityModalFn)="showAbilityModalFn($event)"
+          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null">
         </app-table-match-detail-overview>
 
         <!-- band pick list -->
-        <app-band-pick-list
-          *ngIf="matchData?.picks_bans"
-          [heroes]="heroes"
+        <app-band-pick-list *ngIf="matchData?.picks_bans" [heroes]="heroes"
           [data]="extractBanPickListBaseOnTeam(matchData?.picks_bans, 1)">
         </app-band-pick-list>
-        
+
       </div>
       <!-- team-box -->
 
@@ -108,21 +93,19 @@
       <div class="team-box" *ngIf="matchData?.players[0].ability_upgrades_arr">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Ability Build' : 'Radiant - Ability Build'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Ability Build' : 'Radiant - Ability Build'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
 
         <!-- ability build -->
-        <app-table-match-detail-overview-ability-build
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [abilityIds]="abilityIds"
-          [abilities]="abilities"
-          (showAbilityModalFn)="showAbilityModalFn($event)"
+        <app-table-match-detail-overview-ability-build [playerColors]="playerColors" [heroes]="heroes"
+          [abilityIds]="abilityIds" [abilities]="abilities" (showAbilityModalFn)="showAbilityModalFn($event)"
           (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
           [data]="matchData?.players | slice: 0:5">
         </app-table-match-detail-overview-ability-build>
-        
+
       </div>
       <!-- team-box -->
 
@@ -130,33 +113,28 @@
       <div class="team-box" *ngIf="matchData?.players[0].ability_upgrades_arr">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Overview' : 'Dire - Overview'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Overview' : 'Dire - Overview'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
 
         <!-- ability build -->
-        <app-table-match-detail-overview-ability-build
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [abilityIds]="abilityIds"
-          [abilities]="abilities"
-          (showAbilityModalFn)="showAbilityModalFn($event)"
+        <app-table-match-detail-overview-ability-build [playerColors]="playerColors" [heroes]="heroes"
+          [abilityIds]="abilityIds" [abilities]="abilities" (showAbilityModalFn)="showAbilityModalFn($event)"
           (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
-          [data]="matchData?.players | slice: 5:10"
-          >
+          [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-overview-ability-build>
 
         <div class="overview-map-adv">
           <!-- Radiant Advantage -->
           <div class="overview-adv">
             <app-nav-title [title]="'Radiant Advantage'"></app-nav-title>
-            <app-chart-stack-line-with-minus
-              *ngIf="matchData.radiant_xp_adv || matchData.radiant_gold_adv"
-              [data]="[matchData.radiant_xp_adv, matchData.radiant_gold_adv]"
-            ></app-chart-stack-line-with-minus>
+            <app-chart-stack-line-with-minus *ngIf="matchData.radiant_xp_adv || matchData.radiant_gold_adv"
+              [data]="[matchData.radiant_xp_adv, matchData.radiant_gold_adv]"></app-chart-stack-line-with-minus>
           </div>
         </div>
-        
+
       </div>
       <!-- team-box -->
     </div>
@@ -166,12 +144,12 @@
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Ability Build' : 'Radiant - Ability Build'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Ability Build' : 'Radiant - Ability Build'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-benchmarks
-          [playerColors]="playerColors"
-          [heroes]="heroes"
+        <app-table-match-detail-benchmarks [playerColors]="playerColors" [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"></app-table-match-detail-benchmarks>
         <!-- table -->
       </div>
@@ -180,12 +158,12 @@
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Benchmarks' : 'Dire - Benchmarks'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Benchmarks' : 'Dire - Benchmarks'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-benchmarks
-          [playerColors]="playerColors"
-          [heroes]="heroes"
+        <app-table-match-detail-benchmarks [playerColors]="playerColors" [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-benchmarks>
         <!-- table -->
@@ -194,34 +172,25 @@
 
       <div class="build-map-advantage">
         <!-- build map -->
-        
+
         <!-- advantage-chart -->
       </div>
 
     </div>
-  
+
     <!-- draft tab content -->
     <div class="single-match-draft" *ngIf="currentPage === 'draft'">
       <div *ngIf="!matchData?.picks_bans">The match does not have Draft timeming.</div>
-      <app-draft-list
-        *ngIf="matchData?.picks_bans"
-        [data]="matchData?.picks_bans"
-        [heroes]="heroes"
-        [radiantTeam]="matchData?.radiant_team"
-        [direTeam]="matchData?.dire_team">
+      <app-draft-list *ngIf="matchData?.picks_bans" [data]="matchData?.picks_bans" [heroes]="heroes"
+        [radiantTeam]="matchData?.radiant_team" [direTeam]="matchData?.dire_team">
       </app-draft-list>
     </div>
 
     <!-- laning tab content -->
     <div class="single-match-draft" *ngIf="currentPage === 'laning'">
       <app-nav-title [title]="'Laning'"></app-nav-title>
-      <app-table-laning
-      [heroes]="heroes"
-      [playerColors]="playerColors"
-      [heroes]="heroes"
-      [laneRole]="laneRole"
-      [data]="matchData?.players"
-      >
+      <app-table-laning [heroes]="heroes" [playerColors]="playerColors" [heroes]="heroes" [laneRole]="laneRole"
+        [data]="matchData?.players">
       </app-table-laning>
 
       <div class="map-last-hit-denies-row">
@@ -235,15 +204,8 @@
         <div class="lane-lh-dn">
           <app-nav-title [title]="'Last Hits + Denies'"></app-nav-title>
           <!-- last_hit graphs -->
-          <app-chart-statck-line
-            [playerColors]="playerColors"
-            [heroes]="heroes"
-            [data]="matchData?.players"
-            [heroNames]="heroNames"
-            [field]="'lh_t'"
-            [fieldTwo]="'dn_t'"
-            [dataZoom]="true"
-          >
+          <app-chart-statck-line [playerColors]="playerColors" [heroes]="heroes" [data]="matchData?.players"
+            [field]="'lh_t'" [fieldTwo]="'dn_t'" [dataZoom]="true">
           </app-chart-statck-line>
         </div>
       </div>
@@ -254,14 +216,12 @@
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Performances' : 'Radiant - Performances'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Performances' : 'Radiant - Performances'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-performances
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [heroNames]="heroNames"
-          [abilities]="abilities"
+        <app-table-match-detail-performances [playerColors]="playerColors" [heroes]="heroes" [abilities]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
           (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
           [data]="matchData?.players | slice: 0:5">
@@ -273,14 +233,12 @@
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Performances' : 'Dire - Performances'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Performances' : 'Dire - Performances'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-performances
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [heroNames]="heroNames"
-          [abilities]="abilities"
+        <app-table-match-detail-performances [playerColors]="playerColors" [heroes]="heroes" [abilities]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
           (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
           [data]="matchData?.players | slice: 5:10">
@@ -296,12 +254,10 @@
         <!-- kills table -->
         <div class="team-box">
           <app-nav-title [title]="'Kills and Damages '">
-            <span class="killed-damage-txt">Killed</span><span class="killed-damage-txt">Damage</span><span class="killed-damage-by-txt">Killed by</span><span class="killed-damage-by-txt">Damage taken</span>
+            <span class="killed-damage-txt">Killed</span><span class="killed-damage-txt">Damage</span><span
+              class="killed-damage-by-txt">Killed by</span><span class="killed-damage-by-txt">Damage taken</span>
           </app-nav-title>
-          <app-table-match-detail-combat-kills
-            [heroes]="heroes"
-            [data]="matchData?.players"
-          >
+          <app-table-match-detail-combat-kills [heroes]="heroes" [data]="matchData?.players">
           </app-table-match-detail-combat-kills>
         </div>
 
@@ -323,48 +279,35 @@
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Damage' : 'Radiant - Damage'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Damage' : 'Radiant - Damage'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-combat-damage-detail
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [data]="matchData?.players | slice: 0:5"
-
-          [heroNames]="heroNames"
-          [itemIds]="itemIds"
-          [items]="items"
+        <app-table-match-detail-combat-damage-detail [playerColors]="playerColors" [heroes]="heroes"
+          [data]="matchData?.players | slice: 0:5" [itemIds]="itemIds" [items]="items"
           (showItemModalFn)="showItemModalFn($event)"
-          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-          [abilities]="abilities"
+          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null" [abilities]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
-          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
-        >
+          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null">
         </app-table-match-detail-combat-damage-detail>
       </div>
       <!-- team-box -->
-      
+
       <!-- dire damage detail tabel -->
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Damage' : 'Dire - Damage'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Damage' : 'Dire - Damage'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-combat-damage-detail
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [data]="matchData?.players | slice: 5:10"
-
-          [heroNames]="heroNames"
-          [itemIds]="itemIds"
-          [items]="items"
+        <app-table-match-detail-combat-damage-detail [playerColors]="playerColors" [heroes]="heroes"
+          [data]="matchData?.players | slice: 5:10" [itemIds]="itemIds" [items]="items"
           (showItemModalFn)="showItemModalFn($event)"
-          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-          [abilities]="abilities"
+          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null" [abilities]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
-          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
-        >
+          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null">
         </app-table-match-detail-combat-damage-detail>
         <!-- table -->
       </div>
@@ -377,29 +320,27 @@
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Units Kills' : 'Radiant - Units Kills'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Units Kills' : 'Radiant - Units Kills'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-unit-kills
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [data]="matchData?.players | slice: 0:5"
-        >
+        <app-table-match-detail-unit-kills [playerColors]="playerColors" [heroes]="heroes"
+          [data]="matchData?.players | slice: 0:5">
         </app-table-match-detail-unit-kills>
       </div>
       <!-- team-box -->
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Units Kills' : 'Dire - Units Kills'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Units Kills' : 'Dire - Units Kills'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-unit-kills
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [data]="matchData?.players | slice: 5:10"
-        >
-      </app-table-match-detail-unit-kills>
+        <app-table-match-detail-unit-kills [playerColors]="playerColors" [heroes]="heroes"
+          [data]="matchData?.players | slice: 5:10">
+        </app-table-match-detail-unit-kills>
         <!-- table -->
       </div>
       <!-- team-box -->
@@ -408,51 +349,41 @@
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Last Hits' : 'Radiant - Last Hits'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Last Hits' : 'Radiant - Last Hits'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-last-hits
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [data]="matchData?.players | slice: 0:5"
-        >
+        <app-table-match-detail-last-hits [playerColors]="playerColors" [heroes]="heroes"
+          [data]="matchData?.players | slice: 0:5">
         </app-table-match-detail-last-hits>
       </div>
       <!-- team-box -->
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Last Hits' : 'Dire - Last Hits'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Last Hits' : 'Dire - Last Hits'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-last-hits
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [data]="matchData?.players | slice: 5:10"
-        >
-      </app-table-match-detail-last-hits>
+        <app-table-match-detail-last-hits [playerColors]="playerColors" [heroes]="heroes"
+          [data]="matchData?.players | slice: 5:10">
+        </app-table-match-detail-last-hits>
         <!-- table -->
       </div>
       <!-- team-box -->
 
       <!-- Gold Sources -->
       <app-nav-title [title]="'Gold Sources'"></app-nav-title>
-      <app-chart-stack-bar
-        [heroes]="heroes"
-        [data]="matchData?.players"
-        [field]="'gold_reasons'"
-        [mapping]="goldReasonMapping"
-      >
+      <app-chart-stack-bar [heroes]="heroes" [data]="matchData?.players" [field]="'gold_reasons'"
+        [mapping]="goldReasonMapping">
       </app-chart-stack-bar>
 
       <!-- XP Sources -->
       <app-nav-title [title]="'XP Sources'"></app-nav-title>
-      <app-chart-stack-bar
-        [heroes]="heroes"
-        [data]="matchData?.players"
-        [field]="'xp_reasons'"
-        [mapping]="xpReasonMapping"
-      >
+      <app-chart-stack-bar [heroes]="heroes" [data]="matchData?.players" [field]="'xp_reasons'"
+        [mapping]="xpReasonMapping">
       </app-chart-stack-bar>
     </div>
 
@@ -462,19 +393,15 @@
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Purchase Log' : 'Radiant - Purchase Log'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Purchase Log' : 'Radiant - Purchase Log'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-items
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [data]="matchData?.players | slice: 0:5"
-          
-          [enableConsumable]="enableConsumable"
-          [items]="items"
+        <app-table-match-detail-items [playerColors]="playerColors" [heroes]="heroes"
+          [data]="matchData?.players | slice: 0:5" [enableConsumable]="enableConsumable" [items]="items"
           (showItemModalFn)="showItemModalFn($event)"
-          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-        >
+          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null">
         </app-table-match-detail-items>
       </div>
       <!-- team-box -->
@@ -482,20 +409,16 @@
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Purchase Log' : 'Dire - Purchase Log'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Purchase Log' : 'Dire - Purchase Log'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-items
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [data]="matchData?.players | slice: 5:10"
-          
-          [enableConsumable]="enableConsumable"
-          [items]="items"
+        <app-table-match-detail-items [playerColors]="playerColors" [heroes]="heroes"
+          [data]="matchData?.players | slice: 5:10" [enableConsumable]="enableConsumable" [items]="items"
           (showItemModalFn)="showItemModalFn($event)"
-          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-        >
-      </app-table-match-detail-items>
+          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null">
+        </app-table-match-detail-items>
         <!-- table -->
       </div>
       <!-- team-box -->
@@ -505,50 +428,30 @@
     <div *ngIf="currentPage === 'graphs'">
 
       <!-- team fight time line -->
-      <app-time-line-teamfight
-        [playerColors]="playerColors"
-        [heroes]="heroes"
-        [heroNames]="heroNames"
-        [data]="matchData"
-      ></app-time-line-teamfight>
+      <app-time-line-teamfight [playerColors]="playerColors" [heroes]="heroes"
+        [data]="matchData"></app-time-line-teamfight>
 
       <!-- Radiant Advantage -->
       <app-nav-title [title]="'Radiant Advantage'"></app-nav-title>
       <app-chart-stack-line-with-minus
-        [data]="[matchData.radiant_xp_adv, matchData.radiant_gold_adv]"
-      ></app-chart-stack-line-with-minus>
+        [data]="[matchData.radiant_xp_adv, matchData.radiant_gold_adv]"></app-chart-stack-line-with-minus>
 
       <!-- gold graphs -->
       <app-nav-title [title]="'Gold'"></app-nav-title>
-      <app-chart-statck-line
-        [playerColors]="playerColors"
-        [heroes]="heroes"
-        [data]="matchData?.players"
-        [heroNames]="heroNames"
-        [field]="'gold_t'"
-      >
+      <app-chart-statck-line [playerColors]="playerColors" [heroes]="heroes" [data]="matchData?.players"
+        [field]="'gold_t'">
       </app-chart-statck-line>
       <!-- experience graphs -->
       <app-nav-title [title]="'Experience'"></app-nav-title>
-      <app-chart-statck-line
-        [playerColors]="playerColors"
-        [heroes]="heroes"
-        [data]="matchData?.players"
-        [heroNames]="heroNames"
-        [field]="'xp_t'"
-      >
+      <app-chart-statck-line [playerColors]="playerColors" [heroes]="heroes" [data]="matchData?.players"
+        [field]="'xp_t'">
       </app-chart-statck-line>
 
-      
+
       <!-- last_hit graphs -->
       <app-nav-title [title]="'Last Hits'"></app-nav-title>
-      <app-chart-statck-line
-        [playerColors]="playerColors"
-        [heroes]="heroes"
-        [data]="matchData?.players"
-        [heroNames]="heroNames"
-        [field]="'lh_t'"
-      >
+      <app-chart-statck-line [playerColors]="playerColors" [heroes]="heroes" [data]="matchData?.players"
+        [field]="'lh_t'">
       </app-chart-statck-line>
 
     </div>
@@ -558,23 +461,17 @@
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Casts' : 'Radiant - Casts'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Casts' : 'Radiant - Casts'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-casts
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [data]="matchData?.players | slice: 0:5"
-          
-          [heroNames]="heroNames"
-          [itemIds]="itemIds"
-          [items]="items"
+        <app-table-match-detail-casts [playerColors]="playerColors" [heroes]="heroes"
+          [data]="matchData?.players | slice: 0:5" [itemIds]="itemIds" [items]="items"
           (showItemModalFn)="showItemModalFn($event)"
-          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-          [abilities]="abilities"
+          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null" [abilities]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
-          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
-        >
+          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null">
         </app-table-match-detail-casts>
       </div>
       <!-- team-box -->
@@ -582,24 +479,17 @@
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Casts' : 'Dire - Casts'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Casts' : 'Dire - Casts'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-casts
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [data]="matchData?.players | slice: 5:10"
-          
-          [heroNames]="heroNames"
-          [itemIds]="itemIds"
-          [items]="items"
+        <app-table-match-detail-casts [playerColors]="playerColors" [heroes]="heroes"
+          [data]="matchData?.players | slice: 5:10" [itemIds]="itemIds" [items]="items"
           (showItemModalFn)="showItemModalFn($event)"
-          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-          [abilities]="abilities"
+          (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null" [abilities]="abilities"
           (showAbilityModalFn)="showAbilityModalFn($event)"
-          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"
-        >
-      </app-table-match-detail-casts>
+          (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null">
+        </app-table-match-detail-casts>
         <!-- table -->
       </div>
       <!-- team-box -->
@@ -611,12 +501,12 @@
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Objectives Damage' : 'Radiant - Objectives Damage'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Objectives Damage' : 'Radiant - Objectives Damage'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-objective-damage
-          [playerColors]="playerColors"
-          [heroes]="heroes"
+        <app-table-match-detail-objective-damage [playerColors]="playerColors" [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5">
         </app-table-match-detail-objective-damage>
         <!-- table -->
@@ -626,12 +516,12 @@
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Objectives Damage' : 'Dire - Objectives Damage'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Objectives Damage' : 'Dire - Objectives Damage'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-objective-damage
-          [playerColors]="playerColors"
-          [heroes]="heroes"
+        <app-table-match-detail-objective-damage [playerColors]="playerColors" [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-objective-damage>
         <!-- table -->
@@ -642,12 +532,12 @@
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Runes' : 'Radiant - Runes'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Runes' : 'Radiant - Runes'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-runes
-          [playerColors]="playerColors"
-          [heroes]="heroes"
+        <app-table-match-detail-runes [playerColors]="playerColors" [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5">
         </app-table-match-detail-runes>
         <!-- table -->
@@ -657,12 +547,11 @@
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Runes' : 'Dire - Runes'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Runes' : 'Dire - Runes'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-runes
-          [playerColors]="playerColors"
-          [heroes]="heroes"
+        <app-table-match-detail-runes [playerColors]="playerColors" [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-runes>
         <!-- table -->
@@ -674,66 +563,46 @@
     <!-- vision -->
     <div *ngIf="currentPage === 'vision'">
       <div class="team-box vision-map-show-hide-timeline-row">
-        <app-vision-map
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [heroNames]="heroNames"
-          [data]="matchData?.players"
-          [showHideVisionPlayersData]="showHideVisionPlayersData"
-          [visionTimeLine]="visionTimeLine"
-        >
-        ></app-vision-map>
+        <app-vision-map [playerColors]="playerColors" [heroes]="heroes" [data]="matchData?.players"
+          [showHideVisionPlayersData]="showHideVisionPlayersData" [visionTimeLine]="visionTimeLine">
+          ></app-vision-map>
         <div class="vision-timeline-show-hide-col">
           <!-- timeline goes here -->
           <div class="vision-timeline">
-            <div class="vision-timeline-current">{{visionTimeLine === -90 ? 'All time' : (visionTimeLine | durationFormat)}}</div>
+            <div class="vision-timeline-current">{{visionTimeLine === -90 ? 'All time' : (visionTimeLine |
+              durationFormat)}}</div>
             <div class="vision-timeline-per-min-step-row">
-              <span
-                (click)="visionTimeLine = (item * 600)"
-                class="vision-time-per-min-step"
+              <span (click)="visionTimeLine = (item * 600)" class="vision-time-per-min-step"
                 *ngFor="let item of visionTimeLinePerMinSteps"
-                [style]="'left:' + ((item * 600 + 90) / (matchData?.duration + 90) * 100) + '%'"
-              >
+                [style]="'left:' + ((item * 600 + 90) / (matchData?.duration + 90) * 100) + '%'">
                 {{item * 600 | durationFormat}}
               </span>
             </div>
-            <mat-slider
-              [displayWith]="durationLabel"
-              thumbLabel
-              step="5"
-              [value]="visionTimeLine"
-              (change)="updatevisionTimeLine($event)"
-              min="-90"
-              [max]="matchData?.duration"
-            ></mat-slider>
+            <mat-slider [displayWith]="durationLabel" thumbLabel step="5" [value]="visionTimeLine"
+              (change)="updatevisionTimeLine($event)" min="-90" [max]="matchData?.duration"></mat-slider>
           </div>
           <div class="team-box">
             <div class="team-row">
               <app-radient class="sides-icon"></app-radient>
-              <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name : 'Radiant'"></app-nav-title>
+              <app-nav-title
+                [title]="matchData?.radiant_team ? matchData?.radiant_team?.name : 'Radiant'"></app-nav-title>
             </div>
             <!-- team-row -->
-            <app-table-match-detail-vision-showhide
-              [heroes]="heroes"
-              [data]="matchData?.players | slice: 0:5"
-              (emitShowHideVisionPlayersData)="emitShowHideVisionPlayersData($event)"
-            >
+            <app-table-match-detail-vision-showhide [heroes]="heroes" [data]="matchData?.players | slice: 0:5"
+              (emitShowHideVisionPlayersData)="emitShowHideVisionPlayersData($event)">
             </app-table-match-detail-vision-showhide>
             <!-- table -->
           </div>
           <!-- team-box -->
-    
+
           <div class="team-box">
             <div class="team-row">
               <app-dire class="sides-icon"></app-dire>
               <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name : 'Dire'"> </app-nav-title>
             </div>
             <!-- team-row -->
-            <app-table-match-detail-vision-showhide
-              [heroes]="heroes"
-              [data]="matchData?.players | slice: 5:10"
-              (emitShowHideVisionPlayersData)="emitShowHideVisionPlayersData($event)"
-            >
+            <app-table-match-detail-vision-showhide [heroes]="heroes" [data]="matchData?.players | slice: 5:10"
+              (emitShowHideVisionPlayersData)="emitShowHideVisionPlayersData($event)">
             </app-table-match-detail-vision-showhide>
             <!-- table -->
           </div>
@@ -744,12 +613,12 @@
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Vision' : 'Radiant - Vision'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Vision' : 'Radiant - Vision'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-vision
-          [playerColors]="playerColors"
-          [heroes]="heroes"
+        <app-table-match-detail-vision [playerColors]="playerColors" [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"></app-table-match-detail-vision>
         <!-- table -->
       </div>
@@ -758,12 +627,11 @@
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Vision' : 'Dire - Vision'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Vision' : 'Dire - Vision'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-vision
-          [playerColors]="playerColors"
-          [heroes]="heroes"
+        <app-table-match-detail-vision [playerColors]="playerColors" [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-vision>
         <!-- table -->
@@ -771,14 +639,8 @@
       <!-- team-box -->
 
       <app-nav-title [title]="'Ward Log'"></app-nav-title>
-      <app-table-match-detail-ward-log
-        [playerColors]="playerColors"
-        [heroes]="heroes"
-        [visionTimeLine]="visionTimeLine"
-        [heroNames]="heroNames"
-        [data]="matchData?.players"
-        [showHideVisionPlayersData]="showHideVisionPlayersData"
-      >
+      <app-table-match-detail-ward-log [playerColors]="playerColors" [heroes]="heroes" [visionTimeLine]="visionTimeLine"
+        [data]="matchData?.players" [showHideVisionPlayersData]="showHideVisionPlayersData">
       </app-table-match-detail-ward-log>
     </div>
 
@@ -787,12 +649,12 @@
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Actions' : 'Radiant - Actions'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Actions' : 'Radiant - Actions'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-actions
-          [playerColors]="playerColors"
-          [heroes]="heroes"
+        <app-table-match-detail-actions [playerColors]="playerColors" [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"></app-table-match-detail-actions>
         <!-- table -->
       </div>
@@ -801,12 +663,11 @@
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Actions' : 'Dire - Actions'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Actions' : 'Dire - Actions'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-actions
-          [playerColors]="playerColors"
-          [heroes]="heroes"
+        <app-table-match-detail-actions [playerColors]="playerColors" [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-actions>
         <!-- table -->
@@ -817,24 +678,18 @@
     <!-- team fights -->
     <div *ngIf="currentPage === 'teamfights'">
       <!-- team fight time line -->
-      <app-time-line-teamfight
-        (emitCurrentTeamFightData)="emitCurrentTeamFightData($event)"
-        [playerColors]="playerColors"
-        [heroes]="heroes"
-        [heroNames]="heroNames"
-        [data]="matchData"
-      ></app-time-line-teamfight>
+      <app-time-line-teamfight (emitCurrentTeamFightData)="emitCurrentTeamFightData($event)"
+        [playerColors]="playerColors" [heroes]="heroes" [data]="matchData"></app-time-line-teamfight>
 
       <div class="team-fight-detail">
         <!-- team fight map -->
         <div class="team-fight-detail-map" *ngIf="currentTeamFightDataForMap">
-          <div class="team-fight-detail-duration">{{currentTeamFightDataForMap.start | durationFormat}} - {{currentTeamFightDataForMap.end | durationFormat}}</div>
+          <div class="team-fight-detail-duration">{{currentTeamFightDataForMap.start | durationFormat}} -
+            {{currentTeamFightDataForMap.end | durationFormat}}</div>
           <div class="team-fight-detail-deaths">
             Total
-            <img
-            class="death-icon-img"
-            onError="this.src='./assets/images/Dota2Logo.svg'"
-            src="./assets/images/player_death.png" />: {{currentTeamFightDataForMap.deaths}}
+            <img class="death-icon-img" onError="this.src='./assets/images/Dota2Logo.svg'"
+              src="./assets/images/player_death.png" />: {{currentTeamFightDataForMap.deaths}}
           </div>
           <div class="team-fight-detail-winner">
             <app-radient class="sides-icon" *ngIf="currentTeamFightDataForMap.isRadient"></app-radient>
@@ -849,23 +704,17 @@
           <div class="team-box">
             <div class="team-row">
               <app-radient class="sides-icon"></app-radient>
-              <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Teamfights' : 'Radiant - Teamfights'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+              <app-nav-title
+                [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Teamfights' : 'Radiant - Teamfights'">
+                {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
             </div>
             <!-- team-row -->
-            <app-table-match-detail-teamfights
-              [playerColors]="playerColors"
-              [heroes]="heroes"
-              [currentTeamFightDataForTable]="currentTeamFightDataForTable"
-              [data]="matchData?.players"
-              [dataRange]="[0, 5]"
-
-              [items]="items"
-              (showItemModalFn)="showItemModalFn($event)"
-              (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-              [abilities]="abilities"
+            <app-table-match-detail-teamfights [playerColors]="playerColors" [heroes]="heroes"
+              [currentTeamFightDataForTable]="currentTeamFightDataForTable" [data]="matchData?.players"
+              [dataRange]="[0, 5]" [items]="items" (showItemModalFn)="showItemModalFn($event)"
+              (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null" [abilities]="abilities"
               (showAbilityModalFn)="showAbilityModalFn($event)"
-              (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null"  
-            >
+              (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null">
             </app-table-match-detail-teamfights>
             <!-- table -->
           </div>
@@ -874,41 +723,32 @@
           <div class="team-box">
             <div class="team-row">
               <app-dire class="sides-icon"></app-dire>
-              <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Teamfights' : 'Dire - Teamfights'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+              <app-nav-title
+                [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Teamfights' : 'Dire - Teamfights'">
+                {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
             </div>
             <!-- team-row -->
-            <app-table-match-detail-teamfights
-              [playerColors]="playerColors"
-              [heroes]="heroes"
-              [currentTeamFightDataForTable]="currentTeamFightDataForTable"
-              [data]="matchData?.players"
-              [dataRange]="[5, 10]"
-              
-              [items]="items"
-              (showItemModalFn)="showItemModalFn($event)"
-              (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null"
-              [abilities]="abilities"
+            <app-table-match-detail-teamfights [playerColors]="playerColors" [heroes]="heroes"
+              [currentTeamFightDataForTable]="currentTeamFightDataForTable" [data]="matchData?.players"
+              [dataRange]="[5, 10]" [items]="items" (showItemModalFn)="showItemModalFn($event)"
+              (hideItemModalFn)="showItemModal=false; currentMouseOverItem = null" [abilities]="abilities"
               (showAbilityModalFn)="showAbilityModalFn($event)"
-              (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null" 
-            >
+              (hideAbilityModalFn)="showAbilityModal=false; currentMouseOverAbilityName = null">
             </app-table-match-detail-teamfights>
             <!-- table -->
           </div>
           <!-- team-box -->
-          </div>
-          <!-- team fight detail table -->
         </div>
+        <!-- team fight detail table -->
+      </div>
       <!-- team fight detail -->
     </div>
 
     <!-- Cosmetics -->
     <div *ngIf="currentPage === 'cosmetics' && matchData?.cosmetics">
       <app-nav-title [title]="'Cosmetics'"></app-nav-title>
-      <app-table-cosmetics
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [data]="matchData?.players"
-      ></app-table-cosmetics>
+      <app-table-cosmetics [playerColors]="playerColors" [heroes]="heroes"
+        [data]="matchData?.players"></app-table-cosmetics>
     </div>
 
     <!-- analysis -->
@@ -916,16 +756,13 @@
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Analysis' : 'Radiant - Analysis'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Analysis' : 'Radiant - Analysis'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-analysis
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [data]="matchData?.players | slice: 0:5"
-
-          [laneRole]="laneRole"
-        >
+        <app-table-match-detail-analysis [playerColors]="playerColors" [heroes]="heroes"
+          [data]="matchData?.players | slice: 0:5" [laneRole]="laneRole">
         </app-table-match-detail-analysis>
         <!-- table -->
       </div>
@@ -934,16 +771,13 @@
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Analysis' : 'Dire - Analysis'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Analysis' : 'Dire - Analysis'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-analysis
-          [playerColors]="playerColors"
-          [heroes]="heroes"
-          [data]="matchData?.players | slice: 5:10"
-          
-          [laneRole]="laneRole"
-        >
+        <app-table-match-detail-analysis [playerColors]="playerColors" [heroes]="heroes"
+          [data]="matchData?.players | slice: 5:10" [laneRole]="laneRole">
         </app-table-match-detail-analysis>
         <!-- table -->
       </div>
@@ -954,14 +788,8 @@
     <div *ngIf="currentPage === 'log'">
       <!-- filter row -->
       <!-- log table -->
-      <app-table-log
-        [playerColors]="playerColors"
-        [heroes]="heroes"
-        [heroNames]="heroNames"
-        [mapItem]="mapItem"
-        [data]="matchData?.players"
-        [objectives]="matchData?.objectives"
-      ></app-table-log>
+      <app-table-log [playerColors]="playerColors" [heroes]="heroes" [mapItem]="mapItem" [data]="matchData?.players"
+        [objectives]="matchData?.objectives"></app-table-log>
     </div>
 
     <!-- Fantasy -->
@@ -969,12 +797,12 @@
       <div class="team-box">
         <div class="team-row">
           <app-radient class="sides-icon"></app-radient>
-          <app-nav-title [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Fantasy' : 'Radiant - Fantasy'"> {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
+          <app-nav-title
+            [title]="matchData?.radiant_team ? matchData?.radiant_team?.name + ' - Fantasy' : 'Radiant - Fantasy'">
+            {{matchData.radiant_win ? 'WINNER' : ''}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-fantasy
-          [playerColors]="playerColors"
-          [heroes]="heroes"
+        <app-table-match-detail-fantasy [playerColors]="playerColors" [heroes]="heroes"
           [data]="matchData?.players | slice: 0:5"></app-table-match-detail-fantasy>
         <!-- table -->
       </div>
@@ -983,12 +811,11 @@
       <div class="team-box">
         <div class="team-row">
           <app-dire class="sides-icon"></app-dire>
-          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Fantasy' : 'Dire - Fantasy'"> {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
+          <app-nav-title [title]="matchData?.dire_team ? matchData?.dire_team?.name + ' - Fantasy' : 'Dire - Fantasy'">
+            {{matchData.radiant_win ? '' : 'WINNER'}}</app-nav-title>
         </div>
         <!-- team-row -->
-        <app-table-match-detail-fantasy
-          [playerColors]="playerColors"
-          [heroes]="heroes"
+        <app-table-match-detail-fantasy [playerColors]="playerColors" [heroes]="heroes"
           [data]="matchData?.players | slice: 5:10">
         </app-table-match-detail-fantasy>
         <!-- table -->
@@ -1000,18 +827,15 @@
     <div *ngIf="currentPage === 'chat' && matchData?.chat">
       <app-nav-title [title]="'Chat'"> ({{matchData?.chat.length}})</app-nav-title>
       <!-- filter chat -->
-      <app-chats-list
-        [playerColors]="playerColors"
-        [heroes]="heroes"
-        [chatWheel]="chatWheel"
-        [data]="matchData?.players"
-        [chats]="matchData?.chat"
-      ></app-chats-list>
+      <app-chats-list [playerColors]="playerColors" [heroes]="heroes" [chatWheel]="chatWheel"
+        [data]="matchData?.players" [chats]="matchData?.chat"></app-chats-list>
     </div>
 
-      
+
   </ng-template>
 </div>
 
-<app-ability-modal [abilities]="abilities" *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName' [pageXY] = 'pageXY'></app-ability-modal>
-<app-item-modal [items]="items" *ngIf="showItemModal" [aghs]="currentMouseOverAghs" [item]='currentMouseOverItem' [pageXY] = 'pageXY' class="item-modal"></app-item-modal>
+<app-ability-modal [abilities]="abilities" *ngIf="showAbilityModal" [item]='currentMouseOverAbilityName'
+  [pageXY]='pageXY'></app-ability-modal>
+<app-item-modal [items]="items" *ngIf="showItemModal" [aghs]="currentMouseOverAghs" [item]='currentMouseOverItem'
+  [pageXY]='pageXY' class="item-modal"></app-item-modal>

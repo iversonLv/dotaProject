@@ -4,14 +4,11 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 // ngrx
 import { Store } from '@ngrx/store';
 import * as matchesActions from '../../store/matches.actions';
-import * as teamsActions from 'src/app/teams/store/teams.actions';
 
 // model
 import { ISingleMatchData, ISingleMatchPickBand } from '../../model/onematch';
 import { ITeamData } from 'src/app/teams/model/team';
-import { IheroLocal } from 'src/app/heros/model/heroLocal';
 import { IItemColorLocal } from 'src/app/shared/model/item_color';
-import { IHeroAbility } from 'src/app/heros/model/hero-abilities';
 
 // pipe
 import { DurationFormatPipe } from 'src/app/shared/utils/duration-format.pipe';
@@ -22,7 +19,6 @@ import itemColors from 'dotaconstants/build/item_colors.json';
 import itemIds from 'dotaconstants/build/item_ids.json';
 import aghsDesc from 'dotaconstants/build/aghs_desc.json';
 import heroes from 'dotaconstants/build/heroes.json';
-import heroNames from 'dotaconstants/build/hero_names.json';
 import playerColors from 'dotaconstants/build/player_colors.json';
 import abilities from 'dotaconstants/build/abilities.json';
 import abilityIds from 'dotaconstants/build/ability_ids.json';
@@ -37,7 +33,7 @@ import mapItem from '../../../../assets/data/map_item.json';
   selector: 'app-match-detail',
   templateUrl: './match-detail.component.html',
   styleUrls: ['./match-detail.component.scss'],
-  providers: [DurationFormatPipe]
+  providers: [DurationFormatPipe],
 })
 export class MatchDetailComponent implements OnInit {
   isLoading = false;
@@ -57,10 +53,8 @@ export class MatchDetailComponent implements OnInit {
   currentTeamFightDataForTable = null;
   currentTeamFightDataForMap = null;
 
-
   // User for hero modal to mapping from dotaconstant
   heroes: any = heroes;
-  heroNames: any = heroNames;
   itemIds: any = itemIds;
   items: any = items;
   aghsDesc: any = aghsDesc;
@@ -96,7 +90,7 @@ export class MatchDetailComponent implements OnInit {
     3: {
       color: '#da272b',
       title: 'roshan',
-    }
+    },
   };
 
   goldReasonMapping = {
@@ -145,31 +139,42 @@ export class MatchDetailComponent implements OnInit {
     private durationFormat: DurationFormatPipe,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private store: Store<{ singleMatch: ISingleMatchData, teamsGeneral: ITeamData, }>
-  ) { }
+    private store: Store<{
+      singleMatch: ISingleMatchData;
+      teamsGeneral: ITeamData;
+    }>
+  ) {}
 
   ngOnInit(): void {
     this.currentPage = this.router.url.split('/')[3];
 
     const matchId = this.activatedRoute.snapshot.paramMap.get('id');
     this.store.dispatch(new matchesActions.LoadMatch(matchId));
-    this.store.select('singleMatch').subscribe(data => {
-      this.isLoading = data.isLoading;
-      if (!data.isLoading) {
-        const singleMatchData = [ ...data.match ];
+    this.store.select('singleMatch').subscribe(
+      (data) => {
         this.isLoading = data.isLoading;
-        this.matchData = singleMatchData[0];
-        // this.currentTeamFightDataForTable = singleMatchData[0].teamfights[0].players;
-        this.getShowHideVisionPlayersData(singleMatchData[0]?.players, this.visionTimeLine);
-        this.extractvisionTimeLinelineTickPerMinute(singleMatchData[0]?.duration, 10);
-        return this.matchData;
+        if (!data.isLoading) {
+          const singleMatchData = [...data.match];
+          this.isLoading = data.isLoading;
+          this.matchData = singleMatchData[0];
+          // this.currentTeamFightDataForTable = singleMatchData[0].teamfights[0].players;
+          this.getShowHideVisionPlayersData(
+            singleMatchData[0]?.players,
+            this.visionTimeLine
+          );
+          this.extractvisionTimeLinelineTickPerMinute(
+            singleMatchData[0]?.duration,
+            10
+          );
+          return this.matchData;
+        }
+      },
+      (err) => {
+        console.log(err);
       }
-    }, err => {
-      console.log(err);
-    });
+    );
 
-    this.router.events
-    .subscribe((event) => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentPage = event.url.split('/')[3]; // Grab last route 'overview'
       }
@@ -198,14 +203,18 @@ export class MatchDetailComponent implements OnInit {
     this.currentMouseOverItem = this.items[this.itemIds[itemId]];
   }
 
-  showAghsDescriptionLocal([heroId, hasScepterShard ]): any {
-    const heroAghs = this.aghsDesc.filter(i => i.hero_id === heroId)[0];
+  showAghsDescriptionLocal([heroId, hasScepterShard]): any {
+    const heroAghs = this.aghsDesc.filter((i) => i.hero_id === heroId)[0];
     const abilitiesArr = this.extractAblitiesArr(this.abilities);
     return {
       has: hasScepterShard,
       ...heroAghs,
-      scepter_img: abilitiesArr.find(i => i.dname === heroAghs?.scepter_skill_name).img,
-      shard_img: abilitiesArr.find(i => i.dname === heroAghs?.shard_skill_name).img,
+      scepter_img: abilitiesArr.find(
+        (i) => i.dname === heroAghs?.scepter_skill_name
+      ).img,
+      shard_img: abilitiesArr.find(
+        (i) => i.dname === heroAghs?.shard_skill_name
+      ).img,
     };
   }
 
@@ -214,9 +223,12 @@ export class MatchDetailComponent implements OnInit {
     return Object.values(data);
   }
 
-  extractBanPickListBaseOnTeam(data: ISingleMatchPickBand[], team: number): ISingleMatchPickBand[] {
+  extractBanPickListBaseOnTeam(
+    data: ISingleMatchPickBand[],
+    team: number
+  ): ISingleMatchPickBand[] {
     if (data) {
-      return data.filter(i => i.team === team);
+      return data.filter((i) => i.team === team);
     } else {
       return;
     }
@@ -228,15 +240,24 @@ export class MatchDetailComponent implements OnInit {
   }
 
   emitShowHideVisionPlayersData(e: any): any {
-    this.showHideVisionPlayersData = { ...this.showHideVisionPlayersData, ...e };
+    this.showHideVisionPlayersData = {
+      ...this.showHideVisionPlayersData,
+      ...e,
+    };
     return this.showHideVisionPlayersData;
   }
 
   // extract matches players[] to less data to meet for this page table
   getShowHideVisionPlayersData(data: any[], timeline: number): any {
-    data.forEach(i => {
+    data.forEach((i) => {
       const { hero_id, player_slot } = i;
-      this.showHideVisionPlayersData[hero_id] = { hero_id, player_slot, obs_log: true, sen_log: true, timeline };
+      this.showHideVisionPlayersData[hero_id] = {
+        hero_id,
+        player_slot,
+        obs_log: true,
+        sen_log: true,
+        timeline,
+      };
     });
     return this.showHideVisionPlayersData;
   }
@@ -244,10 +265,15 @@ export class MatchDetailComponent implements OnInit {
   // show duation label on vision slider
   durationLabel(duration: number): string {
     let minus = false;
-    duration < 0 ? minus = true : minus = false;
-    const getMin = (Math.abs(Math.floor(duration) / 60)).toString().split('.')[0];
-    let getSec = Math.abs(Math.floor(duration)) % 60 === 0 ? '00' : Math.abs(Math.floor(duration)) % 60;
-    if (getSec < 10 && getSec > 0) {
+    duration < 0 ? (minus = true) : (minus = false);
+    const getMin = Math.abs(Math.floor(duration) / 60)
+      .toString()
+      .split('.')[0];
+    let getSec =
+      Math.abs(Math.floor(duration)) % 60 === 0
+        ? '00'
+        : Math.abs(Math.floor(duration)) % 60;
+    if (+getSec < 10 && +getSec > 0) {
       getSec = '0' + getSec + '';
     }
     return minus ? `-${getMin}:${getSec}` : `${getMin}:${getSec}`;
@@ -255,17 +281,18 @@ export class MatchDetailComponent implements OnInit {
 
   // vision time slider change
   updatevisionTimeLine(e): number {
-    return this.visionTimeLine = e.value;
+    return (this.visionTimeLine = e.value);
   }
 
-
   // dynamic show X perminute step tick, example, duration is 38:01, so tick step will be 0, 1, 2, 3 for 0:00; 10:00; 20:00; 30:00
-  extractvisionTimeLinelineTickPerMinute(duration: number, perMinute: number): number[] {
+  extractvisionTimeLinelineTickPerMinute(
+    duration: number,
+    perMinute: number
+  ): number[] {
     const arr = [];
     for (let i = 0; i <= Math.floor(duration / (perMinute * 60)); i++) {
       arr.push(i);
     }
-    return this.visionTimeLinePerMinSteps = arr;
+    return (this.visionTimeLinePerMinSteps = arr);
   }
-
 }

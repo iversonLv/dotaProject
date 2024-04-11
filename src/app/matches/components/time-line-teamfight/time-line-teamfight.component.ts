@@ -6,13 +6,12 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 @Component({
   selector: 'app-time-line-teamfight',
   templateUrl: './time-line-teamfight.component.html',
-  styleUrls: ['./time-line-teamfight.component.scss']
+  styleUrls: ['./time-line-teamfight.component.scss'],
 })
 export class TimeLineTeamfightComponent implements OnInit {
   @Input() data: any;
   @Input() playerColors: any;
   @Input() heroes: IheroLocal;
-  @Input() heroNames: any;
 
   @Output() emitCurrentTeamFightData: EventEmitter<any> = new EventEmitter();
 
@@ -39,7 +38,7 @@ export class TimeLineTeamfightComponent implements OnInit {
     takenPlayer: null,
   };
   roshanAegisData = [];
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.calFirstBlood(this.data.objectives, this.data.players);
@@ -48,18 +47,19 @@ export class TimeLineTeamfightComponent implements OnInit {
     this.currentTeamFightDataForTable = {
       ...this.data?.teamfights[0],
       isRadient: this.calTeamFightIsRadiantWin(this.data?.teamfights[0])[0],
-      gold_delta_total: this.calTeamFightIsRadiantWin(this.data?.teamfights[0])[1],
+      gold_delta_total: this.calTeamFightIsRadiantWin(
+        this.data?.teamfights[0]
+      )[1],
     };
 
     this.emitCurrentTeamFightData.emit(this.currentTeamFightDataForTable);
-
   }
 
   // extract first blood data
   calFirstBlood(objectives: any, players: any): any {
-    objectives.forEach(i => {
+    objectives.forEach((i) => {
       if (i.type === 'CHAT_MESSAGE_FIRSTBLOOD') {
-        this.firstBloodData.time =  i.time;
+        this.firstBloodData.time = i.time;
         this.firstBloodData.drewPlayer = players[i.slot];
         this.firstBloodData.takenPlayer = players[i.key];
       }
@@ -68,31 +68,38 @@ export class TimeLineTeamfightComponent implements OnInit {
   }
 
   calRoshanKillAegisData(objectives: any, players: any): any[] {
-    const aegisPickedArr = objectives.filter(i => i.type === 'CHAT_MESSAGE_AEGIS');
-    aegisPickedArr.forEach(i => {
+    const aegisPickedArr = objectives.filter(
+      (i) => i.type === 'CHAT_MESSAGE_AEGIS'
+    );
+    aegisPickedArr.forEach((i) => {
       this.roshanAegisData.push({
         killedTime: i.time,
-        pickedAegisPlayer: players[i.slot]
+        pickedAegisPlayer: players[i.slot],
       });
     });
     return this.roshanAegisData;
   }
 
   // cal teamfight win side
-calTeamFightIsRadiantWin(teamfight: any): any[] {
-  // calculate total gold dealta of radiant
-  const radiantDealta = teamfight.players.slice(0, 5).map(i => i.gold_delta).reduce((cur, total) => cur + total, 0);
-  // calculate total gold dealta of dire
-  const direDealta = teamfight.players.slice(5, 10).map(i => i.gold_delta).reduce((cur, total) => cur + total, 0);
+  calTeamFightIsRadiantWin(teamfight: any): any[] {
+    // calculate total gold dealta of radiant
+    const radiantDealta = teamfight.players
+      .slice(0, 5)
+      .map((i) => i.gold_delta)
+      .reduce((cur, total) => cur + total, 0);
+    // calculate total gold dealta of dire
+    const direDealta = teamfight.players
+      .slice(5, 10)
+      .map((i) => i.gold_delta)
+      .reduce((cur, total) => cur + total, 0);
 
-  // if total gold dealta of radiant is greater than dire's, then RADIANT team fight win
-  if (radiantDealta > direDealta) {
-    return [true, (radiantDealta - direDealta)];
-  } else {
-    return [false, (direDealta - radiantDealta)];
+    // if total gold dealta of radiant is greater than dire's, then RADIANT team fight win
+    if (radiantDealta > direDealta) {
+      return [true, radiantDealta - direDealta];
+    } else {
+      return [false, direDealta - radiantDealta];
+    }
   }
-  }
-
 
   // show first blood modal
   showFirstBloodModalFn(e, data): any {
@@ -115,10 +122,13 @@ calTeamFightIsRadiantWin(teamfight: any): any[] {
     this.currentRoshanAegisData = data;
   }
 
-
   // get current team fight data and emit it
   getCurrentTeamFightDataAndEmit(item): void {
-    item = {...item, isRadient: this.calTeamFightIsRadiantWin(item)[0], gold_delta_total: this.calTeamFightIsRadiantWin(item)[1]};
+    item = {
+      ...item,
+      isRadient: this.calTeamFightIsRadiantWin(item)[0],
+      gold_delta_total: this.calTeamFightIsRadiantWin(item)[1],
+    };
     this.currentTeamFightDataForTable = item;
     // console.log('emit', this.currentTeamFightDataForTable);
     this.emitCurrentTeamFightData.emit(this.currentTeamFightDataForTable);

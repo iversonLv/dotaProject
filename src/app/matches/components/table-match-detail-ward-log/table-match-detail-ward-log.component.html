@@ -49,8 +49,8 @@
       <th mat-header-cell *matHeaderCellDef>KILL BY</th>
       <td mat-cell *matCellDef="let element">
         <app-player-box *ngIf="element?.attackername !== 'npc_dota_observer_wards'"
-          [data]="extractDataFromAttackername(data, element?.attackername)" [heroes]="heroes"
-          [playerColors]="playerColors"></app-player-box>
+          [data]="(element?.attackername | getHero)?.id | extractPlayerDataFromAttackername: data: element?.attackername"
+          [heroes]="heroes" [playerColors]="playerColors"></app-player-box>
       </td>
     </ng-container>
 

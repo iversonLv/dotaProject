@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
@@ -6,14 +13,13 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 @Component({
   selector: 'app-table-match-detail-combat-damage-detail',
   templateUrl: './table-match-detail-combat-damage-detail.component.html',
-  styleUrls: ['./table-match-detail-combat-damage-detail.component.scss']
+  styleUrls: ['./table-match-detail-combat-damage-detail.component.scss'],
 })
 export class TableMatchDetailCombatDamageDetailComponent implements OnInit {
   @Input() data: any;
   @Input() playerColors: any;
   @Input() heroes: IheroLocal;
 
-  @Input() heroNames: IheroLocal;
   @Input() itemIds: any;
   @Input() items: any;
   @Input() abilities: any;
@@ -28,24 +34,31 @@ export class TableMatchDetailCombatDamageDetailComponent implements OnInit {
   }
   dataSource = new MatTableDataSource();
 
-  displayedColumns: string[] = [
-    'player_slot',
-    'dealt',
-    'received'
-  ];
+  displayedColumns: string[] = ['player_slot', 'dealt', 'received'];
   sort;
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-     // extract the data
-     this.dataSource.data = this.extractData(this.data);
+    // extract the data
+    this.dataSource.data = this.extractData(this.data);
   }
   // extract matches players[] to less data to meet for this page table
   extractData(data): any[] {
     const finalData = [];
-    data.forEach(z => {
-      const { hero_id, player_slot, randomed, pred_vict, account_id, rank_tier, name, personaname,
-        damage_inflictor_received, damage_targets, damage_inflictor } = z;
+    data.forEach((z) => {
+      const {
+        hero_id,
+        player_slot,
+        randomed,
+        pred_vict,
+        account_id,
+        rank_tier,
+        name,
+        personaname,
+        damage_inflictor_received,
+        damage_targets,
+        damage_inflictor,
+      } = z;
       finalData.push({
         hero_id,
         pred_vict,
@@ -56,7 +69,9 @@ export class TableMatchDetailCombatDamageDetailComponent implements OnInit {
         randomed,
         personaname,
         // above is common data for player
-        damage_inflictor_received: this.extractObjToArry(damage_inflictor_received),
+        damage_inflictor_received: this.extractObjToArry(
+          damage_inflictor_received
+        ),
         damage_inflictor: this.extractObjToArry(damage_inflictor),
         damage_targets,
       });
@@ -72,13 +87,44 @@ export class TableMatchDetailCombatDamageDetailComponent implements OnInit {
 
   extractObjToArry(data: any): any[] {
     const arr = [];
-    Object.keys(data).forEach(key => {
+    Object.keys(data).forEach((key) => {
       arr.push({
         key,
-        value: data[key]
+        value: data[key],
       });
     });
     return arr.sort((a, b) => b.value - a.value);
   }
 
+  /**
+   * Now the API does not container hero names json so we need to find by our own from heroes json
+   * 
+   * @param element template table element
+   * @returns hero
+   * example data: 
+   * heros json: 
+   * "1": {
+    "id": 1,
+    "name": "npc_dota_hero_antimage",
+    .....
+    element data:
+   * "max_hero_hit": {
+                "type": "max_hero_hit",
+                "time": 1742,
+                "max": true,
+                "inflictor": "invoker_sun_strike",
+                "unit": "npc_dota_hero_invoker",
+                "key": "npc_dota_hero_earthshaker",
+                "value": 655,
+                "slot": 0,
+                "player_slot": 0
+              },
+              
+   */
+  getHero(element: any): IheroLocal {
+    const hero = Object.values(this.heroes).find(
+      (hero) => hero.name === element
+    );
+    return hero;
+  }
 }

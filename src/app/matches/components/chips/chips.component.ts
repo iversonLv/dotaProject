@@ -1,4 +1,12 @@
-import { Component, Input, OnInit, ElementRef, ViewChild, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -6,7 +14,10 @@ import { map, startWith } from 'rxjs/operators';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 // material
-import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import {
+  MatAutocomplete,
+  MatAutocompleteSelectedEvent,
+} from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 
 // model
@@ -15,13 +26,13 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 @Component({
   selector: 'app-chips',
   templateUrl: './chips.component.html',
-  styleUrls: ['./chips.component.scss']
+  styleUrls: ['./chips.component.scss'],
 })
 export class ChipsComponent implements OnInit {
   @Input() title: string;
+  @Input() heroes: IheroLocal;
   @Input() items: string[];
   @Input() allitems: string[];
-  @Input() heroNames: IheroLocal;
   @Output() emitValue: EventEmitter<[string, boolean]> = new EventEmitter();
 
   visible = true;
@@ -43,15 +54,14 @@ export class ChipsComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
     // Add our item
     if ((value || '').trim()) {
-      this.allitems.forEach(i => {
+      this.allitems.forEach((i) => {
         if (value === i && !this.items.includes(i)) {
           this.emitValue.emit([event.value.toLowerCase(), true]);
           return this.items.push(value.trim());
@@ -80,12 +90,13 @@ export class ChipsComponent implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.allitems.forEach(x => {
-      if (event.option.value === x && !this.items.includes(event.option.value)) {
-
+    this.allitems.forEach((x) => {
+      if (
+        event.option.value === x &&
+        !this.items.includes(event.option.value)
+      ) {
         this.emitValue.emit([event.option.value.toLowerCase(), true]);
         return this.items.push(event.option.value);
-
       } else {
         return null;
       }
@@ -96,12 +107,8 @@ export class ChipsComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.allitems.filter(
-      item => {
-        return item.toLowerCase().indexOf(filterValue) > -1;
-      }
-    );
+    return this.allitems.filter((item) => {
+      return item.toLowerCase().indexOf(filterValue) > -1;
+    });
   }
-
-
 }

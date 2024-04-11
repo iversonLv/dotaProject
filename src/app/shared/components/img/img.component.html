@@ -1,5 +1,2 @@
-<img
-  [src]="srcUrl + data"
-  onError="this.src='./assets/images/Dota2Logo.svg'"
-  loading='lazy' [alt]="altData"
-/>
+<img [src]="!!data ? srcUrl + data : './assets/images/Dota2Logo.svg'" onError="this.src='./assets/images/Dota2Logo.svg'"
+  loading='lazy' [alt]="altData" />

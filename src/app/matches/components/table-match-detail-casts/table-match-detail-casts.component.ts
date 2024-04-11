@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 
 // material
 import { MatSort } from '@angular/material/sort';
@@ -10,14 +17,13 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 @Component({
   selector: 'app-table-match-detail-casts',
   templateUrl: './table-match-detail-casts.component.html',
-  styleUrls: ['./table-match-detail-casts.component.scss']
+  styleUrls: ['./table-match-detail-casts.component.scss'],
 })
 export class TableMatchDetailCastsComponent implements OnInit {
   @Input() data: any;
   @Input() playerColors: any;
   @Input() heroes: IheroLocal;
 
-  @Input() heroNames: IheroLocal;
   @Input() itemIds: any;
   @Input() items: any;
   @Input() abilities: any;
@@ -32,14 +38,9 @@ export class TableMatchDetailCastsComponent implements OnInit {
   }
   dataSource = new MatTableDataSource();
 
-  displayedColumns: string[] = [
-    'player_slot',
-    'abilities',
-    'items',
-    'hits'
-  ];
+  displayedColumns: string[] = ['player_slot', 'abilities', 'items', 'hits'];
   sort;
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     // extract the data
@@ -49,9 +50,21 @@ export class TableMatchDetailCastsComponent implements OnInit {
   // extract matches players[] to less data to meet for this page table
   extractData(data): any[] {
     const finalData = [];
-    data.forEach(z => {
-      const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
-        hero_hits, item_uses, ability_uses, ability_targets, randomed } = z;
+    data.forEach((z) => {
+      const {
+        hero_id,
+        player_slot,
+        pred_vict,
+        account_id,
+        rank_tier,
+        name,
+        personaname,
+        hero_hits,
+        item_uses,
+        ability_uses,
+        ability_targets,
+        randomed,
+      } = z;
       finalData.push({
         hero_id,
         pred_vict,
@@ -65,7 +78,7 @@ export class TableMatchDetailCastsComponent implements OnInit {
         hero_hits: this.extractObjToArry(hero_hits),
         item_uses: this.extractObjToArry(item_uses),
         ability_uses: this.extractObjToArry(ability_uses),
-        ability_targets
+        ability_targets,
       });
     });
 
@@ -79,13 +92,12 @@ export class TableMatchDetailCastsComponent implements OnInit {
 
   extractObjToArry(data: any): any[] {
     const arr = [];
-    Object.keys(data).forEach(key => {
+    Object.keys(data).forEach((key) => {
       arr.push({
         key,
-        value: data[key]
+        value: data[key],
       });
     });
     return arr.sort((a, b) => b.value - a.value);
   }
-
 }

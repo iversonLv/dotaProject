@@ -10,18 +10,18 @@ import { IObsSenLeftLog, IObsSenLog } from '../../model/match';
 
 // pipe
 import { DurationFormatPipe } from 'src/app/shared/utils/duration-format.pipe';
+import { GetHeroPipe } from 'src/app/shared/utils/get-hero.pipe';
 
 @Component({
   selector: 'app-table-match-detail-ward-log',
   templateUrl: './table-match-detail-ward-log.component.html',
   styleUrls: ['./table-match-detail-ward-log.component.scss'],
-  providers: [DurationFormatPipe],
+  providers: [DurationFormatPipe, GetHeroPipe],
 })
 export class TableMatchDetailWardLogComponent implements OnInit, OnChanges {
   @Input() data: any;
   @Input() playerColors: any;
   @Input() heroes: IheroLocal;
-  @Input() heroNames: IheroLocal;
   @Input() showHideVisionPlayersData: any;
   @Input() visionTimeLine: number;
 
@@ -40,7 +40,10 @@ export class TableMatchDetailWardLogComponent implements OnInit, OnChanges {
 
   currentObsSenSingle;
   finalData = [];
-  constructor(private durationFormat: DurationFormatPipe) {}
+  constructor(
+    private durationFormat: DurationFormatPipe,
+    private getHero: GetHeroPipe
+  ) {}
 
   ngOnInit(): void {
     // extract the data
@@ -76,37 +79,6 @@ export class TableMatchDetailWardLogComponent implements OnInit, OnChanges {
       randomed,
       // above is common data for player
     };
-  }
-
-  extractDataFromAttackername(data: any, attackername: string): any {
-    if (attackername !== 'npc_dota_observer_wards') {
-      const heroId = this.heroNames[attackername]?.id;
-      const d = [...data];
-      const player = d.filter((i) => i.hero_id === heroId);
-      if (player.length > 0) {
-        const {
-          hero_id,
-          player_slot,
-          pred_vict,
-          account_id,
-          rank_tier,
-          name,
-          personaname,
-        } = player[0];
-        return {
-          hero_id,
-          pred_vict,
-          player_slot,
-          account_id,
-          rank_tier,
-          name,
-          personaname,
-          // above is common data for player
-        };
-      }
-    } else {
-      return;
-    }
   }
 
   extractObsSenFinalData(data: any[]): any[] {
