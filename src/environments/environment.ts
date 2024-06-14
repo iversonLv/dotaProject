@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  currentVersion: '7.35b',
+  currentVersion: '7.36',
   currentMap:
     'https://www.opendota.com/assets/images/dota2/map/detailed_733.jpg',
   BASE_API_URL: 'https://api.opendota.com/api',
@@ -17,6 +17,8 @@ export const environment = {
     'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/',
   ABILITY_IMG_URL:
     'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities',
+  GENERAL_IMG_URL:
+    'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react',
   ERROR_IMG: "this.src='./assets/images/Dota2Logo.svg'",
   STEAMCDN: 'https://steamcdn-a.akamaihd.net',
   OPENDOTA: 'https://www.opendota.com/',
