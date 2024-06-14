@@ -67,6 +67,7 @@ export class TableMatchDetailWardLogComponent implements OnInit, OnChanges {
       rank_tier,
       name,
       personaname,
+      hero_variant,
     } = data[slot];
     return {
       hero_id,
@@ -77,6 +78,7 @@ export class TableMatchDetailWardLogComponent implements OnInit, OnChanges {
       name,
       personaname,
       randomed,
+      hero_variant,
       // above is common data for player
     };
   }

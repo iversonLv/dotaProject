@@ -10,7 +10,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 @Component({
   selector: 'app-table-laning',
   templateUrl: './table-laning.component.html',
-  styleUrls: ['./table-laning.component.scss']
+  styleUrls: ['./table-laning.component.scss'],
 })
 export class TableLaningComponent implements OnInit {
   @Input() data: any;
@@ -32,11 +32,11 @@ export class TableLaningComponent implements OnInit {
     'cs',
     'eff',
     'lh',
-    'dn'
+    'dn',
   ];
   sort;
   finalData = [];
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     // extract the data
@@ -44,9 +44,23 @@ export class TableLaningComponent implements OnInit {
   }
 
   extractData(data): any[] {
-    data.forEach(z => {
-      const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
-        isRadiant, is_roaming, lane_role, lh_t, dn_t, lane_efficiency, randomed
+    data.forEach((z) => {
+      const {
+        hero_id,
+        player_slot,
+        pred_vict,
+        account_id,
+        rank_tier,
+        name,
+        personaname,
+        isRadiant,
+        is_roaming,
+        lane_role,
+        lh_t,
+        dn_t,
+        lane_efficiency,
+        randomed,
+        hero_variant,
       } = z;
 
       this.finalData.push({
@@ -65,9 +79,9 @@ export class TableLaningComponent implements OnInit {
         lh: this.getSpecificTimeData(lh_t, 10),
         dn: this.getSpecificTimeData(dn_t, 10),
         lane_efficiency,
-        lhdn_t: this.extractDnLHT(z)
+        lhdn_t: this.extractDnLHT(z),
+        hero_variant,
       });
-
     });
     return this.finalData;
   }
@@ -83,7 +97,9 @@ export class TableLaningComponent implements OnInit {
     // specificeTime is base on the array index, so beginning from 0
     // So we need compare the array length and specifice time
     const dataLength = field.length;
-    dataLength < specificeTime + 1 ? specificeTime = dataLength - 1 : specificeTime = specificeTime;
+    dataLength < specificeTime + 1
+      ? (specificeTime = dataLength - 1)
+      : (specificeTime = specificeTime);
 
     const specifictTimeData = field[specificeTime];
     return +specifictTimeData === 0 ? '-' : +specifictTimeData;
@@ -92,17 +108,20 @@ export class TableLaningComponent implements OnInit {
   // cal perfect data for field
   calPerfectData(data: any, field: string): number {
     const arr = [];
-    data.filter(i => i[field] !== '-').forEach(i => {
-      arr.push(i[field]);
-    });
+    data
+      .filter((i) => i[field] !== '-')
+      .forEach((i) => {
+        arr.push(i[field]);
+      });
 
     return Math.max(...arr);
   }
 
   // extract dn_t and lh_t together
   extractDnLHT(data: any): number[] {
-    data = (data.lh_t || []).map((i, index) =>  i + ((data.dn_t || [])[index] || 0));
+    data = (data.lh_t || []).map(
+      (i, index) => i + ((data.dn_t || [])[index] || 0)
+    );
     return data;
   }
-
 }

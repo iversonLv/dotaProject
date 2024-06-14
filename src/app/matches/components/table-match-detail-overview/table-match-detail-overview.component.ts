@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 
 // material
 import { MatSort } from '@angular/material/sort';
@@ -10,7 +17,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 @Component({
   selector: 'app-table-match-detail-overview',
   templateUrl: './table-match-detail-overview.component.html',
-  styleUrls: ['./table-match-detail-overview.component.scss']
+  styleUrls: ['./table-match-detail-overview.component.scss'],
 })
 export class TableMatchDetailOverviewComponent implements OnInit {
   @Input() data: any;
@@ -55,22 +62,58 @@ export class TableMatchDetailOverviewComponent implements OnInit {
 
   sort;
   finalData = [];
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     // extract the data
-    this.dataSource.data = this.extractData(this.data.slice(this.dataRange[0], this.dataRange[1]));
+    this.dataSource.data = this.extractData(
+      this.data.slice(this.dataRange[0], this.dataRange[1])
+    );
   }
 
   // extract matches players[] to less data to meet for this page table
   extractData(data): any[] {
-    data.forEach(z => {
-      const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
-        level, hero_kills, kills, deaths, assists, last_hits, denies, net_worth,
-        gold_per_min, xp_per_min, hero_damage, tower_damage, hero_healing, item_neutral, permanent_buffs,
-        item_0, item_1, item_2, item_3, item_4, item_5,
-        backpack_0, backpack_1, backpack_2, backpack_3,
-        item_usage, purchase, purchase_time, item_win, randomed  } = z;
+    data.forEach((z) => {
+      const {
+        hero_id,
+        player_slot,
+        pred_vict,
+        account_id,
+        rank_tier,
+        name,
+        personaname,
+        level,
+        hero_kills,
+        kills,
+        deaths,
+        assists,
+        last_hits,
+        denies,
+        net_worth,
+        gold_per_min,
+        xp_per_min,
+        hero_damage,
+        tower_damage,
+        hero_healing,
+        item_neutral,
+        permanent_buffs,
+        item_0,
+        item_1,
+        item_2,
+        item_3,
+        item_4,
+        item_5,
+        backpack_0,
+        backpack_1,
+        backpack_2,
+        backpack_3,
+        item_usage,
+        purchase,
+        purchase_time,
+        item_win,
+        randomed,
+        hero_variant,
+      } = z;
 
       this.finalData.push({
         hero_id,
@@ -102,7 +145,8 @@ export class TableMatchDetailOverviewComponent implements OnInit {
         purchase,
         purchase_time,
         item_win,
-        randomed
+        randomed,
+        hero_variant,
       });
     });
 
@@ -114,19 +158,29 @@ export class TableMatchDetailOverviewComponent implements OnInit {
   }
 
   calTotal(data: any, field: string): any {
-    data = data.filter(i => i[field] !== '-' && i[field] !== null);
+    data = data.filter((i) => i[field] !== '-' && i[field] !== null);
     if (data.length !== 0) {
-      const totalNum =  data.map(i => i[field]).reduce((cur, total) => cur + total, 0);
+      const totalNum = data
+        .map((i) => i[field])
+        .reduce((cur, total) => cur + total, 0);
       return totalNum === 0 ? '-' : totalNum;
     } else {
       return '-';
     }
-
   }
 
-  calPerfectData(data: any, field: string, min: string = '', subField?: string): number {
-    const dataField = data.map(item => item[field]).filter(i => i !== undefined);
-    const dataWithSubField = dataField.map(sub => sub[subField]).filter(i => i !== undefined);
+  calPerfectData(
+    data: any,
+    field: string,
+    min: string = '',
+    subField?: string
+  ): number {
+    const dataField = data
+      .map((item) => item[field])
+      .filter((i) => i !== undefined);
+    const dataWithSubField = dataField
+      .map((sub) => sub[subField])
+      .filter((i) => i !== undefined);
     if (!min) {
       if (subField) {
         return Math.max(...dataWithSubField);
@@ -142,7 +196,7 @@ export class TableMatchDetailOverviewComponent implements OnInit {
 
   // whether show back pack list
   whetherShowBackPackList(data): boolean {
-    if (data.filter(i => i === 0).length === 3) {
+    if (data.filter((i) => i === 0).length === 3) {
       return false;
     } else {
       return true;
@@ -151,10 +205,15 @@ export class TableMatchDetailOverviewComponent implements OnInit {
 
   // whether show scepter or shard
   // permanent buff list, scepter id is 2, shard id is 12
-  whetherShowScepterShard(data: any, permanentBuffScepterShardId: number): boolean {
+  whetherShowScepterShard(
+    data: any,
+    permanentBuffScepterShardId: number
+  ): boolean {
     if (data) {
-      return data.filter(i => i.permanent_buff === permanentBuffScepterShardId).length > 0;
+      return (
+        data.filter((i) => i.permanent_buff === permanentBuffScepterShardId)
+          .length > 0
+      );
     }
   }
-
 }

@@ -80,6 +80,7 @@ export class TableMatchDetailPerformancesComponent implements OnInit {
         pings,
         performance_others,
         max_hero_hit,
+        hero_variant,
       } = z;
 
       this.finalData.push({
@@ -102,7 +103,8 @@ export class TableMatchDetailPerformancesComponent implements OnInit {
           this.extractAblitiesForPerformanceOther(performance_others),
         max_hero_hit_value: max_hero_hit.value,
         max_hero_hit,
-        // above is common data for player
+        // above is common data for player,
+        hero_variant,
       });
     });
 

@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
@@ -6,7 +15,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 @Component({
   selector: 'app-table-match-detail-teamfights',
   templateUrl: './table-match-detail-teamfights.component.html',
-  styleUrls: ['./table-match-detail-teamfights.component.scss']
+  styleUrls: ['./table-match-detail-teamfights.component.scss'],
 })
 export class TableMatchDetailTeamfightsComponent implements OnInit, OnChanges {
   @Input() data: any;
@@ -37,11 +46,11 @@ export class TableMatchDetailTeamfightsComponent implements OnInit, OnChanges {
     'gold_delta',
     'xp_delta',
     'ability_uses',
-    'item_uses'
+    'item_uses',
   ];
   sort;
   finalData = [];
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     // extract the data
@@ -49,8 +58,10 @@ export class TableMatchDetailTeamfightsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.dataSource.data = this.extractData(this.data,
-      changes.currentTeamFightDataForTable.currentValue).slice(this.dataRange[0], this.dataRange[1]);
+    this.dataSource.data = this.extractData(
+      this.data,
+      changes.currentTeamFightDataForTable.currentValue
+    ).slice(this.dataRange[0], this.dataRange[1]);
     // const change = changes.currentTeamFightDataForTable;
     // console.log(changes)
     // if (change.firstChange === true ) {
@@ -66,8 +77,17 @@ export class TableMatchDetailTeamfightsComponent implements OnInit, OnChanges {
     const arr = [];
     // console.log('in', currentTeamFightDataForTable);
     data.forEach((d, i) => {
-      const { hero_id, player_slot, randomed, pred_vict, account_id, rank_tier, name, personaname,
-        } = data[i];
+      const {
+        hero_id,
+        player_slot,
+        randomed,
+        pred_vict,
+        account_id,
+        rank_tier,
+        name,
+        personaname,
+        hero_variant,
+      } = data[i];
       arr.push({
         hero_id,
         pred_vict,
@@ -77,8 +97,9 @@ export class TableMatchDetailTeamfightsComponent implements OnInit, OnChanges {
         name,
         personaname,
         randomed,
+        hero_variant,
         // above is common data for player
-        ...currentTeamFightDataForTable[i]
+        ...currentTeamFightDataForTable[i],
       });
     });
     this.finalData = arr;
@@ -97,14 +118,15 @@ export class TableMatchDetailTeamfightsComponent implements OnInit, OnChanges {
   // So we will add abs the minimum number, then fial list will be [108, 115, 0, 309, 22]
   // At the same time, the bar another number need plus the minNum as well or it will less than total one, no on data will meet 100%
   calPerfectData(data: any, field: string): number[] {
-    let dataField = data.map(item => item[field]).filter(i => i !== undefined);
+    let dataField = data
+      .map((item) => item[field])
+      .filter((i) => i !== undefined);
     const minNum = Math.abs(Math.min(...dataField));
-    dataField = dataField.map(i => i + minNum);
+    dataField = dataField.map((i) => i + minNum);
     return [Math.max(...dataField), minNum];
   }
 
   objKey(data: any, field: string): any[] {
     return Object.keys(data[field]);
   }
-
 }

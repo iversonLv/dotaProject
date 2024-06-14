@@ -12,11 +12,12 @@ import heroAbilities from 'dotaconstants/build/hero_abilities.json';
 import abilities from 'dotaconstants/build/abilities.json';
 import heroLore from 'dotaconstants/build/hero_lore.json';
 import aghsDesc from 'dotaconstants/build/aghs_desc.json';
+import { IFacte } from '../../model/facte';
 
 @Component({
   selector: 'app-heroes-hero',
   templateUrl: './heroes-hero.component.html',
-  styleUrls: ['./heroes-hero.component.scss']
+  styleUrls: ['./heroes-hero.component.scss'],
 })
 export class HeroesHeroComponent implements OnInit {
   showSubBox = false; // show/hide the sub detail
@@ -30,7 +31,9 @@ export class HeroesHeroComponent implements OnInit {
 
   // ablity modal default hidden
   currentMouseOverAbilityName = null;
+  showFacteModal;
   currentMouseOverTalent = null;
+  currentMouseOverFacte: IFacte = null;
   pageXY = [];
   showAbilityModal = false;
   showTalentModal = false;
@@ -39,9 +42,7 @@ export class HeroesHeroComponent implements OnInit {
   // showHeroAghsDescModal
   showHeroAghsDescModal = false;
 
-  constructor(
-    private router: Router,
-  ) { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     const currentUrl = this.router.url;
@@ -51,13 +52,15 @@ export class HeroesHeroComponent implements OnInit {
     this.hero = heroes[heroId];
 
     // update the hero after click matchup other hero
-    this.router.events
-    .subscribe((event) => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // example url is /heroes/86/rankings
         const currentRoute = event.url.split('/')[3]; // Grab last route 'rankings'
         // if heroId change will dispatch the player data or won't dispatch
-        if (heroId !== +event.url.split('/')[2] && currentRoute !== 'rankings') {
+        if (
+          heroId !== +event.url.split('/')[2] &&
+          currentRoute !== 'rankings'
+        ) {
           this.hero = null;
           heroId = +event.url.split('/')[2]; // Grab middle id
           this.hero = heroes[heroId]; // Rerun the getPlayerData data
@@ -69,12 +72,16 @@ export class HeroesHeroComponent implements OnInit {
   }
 
   showAghsDescriptionLocal(heroId): void {
-    const heroAghs = this.aghsDesc.filter(i => i.hero_id === heroId)[0];
+    const heroAghs = this.aghsDesc.filter((i) => i.hero_id === heroId)[0];
     const abilitiesArr = this.extractAblitiesArr(this.abilities);
-    this.heroAghsDesc =  {
+    this.heroAghsDesc = {
       ...heroAghs,
-      scepter_img: abilitiesArr.find(i => i.dname === heroAghs?.scepter_skill_name).img,
-      shard_img: abilitiesArr.find(i => i.dname === heroAghs?.shard_skill_name).img,
+      scepter_img: abilitiesArr.find(
+        (i) => i.dname === heroAghs?.scepter_skill_name
+      ).img,
+      shard_img: abilitiesArr.find(
+        (i) => i.dname === heroAghs?.shard_skill_name
+      ).img,
     };
   }
 
@@ -100,5 +107,11 @@ export class HeroesHeroComponent implements OnInit {
     this.pageXY = [e.pageX - 480, e.pageY - 100];
     this.showTalentModal = true;
     this.currentMouseOverTalent = talents;
+  }
+
+  showFacteModalFn(e, facet): any {
+    this.pageXY = [e.pageX + 50, e.pageY - 120];
+    this.showFacteModal = true;
+    this.currentMouseOverFacte = facet;
   }
 }

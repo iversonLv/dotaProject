@@ -1,4 +1,4 @@
-@import '../../../../styles.scss';
+@import "../../../../styles.scss";
 // override the table style
 .mat-paginator {
   border: 1px solid rgba($color: $white, $alpha: 0.03);
@@ -19,7 +19,7 @@
     padding-left: 10px;
     overflow: hidden;
   }
-  
+
   th.mat-header-cell:last-of-type,
   td.mat-cell:last-of-type,
   td.mat-footer-cell:last-of-type {
@@ -46,7 +46,7 @@
       position: absolute;
     }
   }
-  
+
   .leaderboard-rank {
     position: absolute;
     display: inline-block;
@@ -65,12 +65,17 @@
   display: flex;
   align-items: center;
   position: relative;
-
+  ::ng-deep {
+    app-factes-icon .facet {
+      width: 32px;
+      height: 32px;
+      border-radius: 5px;
+    }
+  }
   .account_link {
     margin-left: 5px;
   }
 }
-
 
 .date-time {
   color: $gray;
@@ -78,7 +83,7 @@
   cursor: pointer;
   display: inline-block;
   padding-left: 5px;
-  
+
   .date-time-value {
     display: inline-block;
     width: 90px;
@@ -90,7 +95,6 @@
   flex-direction: column;
 }
 
-
 .kda-bar-box {
   position: relative;
 }
@@ -101,7 +105,6 @@
   width: 280%;
   cursor: pointer;
 }
-
 
 // matches
 .type-name {
@@ -146,7 +149,6 @@
   margin-left: 15px;
 }
 
-
 .hero-img,
 .land-role-img {
   cursor: pointer;
@@ -173,27 +175,27 @@
   &.item-color-rare {
     border-color: $item-rare;
   }
-  
+
   &.item-color-artifact {
     border-color: $item-artifact;
   }
-  
+
   &.item-color-secret-shop {
     border-color: $item-secret-shop;
   }
-  
+
   &.item-color-consumable {
     border-color: $item-consumable;
   }
-  
+
   &.item-color-common {
     border-color: $item-common;
   }
-  
+
   &.item-color-epic {
     border-color: $item-epic;
   }
-  
+
   &.item-color-component {
     border-color: $item-component;
   }

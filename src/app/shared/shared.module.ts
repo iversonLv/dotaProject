@@ -22,6 +22,7 @@ import { IconRoshanComponent } from './components/icons/icon-roshan/icon-roshan.
 import { RadientComponent } from './components/icons/radient/radient.component';
 import { DireComponent } from './components/icons/dire/dire.component';
 import { WinComponent } from './components/icons/win/win.component';
+import { FactesIconComponent } from './factes-icon/factes-icon.component';
 
 // charts
 import { CountChartComponent } from './components/count-chart/count-chart.component';
@@ -43,6 +44,7 @@ import { FirstBloodModalComponent } from './components/first-blood-modal/first-b
 import { RoshanKilledModalComponent } from './components/roshan-killed-modal/roshan-killed-modal.component';
 import { TeamFightModalComponent } from './components/team-fight-modal/team-fight-modal.component';
 import { ObsSenModalComponent } from './components/obs-sen-modal/obs-sen-modal.component';
+import { FactesModalComponent } from './factes-modal/factes-modal.component';
 
 // dialogs
 import { DialogPlayerListComponent } from './components/dialog-player-list/dialog-player-list.component';
@@ -80,6 +82,7 @@ import { ExtractPlayerDataFromAttackernamePipe } from './utils/extract-player-da
     RadientComponent,
     DireComponent,
     IconRoshanComponent,
+    FactesIconComponent,
 
     // modals
     HeroModalComponent,
@@ -93,6 +96,7 @@ import { ExtractPlayerDataFromAttackernamePipe } from './utils/extract-player-da
     TeamFightModalComponent,
     ObsSenModalComponent,
     TableGeneralComponent,
+    FactesModalComponent,
 
     // dialogs
     DialogPlayerListComponent,
@@ -147,6 +151,7 @@ import { ExtractPlayerDataFromAttackernamePipe } from './utils/extract-player-da
     RadientComponent,
     DireComponent,
     IconRoshanComponent,
+    FactesIconComponent,
 
     // modals
     HeroModalComponent,
@@ -160,6 +165,7 @@ import { ExtractPlayerDataFromAttackernamePipe } from './utils/extract-player-da
     TeamFightModalComponent,
     ObsSenModalComponent,
     TableGeneralComponent,
+    FactesModalComponent,
 
     // dialogs
     DialogPlayerListComponent,

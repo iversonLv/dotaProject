@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
@@ -6,7 +13,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 @Component({
   selector: 'app-table-match-detail-items',
   templateUrl: './table-match-detail-items.component.html',
-  styleUrls: ['./table-match-detail-items.component.scss']
+  styleUrls: ['./table-match-detail-items.component.scss'],
 })
 export class TableMatchDetailItemsComponent implements OnInit {
   @Input() data: any;
@@ -17,7 +24,7 @@ export class TableMatchDetailItemsComponent implements OnInit {
   @Output() showItemModalFn: any = new EventEmitter();
   @Output() hideItemModalFn: any = new EventEmitter();
 
-  @Input() enableConsumable;  // This is to control whether show purchase consumable items
+  @Input() enableConsumable; // This is to control whether show purchase consumable items
   @ViewChild(MatSort) set matSort(mp: MatSort) {
     this.sort = mp;
     this.setDataSourceAttributes();
@@ -26,13 +33,11 @@ export class TableMatchDetailItemsComponent implements OnInit {
   timeList: string[] = [];
 
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = [
-    'player_slot'
-  ];
+  displayedColumns: string[] = ['player_slot'];
 
   sort;
   finalData = [];
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.timeList = this.calTimeRangeData(this.data[0].purchase_log);
@@ -43,9 +48,19 @@ export class TableMatchDetailItemsComponent implements OnInit {
 
   // extract matches players[] to less data to meet for this page table
   extractData(data): any[] {
-    data.forEach(z => {
-      const { hero_id, player_slot, pred_vict, randomed, account_id, rank_tier, name, personaname,
-        purchase_log  } = z;
+    data.forEach((z) => {
+      const {
+        hero_id,
+        player_slot,
+        pred_vict,
+        randomed,
+        account_id,
+        rank_tier,
+        name,
+        personaname,
+        purchase_log,
+        hero_variant,
+      } = z;
 
       this.finalData.push({
         hero_id,
@@ -57,31 +72,37 @@ export class TableMatchDetailItemsComponent implements OnInit {
         name,
         personaname,
         // above is common data for player
-        ...this.extractPurchaseItemData(purchase_log)
+        ...this.extractPurchaseItemData(purchase_log),
+        hero_variant,
       });
     });
     return this.finalData;
   }
 
-   // set table sort
-   setDataSourceAttributes(): any {
+  // set table sort
+  setDataSourceAttributes(): any {
     this.dataSource.sort = this.sort;
   }
 
   extractPurchaseItemData(data): any {
     const finalPurchaseItemData = {};
-    this.calTimeRangeData(data).forEach(i => {
+    this.calTimeRangeData(data).forEach((i) => {
       if (i === '0') {
-        data.filter(x =>  x.time < i);
-        finalPurchaseItemData[i] = {data: data.filter(x =>  x.time < i), key: i};
+        data.filter((x) => x.time < i);
+        finalPurchaseItemData[i] = {
+          data: data.filter((x) => x.time < i),
+          key: i,
+        };
       } else {
-        data.filter(x =>   (x.time / 60) < +i && (x.time / 60) >= +i - 5);
-        finalPurchaseItemData[i] = {data: data.filter(x =>   (x.time / 60) < +i && (x.time / 60) >= (+i - 5)), key: i};
+        data.filter((x) => x.time / 60 < +i && x.time / 60 >= +i - 5);
+        finalPurchaseItemData[i] = {
+          data: data.filter((x) => x.time / 60 < +i && x.time / 60 >= +i - 5),
+          key: i,
+        };
       }
     });
     return finalPurchaseItemData;
   }
-
 
   // calTimeRangeData ["0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"]
   calTimeRangeData(data: any): string[] {
@@ -105,10 +126,10 @@ export class TableMatchDetailItemsComponent implements OnInit {
   // calItemTotal
   calItemTotal(data: any): number {
     if (data) {
-      return data.filter(i => this.items[i?.key]?.qual !== 'consumable').length;
+      return data.filter((i) => this.items[i?.key]?.qual !== 'consumable')
+        .length;
     } else {
       return 0;
     }
   }
-
 }

@@ -16,7 +16,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { IHeroes, IMatch, IMatchData } from 'src/app/matches/model/match';
 import { IheroLocal } from 'src/app/heros/model/heroLocal';
 import { IItemColorLocal } from 'src/app/shared/model/item_color';
-import { IRecentMatch, IRecentMatchData } from 'src/app/matches/model/recent-match';
+import {
+  IRecentMatch,
+  IRecentMatchData,
+} from 'src/app/matches/model/recent-match';
 
 // dotaconstants
 import heroes from 'dotaconstants/build/heroes.json';
@@ -25,19 +28,29 @@ import gameMode from 'dotaconstants/build/game_mode.json';
 import itemIds from 'dotaconstants/build/item_ids.json';
 import itemColors from 'dotaconstants/build/item_colors.json';
 import items from 'dotaconstants/build/items.json';
+import heroAbilities from 'dotaconstants/build/hero_abilities.json';
 
 // assets json which not exist in dotaconstatns
 import laneRole from '../../../../assets/data/lane_role.json';
 import leaverStatus from '../../../../assets/data/leaver_status.json';
+import { IFacte } from 'src/app/heros/model/facte';
 
 @Component({
   selector: 'app-table-matches',
   templateUrl: './table-matches.component.html',
-  styleUrls: ['./table-matches.component.scss']
+  styleUrls: ['./table-matches.component.scss'],
 })
 export class TableMatchesComponent implements OnInit {
   @Input() isRecentMatches = false;
-  @Input() displayedColumns: string[] = ['hero_id', 'lobby_type', 'game_mode', 'duration', 'kills', 'deaths', 'assists'];
+  @Input() displayedColumns: string[] = [
+    'hero_id',
+    'lobby_type',
+    'game_mode',
+    'duration',
+    'kills',
+    'deaths',
+    'assists',
+  ];
   @ViewChild(MatSort) set matSort(mp: MatSort) {
     this.sort = mp;
   }
@@ -65,9 +78,11 @@ export class TableMatchesComponent implements OnInit {
 
   // hero modal default hidden
   showHeroModal = false;
+  showFacteModal = false;
   showItemModal = false;
   currentMouseOverHero: IheroLocal = null;
   currentMouseOverItem: any = null;
+  currentMouseOverFacte: IFacte = null;
   pageXY = [];
 
   // if include_account_id will show agaist or with
@@ -75,6 +90,7 @@ export class TableMatchesComponent implements OnInit {
 
   // User for hero modal to mapping
   heroes: any = heroes;
+  heroAbilities: any = heroAbilities;
   lobbyType: any = lobbyType;
   gameMode: any = gameMode;
   laneRole: any = laneRole;
@@ -83,11 +99,11 @@ export class TableMatchesComponent implements OnInit {
   items: any = items;
   itemColors: IItemColorLocal = itemColors;
 
-  matchesLength:number = 0
-  pageSize: number = 20
-  pageIndex: number = 0
+  matchesLength: number = 0;
+  pageSize: number = 20;
+  pageIndex: number = 0;
 
-  accountId
+  accountId;
 
   // table for matches
   // displayedColumnsItems: string[] = ['hero_id', 'result', 'game_mode', 'duration', 'kills', 'deaths', 'assists', 'items'];
@@ -97,60 +113,81 @@ export class TableMatchesComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<{
-      playersMatches: IMatchData,
-      playersRecentMatches: IRecentMatchData,
+      playersMatches: IMatchData;
+      playersRecentMatches: IRecentMatchData;
     }>
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const currentUrl = this.router.url;
     this.accountId = +currentUrl.split('/')[2];
-    this.activatedRoute.queryParamMap.subscribe(data => this.queryParams = data);
+    this.activatedRoute.queryParamMap.subscribe(
+      (data) => (this.queryParams = data)
+    );
 
     if (!this.isRecentMatches) {
-      this.store.dispatch(new playersActions.LoadPlayersMatches(this.accountId, this.pageSize, this.pageIndex, this.queryParams));
+      this.store.dispatch(
+        new playersActions.LoadPlayersMatches(
+          this.accountId,
+          this.pageSize,
+          this.pageIndex,
+          this.queryParams
+        )
+      );
 
       // load player matches
-      this.store.select('playersMatches').subscribe(data => {
-        this.isLoading = data.isLoading;
-        if (!data.isLoading) {
+      this.store.select('playersMatches').subscribe(
+        (data) => {
+          this.isLoading = data.isLoading;
+          if (!data.isLoading) {
             const dataMatches = [...data.matches];
-            this.matchesLength = data.matchesLength
+            this.matchesLength = data.matchesLength;
             this.isLoading = data.isLoading;
-            return this.dataSource.data = dataMatches;
+            return (this.dataSource.data = dataMatches);
           }
-      }, err => {
-        console.log(err);
-      });
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
     } else {
-      this.store.dispatch(new playersActions.LoadPlayersRecentMatches(this.accountId));
-      this.store.select('playersRecentMatches').subscribe(data => {
-        this.isLoading = data.isLoading;
-        if (!data.isLoading) {
+      this.store.dispatch(
+        new playersActions.LoadPlayersRecentMatches(this.accountId)
+      );
+      this.store.select('playersRecentMatches').subscribe(
+        (data) => {
+          this.isLoading = data.isLoading;
+          if (!data.isLoading) {
             const dataRecentMatches = [...data.matches];
             this.isLoading = data.isLoading;
-            return this.dataSource.data = dataRecentMatches;
+            return (this.dataSource.data = dataRecentMatches);
           }
-      }, err => {
-        console.log(err);
-      });
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
     }
-
   }
 
   calAgaistOrWith(mySlot: number, heroesData: IHeroes): any {
     // grab user agaist or width id from queryParams
     const agaistOrWithId = +this.queryParams.params.included_account_id;
     // find user from request data heroes obj to match the id
-    const agaistOrWithHero = Object.values(heroesData).find(item => item.account_id === agaistOrWithId);
+    const agaistOrWithHero = Object.values(heroesData).find(
+      (item) => item.account_id === agaistOrWithId
+    );
     // find this user slot
     const agaistOrWithSlot = agaistOrWithHero?.player_slot;
     // console.log(mySlot, agaistOrWithHero)
     // comapre 2 players slot whether they are at the same side
-    if ((mySlot > 100 && agaistOrWithSlot > 100) || (mySlot < 5 && agaistOrWithSlot < 5)) {
-     return 'With';
+    if (
+      (mySlot > 100 && agaistOrWithSlot > 100) ||
+      (mySlot < 5 && agaistOrWithSlot < 5)
+    ) {
+      return 'With';
     } else {
-     return 'Agaist';
+      return 'Agaist';
     }
   }
 
@@ -169,10 +206,16 @@ export class TableMatchesComponent implements OnInit {
       this.paginator.page.emit(event);
 
       this.pageIndex = event.pageIndex;
-      this.store.dispatch(new playersActions.LoadPlayersMatches(this.accountId, event.pageSize, event.pageIndex, this.queryParams));
+      this.store.dispatch(
+        new playersActions.LoadPlayersMatches(
+          this.accountId,
+          event.pageSize,
+          event.pageIndex,
+          this.queryParams
+        )
+      );
     }
   }
-  
 
   showHeroModalFn(e, id): any {
     this.pageXY = [e.pageX + 50, e.pageY - 120];
@@ -186,8 +229,13 @@ export class TableMatchesComponent implements OnInit {
     this.currentMouseOverItem = this.items[this.itemIds[id]];
   }
 
-  trackBy = (index: number, item: any) => {
-    return item.match_id;
+  showFacteModalFn(e, facet): any {
+    this.pageXY = [e.pageX + 50, e.pageY - 120];
+    this.showFacteModal = true;
+    this.currentMouseOverFacte = facet;
   }
 
+  trackBy = (index: number, item: any) => {
+    return item.match_id;
+  };
 }

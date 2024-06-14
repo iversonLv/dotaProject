@@ -1,0 +1,7 @@
+<div *ngIf="facet" class="facet" [style]="'background: linear-gradient(to right, '+facet?.color+', rgba(0, 0,0, 1));'">
+
+  <app-img class="md-abilities-img" general_img_url="true" [data]="'icons/facets/'+facet?.icon +'.png'"
+    [altData]="facet.title">
+  </app-img>
+
+</div>

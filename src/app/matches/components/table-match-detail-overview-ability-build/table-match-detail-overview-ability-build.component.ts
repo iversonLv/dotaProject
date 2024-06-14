@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 
 // material
 import { MatSort } from '@angular/material/sort';
@@ -10,7 +17,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 @Component({
   selector: 'app-table-match-detail-overview-ability-build',
   templateUrl: './table-match-detail-overview-ability-build.component.html',
-  styleUrls: ['./table-match-detail-overview-ability-build.component.scss']
+  styleUrls: ['./table-match-detail-overview-ability-build.component.scss'],
 })
 export class TableMatchDetailOverviewAbilityBuildComponent implements OnInit {
   @Input() data: any;
@@ -53,11 +60,11 @@ export class TableMatchDetailOverviewAbilityBuildComponent implements OnInit {
     '22',
     '23',
     '24',
-    '25'
+    '25',
   ];
   sort;
   finalData = [];
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     // extract the data
@@ -65,9 +72,18 @@ export class TableMatchDetailOverviewAbilityBuildComponent implements OnInit {
   }
   // extract matches players[] to less data to meet for this page table
   extractData(data): any[] {
-    data.forEach(z => {
-      const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
-      ability_upgrades_arr } = z;
+    data.forEach((z) => {
+      const {
+        hero_id,
+        player_slot,
+        pred_vict,
+        account_id,
+        rank_tier,
+        name,
+        personaname,
+        ability_upgrades_arr,
+        hero_variant,
+      } = z;
 
       this.finalData.push({
         hero_id,
@@ -78,7 +94,9 @@ export class TableMatchDetailOverviewAbilityBuildComponent implements OnInit {
         name,
         personaname,
         // above is common data for player
-        ability_upgrades_arr: this.addPlaceholderForAbilityUpgradesArr(ability_upgrades_arr)
+        ability_upgrades_arr:
+          this.addPlaceholderForAbilityUpgradesArr(ability_upgrades_arr),
+        hero_variant,
       });
     });
 
@@ -104,5 +122,4 @@ export class TableMatchDetailOverviewAbilityBuildComponent implements OnInit {
       return arr;
     }
   }
-
 }

@@ -6,7 +6,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 @Component({
   selector: 'app-table-match-detail-analysis',
   templateUrl: './table-match-detail-analysis.component.html',
-  styleUrls: ['./table-match-detail-analysis.component.scss']
+  styleUrls: ['./table-match-detail-analysis.component.scss'],
 })
 export class TableMatchDetailAnalysisComponent implements OnInit {
   @Input() data: any;
@@ -21,16 +21,11 @@ export class TableMatchDetailAnalysisComponent implements OnInit {
   }
 
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = [
-    'player_slot',
-    'analysis',
-    'lane',
-    'lane_role'
-  ];
+  displayedColumns: string[] = ['player_slot', 'analysis', 'lane', 'lane_role'];
 
   sort;
   finalData = [];
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     // extract the data
@@ -39,10 +34,20 @@ export class TableMatchDetailAnalysisComponent implements OnInit {
 
   // extract matches players[] to less data to meet for this page table
   extractData(data): any[] {
-    data.forEach(z => {
-      const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
+    data.forEach((z) => {
+      const {
+        hero_id,
+        player_slot,
+        pred_vict,
+        account_id,
+        rank_tier,
+        name,
+        personaname,
         lane,
-        lane_role, lane_efficiency  } = z;
+        lane_role,
+        lane_efficiency,
+        hero_variant,
+      } = z;
 
       this.finalData.push({
         hero_id,
@@ -55,7 +60,8 @@ export class TableMatchDetailAnalysisComponent implements OnInit {
         // above is common data for player
         lane,
         lane_role,
-        lane_efficiency
+        lane_efficiency,
+        hero_variant,
       });
     });
     return this.finalData;
@@ -65,5 +71,4 @@ export class TableMatchDetailAnalysisComponent implements OnInit {
   setDataSourceAttributes(): any {
     this.dataSource.sort = this.sort;
   }
-
 }

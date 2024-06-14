@@ -17,6 +17,15 @@
               [matTooltip]="leaverStatus[element?.leaver_status]?.name | nameDestruct: '_': '1': 'upperCase'"
               matTooltipPosition="above"> directions_run</mat-icon>
             <app-parsed-mark *ngIf="element.version"></app-parsed-mark>
+            <!-- factes -->
+            <div class="hero-facets"
+              *ngIf="heroAbilities && heroes && heroAbilities[heroes[element['hero_id']]['name']]?.facets">
+              <app-factes-icon
+                (mouseover)="showFacteModalFn($event, heroAbilities[heroes[element['hero_id']]['name']]?.facets[element['hero_variant'] - 1])"
+                (mouseout)="showFacteModal=false; currentMouseOverFacte = null"
+                [facet]="heroAbilities[heroes[element['hero_id']]['name']]?.facets[element['hero_variant'] - 1]"></app-factes-icon>
+            </div>
+
             <app-img *ngIf="heroes[element['hero_id']]?.img" [data]="heroes[element['hero_id']]?.img"
               class="hero-img sm-hero-img" [altData]="heroes[element['hero_id']]?.localized_name"
               (mouseover)="showHeroModalFn($event, element['hero_id'])"
@@ -210,3 +219,6 @@
 </app-hero-modal>
 <app-item-modal [items]="items" *ngIf="showItemModal" [item]='currentMouseOverItem' [pageXY]='pageXY'
   class="item-modal"></app-item-modal>
+
+<app-factes-modal *ngIf="showFacteModal" [facet]='currentMouseOverFacte' [pageXY]='pageXY'
+  class="facte-modal"></app-factes-modal>

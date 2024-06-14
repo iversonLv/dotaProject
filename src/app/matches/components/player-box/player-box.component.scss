@@ -1,9 +1,17 @@
-@import '../../../../styles.scss';
+@import "../../../../styles.scss";
 
 .ver-align {
   display: flex;
   align-items: center;
   width: 183px; // for match detail fixed this column width then other column will align well
+
+  ::ng-deep {
+    app-factes-icon .facet {
+      width: 32px;
+      height: 32px;
+      border-radius: 5px;
+    }
+  }
 
   .account_link {
     margin-left: 5px;
@@ -18,12 +26,12 @@
   padding: 5px;
   display: flex;
   flex-direction: column;
-  
+
   .account-name {
     display: flex;
     padding-left: 5px;
-  
-   .players-confirmed {
+
+    .players-confirmed {
       font-size: 14px;
       width: 14px;
       height: 14px;
@@ -50,7 +58,6 @@
   }
 }
 
-
 // rank tier
 .rank-tier {
   top: 8px;
@@ -67,7 +74,7 @@
       position: absolute;
     }
   }
-  
+
   .leaderboard-rank {
     position: absolute;
     display: inline-block;

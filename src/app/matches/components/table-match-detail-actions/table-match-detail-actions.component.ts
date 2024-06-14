@@ -10,7 +10,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 @Component({
   selector: 'app-table-match-detail-actions',
   templateUrl: './table-match-detail-actions.component.html',
-  styleUrls: ['./table-match-detail-actions.component.scss']
+  styleUrls: ['./table-match-detail-actions.component.scss'],
 })
 export class TableMatchDetailActionsComponent implements OnInit {
   @Input() data: any;
@@ -48,39 +48,39 @@ export class TableMatchDetailActionsComponent implements OnInit {
     },
     2: {
       tooltip: 'Number of times the player moved to a target',
-      title: 'MV (T)'
+      title: 'MV (T)',
     },
     3: {
       tooltip: 'Number of times the player attacked a position (attack move)',
-      title: 'ATK (P)'
+      title: 'ATK (P)',
     },
     4: {
       tooltip: 'Number of times the player attacked a target',
-      title: 'ATK (T)'
+      title: 'ATK (T)',
     },
     5: {
       tooltip: 'Number of times the player cast on a position',
-      title: 'CST (P)'
+      title: 'CST (P)',
     },
     6: {
       tooltip: 'Number of times the player cast on a target',
-      title: 'CST (T)'
+      title: 'CST (T)',
     },
     8: {
       tooltip: 'Number of times the player cast on no target',
-      title: 'CST (N)'
+      title: 'CST (N)',
     },
     10: {
       tooltip: 'Number of times the player held position',
-      title: 'HLD'
+      title: 'HLD',
     },
     24: {
       tooltip: 'Number of times the player used the glyph',
-      title: 'GLYPH'
+      title: 'GLYPH',
     },
     31: {
       tooltip: 'Number of times the player used scan',
-      title: 'SCN'
+      title: 'SCN',
     },
   };
   // call largest data for bar chart
@@ -95,9 +95,9 @@ export class TableMatchDetailActionsComponent implements OnInit {
     8: null,
     10: null,
     24: null,
-    31: null
+    31: null,
   };
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     // extract the data
@@ -108,8 +108,20 @@ export class TableMatchDetailActionsComponent implements OnInit {
   extractData(data): any[] {
     const finalData = [];
     this.getLargestData(data);
-    data.forEach(z => {
-      const { hero_id, player_slot, randomed, pred_vict, account_id, rank_tier, name, personaname, actions_per_min, actions } = z;
+    data.forEach((z) => {
+      const {
+        hero_id,
+        player_slot,
+        randomed,
+        pred_vict,
+        account_id,
+        rank_tier,
+        name,
+        personaname,
+        actions_per_min,
+        actions,
+        hero_variant,
+      } = z;
       finalData.push({
         hero_id,
         pred_vict,
@@ -121,7 +133,8 @@ export class TableMatchDetailActionsComponent implements OnInit {
         personaname,
         // above is common data for player
         actions_per_min,
-        ...actions // here will extract number of actions obj to mapping the sort displayedColumns
+        hero_variant,
+        ...actions, // here will extract number of actions obj to mapping the sort displayedColumns
       });
     });
 
@@ -134,7 +147,9 @@ export class TableMatchDetailActionsComponent implements OnInit {
   }
 
   getLargestData(data: any): any {
-    this.teamsLargest.actions_per_min = Math.max(...data.map(item => item.actions_per_min));
+    this.teamsLargest.actions_per_min = Math.max(
+      ...data.map((item) => item.actions_per_min)
+    );
     this.getNotUndefinedData(data, '1');
     this.getNotUndefinedData(data, '2');
     this.getNotUndefinedData(data, '3');
@@ -149,8 +164,9 @@ export class TableMatchDetailActionsComponent implements OnInit {
   }
 
   getNotUndefinedData(data: any, field: string): any {
-    const dataFilter = data.filter(i => i.actions[field] !== undefined);
-    return this.teamsLargest[field] = Math.max(...dataFilter.map(item => item.actions[field]));
+    const dataFilter = data.filter((i) => i.actions[field] !== undefined);
+    return (this.teamsLargest[field] = Math.max(
+      ...dataFilter.map((item) => item.actions[field])
+    ));
   }
-
 }

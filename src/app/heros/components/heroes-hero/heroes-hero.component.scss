@@ -1,11 +1,11 @@
-@import '../../../../styles.scss';
+@import "../../../../styles.scss";
 
 .heroes-box {
   margin: 30px auto 0;
   width: 1200px;
   border-radius: 8px;
   position: relative;
-  background: rgba($color: $black, $alpha: .9);
+  background: rgba($color: $black, $alpha: 0.9);
 
   .heroes-bg {
     position: absolute;
@@ -15,7 +15,7 @@
     height: 100%;
     width: 100%;
     right: 0;
-    filter: blur(25px); 
+    filter: blur(25px);
     object-fit: cover;
     opacity: 0.35;
   }
@@ -28,7 +28,10 @@
   align-items: center;
   justify-content: space-between;
 
-
+  .hero-main-left-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
   .hero-main-left {
     position: relative;
     display: flex;
@@ -52,28 +55,27 @@
       font-size: 14px;
       align-items: center;
       justify-content: space-around;
-        
+
       label {
-        opacity: .7;
+        opacity: 0.7;
       }
-    
+
       .hero-hp {
         color: $green;
       }
-      
+
       .hero-mp {
         color: $dark-blue;
       }
-    }    
+    }
 
-    
-  .hero-img {
-    border-radius: 10px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    display: inline-block;
-    box-shadow: rgba($black, 0.4) 0px 0px 15px 2px;
-  }
+    .hero-img {
+      border-radius: 10px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      display: inline-block;
+      box-shadow: rgba($black, 0.4) 0px 0px 15px 2px;
+    }
 
     .hero-primary-attr {
       width: 20px;
@@ -93,7 +95,6 @@
       }
     }
   }
-
 
   h3 {
     color: $white;
@@ -130,15 +131,15 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      
+
       &.hero-attr-row-hero-str {
         color: $hero-str;
       }
-      
+
       &.hero-attr-row-hero-int {
         color: $hero-int;
       }
-      
+
       &.hero-attr-row-hero-agi {
         color: $hero-agi;
       }
@@ -156,10 +157,26 @@
       }
     }
   }
-  
 
   .hero-main-right {
     min-width: 360px;
+  }
+}
+// hero-facets
+.hero-facets {
+  padding-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  app-img {
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: rgba($black, 0.4) 0px 0px 15px 2px;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 
@@ -177,9 +194,9 @@
       display: inline-block;
       box-shadow: rgba($black, 40%) 0px 0px 15px 2px;
     }
-    
+
     &:hover {
-      opacity: .8;
+      opacity: 0.8;
     }
   }
 
@@ -199,7 +216,7 @@
     cursor: pointer;
 
     &:hover {
-      opacity: .8;
+      opacity: 0.8;
     }
 
     .aghanims-scepter {
@@ -209,7 +226,7 @@
 
     .aghanims-shard {
       height: 24px;
-      width: 45px
+      width: 45px;
     }
   }
 
@@ -233,12 +250,10 @@
       height: 15px;
       line-height: 15px;
     }
-    
+
     &:first-child {
       margin-left: 0;
     }
-
-    
   }
 }
 
@@ -265,41 +280,41 @@
     flex-direction: row;
     justify-content: space-between;
   }
-  
-    .heroes-sub-box-col {
-      width: calc(25% - 20px);
-      margin: 10px;
 
-      .heroes-sub-box-row {
-        display: flex;
-        justify-content: space-between;
-        font-size: 12px;
-        padding: 5px 10px;
-        background-color: rgba($color: $black, $alpha: .5);
+  .heroes-sub-box-col {
+    width: calc(25% - 20px);
+    margin: 10px;
 
-        &:nth-child(odd) {
-          background-color: rgba($color: $black, $alpha: .3);
-        }
+    .heroes-sub-box-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      padding: 5px 10px;
+      background-color: rgba($color: $black, $alpha: 0.5);
 
-        label {
-          display: inline-block;
-          width: 150px;
-        }
+      &:nth-child(odd) {
+        background-color: rgba($color: $black, $alpha: 0.3);
+      }
+
+      label {
+        display: inline-block;
+        width: 150px;
       }
     }
+  }
 }
 
 .hero-str {
   background: $hero-str;
-  background: linear-gradient(135deg, $hero-str 0%, rgba(0,0,0,1) 65%);
+  background: linear-gradient(135deg, $hero-str 0%, rgba(0, 0, 0, 1) 65%);
 }
 
 .hero-int {
   background: $hero-int;
-  background: linear-gradient(135deg, $hero-int 0%, rgba(0,0,0,1) 65%);
+  background: linear-gradient(135deg, $hero-int 0%, rgba(0, 0, 0, 1) 65%);
 }
 
 .hero-agi {
   background: $hero-agi;
-  background: linear-gradient(135deg, $hero-agi 0%, rgba(0,0,0,1) 65%);
+  background: linear-gradient(135deg, $hero-agi 0%, rgba(0, 0, 0, 1) 65%);
 }

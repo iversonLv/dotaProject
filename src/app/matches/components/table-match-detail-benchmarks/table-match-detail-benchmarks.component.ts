@@ -84,6 +84,7 @@ export class TableMatchDetailBenchmarksComponent implements OnInit {
         name,
         personaname,
         benchmarks,
+        hero_variant,
       } = z;
       finalData.push({
         hero_id,
@@ -96,6 +97,7 @@ export class TableMatchDetailBenchmarksComponent implements OnInit {
         randomed,
         // above is common data for player
         benchmarks,
+        hero_variant,
       });
     });
     return finalData;

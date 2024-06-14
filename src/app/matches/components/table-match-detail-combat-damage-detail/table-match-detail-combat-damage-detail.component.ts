@@ -58,6 +58,7 @@ export class TableMatchDetailCombatDamageDetailComponent implements OnInit {
         damage_inflictor_received,
         damage_targets,
         damage_inflictor,
+        hero_variant,
       } = z;
       finalData.push({
         hero_id,
@@ -74,6 +75,7 @@ export class TableMatchDetailCombatDamageDetailComponent implements OnInit {
         ),
         damage_inflictor: this.extractObjToArry(damage_inflictor),
         damage_targets,
+        hero_variant,
       });
     });
 

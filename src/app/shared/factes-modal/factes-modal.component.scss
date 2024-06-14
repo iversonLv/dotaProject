@@ -1,0 +1,36 @@
+@import "../../../styles.scss";
+
+.facte-tooltip {
+  width: 300px;
+  position: absolute;
+  z-index: 10;
+}
+header {
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 64px;
+
+  app-img {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+    ::ng-deep {
+      img {
+        width: 70%;
+        height: 70%;
+      }
+    }
+  }
+}
+
+p {
+  background: #151b1d;
+  padding: 10px;
+  color: white;
+}

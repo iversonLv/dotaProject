@@ -109,6 +109,7 @@ export class TableLogComponent implements OnInit {
           personaname,
           randomed,
           isRadiant,
+          hero_variant,
         } = playerOverallData;
         const player = {
           hero_id,
@@ -119,6 +120,7 @@ export class TableLogComponent implements OnInit {
           name,
           personaname,
           randomed,
+          hero_variant,
         };
         specificLogData.push({
           ...i,
@@ -166,6 +168,7 @@ export class TableLogComponent implements OnInit {
         personaname,
         randomed,
         isRadiant,
+        hero_variant,
       } = i;
       const log = [];
       const player = {
@@ -177,6 +180,7 @@ export class TableLogComponent implements OnInit {
         name,
         personaname,
         randomed,
+        hero_variant,
       };
       i[field + '_log'].forEach((l) => {
         log.push({

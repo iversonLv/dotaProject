@@ -1,0 +1,10 @@
+<div *ngIf="facet" class="facte-tooltip" [style]="'left:' + pageXY[0] + 'px; top:' + pageXY[1] + 'px'">
+  <header [style]="'background: linear-gradient(to right, '+facet?.color+', rgba(0, 0,0, 1));'">
+    <app-img general_img_url="true" [data]="'icons/facets/'+facet?.icon +'.png'" [altData]="facet.title">
+    </app-img>
+    <span>
+      {{facet.title}}
+    </span>
+  </header>
+  <p>{{facet.description}}</p>
+</div>

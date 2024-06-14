@@ -6,7 +6,7 @@ import { IheroLocal } from 'src/app/heros/model/heroLocal';
 @Component({
   selector: 'app-table-match-detail-last-hits',
   templateUrl: './table-match-detail-last-hits.component.html',
-  styleUrls: ['./table-match-detail-last-hits.component.scss']
+  styleUrls: ['./table-match-detail-last-hits.component.scss'],
 })
 export class TableMatchDetailLastHitsComponent implements OnInit {
   @Input() data: any;
@@ -20,13 +20,11 @@ export class TableMatchDetailLastHitsComponent implements OnInit {
   lastHitTimeList: string[] = [];
 
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = [
-    'player_slot'
-  ];
+  displayedColumns: string[] = ['player_slot'];
 
   sort;
   finalData = [];
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.lastHitTimeList = this.calLastHitData(this.data[0].lh_t);
@@ -36,9 +34,19 @@ export class TableMatchDetailLastHitsComponent implements OnInit {
   }
   // extract matches players[] to less data to meet for this page table
   extractData(data): any[] {
-    data.forEach(z => {
-      const { hero_id, player_slot, randomed, pred_vict, account_id, rank_tier, name, personaname,
-        lh_t  } = z;
+    data.forEach((z) => {
+      const {
+        hero_id,
+        player_slot,
+        randomed,
+        pred_vict,
+        account_id,
+        rank_tier,
+        name,
+        personaname,
+        lh_t,
+        hero_variant,
+      } = z;
 
       this.finalData.push({
         hero_id,
@@ -50,7 +58,8 @@ export class TableMatchDetailLastHitsComponent implements OnInit {
         name,
         personaname,
         // above is common data for player
-        ...this.extractLastHit(lh_t)
+        ...this.extractLastHit(lh_t),
+        hero_variant,
       });
     });
     return this.finalData;
@@ -65,22 +74,24 @@ export class TableMatchDetailLastHitsComponent implements OnInit {
     const finalObj = {
       value: null,
       key: null,
-      increase: null
+      increase: null,
     };
     const final = {};
-    this.lastHitTimeList.slice(1).forEach(x => {
+    this.lastHitTimeList.slice(1).forEach((x) => {
       finalObj.value = data[x];
       finalObj.key = x;
       finalObj.increase = data[x] - data[+x - 5];
-      final[x] = {...finalObj};
+      final[x] = { ...finalObj };
     });
     return final;
   }
 
   // cal last hit bottom total
   calTotalData(data: any, field: string, time: number): any {
-    if (data.filter(i => i[field]).length !== 0) {
-      const totalNum =  data.map(i => i[field][time]).reduce((cur, total) => cur + total, 0);
+    if (data.filter((i) => i[field]).length !== 0) {
+      const totalNum = data
+        .map((i) => i[field][time])
+        .reduce((cur, total) => cur + total, 0);
       return totalNum === 0 ? '-' : totalNum;
     } else {
       return '-';
@@ -88,8 +99,15 @@ export class TableMatchDetailLastHitsComponent implements OnInit {
   }
 
   // cal perfect data only for one level sub field for bar chart
-  calPerfectData(data: any, field: string, time: number, min: string = ''): number {
-    const dataField = data.map(item => item[field][time]).filter(i => i !== undefined);
+  calPerfectData(
+    data: any,
+    field: string,
+    time: number,
+    min: string = ''
+  ): number {
+    const dataField = data
+      .map((item) => item[field][time])
+      .filter((i) => i !== undefined);
     if (!min) {
       return Math.max(...dataField);
     } else {
@@ -106,5 +124,4 @@ export class TableMatchDetailLastHitsComponent implements OnInit {
     }
     return lastHitRange;
   }
-
 }

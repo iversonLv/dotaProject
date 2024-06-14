@@ -64,6 +64,7 @@ export class TableMatchDetailCastsComponent implements OnInit {
         ability_uses,
         ability_targets,
         randomed,
+        hero_variant,
       } = z;
       finalData.push({
         hero_id,
@@ -79,6 +80,7 @@ export class TableMatchDetailCastsComponent implements OnInit {
         item_uses: this.extractObjToArry(item_uses),
         ability_uses: this.extractObjToArry(ability_uses),
         ability_targets,
+        hero_variant,
       });
     });
 

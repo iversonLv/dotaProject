@@ -11,7 +11,7 @@ import { ICosmetic } from 'src/app/shared/model/cosmetic';
 @Component({
   selector: 'app-table-cosmetics',
   templateUrl: './table-cosmetics.component.html',
-  styleUrls: ['./table-cosmetics.component.scss']
+  styleUrls: ['./table-cosmetics.component.scss'],
 })
 export class TableCosmeticsComponent implements OnInit {
   @Input() data: any;
@@ -24,10 +24,7 @@ export class TableCosmeticsComponent implements OnInit {
   }
 
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = [
-    'player_slot',
-    'cosmetics'
-  ];
+  displayedColumns: string[] = ['player_slot', 'cosmetics'];
   sort;
   finalData = [];
 
@@ -36,7 +33,7 @@ export class TableCosmeticsComponent implements OnInit {
   showCosmeticModal = false;
   currentMouseOverCosmetic: ICosmetic = null;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     // extract the data
@@ -44,9 +41,18 @@ export class TableCosmeticsComponent implements OnInit {
   }
 
   extractData(data): any[] {
-    data.forEach(z => {
-      const { hero_id, player_slot, pred_vict, account_id, rank_tier, name, personaname,
-        cosmetics, randomed
+    data.forEach((z) => {
+      const {
+        hero_id,
+        player_slot,
+        pred_vict,
+        account_id,
+        rank_tier,
+        name,
+        personaname,
+        cosmetics,
+        randomed,
+        hero_variant,
       } = z;
 
       this.finalData.push({
@@ -59,9 +65,9 @@ export class TableCosmeticsComponent implements OnInit {
         personaname,
         randomed,
         // above is common data for player
-        cosmetics
+        cosmetics,
+        hero_variant,
       });
-
     });
     return this.finalData;
   }
