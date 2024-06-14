@@ -13,7 +13,7 @@ export const environment = {
   ABILITY_IMG_URL:
     'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities',
   GENERAL_IMG_URL:
-    'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react',
+    'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/',
   ERROR_IMG: "this.src='./assets/images/Dota2Logo.svg'",
   STEAMCDN: 'https://steamcdn-a.akamaihd.net',
   OPENDOTA: 'https://www.opendota.com/',
