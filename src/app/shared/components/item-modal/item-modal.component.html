@@ -16,13 +16,43 @@
     </div>
   </div>
   <!-- item-main -->
+  <div class="item-behavior" *ngIf="item?.behavior > 0">
+    <label>TARGET:</label>
+    <span *ngFor="let behavior of item.behavior">{{behavior}} /</span>
+  </div>
+  <div class="item-dispellable" *ngIf="item?.dispellable">
+    <label>DISPELLABLE:</label> {{item?.dispellable}}
+  </div>
   <div class="item-attrib" *ngIf="item.attrib">
     <p *ngFor="let attribItem of item.attrib" class="attrib-row">
-      <span>{{attribItem.header}}</span> {{attribItem.value}} <span>{{attribItem.footer}}</span>
+      <span>{{replaceValueInDisplay(attribItem)}}</span>
     </p>
   </div>
+  <!-- item abilities -->
+  <div class="item-abilities" *ngIf="item.abilities.length > 0">
+    <div *ngFor="let ability of item.abilities" [class]="'item-ability item-ability-' + ability.type ">
+      <div class="item-ability-title">
+        <h2>{{ability.type}}: {{ability.title}}</h2>
+        <div *ngIf="ability.type === 'active'">
+          <div class="item-mc-cd">
+            <span class="item-mc" *ngIf="item.mc">
+              <img onError="this.src='./assets/images/Dota2Logo.svg'" width="15px" height="15px"
+                src="assets/images/mana.png">
+              <span class="item-value">{{item.mc}}</span>
+            </span>
+            <span class="item-cd" *ngIf="item.cd">
+              <img onError="this.src='./assets/images/Dota2Logo.svg'" width="15px" height="15px"
+                src="assets/images/cooldown.png">
+              <span class="item-value">{{item.cd}}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <p class="item-ability-content">{{ability.description}}</p>
+    </div>
+  </div>
   <!-- item-attrib -->
-  <div class="item-hint" *ngIf="item.hint">
+  <div class="item-hint" *ngIf="item.hint.length > 0">
     <p *ngFor="let hint of item.hint" class="hint-row">
       {{hint}}
     </p>
@@ -41,13 +71,9 @@
         </app-img>
         <span *ngIf="items" class="item-cost">{{items[component]?.cost}}</span>
       </span>
-      <span class="components-block">
-        <app-img [data]="items['recipe_' + item?.img.slice(25).split('_lg')[0]]?.img"
-          *ngIf="items && items['recipe_' + item?.img.slice(25).split('_lg')[0]]?.img" class="sb-item-img"
-          [altData]="item['dname']">
-        </app-img>
-        <span *ngIf="items && items['recipe_' + item?.img.slice(25).split('_lg')[0]]?.cost"
-          class="item-cost">{{items['recipe_' + item?.img.slice(25).split('_lg')[0]]['cost']}}</span>
+      <span class="components-block" *ngIf="item.created">
+        <img onError="this.src='./assets/images/Dota2Logo.svg'" width="40" src='./assets/images/recipe.png' />
+        <span class="item-cost">{{calRecipeCost(item)}}</span>
       </span>
     </div>
   </div>

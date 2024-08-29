@@ -232,7 +232,8 @@
   <ng-container matColumnDef="permanent_buffs">
     <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="true"
       matTooltip="Permanent buffs such as Flesh Heap stacks or Tomes of Knowledge used" matTooltipPosition="above">
-      <span> BUFF</span></th>
+      <span> BUFF</span>
+    </th>
     <td mat-cell *matCellDef="let element">
       <span *ngIf="!element.permanent_buffs; else hasPermanentBuffs">-</span>
       <ng-template #hasPermanentBuffs>

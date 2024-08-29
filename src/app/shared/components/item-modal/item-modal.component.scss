@@ -1,5 +1,4 @@
-@import '../../../../styles.scss';
-
+@import "../../../../styles.scss";
 
 .item-tooltip {
   border: 2px solid $deep;
@@ -13,7 +12,7 @@
 .item-main {
   display: flex;
   padding-bottom: 10px;
-  
+
   .item-main-right {
     display: flex;
     flex-direction: column;
@@ -37,8 +36,7 @@
   }
 }
 
-.item-attrib
-{
+.item-attrib {
   font-size: 12px;
   padding-bottom: 10px;
 
@@ -99,12 +97,11 @@
   }
 }
 
-
 // aghs
 
 .aghs-box {
   padding: 15px;
-  border-top: 1px solid rgba($color: $white, $alpha: .3);
+  border-top: 1px solid rgba($color: $white, $alpha: 0.3);
 }
 
 .new-ablility {
@@ -116,4 +113,68 @@
 .enhance-ablility {
   font-size: 12px;
   color: $green;
+}
+
+// item-mc-cd
+.item-mc-cd {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.item-mc,
+.item-cd {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+// abilities
+.item-ability {
+  font-size: 13px;
+  .item-ability-title {
+    padding: 0 0.5em;
+  }
+  .item-ability-content {
+    padding: 0.5em;
+  }
+  .item-ability-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      margin: 0;
+    }
+  }
+}
+.item-ability-active {
+  color: rgb(122, 128, 167);
+  .item-ability-title {
+    color: rgb(159, 159, 207);
+    background: linear-gradient(to right, rgb(55, 59, 127), rgb(24, 30, 48));
+  }
+  .item-ability-content {
+    background: rgb(24, 30, 48);
+  }
+}
+
+.item-ability-passive {
+  color: rgb(98, 109, 123);
+  .item-ability-title {
+    color: rgb(126, 140, 157);
+    background: linear-gradient(to right, rgb(38, 53, 64), rgb(28, 38, 48));
+  }
+  .item-ability-content {
+    background-color: rgb(28, 38, 48);
+  }
+}
+.item-ability-use {
+  color: rgb(123, 138, 114);
+  .item-ability-title {
+    color: rgb(149, 192, 122);
+    background: linear-gradient(to right, rgb(39, 63, 39), rgb(23, 35, 31));
+  }
+  .item-ability-content {
+    background-color: rgb(23, 35, 31);
+  }
 }

@@ -4,7 +4,7 @@ import { IItemLocal } from '../../model/item';
 @Component({
   selector: 'app-item-modal',
   templateUrl: './item-modal.component.html',
-  styleUrls: ['./item-modal.component.scss']
+  styleUrls: ['./item-modal.component.scss'],
 })
 export class ItemModalComponent implements OnInit {
   @Input() pageXY: number[];
@@ -45,9 +45,7 @@ export class ItemModalComponent implements OnInit {
   //   charges: false
   // };
 
-  constructor(
-    // private itemsService: ItemsService,
-  ) { }
+  constructor() {} // private itemsService: ItemsService,
 
   ngOnInit(): void {
     // this.getitems();
@@ -61,4 +59,17 @@ export class ItemModalComponent implements OnInit {
   //   });
   // }
 
+  replaceValueInDisplay(attribItem): string {
+    if (attribItem.key.startsWith('bonus') && attribItem.display) {
+      return attribItem?.display.replace('{value}', attribItem.value);
+    }
+  }
+
+  calRecipeCost(item): number {
+    let componentCost = item.components.reduce(
+      (acc, cur) => acc + this.items[cur]?.cost,
+      0
+    );
+    return item.cost - componentCost;
+  }
 }
