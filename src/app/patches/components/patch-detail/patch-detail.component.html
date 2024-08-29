@@ -27,7 +27,7 @@
       <h2 class="patch-cat-title">Items</h2>
       <div *ngFor="let item of extractPatchFieldList(patchnote?.items)" class="item-row">
         <div class="item-img-name">
-          <app-img [data]="items[item]['img']" *ngIf="items && items[item]['img']" class="item-img me-item-img"
+          <app-img [data]="items[item]?.img" *ngIf="items && items[item]?.img" class="item-img me-item-img"
             [style]="'border: 1px solid ' + itemColors[items[item]['qual']]" [altData]="items[item]?.dname">
           </app-img>
 

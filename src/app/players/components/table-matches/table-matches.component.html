@@ -19,11 +19,11 @@
             <app-parsed-mark *ngIf="element.version"></app-parsed-mark>
             <!-- factes -->
             <div class="hero-facets"
-              *ngIf="heroAbilities && heroes && heroAbilities[heroes[element['hero_id']]['name']]?.facets">
+              *ngIf="heroAbilities && heroes && heroAbilities[heroes[element['hero_id']]?.name]?.facets">
               <app-factes-icon
-                (mouseover)="showFacteModalFn($event, heroAbilities[heroes[element['hero_id']]['name']]?.facets[element['hero_variant'] - 1])"
+                (mouseover)="showFacteModalFn($event, heroAbilities[heroes[element['hero_id']]?.name]?.facets[element['hero_variant'] - 1])"
                 (mouseout)="showFacteModal=false; currentMouseOverFacte = null"
-                [facet]="heroAbilities[heroes[element['hero_id']]['name']]?.facets[element['hero_variant'] - 1]"></app-factes-icon>
+                [facet]="heroAbilities[heroes[element['hero_id']]?.name]?.facets[element['hero_variant'] - 1]"></app-factes-icon>
             </div>
 
             <app-img *ngIf="heroes[element['hero_id']]?.img" [data]="heroes[element['hero_id']]?.img"
@@ -39,7 +39,7 @@
                 <span class="land_role" *ngIf="isRecentMatches">
                   <img onError="this.src='./assets/images/Dota2Logo.svg'" class="land-role-img" width="14" height="14"
                     *ngIf="element?.lane_role && laneRole" matTooltipPosition="above"
-                    [matTooltip]="laneRole[element.lane_role]['name'] | nameDestruct: '_' : 2"
+                    [matTooltip]="laneRole[element.lane_role]?.name | nameDestruct: '_' : 2"
                     [src]="'https://www.opendota.com/assets/images/dota2/lane_' + element?.lane_role + '.svg'" />
                 </span>
               </span>
@@ -158,7 +158,7 @@
               [class]="'item-color item-color-' + items[itemIds[element?.item_0]]?.qual" class="item"
               *ngIf="element.item_0 !== 0 && itemIds && items && items[itemIds[element?.item_0]]?.img"
               src="https://www.opendota.com/assets/images/Dota2Logo.svg"
-              [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[element.item_0]]['img']"
+              [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[element.item_0]]?.img"
               (mouseover)="showItemModalFn($event, element.item_0)"
               (mouseout)="showItemModal=false; currentMouseOverItem = null" />
             <!-- item -->
@@ -166,7 +166,7 @@
               [class]="'item-color item-color-' + items[itemIds[element?.item_1]]?.qual" class="item"
               *ngIf="element.item_1 !== 0 && itemIds && items && items[itemIds[element?.item_1]]?.img"
               src="https://www.opendota.com/assets/images/Dota2Logo.svg"
-              [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[element.item_1]]['img']"
+              [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[element.item_1]]?.img"
               (mouseover)="showItemModalFn($event, element.item_1)"
               (mouseout)="showItemModal=false; currentMouseOverItem = null" />
             <!-- item -->
@@ -174,7 +174,7 @@
               [class]="'item-color item-color-' + items[itemIds[element?.item_2]]?.qual" class="item"
               *ngIf="element.item_2 !== 0 && itemIds && items && items[itemIds[element?.item_2]]?.img"
               src="https://www.opendota.com/assets/images/Dota2Logo.svg"
-              [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[element.item_2]]['img']"
+              [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[element.item_2]]?.img"
               (mouseover)="showItemModalFn($event, element.item_2)"
               (mouseout)="showItemModal=false; currentMouseOverItem = null" />
             <!-- item -->
@@ -182,7 +182,7 @@
               [class]="'item-color item-color-' + items[itemIds[element?.item_3]]?.qual" class="item"
               *ngIf="element.item_3 !== 0 && itemIds && items && items[itemIds[element?.item_3]]?.img"
               src="https://www.opendota.com/assets/images/Dota2Logo.svg"
-              [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[element.item_3]]['img']"
+              [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[element.item_3]]?.img"
               (mouseover)="showItemModalFn($event, element.item_3)"
               (mouseout)="showItemModal=false; currentMouseOverItem = null" />
             <!-- item -->
@@ -190,7 +190,7 @@
               [class]="'item-color item-color-' + items[itemIds[element?.item_4]]?.qual" class="item"
               *ngIf="element.item_4 !== 0 && itemIds && items && items[itemIds[element?.item_4]]?.img"
               src="https://www.opendota.com/assets/images/Dota2Logo.svg"
-              [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[element.item_4]]['img']"
+              [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[element.item_4]]?.img"
               (mouseover)="showItemModalFn($event, element.item_4)"
               (mouseout)="showItemModal=false; currentMouseOverItem = null" />
             <!-- item -->
@@ -198,7 +198,7 @@
               [class]="'item-color item-color-' + items[itemIds[element?.item_5]]?.qual" class="item"
               *ngIf="element.item_5 !== 0 && itemIds && items && items[itemIds[element?.item_5]]?.img"
               src="https://www.opendota.com/assets/images/Dota2Logo.svg"
-              [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[element.item_5]]['img']"
+              [src]="'https://steamcdn-a.akamaihd.net/' + items[itemIds[element.item_5]]?.img"
               (mouseover)="showItemModalFn($event, element.item_5)"
               (mouseout)="showItemModal=false; currentMouseOverItem = null" />
             <!-- item -->

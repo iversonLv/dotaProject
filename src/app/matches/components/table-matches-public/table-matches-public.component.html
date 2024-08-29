@@ -52,8 +52,8 @@
           <div class="teams">
             <app-win *ngIf="element.radiant_win" class="icon-win"></app-win>
             <span *ngFor="let heroId of (element?.radiant_team || [])">
-              <app-img [data]="heroes[heroId]['img']" (click)="goPage(heroId)" class="hero-img sm-hero-img"
-                [altData]="heroes[heroId]['localized_name']"></app-img>
+              <app-img [data]="heroes[heroId]?.img" (click)="goPage(heroId)" class="hero-img sm-hero-img"
+                [altData]="heroes[heroId]?.localized_name"></app-img>
             </span>
           </div>
         </td>
@@ -66,8 +66,8 @@
           <div class="teams">
             <app-win *ngIf="!element.radiant_win" class="icon-win"></app-win>
             <span *ngFor="let heroId of (element?.dire_team || [])">
-              <app-img [data]="heroes[heroId]['img']" (click)="goPage(heroId)" class="hero-img sm-hero-img"
-                [altData]="heroes[heroId]['localized_name']"></app-img>
+              <app-img [data]="heroes[heroId]?.img" (click)="goPage(heroId)" class="hero-img sm-hero-img"
+                [altData]="heroes[heroId]?.localized_name"></app-img>
             </span>
           </div>
         </td>
