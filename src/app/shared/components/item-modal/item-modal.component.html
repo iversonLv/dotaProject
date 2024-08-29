@@ -16,11 +16,16 @@
     </div>
   </div>
   <!-- item-main -->
-  <div class="item-behavior" *ngIf="item?.behavior > 0">
+  <div class="item-behavior box" *ngIf="item?.behavior">
     <label>TARGET:</label>
-    <span *ngFor="let behavior of item.behavior">{{behavior}} /</span>
+    <span *ngIf="isString(item.behavior)">{{item.behavior}}</span>
+    <span *ngIf="isArray(item.behavior)">
+      <ng-container *ngFor="let behavior of item.behavior; let i = index">
+        {{ behavior }}<span *ngIf="i < item.behavior.length - 1"> / </span>
+      </ng-container>
+    </span>
   </div>
-  <div class="item-dispellable" *ngIf="item?.dispellable">
+  <div class="item-dispellable box" *ngIf="item?.dispellable">
     <label>DISPELLABLE:</label> {{item?.dispellable}}
   </div>
   <div class="item-attrib" *ngIf="item.attrib">
@@ -29,7 +34,7 @@
     </p>
   </div>
   <!-- item abilities -->
-  <div class="item-abilities" *ngIf="item.abilities.length > 0">
+  <div class="item-abilities" *ngIf="item?.abilities && item.abilities.length > 0">
     <div *ngFor="let ability of item.abilities" [class]="'item-ability item-ability-' + ability.type ">
       <div class="item-ability-title">
         <h2>{{ability.type}}: {{ability.title}}</h2>
@@ -52,7 +57,7 @@
     </div>
   </div>
   <!-- item-attrib -->
-  <div class="item-hint" *ngIf="item.hint.length > 0">
+  <div class="item-hint" *ngIf="item?.hint && item.hint.length > 0">
     <p *ngFor="let hint of item.hint" class="hint-row">
       {{hint}}
     </p>
@@ -71,7 +76,7 @@
         </app-img>
         <span *ngIf="items" class="item-cost">{{items[component]?.cost}}</span>
       </span>
-      <span class="components-block" *ngIf="item.created">
+      <span class="components-block" *ngIf="item.created && calRecipeCost(item) !== 0">
         <img onError="this.src='./assets/images/Dota2Logo.svg'" width="40" src='./assets/images/recipe.png' />
         <span class="item-cost">{{calRecipeCost(item)}}</span>
       </span>

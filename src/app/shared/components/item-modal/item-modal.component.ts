@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IItemLocal } from '../../model/item';
 
+import { isString, isArray } from '../../utils/utils';
+
 @Component({
   selector: 'app-item-modal',
   templateUrl: './item-modal.component.html',
@@ -12,6 +14,9 @@ export class ItemModalComponent implements OnInit {
   @Input() aghs: any;
 
   @Input() items: any;
+
+  isString = isString;
+  isArray = isArray;
 
   // @Input() pageXY: number[] = [0, 100];
   // @Input() item: IItemLocal = {
