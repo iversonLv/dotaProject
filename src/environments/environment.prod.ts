@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  currentVersion: '7.37d',
+  currentVersion: '7.38b',
   currentMap:
     'https://www.opendota.com/assets/images/dota2/map/detailed_733.jpg',
   BASE_API_URL: 'https://api.opendota.com/api',
