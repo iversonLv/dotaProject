@@ -37,6 +37,14 @@ export interface IChat {
     player_slot: number;
 }
 
+export interface IShownChat {
+  chat: IChat;
+  targetType: string;
+  chatType: string;
+  spam: boolean;
+  side: string;
+}
+
 export interface ISingleMatchTeam {
   logo_url: string;
   name: string;

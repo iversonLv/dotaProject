@@ -23,6 +23,3 @@ export interface IMatch {
   radiant_win: boolean;
   start_time: number;
 }
-
-
-
